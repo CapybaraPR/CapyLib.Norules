@@ -1,9 +1,9 @@
-using Exiled.API.Interfaces;
+using Capy.Core.API;
 
 namespace Capy.NoRules;
 
-public class NoRulesConfig : IConfig
+public class NoRulesConfig : IModuleConfig
 {
     public bool IsEnabled { get; set; } = true;
-    public bool Debug { get; set; }
+    public bool DebugMode { get; set; }
 }
