@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Capy.NoRules</RootNamespace>
+    <AssemblyName>CapyLib.NoRules</AssemblyName>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CapyLib"><HintPath>..\CapyLib\bin\Release\net48\CapyLib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Exiled.API"><HintPath>..\CapyLib\_deps\Exiled.API.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Exiled.Events"><HintPath>..\CapyLib\_deps\Exiled.Events.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp_publicized"><HintPath>..\CapyLib\_deps\Assembly-CSharp_publicized.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>..\CapyLib\_deps\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>
