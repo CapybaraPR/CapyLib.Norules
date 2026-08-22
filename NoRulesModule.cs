@@ -22,7 +22,7 @@ public class NoRulesModule : ICapyModule
 
     public Task OnEnabledAsync()
     {
-        Log.Info($"[NoRules] Модуль включён (v{Version}, debug: {_config.Debug}). Папки: CustomItems / CustomRoles / Features / Additions.");
+        Log.Info($"[NoRules] Модуль включён (v{Version}, debug: {_config.DebugMode}). Папки: CustomItems / CustomRoles / Features / Additions.");
         return Task.CompletedTask;
     }
 
