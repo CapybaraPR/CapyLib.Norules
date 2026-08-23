@@ -39,7 +39,7 @@ public struct CapyBlockDef
 }
 
 /// <summary>
-/// Летающий питомец-капибара для выбранных SteamID.
+/// Летающий питомец-капибара и спавнер статичных 3D-моделей капибар.
 /// Построена на нативных EXILED AdminToys (22 блока, апельсинка на голове 🍊).
 /// Парит рядом с правым плечом владельца с плавной анимацией покачивания.
 /// </summary>
@@ -48,6 +48,8 @@ public sealed class CapybaraPetFeature
     private readonly CapybaraPetConfig _config;
     private readonly ConcurrentDictionary<int, List<Primitive>> _activePets = new();
     private readonly ConcurrentDictionary<int, CoroutineHandle> _activeCoroutines = new();
+    private readonly ConcurrentDictionary<int, byte> _temporaryGranted = new();
+    private readonly List<List<Primitive>> _staticCapybaras = new();
 
     private static readonly List<CapyBlockDef> ModelBlocks = new()
     {
@@ -93,9 +95,20 @@ public sealed class CapybaraPetFeature
         _config = config;
     }
 
-    private bool IsPetOwner(Player? player)
+    public bool HasAccess(Player? player)
+    {
+        if (player == null) return false;
+        string rawId = player.RawUserId ?? player.UserId ?? string.Empty;
+        if (_config.OwnerSteamIds.Any(id => !string.IsNullOrWhiteSpace(id) && rawId.Contains(id)))
+            return true;
+
+        return player.RemoteAdminAccess;
+    }
+
+    public bool IsPetEligible(Player? player)
     {
         if (player == null || !_config.IsEnabled) return false;
+        if (_temporaryGranted.ContainsKey(player.Id)) return true;
 
         string rawId = player.RawUserId ?? player.UserId ?? string.Empty;
         return _config.OwnerSteamIds.Any(id => !string.IsNullOrWhiteSpace(id) && rawId.Contains(id));
@@ -103,7 +116,7 @@ public sealed class CapybaraPetFeature
 
     public void OnPlayerSpawned(SpawnedEventArgs ev)
     {
-        if (ev.Player == null || !IsPetOwner(ev.Player)) return;
+        if (ev.Player == null || !IsPetEligible(ev.Player)) return;
 
         DespawnPet(ev.Player);
 
@@ -128,7 +141,10 @@ public sealed class CapybaraPetFeature
     public void OnPlayerLeft(LeftEventArgs ev)
     {
         if (ev.Player != null)
+        {
+            _temporaryGranted.TryRemove(ev.Player.Id, out _);
             DespawnPet(ev.Player);
+        }
     }
 
     public void OnRoundRestarted()
@@ -145,8 +161,118 @@ public sealed class CapybaraPetFeature
                 try { p?.Destroy(); } catch { }
             }
         }
-
         _activePets.Clear();
+        _temporaryGranted.Clear();
+
+        ClearAllStaticCapybaras();
+    }
+
+    public bool TogglePet(Player player, out string response)
+    {
+        if (_activePets.ContainsKey(player.Id))
+        {
+            _temporaryGranted.TryRemove(player.Id, out _);
+            DespawnPet(player);
+            response = "<color=yellow>[КАПИБАРА]</color> Питомец убран.";
+            return true;
+        }
+        else
+        {
+            _temporaryGranted[player.Id] = 1;
+            SpawnPetForPlayer(player);
+            response = "<color=green>[КАПИБАРА]</color> Питомец заспавнен рядом с тобой! 🍊";
+            return true;
+        }
+    }
+
+    public bool GivePet(Player target, out string response)
+    {
+        _temporaryGranted[target.Id] = 1;
+        DespawnPet(target);
+        SpawnPetForPlayer(target);
+        response = $"<color=green>[КАПИБАРА]</color> Питомец выдан игроку <b>{target.Nickname}</b> на этот раунд!";
+        return true;
+    }
+
+    public bool RemovePet(Player target, out string response)
+    {
+        _temporaryGranted.TryRemove(target.Id, out _);
+        DespawnPet(target);
+        response = $"<color=yellow>[КАПИБАРА]</color> Питомец убран у игрока <b>{target.Nickname}</b>.";
+        return true;
+    }
+
+    /// <summary>
+    /// Спавнит неподвижную капибару прямо перед игроком, повернутую мордочкой к нему.
+    /// </summary>
+    public bool SpawnStaticCapybara(Player player, float scale, out string response)
+    {
+        try
+        {
+            if (scale <= 0.05f) scale = 0.8f;
+
+            // Позиция: 1.8 метра перед игроком, на высоте ног/пола
+            Vector3 forward = player.CameraTransform != null ? player.CameraTransform.forward : player.Rotation * Vector3.forward;
+            forward.y = 0f;
+            forward.Normalize();
+
+            Vector3 rootPos = player.Position + (forward * 1.8f);
+            // Поворачиваем мордочкой к игроку
+            Quaternion rootRot = Quaternion.LookRotation(-forward, Vector3.up);
+
+            var primitives = new List<Primitive>(ModelBlocks.Count);
+
+            foreach (var def in ModelBlocks)
+            {
+                Vector3 worldPos = rootPos + (rootRot * (def.LocalPos * scale));
+                Quaternion worldRot = rootRot * Quaternion.Euler(def.LocalRot);
+                Vector3 worldScale = def.LocalScale * scale;
+
+                var prim = Primitive.Create(
+                    primitiveType: def.Type,
+                    flags: PrimitiveFlags.Visible,
+                    position: worldPos,
+                    rotation: worldRot.eulerAngles,
+                    scale: worldScale,
+                    spawn: true,
+                    color: def.Color
+                );
+
+                if (prim != null)
+                    primitives.Add(prim);
+            }
+
+            lock (_staticCapybaras)
+            {
+                _staticCapybaras.Add(primitives);
+            }
+
+            response = $"<color=green>[КАПИБАРА]</color> Статичная 3D-капибара заспавнена перед тобой (масштаб: {scale:F2})! Всего на карте: {_staticCapybaras.Count}";
+            return true;
+        }
+        catch (Exception ex)
+        {
+            response = $"<color=red>[ОШИБКА]</color> Не удалось заспавнить капибару: {ex.Message}";
+            return false;
+        }
+    }
+
+    public int ClearAllStaticCapybaras()
+    {
+        int count = 0;
+        lock (_staticCapybaras)
+        {
+            count = _staticCapybaras.Count;
+            foreach (var list in _staticCapybaras)
+            {
+                foreach (var p in list)
+                {
+                    try { p?.Destroy(); } catch { }
+                }
+            }
+            _staticCapybaras.Clear();
+        }
+        return count;
     }
 
     private void SpawnPetForPlayer(Player player)
