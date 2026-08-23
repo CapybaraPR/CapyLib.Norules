@@ -1,52 +1,49 @@
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using Capy.Engine.Hints;
+using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
 using Capy.NoRules.Config;
 using Exiled.API.Features;
+using Exiled.API.Features.DamageHandlers;
 using Exiled.Events.EventArgs.Player;
-using MEC;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Запись одного попадания в потоке урона.
-/// </summary>
-public sealed class DamageHit
-{
-    public float Amount { get; set; }
-    public DateTime Timestamp { get; set; }
-}
-
-/// <summary>
-/// Активный поток урона игрока по цели (волновой список хитов сверху вниз под прицелом).
-/// </summary>
-public sealed class DamageStream
-{
-    public int TargetId { get; set; }
-    public string TargetName { get; set; } = string.Empty;
-    public string TargetColor { get; set; } = "#ff4444";
-    public List<DamageHit> Hits { get; } = new();
-    public CoroutineHandle Coroutine { get; set; }
-}
-
-/// <summary>
-/// Система динамических хитмаркеров (волновой вертикальный поток урона под прицелом).
-/// Воспроизводит точный стиль индикации урона из AspectLib:
-/// Имя/роль цели сверху и ниспадающие цифры -XX.X волной вниз.
+/// Модуль хитмаркеров, портированный 1:1 из AspectLib.Modules.HitMarker.HitMarkerModule.
+/// При попадании — рандомно позиционированный урон вокруг прицела.
+/// Хедшот — красный, крупный.
+/// Убийство — плашка "Убит!".
 /// </summary>
 public sealed class HitmarkerFeature
 {
     private readonly HitmarkerConfig _config;
-    private static readonly ConcurrentDictionary<int, DamageStream> ActiveStreams = new();
 
     public HitmarkerFeature(HitmarkerConfig config)
     {
         _config = config;
+    }
+
+    private static bool IsTeammate(Player attacker, Player victim)
+    {
+        if (attacker == null || victim == null || attacker == victim)
+            return true;
+
+        if (Server.FriendlyFire)
+            return false;
+
+        if (attacker.Role.Team == victim.Role.Team
+            && attacker.Role.Team != PlayerRoles.Team.OtherAlive
+            && attacker.Role.Team != PlayerRoles.Team.Dead)
+            return true;
+
+        if (attacker.Role.Side == victim.Role.Side
+            && attacker.Role.Side != Exiled.API.Enums.Side.None)
+            return true;
+
+        return false;
     }
 
     public void OnPlayerHurting(HurtingEventArgs ev)
@@ -54,56 +51,33 @@ public sealed class HitmarkerFeature
         if (!_config.IsEnabled || ev.Attacker == null || ev.Player == null || ev.Attacker == ev.Player)
             return;
 
+        if (IsTeammate(ev.Attacker, ev.Player))
+            return;
+
         if (ev.Amount <= 0f || ev.Player.IsGodModeEnabled)
             return;
 
-        // Проверка Friendly Fire
-        if (!Server.FriendlyFire && ev.Attacker.Role.Side == ev.Player.Role.Side)
-            return;
+        float exactDamage = (float)Math.Round(ev.Amount, 1);
+        string formattedDamage = exactDamage.ToString("0.#", CultureInfo.InvariantCulture);
 
-        int attackerId = ev.Attacker.Id;
-        int targetId = ev.Player.Id;
-        float damage = (float)Math.Round(ev.Amount, 1);
+        bool isHeadshot = ev.DamageHandler.BaseIs(out FirearmDamageHandler firearmHandler)
+                          && firearmHandler.Hitbox == HitboxType.Headshot;
 
-        var stream = ActiveStreams.GetOrAdd(attackerId, _ => new DamageStream());
+        string damageText = isHeadshot
+            ? $"<b><color=#FF2222>-{formattedDamage}</color></b>"
+            : $"<b>-{formattedDamage}</b>";
 
-        lock (stream)
-        {
-            // Если цель сменилась или поток устарел — сбрасываем список
-            if (stream.TargetId != targetId)
-            {
-                stream.Hits.Clear();
-                stream.TargetId = targetId;
-                stream.TargetName = ev.Player.Role.Name;
-                stream.TargetColor = GetSideColor(ev.Player.Role.Side);
-            }
+        Vector2 randomOffset = new Vector2(Random.Range(-350, 350), Random.Range(250, 450));
 
-            stream.Hits.Add(new DamageHit
-            {
-                Amount = damage,
-                Timestamp = DateTime.UtcNow
-            });
-
-            // Ограничиваем историю последними 6 попаданиями
-            if (stream.Hits.Count > 6)
-                stream.Hits.RemoveAt(0);
-
-            Timing.KillCoroutines(stream.Coroutine);
-
-            // Рендерим вертикальную волну
-            RenderStream(ev.Attacker, stream);
-
-            // Таймер автоматического затухания и очистки через 1.8с
-            stream.Coroutine = Timing.CallDelayed(1.8f, () =>
-            {
-                lock (stream)
-                {
-                    stream.Hits.Clear();
-                    stream.TargetId = -1;
-                    ev.Attacker.ClearCapyHint("hitmarker_stream");
-                }
-            });
-        }
+        ev.Attacker.ShowHint(
+            damageText,
+            randomOffset,
+            2.5f,
+            HintVerticalAlign.Middle,
+            HintAlignment.Center,
+            isHeadshot ? 16 : 14,
+            "hit"
+        );
     }
 
     public void OnPlayerDied(DiedEventArgs ev)
@@ -111,42 +85,20 @@ public sealed class HitmarkerFeature
         if (!_config.IsEnabled || ev.Attacker == null || ev.Player == null || ev.Attacker == ev.Player)
             return;
 
-        int attackerId = ev.Attacker.Id;
-        if (ActiveStreams.TryGetValue(attackerId, out var stream))
-        {
-            lock (stream)
-            {
-                Timing.KillCoroutines(stream.Coroutine);
-                stream.Hits.Clear();
-                stream.TargetId = -1;
-            }
-        }
+        if (IsTeammate(ev.Attacker, ev.Player))
+            return;
 
-        string killText = $"<size=26><b><color=#f24e4e>УБИТ!</color></b></size>\n<size=18><color=#c2c2c2>{ev.Player.Nickname}</color></size>";
-        ev.Attacker.ShowZoneHint(HintZone.BottomCenter, killText, 2.2f, "hitmarker_stream", 24);
-    }
+        string killText = "<b><color=#f24e4e>Убит!</color></b>";
+        Vector2 randomOffset = new Vector2(Random.Range(-350, 350), Random.Range(400, 500));
 
-    private static void RenderStream(Player attacker, DamageStream stream)
-    {
-        var sb = new StringBuilder();
-        sb.AppendLine($"<size=22><b><color={stream.TargetColor}>{stream.TargetName}</color></b></size>");
-
-        foreach (var hit in stream.Hits)
-        {
-            sb.AppendLine($"<size=20><color=#ffffff>-{hit.Amount.ToString("0.#", CultureInfo.InvariantCulture)}</color></size>");
-        }
-
-        attacker.ShowZoneHint(HintZone.BottomCenter, sb.ToString().TrimEnd(), 2.0f, "hitmarker_stream", 20);
-    }
-
-    private static string GetSideColor(Exiled.API.Enums.Side side)
-    {
-        return side switch
-        {
-            Exiled.API.Enums.Side.Scp => "#ff2222",
-            Exiled.API.Enums.Side.Mtf => "#6d9ff7",
-            Exiled.API.Enums.Side.ChaosInsurgency => "#608f38",
-            _ => "#ffa94e"
-        };
+        ev.Attacker.ShowHint(
+            killText,
+            randomOffset,
+            4.0f,
+            HintVerticalAlign.Middle,
+            HintAlignment.Center,
+            24,
+            "kill"
+        );
     }
 }
