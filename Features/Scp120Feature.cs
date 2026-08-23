@@ -8,6 +8,7 @@ using Capy.Engine.Studio.Core;
 using Capy.NoRules.Config;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.API.Features.Doors;
 using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Player;
 using MEC;
@@ -85,6 +86,23 @@ public sealed class Scp120Feature : IDisposable
         if (!_config.IsEnabled) return;
 
         StopLoop();
+
+        // Приглушаем свет и закрываем двери в комнате GR-18 (LczGlassBox)
+        foreach (var room in Room.List)
+        {
+            if (room.Type == RoomType.LczGlassBox)
+            {
+                room.Color = new Color32(25, 25, 30, 255);
+            }
+        }
+
+        foreach (var door in Door.List)
+        {
+            if (door.Room?.Type == RoomType.LczGlassBox)
+            {
+                door.IsOpen = false;
+            }
+        }
 
         // Авто-спавн в GlassBox если включено
         if (_config.AutoSpawnInGlassBox)
