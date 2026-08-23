@@ -42,7 +42,7 @@ public sealed class Scp120Feature : IDisposable
     public List<ItemType> GoodItems { get; set; } = new()
     {
         ItemType.KeycardGuard, ItemType.KeycardContainmentEngineer,
-        ItemType.SCP500, ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCrossvec, ItemType.GrenadeHE
+        ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCrossvec, ItemType.GrenadeHE
     };
 
     public List<ItemType> RareItems { get; set; } = new()
@@ -57,7 +57,7 @@ public sealed class Scp120Feature : IDisposable
     {
         ItemType.KeycardFacilityManager, ItemType.KeycardO5, ItemType.KeycardMTFCaptain,
         ItemType.KeycardChaosInsurgency, ItemType.ParticleDisruptor, ItemType.MicroHID,
-        ItemType.Jailbird, ItemType.GunFRMG0, ItemType.GunLogicer, ItemType.SCP268, ItemType.SCP1344
+        ItemType.Jailbird, ItemType.GunFRMG0, ItemType.GunLogicer, ItemType.SCP268, ItemType.SCP1344, ItemType.SCP500
     };
 
     public List<ItemType> AmmoTypes { get; set; } = new()
@@ -135,13 +135,16 @@ public sealed class Scp120Feature : IDisposable
             Vector3 poolPos = schematic.Position;
             Vector2 poolPos2D = new Vector2(poolPos.x, poolPos.z);
 
-            // 1. Проверка телепортации игроков
+            // 1. Проверка телепортации игроков (срабатывает только при шаге в воду)
             foreach (Player player in Player.List)
             {
                 if (player == null || !player.IsAlive) continue;
 
                 Vector2 playerPos2D = new Vector2(player.Position.x, player.Position.z);
-                if (Vector2.Distance(playerPos2D, poolPos2D) < _config.PoolRadius && Math.Abs(player.Position.y - poolPos.y) < 1.0f)
+                float dist2D = Vector2.Distance(playerPos2D, poolPos2D);
+                float yDiff = player.Position.y - poolPos.y;
+
+                if (dist2D <= _config.PoolRadius && yDiff >= -0.5f && yDiff <= 1.4f)
                 {
                     if (_playerTeleportCooldowns.TryGetValue(player.Id, out var nextUse) && DateTime.UtcNow < nextUse)
                         continue;
@@ -151,15 +154,18 @@ public sealed class Scp120Feature : IDisposable
                 }
             }
 
-            // 2. Проверка трансформации предметов
+            // 2. Проверка трансформации предметов (только брошенные в воду предметы)
             foreach (Pickup pickup in Pickup.List.ToList())
             {
                 if (pickup == null || pickup.GameObject == null || _activePickupSerials.Contains(pickup.Serial)) continue;
 
                 Vector2 pickupPos2D = new Vector2(pickup.Position.x, pickup.Position.z);
-                if (Vector2.Distance(pickupPos2D, poolPos2D) < _config.PoolRadius && Math.Abs(pickup.Position.y - poolPos.y) < 1.2f)
+                float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
+                float yDiff = pickup.Position.y - poolPos.y;
+
+                if (dist2D <= _config.PoolRadius && yDiff >= -0.5f && yDiff <= 1.2f)
                 {
-                    Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.35f));
+                    Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.15f));
                 }
             }
         }
@@ -185,14 +191,16 @@ public sealed class Scp120Feature : IDisposable
         _activePickupSerials.Add(pickup.Serial);
         ItemType droppedType = pickup.Type;
 
+        DisablePhysics(pickup);
+
         Vector3 startPos = pickup.Position;
         float elapsed = 0f;
-        const float sinkDuration = 1.4f;
+        const float sinkDuration = 1.3f;
 
         while (elapsed < sinkDuration && pickup != null && pickup.GameObject != null)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / sinkDuration);
-            float wave = Mathf.Sin(elapsed * 8f) * 0.04f * (1f - t);
+            float wave = Mathf.Sin(elapsed * 8f) * 0.03f * (1f - t);
             pickup.Position = Vector3.Lerp(startPos, new Vector3(startPos.x, targetY, startPos.z), t) + new Vector3(wave, 0, wave);
 
             elapsed += Timing.DeltaTime;
@@ -209,13 +217,14 @@ public sealed class Scp120Feature : IDisposable
             int rarity = GetItemRarityValue(droppedType);
             ItemType upgradedItem = CalculateUpgradedItem(rarity);
 
-            yield return Timing.WaitForSeconds(0.1f);
+            yield return Timing.WaitForSeconds(0.08f);
 
             var newPickup = Pickup.Create(upgradedItem);
             if (newPickup != null)
             {
-                newPickup.Position = finalPos + Vector3.up * 0.25f;
+                newPickup.Position = finalPos + Vector3.up * 0.20f;
                 newPickup.Spawn();
+                DisablePhysics(newPickup);
                 _activePickupSerials.Add(newPickup.Serial);
 
                 Timing.RunCoroutine(FloatingItemAnimation(newPickup, newPickup.Position));
@@ -228,45 +237,53 @@ public sealed class Scp120Feature : IDisposable
         float elapsed = 0f;
         while (pickup != null && pickup.GameObject != null && _activePickupSerials.Contains(pickup.Serial))
         {
-            float bob = Mathf.Sin(elapsed * 2.5f) * 0.08f;
+            float bob = Mathf.Sin(elapsed * 2.5f) * 0.06f;
             pickup.Position = origin + new Vector3(0, bob, 0);
+            pickup.Rotation *= Quaternion.Euler(0, 45f * Timing.DeltaTime, 0);
+
             elapsed += Timing.DeltaTime;
             yield return Timing.WaitForOneFrame;
         }
     }
 
+    private static void DisablePhysics(Pickup? pickup)
+    {
+        if (pickup == null || pickup.GameObject == null) return;
+        try
+        {
+            if (pickup.Rigidbody != null)
+            {
+                pickup.Rigidbody.isKinematic = true;
+                pickup.Rigidbody.useGravity = false;
+                pickup.Rigidbody.velocity = Vector3.zero;
+                pickup.Rigidbody.angularVelocity = Vector3.zero;
+            }
+        }
+        catch { }
+    }
+
     private int GetItemRarityValue(ItemType type)
     {
         if (CommonItems.Contains(type)) return 10;
-        if (UncommonItems.Contains(type)) return 35;
-        if (GoodItems.Contains(type)) return 60;
-        if (RareItems.Contains(type)) return 85;
-        if (VeryRareItems.Contains(type)) return 100;
-        return 5;
+        if (UncommonItems.Contains(type)) return 30;
+        if (GoodItems.Contains(type)) return 55;
+        if (RareItems.Contains(type)) return 75;
+        if (VeryRareItems.Contains(type)) return 95;
+        return 10;
     }
 
     private ItemType CalculateUpgradedItem(int currentRarity)
     {
         int roll = UnityEngine.Random.Range(1, 101);
+        if (roll <= 10) return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
 
-        if (roll <= 10)
-            return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
+        double decider = (currentRarity * 1.2 + roll * 0.8) / 2.0;
 
-        int combined = (int)(currentRarity * 0.4f + roll * 0.6f);
-
-        if (combined > 85 && VeryRareItems.Count > 0)
-            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];
-
-        if (combined > 60 && RareItems.Count > 0)
-            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];
-
-        if (combined > 35 && GoodItems.Count > 0)
-            return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];
-
-        if (combined > 15 && UncommonItems.Count > 0)
-            return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)];
-
-        return CommonItems[UnityEngine.Random.Range(0, CommonItems.Count)];
+        if (decider <= 40) return CommonItems[UnityEngine.Random.Range(0, CommonItems.Count)];
+        if (decider <= 65) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)];
+        if (decider <= 80) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];
+        if (decider <= 92) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];
+        return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];
     }
 
     public void Dispose()
