@@ -9,9 +9,12 @@ using Capy.Engine.Hud.Panels;
 using Capy.Engine.ServerSpecific;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Scp049;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Scp173;
+using Exiled.Events.EventArgs.Scp3114;
 using Exiled.Events.EventArgs.Scp330;
 using Exiled.Events.EventArgs.Scp914;
 using Exiled.Events.EventArgs.Server;
@@ -114,7 +117,11 @@ public sealed class VanishFeature
         player.AddItem(ItemType.Coin);
         player.AddItem(ItemType.KeycardChaosInsurgency);
 
-        // 3. Скрываем игрока от всех через сетевые пакеты Mirror (ChangeAppearance -> Spectator)
+        // 3. Скрываем игрока от всех через сетевые пакеты Mirror (GhostMode + ChangeAppearance -> Spectator)
+        if (player.Role.Is(out FpcRole fpcRole))
+        {
+            fpcRole.IsInvisible = true;
+        }
         Capy.Core.Extensions.NetworkExtensions.ChangeAppearance(player, RoleTypeId.Spectator, true);
         player.IsGodModeEnabled = true;
         player.IsBypassModeEnabled = false;
@@ -140,6 +147,11 @@ public sealed class VanishFeature
     {
         if (!VanishedStates.TryRemove(player.Id, out var state))
             return;
+
+        if (player.Role.Is(out FpcRole fpcRole))
+        {
+            fpcRole.IsInvisible = false;
+        }
 
         player.ClearInventory();
         player.IsGodModeEnabled = false;
@@ -428,5 +440,30 @@ public sealed class VanishFeature
     public void OnInteractingShootingTarget(InteractingShootingTargetEventArgs ev)
     {
         if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnActivatingSense(ActivatingSenseEventArgs ev)
+    {
+        if (IsVanished(ev.Target)) ev.IsAllowed = false;
+    }
+
+    public void OnStartingRecall(StartingRecallEventArgs ev)
+    {
+        if (IsVanished(ev.Target)) ev.IsAllowed = false;
+    }
+
+    public void OnEnteringPocketDimension(EnteringPocketDimensionEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnStrangling(StranglingEventArgs ev)
+    {
+        if (IsVanished(ev.Target)) ev.IsAllowed = false;
+    }
+
+    public void OnDisguising(DisguisingEventArgs ev)
+    {
+        if (ev.Ragdoll?.Owner != null && IsVanished(ev.Ragdoll.Owner)) ev.IsAllowed = false;
     }
 }

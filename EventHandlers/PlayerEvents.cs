@@ -100,4 +100,5 @@ public sealed class PlayerEvents
     public void OnDeactivatingWorkstation(DeactivatingWorkstationEventArgs ev) => _vanish.OnDeactivatingWorkstation(ev);
     public void OnActivatingWarheadPanel(ActivatingWarheadPanelEventArgs ev) => _vanish.OnActivatingWarheadPanel(ev);
     public void OnInteractingShootingTarget(InteractingShootingTargetEventArgs ev) => _vanish.OnInteractingShootingTarget(ev);
+    public void OnEnteringPocketDimension(EnteringPocketDimensionEventArgs ev) => _vanish.OnEnteringPocketDimension(ev);
 }

@@ -125,10 +125,18 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         ServerEventsHandler.RespawningTeam += Vanish.OnRespawningTeam;
         ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
 
+        PlayerEventsHandler.EnteringPocketDimension += _playerEvents.OnEnteringPocketDimension;
+
         Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
         Scp330EventsHandler.InteractingScp330 += Vanish.OnInteractingScp330;
         Scp173EventsHandler.AddingObserver += _playerEvents.OnScp173AddingObserver;
         Scp096EventsHandler.AddingTarget += _playerEvents.OnScp096AddingTarget;
+
+        Exiled.Events.Handlers.Scp049.ActivatingSense += Vanish.OnActivatingSense;
+        Exiled.Events.Handlers.Scp049.StartingRecall += Vanish.OnStartingRecall;
+
+        Exiled.Events.Handlers.Scp3114.Strangling += Vanish.OnStrangling;
+        Exiled.Events.Handlers.Scp3114.Disguising += Vanish.OnDisguising;
 
         Exiled.Events.Handlers.Warhead.ChangingLeverStatus += Vanish.OnChangingLeverStatus;
         Exiled.Events.Handlers.Warhead.Starting += Vanish.OnStartingWarhead;
@@ -174,6 +182,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.DeactivatingWorkstation -= _playerEvents.OnDeactivatingWorkstation;
             PlayerEventsHandler.ActivatingWarheadPanel -= _playerEvents.OnActivatingWarheadPanel;
             PlayerEventsHandler.InteractingShootingTarget -= _playerEvents.OnInteractingShootingTarget;
+            PlayerEventsHandler.EnteringPocketDimension -= _playerEvents.OnEnteringPocketDimension;
         }
 
         Exiled.Events.Handlers.Map.PickupAdded -= InfinityStuff.OnPickupAdded;
@@ -200,6 +209,10 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             Exiled.Events.Handlers.Warhead.Stopping -= Vanish.OnStoppingWarhead;
             Exiled.Events.Handlers.Scp914.Activating -= Vanish.OnActivatingScp914;
             Exiled.Events.Handlers.Scp914.ChangingKnobSetting -= Vanish.OnChangingKnobSettingScp914;
+            Exiled.Events.Handlers.Scp049.ActivatingSense -= Vanish.OnActivatingSense;
+            Exiled.Events.Handlers.Scp049.StartingRecall -= Vanish.OnStartingRecall;
+            Exiled.Events.Handlers.Scp3114.Strangling -= Vanish.OnStrangling;
+            Exiled.Events.Handlers.Scp3114.Disguising -= Vanish.OnDisguising;
         }
 
         if (PinkCandy != null)
