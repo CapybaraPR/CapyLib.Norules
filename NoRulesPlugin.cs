@@ -45,6 +45,9 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         RegisterFeatures();
         RegisterEvents();
 
+        Capy.Commands.HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Быстрое возрождение в первые 3 мин (наблюдатели)</color>");
+        Capy.Commands.HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
+
         Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми 8 игровыми модулями.");
         base.OnEnabled();
     }
