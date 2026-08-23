@@ -1,9 +1,12 @@
 using System;
+using Capy.Commands;
 using Capy.NoRules.Config;
 using Capy.NoRules.EventHandlers;
 using Capy.NoRules.Features;
 using Exiled.API.Features;
 using PlayerEventsHandler = Exiled.Events.Handlers.Player;
+using Scp096EventsHandler = Exiled.Events.Handlers.Scp096;
+using Scp173EventsHandler = Exiled.Events.Handlers.Scp173;
 using Scp330EventsHandler = Exiled.Events.Handlers.Scp330;
 using ServerEventsHandler = Exiled.Events.Handlers.Server;
 
@@ -11,8 +14,8 @@ namespace Capy.NoRules;
 
 /// <summary>
 /// Главный плагин игрового режима NoRules серверов Капибара SCP:SL.
-/// Включает 8 ключевых механик: .kill/.res, FriendlyFire в конце раунда, Хитмаркеры,
-/// Бесконечные ресурсы (InfinityStuff), Мониторинг Интеркома, Розовую конфету, Магическую монетку и Расширенный побег.
+/// Включает: .kill/.res, FriendlyFire в конце раунда, Хитмаркеры, Бесконечные ресурсы,
+/// Мониторинг Интеркома, Розовую конфету, Магическую монетку, Расширенный побег, gci, gcr и Vanish.
 /// </summary>
 public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 {
@@ -24,7 +27,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
     public static NoRulesPlugin Instance { get; private set; } = null!;
 
-    // 8 Игровых подсистем
+    // Игровые подсистемы
     public DotResKillFeature DotResKill { get; private set; } = null!;
     public FriendlyFireFeature FriendlyFire { get; private set; } = null!;
     public HitmarkerFeature Hitmarkers { get; private set; } = null!;
@@ -33,6 +36,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public PinkCandyFeature PinkCandy { get; private set; } = null!;
     public BetterCoinsFeature BetterCoins { get; private set; } = null!;
     public BetterEscapeFeature BetterEscape { get; private set; } = null!;
+    public VanishFeature Vanish { get; private set; } = null!;
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -45,10 +49,10 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         RegisterFeatures();
         RegisterEvents();
 
-        Capy.Commands.HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Быстрое возрождение в первые 3 мин (наблюдатели)</color>");
-        Capy.Commands.HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Быстрое возрождение в первые 3 мин (наблюдатели)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
 
-        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми 8 игровыми модулями.");
+        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями и Vanish.");
         base.OnEnabled();
     }
 
@@ -71,8 +75,9 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PinkCandy = new PinkCandyFeature(Config.PinkCandy);
         BetterCoins = new BetterCoinsFeature(Config.BetterCoins);
         BetterEscape = new BetterEscapeFeature(Config.BetterEscape);
+        Vanish = new VanishFeature();
 
-        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff);
+        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish);
         _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList);
     }
 
@@ -89,12 +94,25 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.ReloadingWeapon += _playerEvents.OnReloadingWeapon;
         PlayerEventsHandler.DroppingAmmo += _playerEvents.OnDroppingAmmo;
         PlayerEventsHandler.PickingUpItem += _playerEvents.OnPickingUpItem;
+        PlayerEventsHandler.DroppingItem += _playerEvents.OnDroppingItem;
+        PlayerEventsHandler.Shooting += _playerEvents.OnShooting;
+        PlayerEventsHandler.InteractingDoor += _playerEvents.OnInteractingDoor;
+        PlayerEventsHandler.InteractingLocker += _playerEvents.OnInteractingLocker;
+        PlayerEventsHandler.InteractingElevator += _playerEvents.OnInteractingElevator;
+        PlayerEventsHandler.OpeningGenerator += _playerEvents.OnOpeningGenerator;
+        PlayerEventsHandler.UnlockingGenerator += _playerEvents.OnUnlockingGenerator;
+        PlayerEventsHandler.ActivatingGenerator += _playerEvents.OnActivatingGenerator;
+        PlayerEventsHandler.StoppingGenerator += _playerEvents.OnStoppingGenerator;
+        PlayerEventsHandler.Left += _playerEvents.OnLeft;
 
         ServerEventsHandler.RoundStarted += _serverEvents.OnRoundStarted;
         ServerEventsHandler.RoundEnded += _serverEvents.OnRoundEnded;
         ServerEventsHandler.WaitingForPlayers += _serverEvents.OnWaitingForPlayers;
+        ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
 
         Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
+        Scp173EventsHandler.AddingObserver += _playerEvents.OnScp173AddingObserver;
+        Scp096EventsHandler.AddingTarget += _playerEvents.OnScp096AddingTarget;
 
         _isEventsRegistered = true;
     }
@@ -114,6 +132,16 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.ReloadingWeapon -= _playerEvents.OnReloadingWeapon;
             PlayerEventsHandler.DroppingAmmo -= _playerEvents.OnDroppingAmmo;
             PlayerEventsHandler.PickingUpItem -= _playerEvents.OnPickingUpItem;
+            PlayerEventsHandler.DroppingItem -= _playerEvents.OnDroppingItem;
+            PlayerEventsHandler.Shooting -= _playerEvents.OnShooting;
+            PlayerEventsHandler.InteractingDoor -= _playerEvents.OnInteractingDoor;
+            PlayerEventsHandler.InteractingLocker -= _playerEvents.OnInteractingLocker;
+            PlayerEventsHandler.InteractingElevator -= _playerEvents.OnInteractingElevator;
+            PlayerEventsHandler.OpeningGenerator -= _playerEvents.OnOpeningGenerator;
+            PlayerEventsHandler.UnlockingGenerator -= _playerEvents.OnUnlockingGenerator;
+            PlayerEventsHandler.ActivatingGenerator -= _playerEvents.OnActivatingGenerator;
+            PlayerEventsHandler.StoppingGenerator -= _playerEvents.OnStoppingGenerator;
+            PlayerEventsHandler.Left -= _playerEvents.OnLeft;
         }
 
         if (_serverEvents != null)
@@ -123,9 +151,20 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             ServerEventsHandler.WaitingForPlayers -= _serverEvents.OnWaitingForPlayers;
         }
 
+        if (Vanish != null)
+        {
+            ServerEventsHandler.RestartingRound -= Vanish.OnRoundRestarted;
+        }
+
         if (PinkCandy != null)
         {
             Scp330EventsHandler.InteractingScp330 -= PinkCandy.OnInteractingScp330;
+        }
+
+        if (_playerEvents != null)
+        {
+            Scp173EventsHandler.AddingObserver -= _playerEvents.OnScp173AddingObserver;
+            Scp096EventsHandler.AddingTarget -= _playerEvents.OnScp096AddingTarget;
         }
 
         _isEventsRegistered = false;
