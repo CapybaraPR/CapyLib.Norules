@@ -136,6 +136,9 @@ public sealed class Scp294Feature
     // Отслеживание выданных стаканов: serial -> индекс напитка
     private readonly ConcurrentDictionary<ushort, int> _trackedCups = new();
 
+    // Игроки, для которых машина прямо сейчас готовит напиток
+    private readonly HashSet<int> _preparingPlayers = new();
+
     private Vector3? _machinePosition;
     private bool _enabled;
 
@@ -152,7 +155,7 @@ public sealed class Scp294Feature
         _enabled = true;
 
         AssKeybinds.OnKeybindPressed += OnKeybindPressed;
-        Exiled.Events.Handlers.Player.UsedItem += OnUsedItem;
+        Exiled.Events.Handlers.Player.UsingItem += OnUsingItem;
         Exiled.Events.Handlers.Player.ChangedItem += OnChangedItem;
         Exiled.Events.Handlers.Player.Left += OnLeft;
         Exiled.Events.Handlers.Server.RoundStarted += OnRoundStarted;
@@ -165,7 +168,7 @@ public sealed class Scp294Feature
         _enabled = false;
 
         AssKeybinds.OnKeybindPressed -= OnKeybindPressed;
-        Exiled.Events.Handlers.Player.UsedItem -= OnUsedItem;
+        Exiled.Events.Handlers.Player.UsingItem -= OnUsingItem;
         Exiled.Events.Handlers.Player.ChangedItem -= OnChangedItem;
         Exiled.Events.Handlers.Player.Left -= OnLeft;
         Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
@@ -180,6 +183,7 @@ public sealed class Scp294Feature
         _nextUseTime.Clear();
         _roundUsage.Clear();
         _trackedCups.Clear();
+        _preparingPlayers.Clear();
         _machinePosition = null;
     }
 
@@ -241,6 +245,9 @@ public sealed class Scp294Feature
         if (!IsNearMachine(player))
             return;
 
+        if (_preparingPlayers.Contains(player.Id))
+            return;
+
         if (!_selectedDrink.TryGetValue(player.UserId, out int drinkIndex))
         {
             player.ShowZoneHint(HintZone.Notification, "<color=#facc15>Вы не выбрали напиток!\nПропишите в консоли [~]: <b>.drink</b></color>", 3f, "scp294", 20);
@@ -263,30 +270,69 @@ public sealed class Scp294Feature
             return;
         }
 
-        // Выдаём стакан (AntiSCP207 — визуально кружка) и отслеживаем его
-        var item = player.AddItem(ItemType.AntiSCP207);
-        if (item != null)
-            _trackedCups[item.Serial] = drinkIndex;
-
-        player.CurrentItem = item;
-
-        _roundUsage[key] = used + 1;
-        _nextUseTime[player.UserId] = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.CooldownSeconds));
-
-        player.ShowZoneHint(HintZone.Notification, $"<color=#38bdf8>☕ SCP-294 выдал: <b>{drink.Name}</b>\n<size=14>Выпейте стакан ([ЛКМ]), чтобы употребить.</size></color>", 3f, "scp294", 20);
+        // Машина готовит напиток 5 секунд; если игрок отойдёт — приготовление отменяется
+        _preparingPlayers.Add(player.Id);
+        Timing.RunCoroutine(PrepareDrinkCoroutine(player, drinkIndex));
     }
 
-    private void OnUsedItem(UsedItemEventArgs ev)
+    private IEnumerator<float> PrepareDrinkCoroutine(Player player, int drinkIndex)
+    {
+        var drink = Drinks[drinkIndex];
+
+        try
+        {
+            const float stageTime = 1.0f;
+            const int stages = 5;
+
+            for (int stage = 1; stage <= stages; stage++)
+            {
+                player.ShowZoneHint(HintZone.Notification,
+                    $"<color=#38bdf8>☕ SCP-294 готовит <b>{drink.Name}</b>{new string('.', stage)}</color>", 1.1f, "scp294_prep", 20);
+
+                yield return Timing.WaitForSeconds(stageTime);
+
+                if (!player.IsConnected || !player.IsAlive || !IsNearMachine(player))
+                {
+                    player.ShowZoneHint(HintZone.Notification, "<color=#f87171>☕ Вы отошли от машины — приготовление <b>отменено</b>.</color>", 2.5f, "scp294_prep", 20);
+                    yield break;
+                }
+            }
+
+            // Выдаём стакан (AntiSCP207 — визуально кружка) и отслеживаем его
+            var item = player.AddItem(ItemType.AntiSCP207);
+            if (item != null)
+                _trackedCups[item.Serial] = drinkIndex;
+
+            player.CurrentItem = item;
+
+            _roundUsage[(player.UserId, drinkIndex)] = _roundUsage.TryGetValue((player.UserId, drinkIndex), out int used) ? used + 1 : 1;
+            _nextUseTime[player.UserId] = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.CooldownSeconds));
+
+            player.ShowZoneHint(HintZone.Notification, $"<color=#38bdf8>☕ SCP-294 выдал: <b>{drink.Name}</b>\n<size=14>Выпейте стакан ([ЛКМ]), чтобы употребить.</size></color>", 3f, "scp294", 20);
+        }
+        finally
+        {
+            _preparingPlayers.Remove(player.Id);
+        }
+    }
+
+    /// <summary>
+    /// Перехватываем употребление стакана: ванильный AntiSCP207 полностью блокируется
+    /// (иначе игра выдаёт свой "анти-кола" эффект поверх эффекта напитка).
+    /// </summary>
+    private void OnUsingItem(UsingItemEventArgs ev)
     {
         if (ev.Item == null || !_trackedCups.TryGetValue(ev.Item.Serial, out int drinkIndex))
             return;
 
+        ev.IsAllowed = false;
         _trackedCups.TryRemove(ev.Item.Serial, out _);
 
         if (ev.Player == null || !ev.Player.IsAlive)
             return;
 
         var drink = Drinks[drinkIndex];
+        ev.Player.RemoveItem(ev.Item);
         ApplyDrink(ev.Player, drink);
     }
 
@@ -316,6 +362,7 @@ public sealed class Scp294Feature
     {
         if (ev.Player == null) return;
 
+        _preparingPlayers.Remove(ev.Player.Id);
         _selectedDrink.TryRemove(ev.Player.UserId, out _);
         _nextUseTime.TryRemove(ev.Player.UserId, out _);
 

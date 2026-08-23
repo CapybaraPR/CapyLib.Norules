@@ -65,7 +65,7 @@ public sealed class Scp294Config
     public float OffsetX { get; set; } = 7.0f;
 
     [Description("Смещение позиции машины относительно центра комнаты по Y (EzUpstairsPcs — двухэтажный, второй этаж ~3.8м).")]
-    public float OffsetY { get; set; } = 3.3f;
+    public float OffsetY { get; set; } = 2.9f;
 
     [Description("Смещение позиции машины относительно центра комнаты по Z.")]
     public float OffsetZ { get; set; } = 2.4f;
