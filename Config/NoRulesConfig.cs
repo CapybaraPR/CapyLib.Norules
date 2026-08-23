@@ -129,8 +129,8 @@ public sealed class BetterCoinsConfig
     [Description("Включена ли механика телепортации при подбрасывании монетки.")]
     public bool IsEnabled { get; set; } = true;
 
-    [Description("Шанс успешной телепортации в случайную комнату в процентах (0 - 100, по умолчанию 100% — бесконечная телепортация).")]
-    public int TeleportChance { get; set; } = 100;
+    [Description("Шанс успешной телепортации в случайную комнату в процентах (0 - 100, по умолчанию 60% успех / 40% неудача). При неудаче монетка исчезает.")]
+    public int TeleportChance { get; set; } = 60;
 
     [Description("Шанс спавна Класса-D с монеткой в инвентаре (в процентах).")]
     public int ClassDSpawnWithCoinChance { get; set; } = 25;

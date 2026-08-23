@@ -94,7 +94,17 @@ public sealed class BetterCoinsFeature
             }
             else
             {
-                player.ShowZoneHint(HintZone.BottomCenter, "<color=#ff4444><b>Не твой день 😈</b></color>", 2.5f, "coin_tp");
+                // Неудача (40%): монетка растворяется и исчезает из инвентаря
+                var coin = player.CurrentItem?.Type == ItemType.Coin
+                    ? player.CurrentItem
+                    : player.Items.FirstOrDefault(i => i.Type == ItemType.Coin);
+
+                if (coin != null)
+                {
+                    player.RemoveItem(coin);
+                }
+
+                player.ShowZoneHint(HintZone.BottomCenter, "<color=#ff4444><b>Не твой день 😈 Монетка растворилась...</b></color>", 2.5f, "coin_tp");
             }
         }
 
