@@ -113,7 +113,7 @@ public sealed class BetterCoinsFeature
 
     /// <summary>
     /// Проверяет, пригодна ли комната для безопасной телепортации монетки.
-    /// Исключает гейты, теслы и карманку. Поверхность (улица) разрешена.
+    /// Исключает гейты, теслы, тупиковые комнаты Офисной зоны (EZ) и карманку.
     /// </summary>
     private static bool IsValidTeleportRoom(Room room)
     {
@@ -131,7 +131,27 @@ public sealed class BetterCoinsFeature
         if (room.Type is RoomType.HczTesla)
             return false;
 
-        // 4. Проверяем расстояние до любых тесла-ворот на карте
+        // 4. Исключаем все тупиковые комнаты офисной зоны (Entrance Zone)
+        if (room.Type is RoomType.EzVent
+                     or RoomType.EzCollapsedTunnel
+                     or RoomType.EzConference
+                     or RoomType.EzChef
+                     or RoomType.EzSmallrooms
+                     or RoomType.EzShelter
+                     or RoomType.EzIntercom)
+        {
+            return false;
+        }
+
+        // Дополнительная проверка формы Endroom в офисной зоне
+        try
+        {
+            if (room.Zone == ZoneType.Entrance && room.Identifier != null && room.Identifier.Shape == MapGeneration.RoomShape.Endroom)
+                return false;
+        }
+        catch { }
+
+        // 5. Проверяем расстояние до любых тесла-ворот на карте
         try
         {
             if (Exiled.API.Features.TeslaGate.List != null && Exiled.API.Features.TeslaGate.List.Any(t => t != null && (t.Room == room || Vector3.Distance(t.Position, room.Position) < 20f)))
@@ -139,7 +159,7 @@ public sealed class BetterCoinsFeature
         }
         catch { }
 
-        // 5. Дополнительная фильтрация по названию (гейты и теслы)
+        // 6. Дополнительная фильтрация по названию (гейты и теслы)
         string name = room.Name ?? string.Empty;
         if (name.IndexOf("gate", StringComparison.OrdinalIgnoreCase) >= 0 ||
             name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0)
