@@ -65,13 +65,13 @@ public sealed class Scp294Config
     public float OffsetX { get; set; } = 7.0f;
 
     [Description("Смещение позиции машины относительно центра комнаты по Y (EzUpstairsPcs — двухэтажный, второй этаж ~3.8м).")]
-    public float OffsetY { get; set; } = 3.8f;
+    public float OffsetY { get; set; } = 3.3f;
 
     [Description("Смещение позиции машины относительно центра комнаты по Z.")]
     public float OffsetZ { get; set; } = 2.4f;
 
     [Description("Поворот машины по оси Y относительно комнаты.")]
-    public float RotationY { get; set; } = 90f;
+    public float RotationY { get; set; } = 270f;
 
     [Description("Радиус взаимодействия с машиной (метры). Нажмите [E], стоя рядом.")]
     public float InteractRadius { get; set; } = 2.2f;
