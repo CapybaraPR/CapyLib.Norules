@@ -24,7 +24,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "23262BFF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -50,7 +50,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "353A42FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -76,7 +76,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -102,7 +102,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "2E323AFF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -128,7 +128,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "353A42FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -154,7 +154,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -180,7 +180,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -206,7 +206,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "164E63FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -232,7 +232,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -258,7 +258,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -284,7 +284,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -310,7 +310,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -336,7 +336,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -362,7 +362,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -388,7 +388,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -414,7 +414,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -440,7 +440,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -466,7 +466,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -492,7 +492,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -518,7 +518,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -544,7 +544,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -570,7 +570,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -596,7 +596,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -622,7 +622,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -648,7 +648,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -674,7 +674,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -700,7 +700,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -726,7 +726,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -752,7 +752,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -778,7 +778,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -804,7 +804,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -830,7 +830,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -856,7 +856,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -882,7 +882,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -908,7 +908,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -934,7 +934,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -960,7 +960,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -986,7 +986,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1012,7 +1012,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1038,7 +1038,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1064,7 +1064,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1090,7 +1090,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1116,7 +1116,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1142,7 +1142,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1168,7 +1168,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1194,7 +1194,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1220,7 +1220,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1246,7 +1246,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1272,7 +1272,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1298,7 +1298,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1324,7 +1324,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1350,7 +1350,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1376,7 +1376,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1402,7 +1402,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1428,7 +1428,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1454,7 +1454,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1480,7 +1480,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1506,7 +1506,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1532,7 +1532,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1558,7 +1558,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1584,7 +1584,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1610,7 +1610,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1636,7 +1636,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1662,7 +1662,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1688,7 +1688,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1714,7 +1714,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1740,7 +1740,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1766,7 +1766,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1792,7 +1792,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1818,7 +1818,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1844,7 +1844,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0077B6FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1870,7 +1870,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "0096C7FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1896,7 +1896,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -1922,7 +1922,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "0077B6EE",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 1
       }
     },
     {
@@ -1948,7 +1948,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "00F5D488",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 1
       }
     },
     {
@@ -1974,7 +1974,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "52B788AA",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 1
       }
     },
     {
@@ -2054,7 +2054,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "1F2228FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2080,7 +2080,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "18191EFF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2106,7 +2106,7 @@
       "Properties": {
         "PrimitiveType": 3,
         "Color": "00E5FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2132,7 +2132,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "00FF66FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2158,7 +2158,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "474D58FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2184,7 +2184,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2210,7 +2210,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "474D58FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2236,7 +2236,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2262,7 +2262,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "474D58FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2288,7 +2288,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2314,7 +2314,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "474D58FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2340,7 +2340,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2366,7 +2366,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "474D58FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     },
     {
@@ -2392,7 +2392,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "E5A912FF",
-        "PrimitiveFlags": 2
+        "PrimitiveFlags": 3
       }
     }
   ]
