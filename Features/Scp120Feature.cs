@@ -18,7 +18,8 @@ namespace Capy.NoRules.Features;
 
 /// <summary>
 /// Реализация аномального объекта SCP-120 («Детский бассейн-телепорт»).
-/// Обеспечивает мгновенную телепортацию игроков и плавную трансформацию/улучшение погруженных предметов.
+/// Обеспечивает безопасную телепортацию игроков (по пулу комнат монетки)
+/// и сбалансированную переработку/улучшение предметов без спама мощными пушками.
 /// </summary>
 public sealed class Scp120Feature : IDisposable
 {
@@ -27,49 +28,42 @@ public sealed class Scp120Feature : IDisposable
     private readonly HashSet<ushort> _activePickupSerials = new();
     private readonly Dictionary<int, DateTime> _playerTeleportCooldowns = new();
 
+    // 1. Обычные предметы: расходники, свет, связь, базовые карточки
     public List<ItemType> CommonItems { get; set; } = new()
     {
         ItemType.Coin, ItemType.KeycardJanitor, ItemType.Radio, ItemType.Lantern,
         ItemType.Medkit, ItemType.Painkillers, ItemType.Flashlight, ItemType.GrenadeFlash
     };
 
+    // 2. Необычные предметы: карты доступа LCZ, медицина, легкая броня, базовый пистолет
     public List<ItemType> UncommonItems { get; set; } = new()
     {
         ItemType.KeycardScientist, ItemType.KeycardResearchCoordinator, ItemType.KeycardZoneManager,
-        ItemType.Adrenaline, ItemType.ArmorLight, ItemType.GunCOM15, ItemType.GunCOM18,
-        ItemType.SCP207, ItemType.SCP1853, ItemType.SCP2176
+        ItemType.Adrenaline, ItemType.ArmorLight, ItemType.SCP2176, ItemType.GunCOM15
     };
 
+    // 3. Хорошие предметы: карты охраны, боевая броня, полезные SCP-расходники, пистолеты-пулемёты
     public List<ItemType> GoodItems { get; set; } = new()
     {
         ItemType.KeycardGuard, ItemType.KeycardContainmentEngineer,
-        ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCrossvec, ItemType.GunCOM18, ItemType.GrenadeHE
+        ItemType.ArmorCombat, ItemType.SCP207, ItemType.SCP1853, ItemType.GrenadeHE,
+        ItemType.GunCOM18, ItemType.GunFSP9
     };
 
+    // 4. Редкие предметы: карты МОГ, тяжелая броня, мощные SCP-артефакты, винтовки
     public List<ItemType> RareItems { get; set; } = new()
     {
         ItemType.KeycardMTFPrivate, ItemType.KeycardMTFOperative, ItemType.ArmorHeavy,
-        ItemType.GunE11SR, ItemType.GunAK, ItemType.GunShotgun, ItemType.GunRevolver,
-        ItemType.GunCom45, ItemType.GunA7, ItemType.GunCrossvec, ItemType.AntiSCP207,
-        ItemType.SCP1576, ItemType.SCP018
+        ItemType.GunCrossvec, ItemType.GunRevolver, ItemType.GunShotgun,
+        ItemType.AntiSCP207, ItemType.SCP1576, ItemType.SCP018
     };
 
+    // 5. Легендарные / Очень редкие предметы: карты высшего допуска, легендарные SCP, тяжелое оружие
     public List<ItemType> VeryRareItems { get; set; } = new()
     {
         ItemType.KeycardFacilityManager, ItemType.KeycardMTFCaptain, ItemType.KeycardChaosInsurgency,
-        ItemType.GunFRMG0, ItemType.GunLogicer, ItemType.GunE11SR, ItemType.GunAK,
-        ItemType.GunShotgun, ItemType.GunA7, ItemType.GunCom45, ItemType.GunRevolver,
-        ItemType.SCP268, ItemType.SCP1344, ItemType.SCP500
-    };
-
-    private readonly Dictionary<RoomType, Vector3> _targetRooms = new()
-    {
-        { RoomType.Lcz914, new Vector3(0f, 1f, 0f) },
-        { RoomType.LczCafe, new Vector3(0.5f, 0f, 0f) },
-        { RoomType.Hcz049, new Vector3(0f, 2f, -1f) },
-        { RoomType.Surface, new Vector3(0f, 1f, 0f) },
-        { RoomType.EzIntercom, new Vector3(0f, 1f, 0f) },
-        { RoomType.HczNuke, new Vector3(0f, 1f, 0f) }
+        ItemType.SCP500, ItemType.SCP268, ItemType.SCP1344,
+        ItemType.GunE11SR, ItemType.GunAK, ItemType.GunLogicer
     };
 
     public Scp120Feature(Scp120Config config)
@@ -177,7 +171,7 @@ public sealed class Scp120Feature : IDisposable
                 float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
                 float yDiff = pickup.Position.y - poolPos.y;
 
-                if (dist2D <= _config.PoolRadius && yDiff >= -0.6f && yDiff <= 1.4f)
+                if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 1.8f)
                 {
                     Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.20f));
                 }
@@ -189,14 +183,19 @@ public sealed class Scp120Feature : IDisposable
     {
         Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
 
-        var randomEntry = _targetRooms.ElementAt(UnityEngine.Random.Range(0, _targetRooms.Count));
-        Room? targetRoom = Room.List.FirstOrDefault(r => r.Type == randomEntry.Key);
+        // Используем проверенный безопасный пул комнат от магической монетки (исключая Поверхность, Теслы, Карманку, Гейты)
+        var validRooms = Room.List.Where(BetterCoinsFeature.IsValidTeleportRoom).ToList();
+        if (validRooms.Count > 0)
+        {
+            var targetRoom = validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
+            player.Position = targetRoom.Position + Vector3.up * 1.2f;
+        }
+        else
+        {
+            player.Position = poolPos + Vector3.up * 3.5f;
+        }
 
-        Vector3 targetPos = targetRoom != null ? targetRoom.Position + randomEntry.Value : poolPos + Vector3.up * 5f;
-
-        player.Position = targetPos;
         Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
-
         player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Телепортация завершена!</b></color>", 2.5f, "scp120_tp", 20);
     }
 
@@ -263,38 +262,38 @@ public sealed class Scp120Feature : IDisposable
     {
         int roll = UnityEngine.Random.Range(1, 101);
 
-        // 1. Обычные предметы (монетка, фонарик, рация, карточка уборщика, аптечка)
+        // 1. Обычные предметы (монетка, фонарик, рация, карточка уборщика, аптечка, обезболы)
         if (CommonItems.Contains(inputType))
         {
-            if (roll <= 50) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)]; // 50% Uncommon
-            if (roll <= 80) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 30% Good
-            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];                         // 20% Rare
+            if (roll <= 45) return CommonItems[UnityEngine.Random.Range(0, CommonItems.Count)];     // 45% Реролл в полезную утилиту/аптечку
+            if (roll <= 85) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)]; // 40% Необычный (Учёный, Адреналин, Броня, COM-15)
+            return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];                         // 15% Хороший (Охранник, Combat Armor, SCP-207)
         }
 
-        // 2. Необычные предметы (Учёный, COM-15, COM-18, SCP-207, Легкая броня)
+        // 2. Необычные предметы (Учёный, COM-15, Адреналин, Легкая броня, SCP-2176)
         if (UncommonItems.Contains(inputType))
         {
-            if (roll <= 45) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 45% Good
-            if (roll <= 85) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 40% Rare
-            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 15% VeryRare
+            if (roll <= 30) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)]; // 30% Необычный
+            if (roll <= 80) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 50% Хороший (Охранник, Combat Armor, SCP-207, FSP-9)
+            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];                         // 20% Редкий (МОГ Сержант, Heavy Armor, Crossvec)
         }
 
-        // 3. Хорошие предметы (Охранник, Боевая броня, FSP-9, Crossvec, Граната)
+        // 3. Хорошие предметы (Охранник, Боевая броня, FSP-9, Crossvec, Граната, SCP-207)
         if (GoodItems.Contains(inputType))
         {
-            if (roll <= 15) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 15% Good
-            if (roll <= 65) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 50% Rare
-            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 35% VeryRare
+            if (roll <= 25) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 25% Хороший
+            if (roll <= 80) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 55% Редкий (МОГ Сержант, Heavy Armor, Crossvec, Shotgun, SCP-018)
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 20% Очень Редкий (Менеджер, SCP-500, E-11, AK)
         }
 
-        // 4. Редкие предметы (МОГ Сержант, Тяжелая броня, E-11, AK, Дробовик, SCP-018)
+        // 4. Редкие предметы (МОГ Сержант, Тяжелая броня, Crossvec, Дробовик, SCP-018, SCP-1576)
         if (RareItems.Contains(inputType))
         {
-            if (roll <= 25) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 25% Rare
-            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 75% VeryRare
+            if (roll <= 35) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 35% Редкий
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 65% Очень Редкий (Менеджер, Капитан, SCP-500, SCP-268, AK, E-11)
         }
 
-        // 5. Легендарные / Очень редкие предметы (O5, MicroHID, SCP-500, Particle Disruptor, Jailbird)
+        // 5. Легендарные / Очень редкие предметы (Менеджер, SCP-500, SCP-268, SCP-1344, Logicer, E-11)
         if (VeryRareItems.Contains(inputType))
         {
             return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];

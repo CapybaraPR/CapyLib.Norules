@@ -115,7 +115,7 @@ public sealed class BetterCoinsFeature
     /// Проверяет, пригодна ли комната для безопасной телепортации монетки.
     /// Исключает гейты, теслы, тупиковые комнаты Офисной зоны (EZ) и карманку.
     /// </summary>
-    private static bool IsValidTeleportRoom(Room room)
+    public static bool IsValidTeleportRoom(Room room)
     {
         if (room == null) return false;
 
