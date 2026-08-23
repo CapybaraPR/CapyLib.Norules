@@ -1,11 +1,20 @@
+using System.Linq;
 using Capy.NoRules.Config;
 using Exiled.API.Enums;
+using Exiled.API.Features;
+using Exiled.API.Features.Pickups;
+using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
+using MEC;
 
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Система бесконечных патронов, бесконечной рации и очистки ненужных патронов.
+/// Система бесконечных ресурсов и полного исчезновения патронов из мира:
+/// 1. Бесконечный заряд рации.
+/// 2. Авто-пополнение магазина при перезарядке.
+/// 3. Мгновенное удаление любых выброшенных или заспавненных патронов с карты (как в AspectLib).
+/// 4. Запрет ручного выбрасывания и подбора патронов.
 /// </summary>
 public sealed class InfinityStuffFeature
 {
@@ -30,12 +39,28 @@ public sealed class InfinityStuffFeature
         if (!_config.InfiniteAmmo || ev.Player == null || ev.Firearm == null)
             return;
 
-        // Пополняем патроны в запас игрока до максимума магазина
-        int neededAmmo = ev.Firearm.MaxMagazineAmmo - ev.Firearm.MagazineAmmo;
-        if (neededAmmo > 0)
+        int needed = ev.Firearm.MaxMagazineAmmo - ev.Firearm.MagazineAmmo;
+        if (needed > 0)
         {
-            ev.Player.AddAmmo(ev.Firearm.AmmoType, (ushort)neededAmmo);
+            ev.Player.AddAmmo(ev.Firearm.AmmoType, (ushort)needed);
         }
+    }
+
+    public void OnSpawned(SpawnedEventArgs ev)
+    {
+        if (!_config.InfiniteAmmo || ev.Player == null) return;
+
+        Timing.CallDelayed(1.0f, () =>
+        {
+            if (ev.Player != null && ev.Player.IsConnected && ev.Player.IsAlive)
+            {
+                ev.Player.SetAmmo(AmmoType.Nato762, 1);
+                ev.Player.SetAmmo(AmmoType.Nato556, 1);
+                ev.Player.SetAmmo(AmmoType.Nato9, 1);
+                ev.Player.SetAmmo(AmmoType.Ammo44Cal, 1);
+                ev.Player.SetAmmo(AmmoType.Ammo12Gauge, 1);
+            }
+        });
     }
 
     public void OnDroppingAmmo(DroppingAmmoEventArgs ev)
@@ -48,15 +73,48 @@ public sealed class InfinityStuffFeature
 
     public void OnPickingUpItem(PickingUpItemEventArgs ev)
     {
-        if (_config.RemoveAmmoDrops && ev.Pickup != null && IsAmmoType(ev.Pickup.Type))
+        if (_config.RemoveAmmoDrops && ev.Pickup != null && ev.Pickup.Category == ItemCategory.Ammo)
         {
             ev.IsAllowed = false;
             ev.Pickup.Destroy();
         }
     }
 
-    private static bool IsAmmoType(ItemType type)
+    public void OnSearchingPickup(SearchingPickupEventArgs ev)
     {
-        return type is ItemType.Ammo9x19 or ItemType.Ammo556x45 or ItemType.Ammo762x39 or ItemType.Ammo12gauge or ItemType.Ammo44cal;
+        if (_config.RemoveAmmoDrops && ev.Pickup != null && ev.Pickup.Category == ItemCategory.Ammo)
+        {
+            ev.IsAllowed = false;
+            ev.Pickup.Destroy();
+        }
+    }
+
+    public void OnHandcuffing(HandcuffingEventArgs ev)
+    {
+        if (_config.InfiniteAmmo && ev.Target != null)
+        {
+            ev.Target.ClearAmmo();
+        }
+    }
+
+    public void OnPickupAdded(PickupAddedEventArgs ev)
+    {
+        if (_config.RemoveAmmoDrops && ev.Pickup != null && ev.Pickup.Category == ItemCategory.Ammo)
+        {
+            ev.Pickup.Destroy();
+        }
+    }
+
+    public void OnRoundStarted()
+    {
+        if (!_config.RemoveAmmoDrops) return;
+
+        Timing.CallDelayed(2.0f, () =>
+        {
+            foreach (var pickup in Pickup.List.Where(p => p != null && p.Category == ItemCategory.Ammo).ToList())
+            {
+                try { pickup.Destroy(); } catch { }
+            }
+        });
     }
 }

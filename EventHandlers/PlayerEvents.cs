@@ -47,11 +47,18 @@ public sealed class PlayerEvents
         _dotResKill.OnPlayerDeath(ev);
     }
 
-    public void OnSpawned(SpawnedEventArgs ev) => _betterCoins.OnPlayerSpawned(ev);
+    public void OnSpawned(SpawnedEventArgs ev)
+    {
+        _betterCoins.OnPlayerSpawned(ev);
+        _infinityStuff.OnSpawned(ev);
+    }
+
     public void OnFlippingCoin(FlippingCoinEventArgs ev) => _betterCoins.OnFlippingCoin(ev);
     public void OnEscaping(EscapingEventArgs ev) => _betterEscape.OnPlayerEscaping(ev);
     public void OnUsingRadioBattery(UsingRadioBatteryEventArgs ev) => _infinityStuff.OnUsingRadioBattery(ev);
     public void OnReloadingWeapon(ReloadingWeaponEventArgs ev) => _infinityStuff.OnReloadingWeapon(ev);
+    public void OnSearchingPickup(SearchingPickupEventArgs ev) => _infinityStuff.OnSearchingPickup(ev);
+    public void OnHandcuffing(HandcuffingEventArgs ev) => _infinityStuff.OnHandcuffing(ev);
     public void OnLeft(LeftEventArgs ev) => _vanish.OnPlayerLeft(ev);
 
     public void OnDroppingAmmo(DroppingAmmoEventArgs ev)

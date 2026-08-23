@@ -10,30 +10,28 @@ using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Scp173;
+using Exiled.Events.EventArgs.Server;
 using PlayerRoles;
 using UnityEngine;
 
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Сохраненное состояние игрока до входа в режим Vanish.
+/// Сохраненное состояние игрока до входа в режим свободного наблюдателя (Vanish).
 /// </summary>
 public sealed class VanishSavedState
 {
-    public RoleTypeId Role { get; set; }
     public Vector3 Position { get; set; }
-    public List<ItemType> Items { get; set; } = new();
-    public Dictionary<AmmoType, ushort> Ammo { get; set; } = new();
-    public bool GodMode { get; set; }
     public bool NoclipPermitted { get; set; }
     public bool NoclipEnabled { get; set; }
-    public bool Muted { get; set; }
 }
 
 /// <summary>
-/// Полнофункциональная система скрытного режима администратора (Vanish).
+/// Полнофункциональная система свободного наблюдателя / скрытного режима администратора (Vanish).
+/// Вход разрешен ТОЛЬКО из роли Spectator, выход возвращает в Spectator.
 /// Включает: невидимость, ноклип, роль Tutorial (не мешает раунду), мут микрофона,
-/// защиту от SCP-173 (не стопит) и SCP-096 (не агрит), а также запрет любого взаимодействия с миром.
+/// защиту от SCP-173 (не стопит) и SCP-096 (не агрит), запрет любого взаимодействия с миром,
+/// а также автоматический спавн в волнах подкрепления МОГ / Хаос.
 /// </summary>
 public sealed class VanishFeature
 {
@@ -52,112 +50,104 @@ public sealed class VanishFeature
         if (IsVanished(player))
         {
             DisableVanish(player);
-            response = $"<color=yellow>[VANISH]</color> Режим скрытности для <b>{player.Nickname}</b> выключен.";
+            response = $"<color=yellow>[VANISH]</color> Режим свободного наблюдателя для <b>{player.Nickname}</b> выключен (возврат в Spectator).";
             return true;
         }
         else
         {
+            // Разрешено входить ТОЛЬКО из роли Spectator!
+            if (player.Role.Type != RoleTypeId.Spectator)
+            {
+                response = "<color=red>[ОШИБКА]</color> Режим свободного наблюдателя (Vanish) можно включить <b>только находясь в наблюдателях (Spectator)</b>.";
+                return false;
+            }
+
             EnableVanish(player);
-            response = $"<color=green>[VANISH]</color> Режим скрытности для <b>{player.Nickname}</b> успешно включен.";
+            response = $"<color=green>[VANISH]</color> Режим свободного наблюдателя для <b>{player.Nickname}</b> успешно включен.";
             return true;
         }
     }
 
     private void EnableVanish(Player player)
     {
-        // 1. Сохраняем предыдущее состояние
         var state = new VanishSavedState
         {
-            Role = player.Role.Type,
             Position = player.Position,
-            GodMode = player.IsGodModeEnabled,
             NoclipPermitted = player.IsNoclipPermitted,
-            NoclipEnabled = player.IsNoclipEnabled,
-            Muted = player.IsMuted
+            NoclipEnabled = player.IsNoclipEnabled
         };
-
-        if (player.Items != null)
-        {
-            state.Items = player.Items.Select(i => i.Type).ToList();
-        }
-
-        state.Ammo[AmmoType.Nato9] = player.GetAmmo(AmmoType.Nato9);
-        state.Ammo[AmmoType.Nato556] = player.GetAmmo(AmmoType.Nato556);
-        state.Ammo[AmmoType.Nato762] = player.GetAmmo(AmmoType.Nato762);
-        state.Ammo[AmmoType.Ammo12Gauge] = player.GetAmmo(AmmoType.Ammo12Gauge);
-        state.Ammo[AmmoType.Ammo44Cal] = player.GetAmmo(AmmoType.Ammo44Cal);
 
         VanishedStates[player.Id] = state;
 
-        // 2. Переводим в роль Tutorial (не мешает подсчёту живых и завершению раунда)
+        // 1. Переводим в роль Tutorial (не мешает подсчёту живых и завершению раунда)
         player.Role.Set(RoleTypeId.Tutorial);
         player.Position = state.Position + Vector3.up * 0.1f;
         player.ClearInventory();
 
-        // 3. Эффект невидимости и неуязвимость
+        // 2. Эффект невидимости и неуязвимость
         player.EnableEffect<Invisible>(999999f, false);
         player.IsGodModeEnabled = true;
         player.IsBypassModeEnabled = false;
 
-        // 4. Разрешение NoClip и включение полета
+        // 3. Разрешение NoClip и включение свободного полёта
         player.IsNoclipPermitted = true;
         player.IsNoclipEnabled = true;
 
-        // 5. Заглушение голосового чата (чтобы игроки не слышали)
+        // 4. Заглушение голосового чата (чтобы игроки не слышали)
         player.IsMuted = true;
 
-        // 6. Оповещение в HUD
+        // 5. Оповещение в HUD
         player.ShowZoneHint(
             HintZone.TopCenter,
-            "<color=#38bdf8><b>👻 [VANISH] Режим скрытности ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>NoClip: <color=#a3e635>ВКЛ</color> • Голос: <color=#f87171>ЗАГЛУШЕН</color> • SCP: <color=#a3e635>НЕ РЕАГИРУЮТ</color> • Вне раунда (Tutorial)</color>",
+            "<color=#38bdf8><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>NoClip: <color=#a3e635>ВКЛ</color> • Голос: <color=#f87171>ЗАГЛУШЕН</color> • SCP: <color=#a3e635>НЕ РЕАГИРУЮТ</color> • Спавн в волнах: <color=#a3e635>АКТИВЕН</color></color>",
             6.0f,
             "vanish_hud",
             22
         );
     }
 
-    private void DisableVanish(Player player)
+    public void DisableVanish(Player player, bool respawnWave = false)
     {
         if (!VanishedStates.TryRemove(player.Id, out var state))
             return;
 
         // 1. Снятие невидимости и ограничений
         player.DisableEffect<Invisible>();
-        player.IsGodModeEnabled = state.GodMode;
+        player.IsGodModeEnabled = false;
         player.IsNoclipPermitted = state.NoclipPermitted;
-        player.IsNoclipEnabled = state.NoclipEnabled;
-        player.IsMuted = state.Muted;
+        player.IsNoclipEnabled = false;
+        player.IsMuted = false;
 
-        // 2. Возврат исходной роли и инвентаря
-        if (state.Role != RoleTypeId.None && state.Role != RoleTypeId.Spectator && state.Role != RoleTypeId.Tutorial)
-        {
-            player.Role.Set(state.Role);
-            player.Position = state.Position;
-            player.ClearInventory();
-
-            foreach (var item in state.Items)
-            {
-                player.AddItem(item);
-            }
-
-            foreach (var kvp in state.Ammo)
-            {
-                player.SetAmmo(kvp.Key, kvp.Value);
-            }
-        }
-        else
+        // 2. Если выход НЕ по волне возрождения — возвращаем строго в Spectator
+        if (!respawnWave)
         {
             player.Role.Set(RoleTypeId.Spectator);
+            player.ShowZoneHint(
+                HintZone.TopCenter,
+                "<color=#ff4444><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВЫКЛЮЧЕН</b></color>",
+                3.5f,
+                "vanish_hud",
+                22
+            );
         }
+    }
 
-        // 3. Оповещение в HUD
-        player.ShowZoneHint(
-            HintZone.TopCenter,
-            "<color=#ff4444><b>👻 [VANISH] Режим скрытности ВЫКЛЮЧЕН</b></color>",
-            3.5f,
-            "vanish_hud",
-            22
-        );
+    public void OnRespawningTeam(RespawningTeamEventArgs ev)
+    {
+        if (ev == null || !ev.IsAllowed || ev.Players == null) return;
+
+        foreach (var id in VanishedStates.Keys.ToList())
+        {
+            var player = Player.Get(id);
+            if (player != null && player.IsConnected)
+            {
+                if (ev.Players.Count < ev.MaximumRespawnAmount && !ev.Players.Contains(player))
+                {
+                    ev.Players.Add(player);
+                    DisableVanish(player, respawnWave: true);
+                }
+            }
+        }
     }
 
     public void OnPlayerLeft(LeftEventArgs ev)
@@ -171,7 +161,7 @@ public sealed class VanishFeature
         VanishedStates.Clear();
     }
 
-    // --- Запреты взаимодействия с миром для Vanish-игрока ---
+    // --- Запреты взаимодействия с миром для свободного наблюдателя ---
 
     public void OnInteractingDoor(InteractingDoorEventArgs ev)
     {

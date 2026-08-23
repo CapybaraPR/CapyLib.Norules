@@ -94,6 +94,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.ReloadingWeapon += _playerEvents.OnReloadingWeapon;
         PlayerEventsHandler.DroppingAmmo += _playerEvents.OnDroppingAmmo;
         PlayerEventsHandler.PickingUpItem += _playerEvents.OnPickingUpItem;
+        PlayerEventsHandler.SearchingPickup += _playerEvents.OnSearchingPickup;
+        PlayerEventsHandler.Handcuffing += _playerEvents.OnHandcuffing;
         PlayerEventsHandler.DroppingItem += _playerEvents.OnDroppingItem;
         PlayerEventsHandler.Shooting += _playerEvents.OnShooting;
         PlayerEventsHandler.InteractingDoor += _playerEvents.OnInteractingDoor;
@@ -105,9 +107,13 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.StoppingGenerator += _playerEvents.OnStoppingGenerator;
         PlayerEventsHandler.Left += _playerEvents.OnLeft;
 
+        Exiled.Events.Handlers.Map.PickupAdded += InfinityStuff.OnPickupAdded;
+
         ServerEventsHandler.RoundStarted += _serverEvents.OnRoundStarted;
+        ServerEventsHandler.RoundStarted += InfinityStuff.OnRoundStarted;
         ServerEventsHandler.RoundEnded += _serverEvents.OnRoundEnded;
         ServerEventsHandler.WaitingForPlayers += _serverEvents.OnWaitingForPlayers;
+        ServerEventsHandler.RespawningTeam += Vanish.OnRespawningTeam;
         ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
 
         Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
@@ -132,6 +138,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.ReloadingWeapon -= _playerEvents.OnReloadingWeapon;
             PlayerEventsHandler.DroppingAmmo -= _playerEvents.OnDroppingAmmo;
             PlayerEventsHandler.PickingUpItem -= _playerEvents.OnPickingUpItem;
+            PlayerEventsHandler.SearchingPickup -= _playerEvents.OnSearchingPickup;
+            PlayerEventsHandler.Handcuffing -= _playerEvents.OnHandcuffing;
             PlayerEventsHandler.DroppingItem -= _playerEvents.OnDroppingItem;
             PlayerEventsHandler.Shooting -= _playerEvents.OnShooting;
             PlayerEventsHandler.InteractingDoor -= _playerEvents.OnInteractingDoor;
@@ -144,6 +152,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.Left -= _playerEvents.OnLeft;
         }
 
+        Exiled.Events.Handlers.Map.PickupAdded -= InfinityStuff.OnPickupAdded;
+
         if (_serverEvents != null)
         {
             ServerEventsHandler.RoundStarted -= _serverEvents.OnRoundStarted;
@@ -151,8 +161,14 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             ServerEventsHandler.WaitingForPlayers -= _serverEvents.OnWaitingForPlayers;
         }
 
+        if (InfinityStuff != null)
+        {
+            ServerEventsHandler.RoundStarted -= InfinityStuff.OnRoundStarted;
+        }
+
         if (Vanish != null)
         {
+            ServerEventsHandler.RespawningTeam -= Vanish.OnRespawningTeam;
             ServerEventsHandler.RestartingRound -= Vanish.OnRoundRestarted;
         }
 
