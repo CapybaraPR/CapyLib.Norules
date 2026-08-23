@@ -5,7 +5,6 @@ using System.Linq;
 using Capy.Engine.Hints;
 using Capy.Engine.Hints.Extensions;
 using Capy.Engine.ServerSpecific;
-using CustomPlayerEffects;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -103,8 +102,9 @@ public sealed class VanishFeature
         player.AddItem(ItemType.Coin);
         player.AddItem(ItemType.KeycardChaosInsurgency);
 
-        // 3. Эффект невидимости и неуязвимость
-        player.EnableEffect<Invisible>(999999f, false);
+        // 3. Скрываем игрока от всех через сетевые пакеты (ChangeAppearance → Spectator)
+        //    Это прячет модель персонажа на уровне сети — никакой "шапки невидимости"
+        Capy.Core.Extensions.NetworkExtensions.ChangeAppearance(player, RoleTypeId.Spectator, true);
         player.IsGodModeEnabled = true;
         player.IsBypassModeEnabled = false;
 
@@ -118,7 +118,7 @@ public sealed class VanishFeature
         // 6. Оповещение в HUD
         player.ShowZoneHint(
             HintZone.TopCenter,
-            "<color=#38bdf8><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • 🪙 Монетка (ЛКМ): <color=#a3e635>Телепорт к игрокам</color> • 💳 Карта: <color=#a3e635>Змейка</color></color>",
+            "<color=#38bdf8><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • 🪙 ЛКМ/ПКМ: <color=#a3e635>Телепорт к игрокам</color> • 💳 Карта: <color=#a3e635>Змейка</color></color>",
             6.0f,
             "vanish_hud",
             22
@@ -130,9 +130,8 @@ public sealed class VanishFeature
         if (!VanishedStates.TryRemove(player.Id, out var state))
             return;
 
-        // 1. Очистка инвентаря и снятие эффектов
+        // 1. Очистка инвентаря и снятие состояния
         player.ClearInventory();
-        player.DisableEffect<Invisible>();
         player.IsGodModeEnabled = false;
         player.IsNoclipPermitted = state.NoclipPermitted;
         player.IsNoclipEnabled = false;
@@ -158,20 +157,26 @@ public sealed class VanishFeature
             return;
 
         ev.IsAllowed = false;
-        TeleportToNextPlayer(ev.Player);
+        TeleportToPlayer(ev.Player, 1);
     }
 
     private void OnKeybindPressed(Player player, CustomKeybind keybind)
     {
         if (player == null || !IsVanished(player)) return;
 
-        if (keybind == CustomKeybind.Lmb && player.CurrentItem?.Type == ItemType.Coin)
+        if (player.CurrentItem?.Type == ItemType.Coin)
         {
-            TeleportToNextPlayer(player);
+            if (keybind == CustomKeybind.Lmb)
+                TeleportToPlayer(player, 1);
+            else if (keybind == CustomKeybind.Rmb)
+                TeleportToPlayer(player, -1);
         }
     }
 
-    public void TeleportToNextPlayer(Player player)
+    /// <summary>
+    /// Телепортирует свободного наблюдателя к следующему (direction=1) или предыдущему (direction=-1) живому игроку.
+    /// </summary>
+    public void TeleportToPlayer(Player player, int direction)
     {
         if (player == null || !IsVanished(player)) return;
 
@@ -187,16 +192,16 @@ public sealed class VanishFeature
         }
 
         var state = VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
-        state.TargetPlayerIndex = (state.TargetPlayerIndex + 1) % alivePlayers.Count;
+        state.TargetPlayerIndex = ((state.TargetPlayerIndex + direction) % alivePlayers.Count + alivePlayers.Count) % alivePlayers.Count;
         var target = alivePlayers[state.TargetPlayerIndex];
 
-        // Телепортируем немного позади и выше игрока
         player.Position = target.Position + Vector3.up * 0.6f;
 
         string hex = ColorUtility.ToHtmlStringRGB(target.Role.Color);
+        string arrow = direction > 0 ? "▶" : "◀";
         player.ShowZoneHint(
             HintZone.Notification,
-            $"<size=20><b><color=#38bdf8>[ ТЕЛЕПОРТ НАБЛЮДАТЕЛЯ ]</color></b>\nИгрок: <b>{target.Nickname}</b> | Роль: <color=#{hex}><b>[{target.Role.Name}]</b></color> ({state.TargetPlayerIndex + 1}/{alivePlayers.Count})</size>",
+            $"<size=20><b><color=#38bdf8>{arrow} [ ТЕЛЕПОРТ НАБЛЮДАТЕЛЯ ] {arrow}</color></b>\nИгрок: <b>{target.Nickname}</b> | Роль: <color=#{hex}><b>[{target.Role.Name}]</b></color> ({state.TargetPlayerIndex + 1}/{alivePlayers.Count})\n<color=#888888>ЛКМ → след. | ПКМ → пред.</color></size>",
             2.0f,
             "spectator_tp",
             20

@@ -51,6 +51,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Быстрое возрождение в первые 3 мин (наблюдатели)</color>");
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .vanish (.v, .spec)</color>   <color=#c2c2c2>-- Режим свободного наблюдателя (из спектаторов)</color>");
 
         Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями и Vanish.");
         base.OnEnabled();
