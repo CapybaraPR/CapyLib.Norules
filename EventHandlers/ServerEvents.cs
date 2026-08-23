@@ -11,12 +11,14 @@ public sealed class ServerEvents
     private readonly DotResKillFeature _dotResKill;
     private readonly FriendlyFireFeature _friendlyFire;
     private readonly IntercomListFeature _intercomList;
+    private readonly Scp120Feature _scp120;
 
-    public ServerEvents(DotResKillFeature dotResKill, FriendlyFireFeature friendlyFire, IntercomListFeature intercomList)
+    public ServerEvents(DotResKillFeature dotResKill, FriendlyFireFeature friendlyFire, IntercomListFeature intercomList, Scp120Feature scp120)
     {
         _dotResKill = dotResKill;
         _friendlyFire = friendlyFire;
         _intercomList = intercomList;
+        _scp120 = scp120;
     }
 
     public void OnRoundStarted()
@@ -24,6 +26,7 @@ public sealed class ServerEvents
         _dotResKill.OnRoundStarted();
         _friendlyFire.OnRoundStarted();
         _intercomList.OnRoundStarted();
+        _scp120.OnRoundStarted();
     }
 
     public void OnRoundEnded(RoundEndedEventArgs ev)

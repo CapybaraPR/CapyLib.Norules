@@ -38,6 +38,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public BetterEscapeFeature BetterEscape { get; private set; } = null!;
     public VanishFeature Vanish { get; private set; } = null!;
     public CapybaraPetFeature CapybaraPet { get; private set; } = null!;
+    public Scp120Feature Scp120 { get; private set; } = null!;
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -54,13 +55,14 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .vanish (.v, .spec)</color>   <color=#c2c2c2>-- Режим свободного наблюдателя (из спектаторов)</color>");
 
-        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями, Vanish и CapybaraPet.");
+        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями, Vanish, CapybaraPet и SCP-120.");
         base.OnEnabled();
     }
 
     public override void OnDisabled()
     {
         UnregisterEvents();
+        Scp120?.Dispose();
 
         Instance = null!;
         Log.Info("[NoRules] Плагин выключен.");
@@ -80,9 +82,10 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         Vanish = new VanishFeature();
         Vanish.Enable();
         CapybaraPet = new CapybaraPetFeature(Config.CapybaraPet);
+        Scp120 = new Scp120Feature(Config.Scp120);
 
-        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet);
-        _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList);
+        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet, Scp120);
+        _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList, Scp120);
     }
 
     private void RegisterEvents()

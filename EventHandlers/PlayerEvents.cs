@@ -12,6 +12,7 @@ public class PlayerEvents
     private readonly InfinityStuffFeature _infinityStuff;
     private readonly VanishFeature _vanish;
     private readonly CapybaraPetFeature _capybaraPet;
+    private readonly Scp120Feature _scp120;
 
     public PlayerEvents(
         HitmarkerFeature hitmarkers,
@@ -20,7 +21,8 @@ public class PlayerEvents
         BetterEscapeFeature betterEscape,
         InfinityStuffFeature infinityStuff,
         VanishFeature vanish,
-        CapybaraPetFeature capybaraPet)
+        CapybaraPetFeature capybaraPet,
+        Scp120Feature scp120)
     {
         _hitmarkers = hitmarkers;
         _dotResKill = dotResKill;
@@ -29,6 +31,7 @@ public class PlayerEvents
         _infinityStuff = infinityStuff;
         _vanish = vanish;
         _capybaraPet = capybaraPet;
+        _scp120 = scp120;
     }
 
     public void OnHurting(HurtingEventArgs ev) => _hitmarkers.OnPlayerHurting(ev);
@@ -79,6 +82,8 @@ public class PlayerEvents
             ev.IsAllowed = false;
             return;
         }
+
         _infinityStuff.OnPickingUpItem(ev);
+        _scp120.OnPickingUpItem(ev);
     }
 }

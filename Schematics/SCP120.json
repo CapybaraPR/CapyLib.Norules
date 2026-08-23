@@ -1,0 +1,1983 @@
+{
+  "RootObjectId": 20000,
+  "Blocks": [
+    {
+      "Name": "Platform Base Main",
+      "ObjectId": 20001,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.05,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 4.2,
+        "y": 0.1,
+        "z": 4.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "2B2E34FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Platform Floor Plate",
+      "ObjectId": 20002,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.11,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 3.9,
+        "y": 0.02,
+        "z": 3.9
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "3A3F47FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Hazard Ring",
+      "ObjectId": 20003,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.105,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 4.05,
+        "y": 0.025,
+        "z": 4.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Stairs Lower Step",
+      "ObjectId": 20004,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.035,
+        "z": 2.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.4,
+        "y": 0.07,
+        "z": 0.45
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "33373EFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Stairs Upper Step",
+      "ObjectId": 20005,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.08,
+        "z": 1.95
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.4,
+        "y": 0.08,
+        "z": 0.4
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3F47FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Stairs Trim Left",
+      "ObjectId": 20006,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.75,
+        "y": 0.08,
+        "z": 2.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.1,
+        "y": 0.16,
+        "z": 0.75
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Stairs Trim Right",
+      "ObjectId": 20007,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.75,
+        "y": 0.08,
+        "z": 2.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.1,
+        "y": 0.16,
+        "z": 0.75
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Underlay Mat",
+      "ObjectId": 20008,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.125,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.8,
+        "y": 0.015,
+        "z": 2.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "1D5B79FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Vinyl Floor",
+      "ObjectId": 20009,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.13,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.5,
+        "y": 0.01,
+        "z": 2.5
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 0",
+      "ObjectId": 20010,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2439,
+        "y": 0.2,
+        "z": 1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 0",
+      "ObjectId": 20011,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2487,
+        "y": 0.32,
+        "z": 1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 0",
+      "ObjectId": 20012,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2439,
+        "y": 0.44,
+        "z": 1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 1",
+      "ObjectId": 20013,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.6945,
+        "y": 0.2,
+        "z": 1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 33.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 1",
+      "ObjectId": 20014,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.7084,
+        "y": 0.32,
+        "z": 1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 33.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 1",
+      "ObjectId": 20015,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.6945,
+        "y": 0.44,
+        "z": 1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 33.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 2",
+      "ObjectId": 20016,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0393,
+        "y": 0.2,
+        "z": 0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 56.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 2",
+      "ObjectId": 20017,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0601,
+        "y": 0.32,
+        "z": 0.7084
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 56.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 2",
+      "ObjectId": 20018,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0393,
+        "y": 0.44,
+        "z": 0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 56.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 3",
+      "ObjectId": 20019,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.226,
+        "y": 0.2,
+        "z": 0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 78.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 3",
+      "ObjectId": 20020,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.2505,
+        "y": 0.32,
+        "z": 0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 78.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 3",
+      "ObjectId": 20021,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.226,
+        "y": 0.44,
+        "z": 0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 78.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 4",
+      "ObjectId": 20022,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.226,
+        "y": 0.2,
+        "z": -0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 4",
+      "ObjectId": 20023,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.2505,
+        "y": 0.32,
+        "z": -0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 4",
+      "ObjectId": 20024,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.226,
+        "y": 0.44,
+        "z": -0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 5",
+      "ObjectId": 20025,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0393,
+        "y": 0.2,
+        "z": -0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 123.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 5",
+      "ObjectId": 20026,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0601,
+        "y": 0.32,
+        "z": -0.7084
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 123.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 5",
+      "ObjectId": 20027,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0393,
+        "y": 0.44,
+        "z": -0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 123.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 6",
+      "ObjectId": 20028,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.6945,
+        "y": 0.2,
+        "z": -1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 6",
+      "ObjectId": 20029,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.7084,
+        "y": 0.32,
+        "z": -1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 6",
+      "ObjectId": 20030,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.6945,
+        "y": 0.44,
+        "z": -1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 7",
+      "ObjectId": 20031,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2439,
+        "y": 0.2,
+        "z": -1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 7",
+      "ObjectId": 20032,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2487,
+        "y": 0.32,
+        "z": -1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 7",
+      "ObjectId": 20033,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2439,
+        "y": 0.44,
+        "z": -1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 8",
+      "ObjectId": 20034,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2439,
+        "y": 0.2,
+        "z": -1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 191.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 8",
+      "ObjectId": 20035,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2487,
+        "y": 0.32,
+        "z": -1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 191.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 8",
+      "ObjectId": 20036,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2439,
+        "y": 0.44,
+        "z": -1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 191.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 9",
+      "ObjectId": 20037,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.6945,
+        "y": 0.2,
+        "z": -1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 213.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 9",
+      "ObjectId": 20038,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.7084,
+        "y": 0.32,
+        "z": -1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 213.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 9",
+      "ObjectId": 20039,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.6945,
+        "y": 0.44,
+        "z": -1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 213.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 10",
+      "ObjectId": 20040,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0393,
+        "y": 0.2,
+        "z": -0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 236.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 10",
+      "ObjectId": 20041,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0601,
+        "y": 0.32,
+        "z": -0.7084
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 236.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 10",
+      "ObjectId": 20042,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0393,
+        "y": 0.44,
+        "z": -0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 236.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 11",
+      "ObjectId": 20043,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.226,
+        "y": 0.2,
+        "z": -0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 258.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 11",
+      "ObjectId": 20044,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.2505,
+        "y": 0.32,
+        "z": -0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 258.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 11",
+      "ObjectId": 20045,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.226,
+        "y": 0.44,
+        "z": -0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 258.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 12",
+      "ObjectId": 20046,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.226,
+        "y": 0.2,
+        "z": 0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 281.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 12",
+      "ObjectId": 20047,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.2505,
+        "y": 0.32,
+        "z": 0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 281.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 12",
+      "ObjectId": 20048,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.226,
+        "y": 0.44,
+        "z": 0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 281.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 13",
+      "ObjectId": 20049,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0393,
+        "y": 0.2,
+        "z": 0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 303.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 13",
+      "ObjectId": 20050,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0601,
+        "y": 0.32,
+        "z": 0.7084
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 303.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 13",
+      "ObjectId": 20051,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0393,
+        "y": 0.44,
+        "z": 0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 303.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 14",
+      "ObjectId": 20052,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.6945,
+        "y": 0.2,
+        "z": 1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 326.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 14",
+      "ObjectId": 20053,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.7084,
+        "y": 0.32,
+        "z": 1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 326.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 14",
+      "ObjectId": 20054,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.6945,
+        "y": 0.44,
+        "z": 1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 326.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Bottom 15",
+      "ObjectId": 20055,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2439,
+        "y": 0.2,
+        "z": 1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 348.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00AFB9FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Middle 15",
+      "ObjectId": 20056,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2487,
+        "y": 0.32,
+        "z": 1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 348.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0081A7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Pool Ring Top 15",
+      "ObjectId": 20057,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2439,
+        "y": 0.44,
+        "z": 1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 348.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.14,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "SCP120 Water Deep",
+      "ObjectId": 20058,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.22,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.35,
+        "y": 0.16,
+        "z": 2.35
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0077B6EE",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "SCP120 Water Surface",
+      "ObjectId": 20059,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.36,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.38,
+        "y": 0.04,
+        "z": 2.38
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "00F5D488",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "SCP120 Swirl Center",
+      "ObjectId": 20060,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.26,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.4,
+        "y": 0.18,
+        "z": 1.4
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "70E000AA",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "SCP120 Underwater Glow",
+      "ObjectId": 20061,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.3,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "00F5D4FF",
+        "Intensity": 2.2,
+        "Range": 6.5,
+        "Shadows": true
+      }
+    },
+    {
+      "Name": "SCP120 Ambient Top",
+      "ObjectId": 20062,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 1.8,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "48CAE4FF",
+        "Intensity": 0.8,
+        "Range": 5.0,
+        "Shadows": true
+      }
+    },
+    {
+      "Name": "Terminal Stand",
+      "ObjectId": 20063,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.85,
+        "y": 0.65,
+        "z": 0.8
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -35,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 1.1,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22252AFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Terminal Screen Box",
+      "ObjectId": 20064,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.85,
+        "y": 1.25,
+        "z": 0.8
+      },
+      "Rotation": {
+        "x": 15,
+        "y": -35,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.38,
+        "z": 0.16
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E1E24FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Terminal Screen Display",
+      "ObjectId": 20065,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.8,
+        "y": 1.25,
+        "z": 0.74
+      },
+      "Rotation": {
+        "x": 15,
+        "y": -35,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.48,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Terminal Status Green",
+      "ObjectId": 20066,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.88,
+        "y": 1.48,
+        "z": 0.82
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.05,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "00FF66FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Post 0",
+      "ObjectId": 20067,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.8,
+        "y": 0.6,
+        "z": 1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.0,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A505CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Cap 0",
+      "ObjectId": 20068,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.8,
+        "y": 1.12,
+        "z": 1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Post 1",
+      "ObjectId": 20069,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.8,
+        "y": 0.6,
+        "z": -1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.0,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A505CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Cap 1",
+      "ObjectId": 20070,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.8,
+        "y": 1.12,
+        "z": -1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Post 2",
+      "ObjectId": 20071,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 0.6,
+        "z": -1.9
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.0,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A505CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Cap 2",
+      "ObjectId": 20072,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0,
+        "y": 1.12,
+        "z": -1.9
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Post 3",
+      "ObjectId": 20073,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.8,
+        "y": 0.6,
+        "z": -1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.0,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A505CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Cap 3",
+      "ObjectId": 20074,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.8,
+        "y": 1.12,
+        "z": -1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Post 4",
+      "ObjectId": 20075,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.8,
+        "y": 0.6,
+        "z": 1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.0,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A505CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Railing Cap 4",
+      "ObjectId": 20076,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.8,
+        "y": 1.12,
+        "z": 1.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "E5A912FF",
+        "PrimitiveFlags": 2
+      }
+    }
+  ]
+}

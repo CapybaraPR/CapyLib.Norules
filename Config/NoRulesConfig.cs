@@ -42,6 +42,27 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("9. Настройки летающего питомца-капибары (Capybara Companion) для выбранных SteamID.")]
     public CapybaraPetConfig CapybaraPet { get; set; } = new();
+
+    [Description("10. Настройки аномального объекта SCP-120 (Детский бассейн-телепорт и трансформация предметов).")]
+    public Scp120Config Scp120 { get; set; } = new();
+}
+
+public sealed class Scp120Config
+{
+    [Description("Включен ли SCP-120 (Детский бассейн-телепорт и трансформация предметов).")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Имя схематики для спавна бассейна SCP-120.")]
+    public string SchematicName { get; set; } = "SCP120";
+
+    [Description("Автоматически спавнить SCP-120 в GlassBox (LCZ) при старте раунда.")]
+    public bool AutoSpawnInGlassBox { get; set; } = true;
+
+    [Description("Кулдаун на телепортацию игрока в секундах.")]
+    public float TeleportCooldown { get; set; } = 1.5f;
+
+    [Description("Радиус взаимодействия с бассейном (метры).")]
+    public float PoolRadius { get; set; } = 1.85f;
 }
 
 public sealed class DotResKillConfig
