@@ -80,9 +80,5 @@
             <HintPath>..\CapyLib\_deps\Mirror.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="MapEditorReborn">
-            <HintPath>..\CapyLib\_deps\MapEditorReborn.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
     </ItemGroup>
 </Project>
