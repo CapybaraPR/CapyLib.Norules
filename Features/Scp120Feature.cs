@@ -158,7 +158,7 @@ public sealed class Scp120Feature : IDisposable
                 float dist2D = Vector2.Distance(playerPos2D, poolPos2D);
                 float yDiff = player.Position.y - poolPos.y;
 
-                if (dist2D <= _config.PoolRadius && yDiff >= -0.6f && yDiff <= 1.5f)
+                if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 2.2f)
                 {
                     if (_playerTeleportCooldowns.TryGetValue(player.Id, out var nextUse) && DateTime.UtcNow < nextUse)
                         continue;
