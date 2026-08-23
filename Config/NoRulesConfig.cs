@@ -59,13 +59,13 @@ public sealed class Scp120Config
     public bool AutoSpawnInGlassBox { get; set; } = true;
 
     [Description("Смещение позиции бассейна по оси X относительно центра комнаты GlassBox.")]
-    public float OffsetX { get; set; } = 0.0f;
+    public float OffsetX { get; set; } = 4.68f;
 
     [Description("Смещение позиции бассейна по оси Y относительно центра комнаты GlassBox.")]
-    public float OffsetY { get; set; } = 1.25f;
+    public float OffsetY { get; set; } = 0.99f;
 
     [Description("Смещение позиции бассейна по оси Z относительно центра комнаты GlassBox.")]
-    public float OffsetZ { get; set; } = -3.5f;
+    public float OffsetZ { get; set; } = 2.32f;
 
     [Description("Поворот бассейна по оси Y относительно комнаты GlassBox.")]
     public float RotationY { get; set; } = 0.0f;
