@@ -1,3 +1,4 @@
+using Capy.Engine.Hints.Extensions;
 using Capy.NoRules.Config;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -5,7 +6,7 @@ using Exiled.Events.EventArgs.Player;
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Система отображения хитмаркеров и урона при стрельбе.
+/// Система отображения хитмаркеров и урона при стрельбе через единый HUD.
 /// </summary>
 public sealed class HitmarkerFeature
 {
@@ -23,11 +24,8 @@ public sealed class HitmarkerFeature
 
         if (_config.ShowDamageNumber && ev.Amount > 1f)
         {
-            string hpLeft = ev.Player.Health > ev.Amount 
-                ? $"<color=#ff4444>-{(int)ev.Amount} HP</color> <color=#888888>({(int)(ev.Player.Health - ev.Amount)} HP)</color>" 
-                : "<color=#ff0000><b>УБИТ 💀</b></color>";
-
-            ev.Attacker.ShowHint($"<align=center><size=20>{hpLeft}</size></align>", 1.0f);
+            bool isKill = ev.Player.Health <= ev.Amount;
+            ev.Attacker.ShowHitmarker(ev.Amount, isKill);
         }
     }
 }

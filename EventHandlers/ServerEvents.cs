@@ -8,13 +8,13 @@ namespace Capy.NoRules.EventHandlers;
 /// </summary>
 public sealed class ServerEvents
 {
-    private readonly BroadcastsFeature _broadcasts;
+    private readonly AnnouncementsFeature _announcements;
 
-    public ServerEvents(BroadcastsFeature broadcasts)
+    public ServerEvents(AnnouncementsFeature announcements)
     {
-        _broadcasts = broadcasts;
+        _announcements = announcements;
     }
 
-    public void OnRoundStarted() => _broadcasts.OnRoundStarted();
-    public void OnRoundEnded(RoundEndedEventArgs ev) => _broadcasts.OnRoundEnded(ev);
+    public void OnRoundStarted() => _announcements.OnRoundStarted();
+    public void OnRoundEnded(RoundEndedEventArgs ev) => _announcements.OnRoundEnded(ev);
 }

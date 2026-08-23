@@ -21,10 +21,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
     public static NoRulesPlugin Instance { get; private set; } = null!;
 
-    public AutoDoorsFeature AutoDoors { get; private set; } = null!;
     public HitmarkerFeature Hitmarkers { get; private set; } = null!;
-    public FastDisarmFeature FastDisarm { get; private set; } = null!;
-    public BroadcastsFeature Broadcasts { get; private set; } = null!;
+    public AnnouncementsFeature Announcements { get; private set; } = null!;
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -34,17 +32,10 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     {
         Instance = this;
 
-        // Проверка привязки к конкретным портам сервера (например, 7777)
-        if (Config.TargetPorts != null && Config.TargetPorts.Count > 0 && !Config.TargetPorts.Contains(Server.Port))
-        {
-            Log.Info($"[NoRules] Сервер запущен на порту {Server.Port}, плагин NoRules настроен только для портов: [{string.Join(", ", Config.TargetPorts)}]. Плагин деактивирован.");
-            return;
-        }
-
         RegisterFeatures();
         RegisterEvents();
 
-        Log.Info($"[NoRules] Плагин успешно включен (v{Version}) на порту {Server.Port}.");
+        Log.Info($"[NoRules] Плагин успешно включен (v{Version}).");
         base.OnEnabled();
     }
 
@@ -59,22 +50,18 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
     private void RegisterFeatures()
     {
-        AutoDoors = new AutoDoorsFeature(Config.AutoDoors);
         Hitmarkers = new HitmarkerFeature(Config.Hitmarkers);
-        FastDisarm = new FastDisarmFeature(Config.FastDisarm);
-        Broadcasts = new BroadcastsFeature(Config.Broadcasts);
+        Announcements = new AnnouncementsFeature(Config.Announcements);
 
-        _playerEvents = new PlayerEvents(AutoDoors, Hitmarkers, FastDisarm, Broadcasts);
-        _serverEvents = new ServerEvents(Broadcasts);
+        _playerEvents = new PlayerEvents(Hitmarkers, Announcements);
+        _serverEvents = new ServerEvents(Announcements);
     }
 
     private void RegisterEvents()
     {
         if (_isEventsRegistered) return;
 
-        PlayerEventsHandler.InteractingDoor += _playerEvents.OnInteractingDoor;
         PlayerEventsHandler.Hurting += _playerEvents.OnHurting;
-        PlayerEventsHandler.Handcuffing += _playerEvents.OnHandcuffing;
         PlayerEventsHandler.Verified += _playerEvents.OnVerified;
 
         ServerEventsHandler.RoundStarted += _serverEvents.OnRoundStarted;
@@ -89,9 +76,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
         if (_playerEvents != null)
         {
-            PlayerEventsHandler.InteractingDoor -= _playerEvents.OnInteractingDoor;
             PlayerEventsHandler.Hurting -= _playerEvents.OnHurting;
-            PlayerEventsHandler.Handcuffing -= _playerEvents.OnHandcuffing;
             PlayerEventsHandler.Verified -= _playerEvents.OnVerified;
         }
 

@@ -1,5 +1,5 @@
 using System;
-using Capy.Core.Services;
+using Capy.Engine.Hints.Extensions;
 using Capy.NoRules.Config;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -9,13 +9,13 @@ using MEC;
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Система серверных оповещений и приветствий в стиле проекта Капибара.
+/// Система серверных оповещений и приветствий, работающая строго через экранный HUD (без Map.Broadcast).
 /// </summary>
-public sealed class BroadcastsFeature
+public sealed class AnnouncementsFeature
 {
-    private readonly BroadcastsConfig _config;
+    private readonly AnnouncementsConfig _config;
 
-    public BroadcastsFeature(BroadcastsConfig config)
+    public AnnouncementsFeature(AnnouncementsConfig config)
     {
         _config = config;
     }
@@ -33,7 +33,7 @@ public sealed class BroadcastsFeature
                     .Replace("%player_name%", ev.Player.Nickname)
                     .Replace("%server_tps%", Server.Tps.ToString("F0"));
 
-                ev.Player.Broadcast(_config.WelcomeDuration, msg);
+                ev.Player.ShowAnnouncement(msg, _config.WelcomeDuration, "welcome_hud");
             }
         });
     }
@@ -43,7 +43,7 @@ public sealed class BroadcastsFeature
         if (string.IsNullOrWhiteSpace(_config.RoundStartMessage))
             return;
 
-        Map.Broadcast(_config.RoundStartDuration, _config.RoundStartMessage);
+        ShowHintExtensions.ShowAnnouncementToAll(_config.RoundStartMessage, _config.RoundStartDuration, "round_start_hud");
     }
 
     public void OnRoundEnded(RoundEndedEventArgs ev)
@@ -51,7 +51,7 @@ public sealed class BroadcastsFeature
         if (!_config.ShowRoundEndSummary)
             return;
 
-        string summary = $"<color=#ffa94e><b>РАУНД ЗАВЕРШЁН!</b></color>\n<color=#c2c2c2>Победившая сторона: <color=#ffd285>{ev.LeadingTeam}</color> • Время раунда: <color=#ffd285>{Round.ElapsedTime.Minutes} мин {Round.ElapsedTime.Seconds} сек</color></color>";
-        Map.Broadcast(8, summary);
+        string summary = $"<color=#ffa94e><b>РАУНД ЗАВЕРШЁН!</b></color>\n<color=#c2c2c2>Победившая сторона: <color=#ffd285>{ev.LeadingTeam}</color> • Время: <color=#ffd285>{Round.ElapsedTime.Minutes}м {Round.ElapsedTime.Seconds}с</color></color>";
+        ShowHintExtensions.ShowAnnouncementToAll(summary, 7.0f, "round_end_hud");
     }
 }

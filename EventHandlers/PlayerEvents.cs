@@ -8,21 +8,15 @@ namespace Capy.NoRules.EventHandlers;
 /// </summary>
 public sealed class PlayerEvents
 {
-    private readonly AutoDoorsFeature _autoDoors;
     private readonly HitmarkerFeature _hitmarkers;
-    private readonly FastDisarmFeature _fastDisarm;
-    private readonly BroadcastsFeature _broadcasts;
+    private readonly AnnouncementsFeature _announcements;
 
-    public PlayerEvents(AutoDoorsFeature autoDoors, HitmarkerFeature hitmarkers, FastDisarmFeature fastDisarm, BroadcastsFeature broadcasts)
+    public PlayerEvents(HitmarkerFeature hitmarkers, AnnouncementsFeature announcements)
     {
-        _autoDoors = autoDoors;
         _hitmarkers = hitmarkers;
-        _fastDisarm = fastDisarm;
-        _broadcasts = broadcasts;
+        _announcements = announcements;
     }
 
-    public void OnInteractingDoor(InteractingDoorEventArgs ev) => _autoDoors.OnInteractingDoor(ev);
     public void OnHurting(HurtingEventArgs ev) => _hitmarkers.OnPlayerHurting(ev);
-    public void OnHandcuffing(HandcuffingEventArgs ev) => _fastDisarm.OnHandcuffing(ev);
-    public void OnVerified(VerifiedEventArgs ev) => _broadcasts.OnPlayerVerified(ev);
+    public void OnVerified(VerifiedEventArgs ev) => _announcements.OnPlayerVerified(ev);
 }
