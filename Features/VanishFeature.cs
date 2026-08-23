@@ -9,16 +9,8 @@ using Capy.Engine.Hud.Panels;
 using Capy.Engine.ServerSpecific;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
-using Exiled.Events.EventArgs.Scp049;
-using Exiled.Events.EventArgs.Scp096;
-using Exiled.Events.EventArgs.Scp173;
-using Exiled.Events.EventArgs.Scp3114;
-using Exiled.Events.EventArgs.Scp330;
-using Exiled.Events.EventArgs.Scp914;
 using Exiled.Events.EventArgs.Server;
-using Exiled.Events.EventArgs.Warhead;
 using PlayerRoles;
 using UnityEngine;
 
@@ -36,14 +28,12 @@ public sealed class VanishSavedState
 }
 
 /// <summary>
-/// Полнофункциональная система свободного наблюдателя (Vanish).
-/// 1. Вход разрешен ТОЛЬКО из роли Spectator, выход возвращает в Spectator.
+/// Режим свободного наблюдателя (Vanish):
+/// 1. Вход разрешен только из роли Spectator (возврат в Spectator).
 /// 2. Спавн в башне на Поверхности (Surface Tower) в роли Tutorial.
-/// 3. Выдача монетки телепортации (ЛКМ - след. игрок, ПКМ - пред. игрок) и карты Хаоса (для змейки).
-/// 4. Отображение способностей монетки над полоской HP через нативный ItemHudPanel (100% без мерцания).
-/// 5. Полное скрытие сетевыми пакетами Mirror (ChangeAppearance -> Spectator), без эффекта шапки.
-/// 6. Полный игнор Tesla ворот (не реагируют, не бьют током), SCP-173 и SCP-096.
-/// 7. Авто-спавн в волнах подкрепления МОГ / Хаос.
+/// 3. Навигационная монетка (ЛКМ - след., ПКМ - пред.) и карта Хаоса (Змейка).
+/// 4. Динамический HUD способностей над полоской HP (в общем цикле без мерцания).
+/// 5. Полная физическая (пули летят насквозь), сетевая и логическая изоляция (VanishIsolationHandler).
 /// </summary>
 public sealed class VanishFeature
 {
@@ -56,6 +46,7 @@ public sealed class VanishFeature
     {
         AssKeybinds.OnKeybindPressed += OnKeybindPressed;
         ItemHudPanel.ExternalItemHudProvider = GetVanishItemHudText;
+        VanishIsolationHandler.Register();
     }
 
     public void Disable()
@@ -64,6 +55,7 @@ public sealed class VanishFeature
         if (ItemHudPanel.ExternalItemHudProvider == GetVanishItemHudText)
             ItemHudPanel.ExternalItemHudProvider = null;
 
+        VanishIsolationHandler.Unregister();
         VanishedStates.Clear();
     }
 
@@ -112,28 +104,15 @@ public sealed class VanishFeature
         player.Role.Set(RoleTypeId.Tutorial);
         player.Position = TowerSpawnPosition;
 
-        // 2. Выдаем монетку телепортации и карту Хаоса (для игры в змейку)
+        // 2. Выдаем монетку навигации и карту Хаоса (для игры в змейку)
         player.ClearInventory();
         player.AddItem(ItemType.Coin);
         player.AddItem(ItemType.KeycardChaosInsurgency);
 
-        // 3. Скрываем игрока от всех через сетевые пакеты Mirror (GhostMode + ChangeAppearance -> Spectator)
-        if (player.Role.Is(out FpcRole fpcRole))
-        {
-            fpcRole.IsInvisible = true;
-        }
-        Capy.Core.Extensions.NetworkExtensions.ChangeAppearance(player, RoleTypeId.Spectator, true);
-        player.IsGodModeEnabled = true;
-        player.IsBypassModeEnabled = false;
+        // 3. Полная физическая (пули насквозь), сетевая и игровая изоляция
+        VanishIsolationHandler.ApplyIsolation(player);
 
-        // 4. Разрешение NoClip и включение свободного полёта
-        player.IsNoclipPermitted = true;
-        player.IsNoclipEnabled = true;
-
-        // 5. Заглушение голосового чата (чтобы живые игроки не слышали)
-        player.IsMuted = true;
-
-        // 6. Оповещение вверху экрана
+        // 4. Оповещение вверху экрана
         player.ShowZoneHint(
             HintZone.TopCenter,
             "<color=#38bdf8><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • 🪙 ЛКМ/ПКМ: <color=#a3e635>Телепорт к игрокам</color> • ⚡ Тесла: <color=#a3e635>Игнорирует</color></color>",
@@ -148,16 +127,9 @@ public sealed class VanishFeature
         if (!VanishedStates.TryRemove(player.Id, out var state))
             return;
 
-        if (player.Role.Is(out FpcRole fpcRole))
-        {
-            fpcRole.IsInvisible = false;
-        }
-
+        VanishIsolationHandler.RemoveIsolation(player);
         player.ClearInventory();
-        player.IsGodModeEnabled = false;
         player.IsNoclipPermitted = state.NoclipPermitted;
-        player.IsNoclipEnabled = false;
-        player.IsMuted = false;
 
         // Если выход НЕ по волне возрождения — возвращаем строго в Spectator
         if (!respawnWave)
@@ -178,7 +150,7 @@ public sealed class VanishFeature
         if (ev.Player == null || !IsVanished(ev.Player))
             return;
 
-        // Полностью отменяем дефолтную анимацию монетки, чтобы не было задержек и двух кликов
+        // Полностью отменяем дефолтную анимацию монетки
         ev.IsAllowed = false;
     }
 
@@ -195,10 +167,8 @@ public sealed class VanishFeature
         }
     }
 
-    public void OnChangedItem(ChangedItemEventArgs ev) { }
-
     /// <summary>
-    /// Генерация текста для ItemHudPanel (вызывается нативным HUD-циклом без мерцания, как и таймер раунда).
+    /// Генерация текста для ItemHudPanel (вызывается нативным HUD-циклом без мерцания).
     /// </summary>
     private string? GetVanishItemHudText(Player player)
     {
@@ -298,172 +268,5 @@ public sealed class VanishFeature
     public void OnRoundRestarted()
     {
         VanishedStates.Clear();
-    }
-
-    // --- Полный игнор Tesla ворот ---
-    public void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
-    {
-        if (IsVanished(ev.Player))
-        {
-            ev.IsAllowed = false;
-            ev.IsTriggerable = false;
-            ev.IsInIdleRange = false;
-            ev.IsInHurtingRange = false;
-        }
-    }
-
-    // --- Блокировка всех взаимодействий с миром ---
-    public void OnDroppingItem(DroppingItemEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnPickingUpItem(PickingUpItemEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnDroppingAmmo(DroppingAmmoEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnShooting(ShootingEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnHurting(HurtingEventArgs ev)
-    {
-        if (IsVanished(ev.Attacker) || IsVanished(ev.Player))
-        {
-            ev.IsAllowed = false;
-            ev.Amount = 0f;
-        }
-    }
-
-    public void OnInteractingDoor(InteractingDoorEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnInteractingLocker(InteractingLockerEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnInteractingElevator(InteractingElevatorEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnOpeningGenerator(OpeningGeneratorEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnUnlockingGenerator(UnlockingGeneratorEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnActivatingGenerator(ActivatingGeneratorEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnStoppingGenerator(StoppingGeneratorEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnScp173AddingObserver(AddingObserverEventArgs ev)
-    {
-        if (IsVanished(ev.Observer)) ev.IsAllowed = false;
-    }
-
-    public void OnScp096AddingTarget(AddingTargetEventArgs ev)
-    {
-        if (IsVanished(ev.Target)) ev.IsAllowed = false;
-    }
-
-    public void OnInteractingEmergencyButton(InteractingEmergencyButtonEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnActivatingWorkstation(ActivatingWorkstationEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnDeactivatingWorkstation(DeactivatingWorkstationEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnActivatingWarheadPanel(ActivatingWarheadPanelEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnChangingLeverStatus(ChangingLeverStatusEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnStartingWarhead(StartingEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnStoppingWarhead(StoppingEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnActivatingScp914(ActivatingEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnChangingKnobSettingScp914(ChangingKnobSettingEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnInteractingScp330(InteractingScp330EventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnInteractingShootingTarget(InteractingShootingTargetEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnActivatingSense(ActivatingSenseEventArgs ev)
-    {
-        if (IsVanished(ev.Target)) ev.IsAllowed = false;
-    }
-
-    public void OnStartingRecall(StartingRecallEventArgs ev)
-    {
-        if (IsVanished(ev.Target)) ev.IsAllowed = false;
-    }
-
-    public void OnEnteringPocketDimension(EnteringPocketDimensionEventArgs ev)
-    {
-        if (IsVanished(ev.Player)) ev.IsAllowed = false;
-    }
-
-    public void OnStrangling(StranglingEventArgs ev)
-    {
-        if (IsVanished(ev.Target)) ev.IsAllowed = false;
-    }
-
-    public void OnDisguising(DisguisingEventArgs ev)
-    {
-        if (ev.Ragdoll?.Owner != null && IsVanished(ev.Ragdoll.Owner)) ev.IsAllowed = false;
     }
 }
