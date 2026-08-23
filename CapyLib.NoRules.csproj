@@ -36,6 +36,14 @@
             <HintPath>..\CapyLib\_deps\Exiled.Loader.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="Exiled.CustomItems">
+            <HintPath>..\CapyLib\_deps\Exiled.CustomItems.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Exiled.CustomRoles">
+            <HintPath>..\CapyLib\_deps\Exiled.CustomRoles.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <Reference Include="Exiled.Permissions">
             <HintPath>..\CapyLib\_deps\Exiled.Permissions.dll</HintPath>
             <Private>False</Private>
