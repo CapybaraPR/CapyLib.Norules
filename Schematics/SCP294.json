@@ -1,0 +1,655 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "Cabinet Body",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.45,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.95,
+        "y": 0.9,
+        "z": 0.65
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3F44FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cabinet Top Counter",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.93,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.05,
+        "y": 0.06,
+        "z": 0.75
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "23272BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cabinet Foot -1-1",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.4,
+        "y": 0.03,
+        "z": -0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.06,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "17191CFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cabinet Foot -11",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.4,
+        "y": 0.03,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.06,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "17191CFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cabinet Foot 1-1",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.4,
+        "y": 0.03,
+        "z": -0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.06,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "17191CFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cabinet Foot 11",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.4,
+        "y": 0.03,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.06,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "17191CFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Machine Lower Body",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.62,
+        "y": 0.56,
+        "z": 0.52
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "B8BCC2FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Machine Upper Head",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.62,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.66,
+        "y": 0.18,
+        "z": 0.54
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "8F949AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Machine Top Trim",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.72,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.04,
+        "z": 0.58
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "53585DFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Side Panel L",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.32,
+        "y": 1.25,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.5,
+        "z": 0.48
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6E7378FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Side Panel R",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.32,
+        "y": 1.25,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.5,
+        "z": 0.48
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6E7378FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Display Screen Glow",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.63,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.34,
+        "y": 0.09,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FFEE",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Display Frame",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.63,
+        "z": 0.215
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.14,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "23272BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Button Red",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.12,
+        "y": 1.47,
+        "z": 0.225
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.07,
+        "y": 0.07,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FF3333FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Button Green",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.12,
+        "y": 1.47,
+        "z": 0.225
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.07,
+        "y": 0.07,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "33FF33FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Logo Plate Glow",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.32,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.2,
+        "y": 0.06,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "2979FFEE",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Dispenser Recess",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.08,
+        "z": 0.21
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.3,
+        "y": 0.24,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "101215FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Nozzle",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.15,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.08,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "2B2F33FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Drip Tray",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.97,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.34,
+        "y": 0.03,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "53585DFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cup",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.03,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.11,
+        "y": 0.11,
+        "z": 0.11
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "F2F2F2FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Steam Glow",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.13,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.16,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFFFFFAA",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Back Pipe -1",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.18,
+        "y": 1.38,
+        "z": -0.33
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.42,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A4F54FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Back Pipe 1",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.18,
+        "y": 1.38,
+        "z": -0.33
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.42,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "4A4F54FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Warning Lamp Glow",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.79,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.09,
+        "y": 0.09,
+        "z": 0.09
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "FFAA00FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Warning Lamp Base",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.74,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.03,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "17191CFF",
+        "PrimitiveFlags": 3
+      }
+    }
+  ]
+}

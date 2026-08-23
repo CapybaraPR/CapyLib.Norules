@@ -10,7 +10,7 @@
         <Authors>CapybaraPR</Authors>
         <Company>CapybaraPR</Company>
         <Product>CapyLib.NoRules</Product>
-        <Version>1.1.1</Version>
+        <Version>1.2.0</Version>
         <Description>Capybara NoRules Server Gameplay Plugin for SCP:SL EXILED</Description>
         <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
         <NoWarn>$(NoWarn);MSB3270;MSB3277;CS0618;CS0012;CS1705</NoWarn>

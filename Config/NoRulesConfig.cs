@@ -45,6 +45,39 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("10. Настройки аномального объекта SCP-120 (Детский бассейн-телепорт и трансформация предметов).")]
     public Scp120Config Scp120 { get; set; } = new();
+
+    [Description("11. Настройки SCP-294 (Кофемашина — выдаёт напитки по выбору игрока).")]
+    public Scp294Config Scp294 { get; set; } = new();
+}
+
+public sealed class Scp294Config
+{
+    [Description("Включен ли SCP-294 (кофемашина с напитками).")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Имя схематики кофемашины.")]
+    public string SchematicName { get; set; } = "SCP294";
+
+    [Description("Комната, в которую спавнится машина при старте раунда (EzUpstairsPcs = большой двухэтажный офис).")]
+    public Exiled.API.Enums.RoomType SpawnRoom { get; set; } = Exiled.API.Enums.RoomType.EzUpstairsPcs;
+
+    [Description("Смещение позиции машины относительно центра комнаты по X.")]
+    public float OffsetX { get; set; } = 0f;
+
+    [Description("Смещение позиции машины относительно центра комнаты по Y.")]
+    public float OffsetY { get; set; } = 0f;
+
+    [Description("Смещение позиции машины относительно центра комнаты по Z.")]
+    public float OffsetZ { get; set; } = 0f;
+
+    [Description("Поворот машины по оси Y относительно комнаты.")]
+    public float RotationY { get; set; } = 180f;
+
+    [Description("Радиус взаимодействия с машиной (метры). Нажмите [E], стоя рядом.")]
+    public float InteractRadius { get; set; } = 2.2f;
+
+    [Description("Кулдаун выдачи напитка на игрока (секунды) — машина 'перезагружается'.")]
+    public float CooldownSeconds { get; set; } = 30f;
 }
 
 public sealed class Scp120Config
