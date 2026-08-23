@@ -18,15 +18,21 @@ namespace Capy.NoRules.Features;
 
 /// <summary>
 /// Реализация аномального объекта SCP-120 («Детский бассейн-телепорт»).
-/// Обеспечивает безопасную телепортацию игроков (по пулу комнат монетки)
-/// и сбалансированную переработку/улучшение предметов без спама мощными пушками.
+/// - Постепенное потемнение экрана (эффект карманного измерения / 106) с задержкой 2.4с перед телепортацией.
+/// - Очередь и задержка ~1 сек между телепортацией игроков.
+/// - Очередь и задержка ~1 сек между трансформацией предметов.
+/// - Безопасный пул комнат от магической монетки (без спавна на Поверхности в начале раунда).
 /// </summary>
 public sealed class Scp120Feature : IDisposable
 {
     private readonly Scp120Config _config;
     private CoroutineHandle _scanLoop;
     private readonly HashSet<ushort> _activePickupSerials = new();
-    private readonly Dictionary<int, DateTime> _playerTeleportCooldowns = new();
+    private readonly HashSet<int> _teleportingPlayerIds = new();
+
+    private DateTime _nextPlayerAllowedTeleportTime = DateTime.MinValue;
+    private DateTime _nextItemAllowedTransformTime = DateTime.MinValue;
+    private bool _isItemTransforming = false;
 
     // 1. Обычные предметы: расходники, свет, связь, базовые карточки
     public List<ItemType> CommonItems { get; set; } = new()
@@ -128,7 +134,8 @@ public sealed class Scp120Feature : IDisposable
             Timing.KillCoroutines(_scanLoop);
 
         _activePickupSerials.Clear();
-        _playerTeleportCooldowns.Clear();
+        _teleportingPlayerIds.Clear();
+        _isItemTransforming = false;
     }
 
     private IEnumerator<float> ScanPoolLoop()
@@ -143,64 +150,114 @@ public sealed class Scp120Feature : IDisposable
             Vector3 poolPos = schematic.Position;
             Vector2 poolPos2D = new Vector2(poolPos.x, poolPos.z);
 
-            // 1. Проверка телепортации игроков при входе в чашу бассейна
-            foreach (Player player in Player.List)
+            // 1. Проверка телепортации игроков (по одному с кд ~1 сек между игроками)
+            if (_teleportingPlayerIds.Count == 0 && DateTime.UtcNow >= _nextPlayerAllowedTeleportTime)
             {
-                if (player == null || !player.IsAlive) continue;
-
-                Vector2 playerPos2D = new Vector2(player.Position.x, player.Position.z);
-                float dist2D = Vector2.Distance(playerPos2D, poolPos2D);
-                float yDiff = player.Position.y - poolPos.y;
-
-                if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 2.2f)
+                foreach (Player player in Player.List)
                 {
-                    if (_playerTeleportCooldowns.TryGetValue(player.Id, out var nextUse) && DateTime.UtcNow < nextUse)
-                        continue;
+                    if (player == null || !player.IsAlive || _teleportingPlayerIds.Contains(player.Id)) continue;
 
-                    _playerTeleportCooldowns[player.Id] = DateTime.UtcNow.AddSeconds(_config.TeleportCooldown);
-                    TeleportPlayer(player, poolPos);
+                    Vector2 playerPos2D = new Vector2(player.Position.x, player.Position.z);
+                    float dist2D = Vector2.Distance(playerPos2D, poolPos2D);
+                    float yDiff = player.Position.y - poolPos.y;
+
+                    if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 2.2f)
+                    {
+                        Timing.RunCoroutine(TeleportPlayerCoroutine(player, poolPos));
+                        break;
+                    }
                 }
             }
 
-            // 2. Проверка трансформации брошенных в воду предметов
-            foreach (Pickup pickup in Pickup.List.ToList())
+            // 2. Проверка трансформации брошенных в воду предметов (по одному с кд ~1 сек между обменами)
+            if (!_isItemTransforming && DateTime.UtcNow >= _nextItemAllowedTransformTime)
             {
-                if (pickup == null || pickup.GameObject == null || _activePickupSerials.Contains(pickup.Serial)) continue;
-
-                Vector2 pickupPos2D = new Vector2(pickup.Position.x, pickup.Position.z);
-                float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
-                float yDiff = pickup.Position.y - poolPos.y;
-
-                if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 1.8f)
+                foreach (Pickup pickup in Pickup.List.ToList())
                 {
-                    Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.20f));
+                    if (pickup == null || pickup.GameObject == null || _activePickupSerials.Contains(pickup.Serial)) continue;
+
+                    Vector2 pickupPos2D = new Vector2(pickup.Position.x, pickup.Position.z);
+                    float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
+                    float yDiff = pickup.Position.y - poolPos.y;
+
+                    if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 1.8f)
+                    {
+                        Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.20f));
+                        break;
+                    }
                 }
             }
         }
     }
 
-    private void TeleportPlayer(Player player, Vector3 poolPos)
+    private IEnumerator<float> TeleportPlayerCoroutine(Player player, Vector3 poolPos)
     {
-        Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
+        _teleportingPlayerIds.Add(player.Id);
 
-        // Используем проверенный безопасный пул комнат от магической монетки (исключая Поверхность, Теслы, Карманку, Гейты)
-        var validRooms = Room.List.Where(BetterCoinsFeature.IsValidTeleportRoom).ToList();
-        if (validRooms.Count > 0)
+        // Накладываем эффекты затягивания и потемнения (как от 106)
+        try
         {
-            var targetRoom = validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
-            player.Position = targetRoom.Position + Vector3.up * 1.2f;
+            player.EnableEffect(EffectType.SinkHole, 3.5f);
+            player.EnableEffect(EffectType.Corroding, 3.5f);
+            player.EnableEffect(EffectType.Blinded, 3.0f);
         }
-        else
+        catch { }
+
+        player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Погружение в аномалию.</b></color>", 1.0f, "scp120_tp", 20);
+        yield return Timing.WaitForSeconds(0.8f);
+
+        if (!player.IsConnected || !player.IsAlive)
         {
-            player.Position = poolPos + Vector3.up * 3.5f;
+            _teleportingPlayerIds.Remove(player.Id);
+            yield break;
         }
 
-        Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
-        player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Телепортация завершена!</b></color>", 2.5f, "scp120_tp", 20);
+        player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Погружение в аномалию..</b></color>", 1.0f, "scp120_tp", 20);
+        yield return Timing.WaitForSeconds(0.8f);
+
+        if (!player.IsConnected || !player.IsAlive)
+        {
+            _teleportingPlayerIds.Remove(player.Id);
+            yield break;
+        }
+
+        player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Погружение в аномалию...</b></color>", 1.0f, "scp120_tp", 20);
+        yield return Timing.WaitForSeconds(0.8f);
+
+        if (player.IsConnected && player.IsAlive)
+        {
+            Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
+
+            try
+            {
+                player.DisableEffect(EffectType.Corroding);
+                player.DisableEffect(EffectType.SinkHole);
+                player.DisableEffect(EffectType.Blinded);
+            }
+            catch { }
+
+            var validRooms = Room.List.Where(BetterCoinsFeature.IsValidTeleportRoom).ToList();
+            if (validRooms.Count > 0)
+            {
+                var targetRoom = validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
+                player.Position = targetRoom.Position + Vector3.up * 1.2f;
+            }
+            else
+            {
+                player.Position = poolPos + Vector3.up * 3.5f;
+            }
+
+            Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
+            player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Телепортация завершена!</b></color>", 2.5f, "scp120_tp", 20);
+        }
+
+        _teleportingPlayerIds.Remove(player.Id);
+        _nextPlayerAllowedTeleportTime = DateTime.UtcNow.AddSeconds(1.0);
     }
 
     private IEnumerator<float> ProcessItemTransformation(Pickup pickup, float targetY)
     {
+        _isItemTransforming = true;
         _activePickupSerials.Add(pickup.Serial);
         ItemType droppedType = pickup.Type;
 
@@ -239,6 +296,9 @@ public sealed class Scp120Feature : IDisposable
                 _activePickupSerials.Add(newPickup.Serial);
             }
         }
+
+        _isItemTransforming = false;
+        _nextItemAllowedTransformTime = DateTime.UtcNow.AddSeconds(1.0);
     }
 
     private static void DisablePhysics(Pickup? pickup)
