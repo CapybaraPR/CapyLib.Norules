@@ -1922,7 +1922,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "00B4D8EE",
-        "PrimitiveFlags": 1
+        "PrimitiveFlags": 2
       }
     },
     {
@@ -1948,7 +1948,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "00F5D4DD",
-        "PrimitiveFlags": 1
+        "PrimitiveFlags": 2
       }
     },
     {
@@ -1974,7 +1974,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "52B788AA",
-        "PrimitiveFlags": 1
+        "PrimitiveFlags": 2
       }
     },
     {
@@ -2000,7 +2000,7 @@
       "Properties": {
         "PrimitiveType": 0,
         "Color": "70E000CC",
-        "PrimitiveFlags": 1
+        "PrimitiveFlags": 2
       }
     },
     {
@@ -2026,7 +2026,7 @@
       "Properties": {
         "PrimitiveType": 2,
         "Color": "E0FAFFDD",
-        "PrimitiveFlags": 1
+        "PrimitiveFlags": 2
       }
     },
     {
