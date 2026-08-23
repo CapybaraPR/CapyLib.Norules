@@ -155,7 +155,7 @@ public sealed class Scp294Feature
         _enabled = true;
 
         AssKeybinds.OnKeybindPressed += OnKeybindPressed;
-        Exiled.Events.Handlers.Player.UsingItem += OnUsingItem;
+        Exiled.Events.Handlers.Player.UsedItem += OnUsedItem;
         Exiled.Events.Handlers.Player.ChangedItem += OnChangedItem;
         Exiled.Events.Handlers.Player.Left += OnLeft;
         Exiled.Events.Handlers.Server.RoundStarted += OnRoundStarted;
@@ -168,7 +168,7 @@ public sealed class Scp294Feature
         _enabled = false;
 
         AssKeybinds.OnKeybindPressed -= OnKeybindPressed;
-        Exiled.Events.Handlers.Player.UsingItem -= OnUsingItem;
+        Exiled.Events.Handlers.Player.UsedItem -= OnUsedItem;
         Exiled.Events.Handlers.Player.ChangedItem -= OnChangedItem;
         Exiled.Events.Handlers.Player.Left -= OnLeft;
         Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
@@ -317,23 +317,28 @@ public sealed class Scp294Feature
     }
 
     /// <summary>
-    /// Перехватываем употребление стакана: ванильный AntiSCP207 полностью блокируется
-    /// (иначе игра выдаёт свой "анти-кола" эффект поверх эффекта напитка).
+    /// Стакан пьётся ванильно (анимация + расход предмета), но ванильный эффект AntiSCP207
+    /// срезаем — остаются только эффекты самого напитка.
     /// </summary>
-    private void OnUsingItem(UsingItemEventArgs ev)
+    private void OnUsedItem(UsedItemEventArgs ev)
     {
         if (ev.Item == null || !_trackedCups.TryGetValue(ev.Item.Serial, out int drinkIndex))
             return;
 
-        ev.IsAllowed = false;
         _trackedCups.TryRemove(ev.Item.Serial, out _);
 
         if (ev.Player == null || !ev.Player.IsAlive)
             return;
 
         var drink = Drinks[drinkIndex];
-        ev.Player.RemoveItem(ev.Item);
         ApplyDrink(ev.Player, drink);
+
+        // Убираем ванильный бафф анти-колы, если напиток сам не даёт AntiScp207
+        bool drinkGrantsAnti207 = drink.Effects.Any(e => e.Type == EffectType.AntiScp207);
+        if (!drinkGrantsAnti207)
+        {
+            try { ev.Player.DisableEffect(EffectType.AntiScp207); } catch { }
+        }
     }
 
     private void OnChangedItem(ChangedItemEventArgs ev)
