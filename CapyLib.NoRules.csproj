@@ -1,17 +1,58 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-    <RootNamespace>Capy.NoRules</RootNamespace>
-    <AssemblyName>CapyLib.NoRules</AssemblyName>
-    <Version>0.1.0</Version>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="CapyLib"><HintPath>..\CapyLib\bin\Release\net48\CapyLib.dll</HintPath><Private>false</Private></Reference>
-    <Reference Include="Exiled.API"><HintPath>..\CapyLib\_deps\Exiled.API.dll</HintPath><Private>false</Private></Reference>
-    <Reference Include="Exiled.Events"><HintPath>..\CapyLib\_deps\Exiled.Events.dll</HintPath><Private>false</Private></Reference>
-    <Reference Include="Assembly-CSharp_publicized"><HintPath>..\CapyLib\_deps\Assembly-CSharp_publicized.dll</HintPath><Private>false</Private></Reference>
-    <Reference Include="UnityEngine.CoreModule"><HintPath>..\CapyLib\_deps\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyName>CapyLib.NoRules</AssemblyName>
+        <RootNamespace>Capy.NoRules</RootNamespace>
+        <Authors>CapybaraPR</Authors>
+        <Company>CapybaraPR</Company>
+        <Product>CapyLib.NoRules</Product>
+        <Version>1.0.0</Version>
+        <Description>Capybara NoRules Server Gameplay Plugin for SCP:SL EXILED</Description>
+        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+        <NoWarn>$(NoWarn);MSB3270;MSB3277;CS0618;CS0012;CS1705</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- CapyLib Core Framework -->
+        <Reference Include="CapyLib">
+            <HintPath>..\CapyLib\bin\Release\net48\CapyLib.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <!-- EXILED Dependencies -->
+        <Reference Include="Exiled.API">
+            <HintPath>..\CapyLib\_deps\Exiled.API.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Exiled.Events">
+            <HintPath>..\CapyLib\_deps\Exiled.Events.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Exiled.Loader">
+            <HintPath>..\CapyLib\_deps\Exiled.Loader.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+
+        <!-- Unity & Game Assemblies -->
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath>..\CapyLib\_deps\Assembly-CSharp-firstpass.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Assembly-CSharp_publicized">
+            <HintPath>..\CapyLib\_deps\Assembly-CSharp_publicized.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>..\CapyLib\_deps\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Mirror">
+            <HintPath>..\CapyLib\_deps\Mirror.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
 </Project>
