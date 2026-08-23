@@ -19,14 +19,17 @@ namespace Capy.NoRules.Features;
 /// <summary>
 /// Реализация аномального объекта SCP-120 («Детский бассейн-телепорт»).
 /// - Постепенное потемнение экрана (эффект карманного измерения / 106) с задержкой 2.4с перед телепортацией.
-/// - Очередь и задержка ~1 сек между телепортацией игроков.
-/// - Очередь и задержка ~1 сек между трансформацией предметов.
-/// - Безопасный пул комнат от магической монетки (без спавна на Поверхности в начале раунда).
+/// - Замедление во время погружения; игрок, вышедший из зоны бассейна до конца анимации, остаётся на месте.
+/// - Очередь и задержка между телепортацией игроков / трансформацией предметов из конфига.
+/// - Шанс телепорта на Поверхность (конфиг); после детонации боеголовки — только Поверхность.
+/// - Анти-фарм: легендарные предметы понижаются при сливе, неизвестные — превращаются в мусор.
+/// - Автозакрытие дверей GR-18 через N секунд после старта раунда.
 /// </summary>
 public sealed class Scp120Feature : IDisposable
 {
     private readonly Scp120Config _config;
     private CoroutineHandle _scanLoop;
+    private CoroutineHandle _doorCloseLoop;
     private readonly HashSet<ushort> _activePickupSerials = new();
     private readonly HashSet<int> _teleportingPlayerIds = new();
 
@@ -83,7 +86,7 @@ public sealed class Scp120Feature : IDisposable
 
         StopLoop();
 
-        // Приглушаем свет и закрываем двери в комнате GR-18 (LczGlassBox)
+        // Приглушаем свет в комнате GR-18 (LczGlassBox)
         foreach (var room in Room.List)
         {
             if (room.Type == RoomType.LczGlassBox)
@@ -92,13 +95,8 @@ public sealed class Scp120Feature : IDisposable
             }
         }
 
-        foreach (var door in Door.List)
-        {
-            if (door.Room?.Type == RoomType.LczGlassBox)
-            {
-                door.IsOpen = false;
-            }
-        }
+        // Автозакрытие всех дверей комнаты через задержку из конфига
+        _doorCloseLoop = Timing.RunCoroutine(DoorCloseCoroutine());
 
         // Авто-спавн в GlassBox если включено
         if (_config.AutoSpawnInGlassBox)
@@ -120,6 +118,19 @@ public sealed class Scp120Feature : IDisposable
         _scanLoop = Timing.RunCoroutine(ScanPoolLoop());
     }
 
+    private IEnumerator<float> DoorCloseCoroutine()
+    {
+        yield return Timing.WaitForSeconds(Mathf.Max(0f, _config.DoorsCloseDelaySeconds));
+
+        foreach (var door in Door.List)
+        {
+            if (door.Room?.Type == RoomType.LczGlassBox)
+            {
+                door.IsOpen = false;
+            }
+        }
+    }
+
     public void OnPickingUpItem(PickingUpItemEventArgs ev)
     {
         if (ev.Pickup != null)
@@ -132,6 +143,9 @@ public sealed class Scp120Feature : IDisposable
     {
         if (_scanLoop.IsRunning)
             Timing.KillCoroutines(_scanLoop);
+
+        if (_doorCloseLoop.IsRunning)
+            Timing.KillCoroutines(_doorCloseLoop);
 
         _activePickupSerials.Clear();
         _teleportingPlayerIds.Clear();
@@ -161,7 +175,7 @@ public sealed class Scp120Feature : IDisposable
                     float dist2D = Vector2.Distance(playerPos2D, poolPos2D);
                     float yDiff = player.Position.y - poolPos.y;
 
-                    if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 2.2f)
+                    if (dist2D <= _config.PlayerDetectRadius && yDiff >= -1.0f && yDiff <= 2.2f)
                     {
                         Timing.RunCoroutine(TeleportPlayerCoroutine(player, poolPos));
                         break;
@@ -181,7 +195,7 @@ public sealed class Scp120Feature : IDisposable
                     float yDiff = pickup.Position.y - poolPos.y;
 
                     // Срабатывает только когда предмет действительно попал в воду бассейна
-                    if (dist2D <= 1.45f && yDiff >= -0.4f && yDiff <= 0.65f)
+                    if (dist2D <= _config.ItemDetectRadius && yDiff >= -0.4f && yDiff <= 0.65f)
                     {
                         Timing.RunCoroutine(ProcessItemTransformation(pickup));
                         break;
@@ -195,10 +209,11 @@ public sealed class Scp120Feature : IDisposable
     {
         _teleportingPlayerIds.Add(player.Id);
 
-        // Накладываем эффекты затягивания и потемнения (как от 106)
+        // Накладываем эффекты затягивания (замедление — игрок может вырваться, покинув зону бассейна)
         try
         {
             player.EnableEffect(EffectType.SinkHole, 3.5f);
+            player.EnableEffect(EffectType.Slowness, 255, 3.5f);
             player.EnableEffect(EffectType.Corroding, 3.5f);
             player.EnableEffect(EffectType.Blinded, 3.0f);
         }
@@ -209,6 +224,7 @@ public sealed class Scp120Feature : IDisposable
 
         if (!player.IsConnected || !player.IsAlive)
         {
+            RemoveEffectsAndForget(player);
             _teleportingPlayerIds.Remove(player.Id);
             yield break;
         }
@@ -218,6 +234,7 @@ public sealed class Scp120Feature : IDisposable
 
         if (!player.IsConnected || !player.IsAlive)
         {
+            RemoveEffectsAndForget(player);
             _teleportingPlayerIds.Remove(player.Id);
             yield break;
         }
@@ -227,25 +244,55 @@ public sealed class Scp120Feature : IDisposable
 
         if (player.IsConnected && player.IsAlive)
         {
+            Vector2 poolPos2D = new Vector2(poolPos.x, poolPos.z);
+            float dist2D = Vector2.Distance(new Vector2(player.Position.x, player.Position.z), poolPos2D);
+            float yDiff = player.Position.y - poolPos.y;
+            float cancelRadius = _config.PlayerDetectRadius * Mathf.Max(1f, _config.CancelZoneMultiplier);
+
+            // Игрок успел выйти из зоны во время погружения — аномалия его отпускает
+            if (dist2D > cancelRadius || yDiff < -1.5f || yDiff > 2.8f)
+            {
+                RemoveEffectsAndForget(player);
+                player.ShowZoneHint(HintZone.Notification, "<color=#7dd3fc>🌀 Вы вырвались из аномалии.</color>", 2.0f, "scp120_tp", 20);
+                _teleportingPlayerIds.Remove(player.Id);
+                yield break;
+            }
+
             Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
 
             try
             {
                 player.DisableEffect(EffectType.Corroding);
                 player.DisableEffect(EffectType.SinkHole);
+                player.DisableEffect(EffectType.Slowness);
                 player.DisableEffect(EffectType.Blinded);
             }
             catch { }
 
-            var validRooms = Room.List.Where(BetterCoinsFeature.IsValidTeleportRoom).ToList();
-            if (validRooms.Count > 0)
+            // После детонации боеголовки комплекс заражён — только Поверхность
+            bool forceSurface = Warhead.IsDetonated;
+            if (!forceSurface)
             {
-                var targetRoom = validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
-                player.Position = targetRoom.Position + Vector3.up * 1.2f;
+                int surfaceRoll = UnityEngine.Random.Range(1, 101);
+                forceSurface = surfaceRoll <= Mathf.Clamp(_config.SurfaceChancePercent, 0, 100);
+            }
+
+            if (forceSurface)
+            {
+                player.Position = BetterCoinsFeature.SurfaceTowerPosition + Vector3.up * 0.4f;
             }
             else
             {
-                player.Position = poolPos + Vector3.up * 3.5f;
+                var validRooms = Room.List.Where(BetterCoinsFeature.IsValidTeleportRoom).ToList();
+                if (validRooms.Count > 0)
+                {
+                    var targetRoom = validRooms[UnityEngine.Random.Range(0, validRooms.Count)];
+                    player.Position = targetRoom.Position + Vector3.up * 1.2f;
+                }
+                else
+                {
+                    player.Position = poolPos + Vector3.up * 3.5f;
+                }
             }
 
             Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
@@ -253,7 +300,19 @@ public sealed class Scp120Feature : IDisposable
         }
 
         _teleportingPlayerIds.Remove(player.Id);
-        _nextPlayerAllowedTeleportTime = DateTime.UtcNow.AddSeconds(1.0);
+        _nextPlayerAllowedTeleportTime = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.TeleportCooldown));
+    }
+
+    private static void RemoveEffectsAndForget(Player player)
+    {
+        try
+        {
+            player.DisableEffect(EffectType.Corroding);
+            player.DisableEffect(EffectType.SinkHole);
+            player.DisableEffect(EffectType.Slowness);
+            player.DisableEffect(EffectType.Blinded);
+        }
+        catch { }
     }
 
     private IEnumerator<float> ProcessItemTransformation(Pickup pickup)
@@ -305,7 +364,7 @@ public sealed class Scp120Feature : IDisposable
         }
 
         _isItemTransforming = false;
-        _nextItemAllowedTransformTime = DateTime.UtcNow.AddSeconds(1.0);
+        _nextItemAllowedTransformTime = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.TeleportCooldown));
     }
 
     private static void DisablePhysics(Pickup? pickup)
@@ -363,10 +422,14 @@ public sealed class Scp120Feature : IDisposable
         // 5. Легендарные / Очень редкие предметы (Менеджер, SCP-500, SCP-268, SCP-1344, Logicer, E-11)
         if (VeryRareItems.Contains(inputType))
         {
-            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];
+            int rerollRoll = UnityEngine.Random.Range(1, 101);
+            if (rerollRoll <= Mathf.Clamp(_config.LegendaryRerollChance, 0, 100))
+                return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];             // Шанс реролла из конфига (по умолчанию 40%)
+            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];                         // Иначе понижение до Редкого — фарм легендарок невыгоден
         }
 
-        return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)];
+        // Неизвестные предметы (не входят ни в один тир) — бассейн не награждает за мусор
+        return CommonItems[UnityEngine.Random.Range(0, CommonItems.Count)];
     }
 
     public void Dispose()

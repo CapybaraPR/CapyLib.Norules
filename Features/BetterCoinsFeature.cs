@@ -84,12 +84,21 @@ public sealed class BetterCoinsFeature
             int roll = Random.Range(0, 100);
             if (roll < _config.TeleportChance)
             {
-                var validRooms = Room.List.Where(IsValidTeleportRoom).ToList();
-                if (validRooms.Count > 0)
+                // После детонации боеголовки комплекс заражён — только Поверхность
+                if (Warhead.IsDetonated)
                 {
-                    var targetRoom = validRooms[Random.Range(0, validRooms.Count)];
-                    player.Position = targetRoom.Position + Vector3.up * 1.2f;
-                    player.ShowZoneHint(HintZone.BottomCenter, "<color=#a3e635><b>Успешная телепортация! 🌀</b></color>", 2.5f, "coin_tp");
+                    player.Position = SurfaceTowerPosition;
+                    player.ShowZoneHint(HintZone.BottomCenter, "<color=#a3e635><b>Телепортация! 🌀 Но в комплексе уже не выжить...</b></color>", 2.5f, "coin_tp");
+                }
+                else
+                {
+                    var validRooms = Room.List.Where(IsValidTeleportRoom).ToList();
+                    if (validRooms.Count > 0)
+                    {
+                        var targetRoom = validRooms[Random.Range(0, validRooms.Count)];
+                        player.Position = targetRoom.Position + Vector3.up * 1.2f;
+                        player.ShowZoneHint(HintZone.BottomCenter, "<color=#a3e635><b>Успешная телепортация! 🌀</b></color>", 2.5f, "coin_tp");
+                    }
                 }
             }
             else
@@ -112,8 +121,13 @@ public sealed class BetterCoinsFeature
     }
 
     /// <summary>
+    /// Проверенная точка спавна на Поверхности (вершина башни, используется и в VanishFeature).
+    /// </summary>
+    public static readonly Vector3 SurfaceTowerPosition = new(39.2f, 1014.5f, -31.8f);
+
+    /// <summary>
     /// Проверяет, пригодна ли комната для безопасной телепортации монетки.
-    /// Исключает гейты, теслы, тупиковые комнаты Офисной зоны (EZ) и карманку.
+    /// Исключает гейты, теслы, тупиковые комнаты Офисной зоны (EZ), карманку и Поверхность.
     /// </summary>
     public static bool IsValidTeleportRoom(Room room)
     {
@@ -163,13 +177,15 @@ public sealed class BetterCoinsFeature
         if (room.Type is RoomType.LczGlassBox or RoomType.Hcz939)
             return false;
 
-        // 7. Дополнительная фильтрация по названию (гейты, теслы, теструмы)
+        // 7. Дополнительная фильтрация по названию (гейты, теслы, теструмы, Поверхность)
         string name = room.Name ?? string.Empty;
         if (name.IndexOf("gate", StringComparison.OrdinalIgnoreCase) >= 0 ||
             name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0 ||
             name.IndexOf("test", StringComparison.OrdinalIgnoreCase) >= 0 ||
             name.IndexOf("glass", StringComparison.OrdinalIgnoreCase) >= 0 ||
-            name.IndexOf("gr18", StringComparison.OrdinalIgnoreCase) >= 0)
+            name.IndexOf("gr18", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("outside", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("surface", StringComparison.OrdinalIgnoreCase) >= 0)
         {
             return false;
         }

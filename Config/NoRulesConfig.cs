@@ -70,11 +70,26 @@ public sealed class Scp120Config
     [Description("Поворот бассейна по оси Y относительно комнаты GlassBox.")]
     public float RotationY { get; set; } = 180.0f;
 
-    [Description("Кулдаун на телепортацию игрока в секундах.")]
+    [Description("Кулдаун между телепортациями игроков и трансформациями предметов в секундах.")]
     public float TeleportCooldown { get; set; } = 1.5f;
 
-    [Description("Радиус взаимодействия с бассейном (метры).")]
-    public float PoolRadius { get; set; } = 1.55f;
+    [Description("Радиус обнаружения игрока в бассейне (метры, 2D по горизонтали).")]
+    public float PlayerDetectRadius { get; set; } = 1.8f;
+
+    [Description("Радиус обнаружения предметов в воде бассейна (метры, 2D по горизонтали).")]
+    public float ItemDetectRadius { get; set; } = 1.45f;
+
+    [Description("Шанс телепортации на Поверхность вместо комнаты комплекса в процентах (0-100).")]
+    public int SurfaceChancePercent { get; set; } = 7;
+
+    [Description("Шанс повторного реролла легендарного предмета (VeryRare -> VeryRare) в процентах. Остаток — понижение до Rare.")]
+    public int LegendaryRerollChance { get; set; } = 40;
+
+    [Description("Задержка перед автоматическим закрытием всех дверей комнаты GlassBox после старта раунда (секунды).")]
+    public float DoorsCloseDelaySeconds { get; set; } = 5f;
+
+    [Description("Дополнительный допуск к радиусу при проверке зоны перед самой телепортацией (множитель). Игрок, вышедший из зоны во время погружения, остаётся на месте.")]
+    public float CancelZoneMultiplier { get; set; } = 1.3f;
 }
 
 public sealed class DotResKillConfig
