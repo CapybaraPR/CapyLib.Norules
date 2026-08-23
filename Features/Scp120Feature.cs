@@ -195,15 +195,15 @@ public sealed class Scp120Feature : IDisposable
 
         Vector3 startPos = pickup.Position;
         float elapsed = 0f;
-        const float sinkDuration = 1.2f;
+        const float sinkDuration = 1.1f;
 
         while (elapsed < sinkDuration && pickup != null && pickup.GameObject != null)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / sinkDuration);
             pickup.Position = Vector3.Lerp(startPos, new Vector3(startPos.x, targetY, startPos.z), t);
 
-            elapsed += 0.04f;
-            yield return Timing.WaitForSeconds(0.04f);
+            elapsed += 0.05f;
+            yield return Timing.WaitForSeconds(0.05f);
         }
 
         if (pickup != null && pickup.GameObject != null)
@@ -213,34 +213,18 @@ public sealed class Scp120Feature : IDisposable
 
             Map.ExplodeEffect(finalPos, ProjectileType.Flashbang);
 
-            int rarity = GetItemRarityValue(droppedType);
-            ItemType upgradedItem = CalculateUpgradedItem(rarity);
+            ItemType upgradedItem = CalculateUpgradedItem(droppedType);
 
             yield return Timing.WaitForSeconds(0.08f);
 
             var newPickup = Pickup.Create(upgradedItem);
             if (newPickup != null)
             {
-                newPickup.Position = finalPos + Vector3.up * 0.35f;
+                newPickup.Position = finalPos + Vector3.up * 0.45f;
                 newPickup.Spawn();
                 DisablePhysics(newPickup);
                 _activePickupSerials.Add(newPickup.Serial);
-
-                Timing.RunCoroutine(FloatingItemAnimation(newPickup, newPickup.Position));
             }
-        }
-    }
-
-    private IEnumerator<float> FloatingItemAnimation(Pickup pickup, Vector3 origin)
-    {
-        float startTime = Time.time;
-        while (pickup != null && pickup.GameObject != null && _activePickupSerials.Contains(pickup.Serial))
-        {
-            float time = Time.time - startTime;
-            float bob = Mathf.Sin(time * 2.0f) * 0.05f;
-            pickup.Position = origin + new Vector3(0, bob, 0);
-
-            yield return Timing.WaitForSeconds(0.04f);
         }
     }
 
@@ -255,33 +239,56 @@ public sealed class Scp120Feature : IDisposable
                 rb.useGravity = false;
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
+                rb.detectCollisions = true;
             }
         }
         catch { }
     }
 
-    private int GetItemRarityValue(ItemType type)
-    {
-        if (CommonItems.Contains(type)) return 10;
-        if (UncommonItems.Contains(type)) return 30;
-        if (GoodItems.Contains(type)) return 55;
-        if (RareItems.Contains(type)) return 75;
-        if (VeryRareItems.Contains(type)) return 95;
-        return 10;
-    }
-
-    private ItemType CalculateUpgradedItem(int currentRarity)
+    private ItemType CalculateUpgradedItem(ItemType inputType)
     {
         int roll = UnityEngine.Random.Range(1, 101);
-        if (roll <= 10) return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
 
-        double decider = (currentRarity * 1.2 + roll * 0.8) / 2.0;
+        // 1. Обычные предметы (монетка, фонарик, рация, карточка уборщика, аптечка)
+        if (CommonItems.Contains(inputType))
+        {
+            if (roll <= 10) return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
+            if (roll <= 55) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)]; // 45% Uncommon
+            if (roll <= 85) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 30% Good
+            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];                         // 15% Rare
+        }
 
-        if (decider <= 40) return CommonItems[UnityEngine.Random.Range(0, CommonItems.Count)];
-        if (decider <= 65) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)];
-        if (decider <= 80) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];
-        if (decider <= 92) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];
-        return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];
+        // 2. Необычные предметы (Учёный, COM-15, COM-18, SCP-207, Легкая броня)
+        if (UncommonItems.Contains(inputType))
+        {
+            if (roll <= 10) return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
+            if (roll <= 45) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 35% Good
+            if (roll <= 85) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 40% Rare
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 15% VeryRare
+        }
+
+        // 3. Хорошие предметы (Охранник, Боевая броня, FSP-9, Crossvec, Граната)
+        if (GoodItems.Contains(inputType))
+        {
+            if (roll <= 15) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];
+            if (roll <= 65) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 50% Rare
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 35% VeryRare
+        }
+
+        // 4. Редкие предметы (МОГ Сержант, Тяжелая броня, E-11, AK, Дробовик, SCP-018)
+        if (RareItems.Contains(inputType))
+        {
+            if (roll <= 30) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 30% Rare
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 70% VeryRare
+        }
+
+        // 5. Легендарные / Очень редкие предметы (O5, MicroHID, SCP-500, Particle Disruptor)
+        if (VeryRareItems.Contains(inputType))
+        {
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];
+        }
+
+        return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)];
     }
 
     public void Dispose()

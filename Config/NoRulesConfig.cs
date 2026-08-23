@@ -62,7 +62,7 @@ public sealed class Scp120Config
     public float OffsetX { get; set; } = 4.68f;
 
     [Description("Смещение позиции бассейна по оси Y относительно центра комнаты GlassBox.")]
-    public float OffsetY { get; set; } = -0.15f;
+    public float OffsetY { get; set; } = -0.06f;
 
     [Description("Смещение позиции бассейна по оси Z относительно центра комнаты GlassBox.")]
     public float OffsetZ { get; set; } = 2.32f;
