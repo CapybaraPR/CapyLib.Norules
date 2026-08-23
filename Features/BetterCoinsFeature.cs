@@ -159,10 +159,17 @@ public sealed class BetterCoinsFeature
         }
         catch { }
 
-        // 6. Дополнительная фильтрация по названию (гейты и теслы)
+        // 6. Исключаем тестовые комнаты и камеру содержания SCP-120 (GlassBox)
+        if (room.Type is RoomType.LczGlassBox or RoomType.Hcz939)
+            return false;
+
+        // 7. Дополнительная фильтрация по названию (гейты, теслы, теструмы)
         string name = room.Name ?? string.Empty;
         if (name.IndexOf("gate", StringComparison.OrdinalIgnoreCase) >= 0 ||
-            name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0)
+            name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("test", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("glass", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("gr18", StringComparison.OrdinalIgnoreCase) >= 0)
         {
             return false;
         }
