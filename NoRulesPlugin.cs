@@ -110,6 +110,11 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.Left += _playerEvents.OnLeft;
         PlayerEventsHandler.TriggeringTesla += _playerEvents.OnTriggeringTesla;
         PlayerEventsHandler.ChangedItem += _playerEvents.OnChangedItem;
+        PlayerEventsHandler.InteractingEmergencyButton += _playerEvents.OnInteractingEmergencyButton;
+        PlayerEventsHandler.ActivatingWorkstation += _playerEvents.OnActivatingWorkstation;
+        PlayerEventsHandler.DeactivatingWorkstation += _playerEvents.OnDeactivatingWorkstation;
+        PlayerEventsHandler.ActivatingWarheadPanel += _playerEvents.OnActivatingWarheadPanel;
+        PlayerEventsHandler.InteractingShootingTarget += _playerEvents.OnInteractingShootingTarget;
 
         Exiled.Events.Handlers.Map.PickupAdded += InfinityStuff.OnPickupAdded;
 
@@ -121,8 +126,16 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
 
         Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
+        Scp330EventsHandler.InteractingScp330 += Vanish.OnInteractingScp330;
         Scp173EventsHandler.AddingObserver += _playerEvents.OnScp173AddingObserver;
         Scp096EventsHandler.AddingTarget += _playerEvents.OnScp096AddingTarget;
+
+        Exiled.Events.Handlers.Warhead.ChangingLeverStatus += Vanish.OnChangingLeverStatus;
+        Exiled.Events.Handlers.Warhead.Starting += Vanish.OnStartingWarhead;
+        Exiled.Events.Handlers.Warhead.Stopping += Vanish.OnStoppingWarhead;
+
+        Exiled.Events.Handlers.Scp914.Activating += Vanish.OnActivatingScp914;
+        Exiled.Events.Handlers.Scp914.ChangingKnobSetting += Vanish.OnChangingKnobSettingScp914;
 
         _isEventsRegistered = true;
     }
@@ -156,6 +169,11 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.Left -= _playerEvents.OnLeft;
             PlayerEventsHandler.TriggeringTesla -= _playerEvents.OnTriggeringTesla;
             PlayerEventsHandler.ChangedItem -= _playerEvents.OnChangedItem;
+            PlayerEventsHandler.InteractingEmergencyButton -= _playerEvents.OnInteractingEmergencyButton;
+            PlayerEventsHandler.ActivatingWorkstation -= _playerEvents.OnActivatingWorkstation;
+            PlayerEventsHandler.DeactivatingWorkstation -= _playerEvents.OnDeactivatingWorkstation;
+            PlayerEventsHandler.ActivatingWarheadPanel -= _playerEvents.OnActivatingWarheadPanel;
+            PlayerEventsHandler.InteractingShootingTarget -= _playerEvents.OnInteractingShootingTarget;
         }
 
         Exiled.Events.Handlers.Map.PickupAdded -= InfinityStuff.OnPickupAdded;
@@ -176,6 +194,12 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         {
             ServerEventsHandler.RespawningTeam -= Vanish.OnRespawningTeam;
             ServerEventsHandler.RestartingRound -= Vanish.OnRoundRestarted;
+            Scp330EventsHandler.InteractingScp330 -= Vanish.OnInteractingScp330;
+            Exiled.Events.Handlers.Warhead.ChangingLeverStatus -= Vanish.OnChangingLeverStatus;
+            Exiled.Events.Handlers.Warhead.Starting -= Vanish.OnStartingWarhead;
+            Exiled.Events.Handlers.Warhead.Stopping -= Vanish.OnStoppingWarhead;
+            Exiled.Events.Handlers.Scp914.Activating -= Vanish.OnActivatingScp914;
+            Exiled.Events.Handlers.Scp914.ChangingKnobSetting -= Vanish.OnChangingKnobSettingScp914;
         }
 
         if (PinkCandy != null)

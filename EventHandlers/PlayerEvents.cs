@@ -95,4 +95,9 @@ public sealed class PlayerEvents
     public void OnScp096AddingTarget(AddingTargetEventArgs ev) => _vanish.OnScp096AddingTarget(ev);
     public void OnTriggeringTesla(TriggeringTeslaEventArgs ev) => _vanish.OnTriggeringTesla(ev);
     public void OnChangedItem(ChangedItemEventArgs ev) => _vanish.OnChangedItem(ev);
+    public void OnInteractingEmergencyButton(InteractingEmergencyButtonEventArgs ev) => _vanish.OnInteractingEmergencyButton(ev);
+    public void OnActivatingWorkstation(ActivatingWorkstationEventArgs ev) => _vanish.OnActivatingWorkstation(ev);
+    public void OnDeactivatingWorkstation(DeactivatingWorkstationEventArgs ev) => _vanish.OnDeactivatingWorkstation(ev);
+    public void OnActivatingWarheadPanel(ActivatingWarheadPanelEventArgs ev) => _vanish.OnActivatingWarheadPanel(ev);
+    public void OnInteractingShootingTarget(InteractingShootingTargetEventArgs ev) => _vanish.OnInteractingShootingTarget(ev);
 }

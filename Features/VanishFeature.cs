@@ -12,7 +12,10 @@ using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Scp173;
+using Exiled.Events.EventArgs.Scp330;
+using Exiled.Events.EventArgs.Scp914;
 using Exiled.Events.EventArgs.Server;
+using Exiled.Events.EventArgs.Warhead;
 using PlayerRoles;
 using UnityEngine;
 
@@ -370,5 +373,60 @@ public sealed class VanishFeature
     public void OnScp096AddingTarget(AddingTargetEventArgs ev)
     {
         if (IsVanished(ev.Target)) ev.IsAllowed = false;
+    }
+
+    public void OnInteractingEmergencyButton(InteractingEmergencyButtonEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnActivatingWorkstation(ActivatingWorkstationEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnDeactivatingWorkstation(DeactivatingWorkstationEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnActivatingWarheadPanel(ActivatingWarheadPanelEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnChangingLeverStatus(ChangingLeverStatusEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnStartingWarhead(StartingEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnStoppingWarhead(StoppingEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnActivatingScp914(ActivatingEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnChangingKnobSettingScp914(ChangingKnobSettingEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnInteractingScp330(InteractingScp330EventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
+    }
+
+    public void OnInteractingShootingTarget(InteractingShootingTargetEventArgs ev)
+    {
+        if (IsVanished(ev.Player)) ev.IsAllowed = false;
     }
 }
