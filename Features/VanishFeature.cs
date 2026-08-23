@@ -2,7 +2,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Capy.Engine.DevTools.Hud;
 using Capy.Engine.Hints;
+using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
 using Capy.Engine.ServerSpecific;
 using Exiled.API.Enums;
@@ -11,6 +13,7 @@ using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Scp173;
 using Exiled.Events.EventArgs.Server;
+using MEC;
 using PlayerRoles;
 using UnityEngine;
 
@@ -31,25 +34,48 @@ public sealed class VanishSavedState
 /// Полнофункциональная система свободного наблюдателя (Vanish).
 /// 1. Вход разрешен ТОЛЬКО из роли Spectator, выход возвращает в Spectator.
 /// 2. Спавн в башне на Поверхности (Surface Tower) в роли Tutorial.
-/// 3. Выдача монетки телепортации по игрокам (ЛКМ / подбрасывание) и карты Хаоса (для змейки).
-/// 4. Невидимость, ноклип, мут голоса, полный игнор SCP-173 / SCP-096, запрет взаимодействия с миром.
-/// 5. Авто-спавн в волнах подкрепления МОГ / Хаос.
+/// 3. Выдача монетки телепортации (ЛКМ - след. игрок, ПКМ - пред. игрок) и карты Хаоса (для змейки).
+/// 4. Отображение способностей монетки над полоской HP (в точности как в кастомных предметах AspectLib).
+/// 5. Полное скрытие сетевыми пакетами Mirror (ChangeAppearance -> Spectator), без эффекта шапки.
+/// 6. Полный игнор Tesla ворот (не реагируют, не бьют током), SCP-173 и SCP-096.
+/// 7. Авто-спавн в волнах подкрепления МОГ / Хаос.
 /// </summary>
 public sealed class VanishFeature
 {
     private static readonly ConcurrentDictionary<int, VanishSavedState> VanishedStates = new();
     private static readonly Vector3 TowerSpawnPosition = new(39.2f, 1014.5f, -31.8f);
+    private CoroutineHandle _hudUpdateCoroutine;
 
     public static bool IsVanished(Player? player) => player != null && VanishedStates.ContainsKey(player.Id);
 
     public void Enable()
     {
         AssKeybinds.OnKeybindPressed += OnKeybindPressed;
+        _hudUpdateCoroutine = Timing.RunCoroutine(PeriodicHudCoroutine());
     }
 
     public void Disable()
     {
         AssKeybinds.OnKeybindPressed -= OnKeybindPressed;
+        if (_hudUpdateCoroutine.IsValid) Timing.KillCoroutines(_hudUpdateCoroutine);
+        VanishedStates.Clear();
+    }
+
+    private IEnumerator<float> PeriodicHudCoroutine()
+    {
+        while (true)
+        {
+            yield return Timing.WaitForSeconds(0.6f);
+
+            foreach (var id in VanishedStates.Keys.ToList())
+            {
+                var player = Player.Get(id);
+                if (player != null && player.IsConnected && IsVanished(player))
+                {
+                    UpdateItemHud(player);
+                }
+            }
+        }
     }
 
     public bool Toggle(Player player, out string response)
@@ -102,8 +128,7 @@ public sealed class VanishFeature
         player.AddItem(ItemType.Coin);
         player.AddItem(ItemType.KeycardChaosInsurgency);
 
-        // 3. Скрываем игрока от всех через сетевые пакеты (ChangeAppearance → Spectator)
-        //    Это прячет модель персонажа на уровне сети — никакой "шапки невидимости"
+        // 3. Скрываем игрока от всех через сетевые пакеты Mirror (ChangeAppearance -> Spectator)
         Capy.Core.Extensions.NetworkExtensions.ChangeAppearance(player, RoleTypeId.Spectator, true);
         player.IsGodModeEnabled = true;
         player.IsBypassModeEnabled = false;
@@ -115,14 +140,16 @@ public sealed class VanishFeature
         // 5. Заглушение голосового чата (чтобы живые игроки не слышали)
         player.IsMuted = true;
 
-        // 6. Оповещение в HUD
+        // 6. Оповещение вверху экрана
         player.ShowZoneHint(
             HintZone.TopCenter,
-            "<color=#38bdf8><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • 🪙 ЛКМ/ПКМ: <color=#a3e635>Телепорт к игрокам</color> • 💳 Карта: <color=#a3e635>Змейка</color></color>",
+            "<color=#38bdf8><b>👻 [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • 🪙 ЛКМ/ПКМ: <color=#a3e635>Телепорт к игрокам</color> • ⚡ Тесла: <color=#a3e635>Игнорирует</color></color>",
             6.0f,
             "vanish_hud",
             22
         );
+
+        UpdateItemHud(player);
     }
 
     public void DisableVanish(Player player, bool respawnWave = false)
@@ -130,14 +157,14 @@ public sealed class VanishFeature
         if (!VanishedStates.TryRemove(player.Id, out var state))
             return;
 
-        // 1. Очистка инвентаря и снятие состояния
+        player.ClearHints("custom_item_hud");
         player.ClearInventory();
         player.IsGodModeEnabled = false;
         player.IsNoclipPermitted = state.NoclipPermitted;
         player.IsNoclipEnabled = false;
         player.IsMuted = false;
 
-        // 2. Если выход НЕ по волне возрождения — возвращаем строго в Spectator
+        // Если выход НЕ по волне возрождения — возвращаем строго в Spectator
         if (!respawnWave)
         {
             player.Role.Set(RoleTypeId.Spectator);
@@ -156,8 +183,8 @@ public sealed class VanishFeature
         if (ev.Player == null || !IsVanished(ev.Player))
             return;
 
+        // Полностью отменяем дефолтную анимацию монетки, чтобы не было задержек и двух кликов
         ev.IsAllowed = false;
-        TeleportToPlayer(ev.Player, 1);
     }
 
     private void OnKeybindPressed(Player player, CustomKeybind keybind)
@@ -170,6 +197,79 @@ public sealed class VanishFeature
                 TeleportToPlayer(player, 1);
             else if (keybind == CustomKeybind.Rmb)
                 TeleportToPlayer(player, -1);
+        }
+    }
+
+    public void OnChangedItem(ChangedItemEventArgs ev)
+    {
+        if (ev.Player != null && IsVanished(ev.Player))
+        {
+            UpdateItemHud(ev.Player);
+        }
+    }
+
+    /// <summary>
+    /// Отображает способности предмета над полоской HP (в точности как в кастомных предметах AspectLib).
+    /// </summary>
+    public void UpdateItemHud(Player player)
+    {
+        if (player == null || !player.IsConnected || !IsVanished(player)) return;
+
+        if (player.CurrentItem == null)
+        {
+            player.ClearHints("custom_item_hud");
+            return;
+        }
+
+        Vector2 pos = HudLayout.GetDynamicStatsPosition(player);
+
+        if (player.CurrentItem.Type == ItemType.Coin)
+        {
+            var alive = Player.List
+                .Where(p => p != null && p.IsConnected && p.IsAlive && !IsVanished(p) && p.Role.Type != RoleTypeId.Spectator && p.Role.Type != RoleTypeId.None)
+                .OrderBy(p => p.Id)
+                .ToList();
+
+            if (alive.Count == 0)
+            {
+                string emptyText = $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n<size=16><color=#ff4444>Нет живых игроков на сервере</color></size>";
+                player.ShowHint(emptyText, pos, 2.0f, HintVerticalAlign.Middle, HintAlignment.Left, 20, "custom_item_hud");
+                return;
+            }
+
+            var state = VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
+            int count = alive.Count;
+            int currIdx = ((state.TargetPlayerIndex % count) + count) % count;
+            int nextIdx = (currIdx + 1) % count;
+            int prevIdx = ((currIdx - 1) % count + count) % count;
+
+            var curr = alive[currIdx];
+            var next = alive[nextIdx];
+            var prev = alive[prevIdx];
+
+            string currHex = ColorUtility.ToHtmlStringRGB(curr.Role.Color);
+            string nextHex = ColorUtility.ToHtmlStringRGB(next.Role.Color);
+            string prevHex = ColorUtility.ToHtmlStringRGB(prev.Role.Color);
+
+            string hudText =
+                $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n" +
+                $"<size=16><color=#a3e635><b>[ЛКМ]</b></color> След: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
+                $"<color=#f87171><b>[ПКМ]</b></color> Пред: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
+                $"<color=#c2c2c2>Цель: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
+
+            player.ShowHint(hudText, pos, 2.0f, HintVerticalAlign.Middle, HintAlignment.Left, 20, "custom_item_hud");
+        }
+        else if (player.CurrentItem.Type == ItemType.KeycardChaosInsurgency)
+        {
+            string hudText =
+                $"<size=20><color=#608f38><b>[ Карта Доступа Хаоса ]</b></color></size>\n" +
+                $"<size=16><color=#cccccc>Осмотр карты: Мини-игра «Змейка»</color></size>";
+
+            player.ShowHint(hudText, pos, 2.0f, HintVerticalAlign.Middle, HintAlignment.Left, 20, "custom_item_hud");
+        }
+        else
+        {
+            player.ClearHints("custom_item_hud");
         }
     }
 
@@ -197,15 +297,8 @@ public sealed class VanishFeature
 
         player.Position = target.Position + Vector3.up * 0.6f;
 
-        string hex = ColorUtility.ToHtmlStringRGB(target.Role.Color);
-        string arrow = direction > 0 ? "▶" : "◀";
-        player.ShowZoneHint(
-            HintZone.Notification,
-            $"<size=20><b><color=#38bdf8>{arrow} [ ТЕЛЕПОРТ НАБЛЮДАТЕЛЯ ] {arrow}</color></b>\nИгрок: <b>{target.Nickname}</b> | Роль: <color=#{hex}><b>[{target.Role.Name}]</b></color> ({state.TargetPlayerIndex + 1}/{alivePlayers.Count})\n<color=#888888>ЛКМ → след. | ПКМ → пред.</color></size>",
-            2.0f,
-            "spectator_tp",
-            20
-        );
+        // Моментально обновляем HUD над HP
+        UpdateItemHud(player);
     }
 
     public void OnRespawningTeam(RespawningTeamEventArgs ev)
@@ -235,6 +328,18 @@ public sealed class VanishFeature
     public void OnRoundRestarted()
     {
         VanishedStates.Clear();
+    }
+
+    // --- Полный игнор Tesla ворот ---
+    public void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
+    {
+        if (IsVanished(ev.Player))
+        {
+            ev.IsAllowed = false;
+            ev.IsTriggerable = false;
+            ev.IsInIdleRange = false;
+            ev.IsInHurtingRange = false;
+        }
     }
 
     // --- Блокировка всех взаимодействий с миром ---

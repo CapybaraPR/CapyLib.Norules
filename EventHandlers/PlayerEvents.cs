@@ -93,4 +93,6 @@ public sealed class PlayerEvents
 
     public void OnScp173AddingObserver(AddingObserverEventArgs ev) => _vanish.OnScp173AddingObserver(ev);
     public void OnScp096AddingTarget(AddingTargetEventArgs ev) => _vanish.OnScp096AddingTarget(ev);
+    public void OnTriggeringTesla(TriggeringTeslaEventArgs ev) => _vanish.OnTriggeringTesla(ev);
+    public void OnChangedItem(ChangedItemEventArgs ev) => _vanish.OnChangedItem(ev);
 }

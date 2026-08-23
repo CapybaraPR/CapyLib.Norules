@@ -108,6 +108,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.ActivatingGenerator += _playerEvents.OnActivatingGenerator;
         PlayerEventsHandler.StoppingGenerator += _playerEvents.OnStoppingGenerator;
         PlayerEventsHandler.Left += _playerEvents.OnLeft;
+        PlayerEventsHandler.TriggeringTesla += _playerEvents.OnTriggeringTesla;
+        PlayerEventsHandler.ChangedItem += _playerEvents.OnChangedItem;
 
         Exiled.Events.Handlers.Map.PickupAdded += InfinityStuff.OnPickupAdded;
 
@@ -152,6 +154,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.ActivatingGenerator -= _playerEvents.OnActivatingGenerator;
             PlayerEventsHandler.StoppingGenerator -= _playerEvents.OnStoppingGenerator;
             PlayerEventsHandler.Left -= _playerEvents.OnLeft;
+            PlayerEventsHandler.TriggeringTesla -= _playerEvents.OnTriggeringTesla;
+            PlayerEventsHandler.ChangedItem -= _playerEvents.OnChangedItem;
         }
 
         Exiled.Events.Handlers.Map.PickupAdded -= InfinityStuff.OnPickupAdded;
