@@ -62,16 +62,16 @@ public sealed class Scp294Config
     public Exiled.API.Enums.RoomType SpawnRoom { get; set; } = Exiled.API.Enums.RoomType.EzUpstairsPcs;
 
     [Description("Смещение позиции машины относительно центра комнаты по X.")]
-    public float OffsetX { get; set; } = 0f;
+    public float OffsetX { get; set; } = 7.0f;
 
-    [Description("Смещение позиции машины относительно центра комнаты по Y.")]
-    public float OffsetY { get; set; } = 0f;
+    [Description("Смещение позиции машины относительно центра комнаты по Y (EzUpstairsPcs — двухэтажный, второй этаж ~3.8м).")]
+    public float OffsetY { get; set; } = 3.8f;
 
     [Description("Смещение позиции машины относительно центра комнаты по Z.")]
-    public float OffsetZ { get; set; } = 0f;
+    public float OffsetZ { get; set; } = 2.4f;
 
     [Description("Поворот машины по оси Y относительно комнаты.")]
-    public float RotationY { get; set; } = 180f;
+    public float RotationY { get; set; } = 90f;
 
     [Description("Радиус взаимодействия с машиной (метры). Нажмите [E], стоя рядом.")]
     public float InteractRadius { get; set; } = 2.2f;
