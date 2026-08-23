@@ -11,6 +11,7 @@ public class PlayerEvents
     private readonly BetterEscapeFeature _betterEscape;
     private readonly InfinityStuffFeature _infinityStuff;
     private readonly VanishFeature _vanish;
+    private readonly CapybaraPetFeature _capybaraPet;
 
     public PlayerEvents(
         HitmarkerFeature hitmarkers,
@@ -18,7 +19,8 @@ public class PlayerEvents
         BetterCoinsFeature betterCoins,
         BetterEscapeFeature betterEscape,
         InfinityStuffFeature infinityStuff,
-        VanishFeature vanish)
+        VanishFeature vanish,
+        CapybaraPetFeature capybaraPet)
     {
         _hitmarkers = hitmarkers;
         _dotResKill = dotResKill;
@@ -26,14 +28,21 @@ public class PlayerEvents
         _betterEscape = betterEscape;
         _infinityStuff = infinityStuff;
         _vanish = vanish;
+        _capybaraPet = capybaraPet;
     }
 
     public void OnHurting(HurtingEventArgs ev) => _hitmarkers.OnPlayerHurting(ev);
-    public void OnDied(DiedEventArgs ev) => _dotResKill.OnPlayerDeath(ev);
+    public void OnDied(DiedEventArgs ev)
+    {
+        _dotResKill.OnPlayerDeath(ev);
+        _capybaraPet.OnPlayerDeath(ev);
+    }
+
     public void OnSpawned(SpawnedEventArgs ev)
     {
         _betterCoins.OnPlayerSpawned(ev);
         _infinityStuff.OnSpawned(ev);
+        _capybaraPet.OnPlayerSpawned(ev);
     }
 
     public void OnFlippingCoin(FlippingCoinEventArgs ev)
@@ -47,7 +56,11 @@ public class PlayerEvents
     public void OnReloadingWeapon(ReloadingWeaponEventArgs ev) => _infinityStuff.OnReloadingWeapon(ev);
     public void OnSearchingPickup(SearchingPickupEventArgs ev) => _infinityStuff.OnSearchingPickup(ev);
     public void OnHandcuffing(HandcuffingEventArgs ev) => _infinityStuff.OnHandcuffing(ev);
-    public void OnLeft(LeftEventArgs ev) => _vanish.OnPlayerLeft(ev);
+    public void OnLeft(LeftEventArgs ev)
+    {
+        _vanish.OnPlayerLeft(ev);
+        _capybaraPet.OnPlayerLeft(ev);
+    }
 
     public void OnDroppingAmmo(DroppingAmmoEventArgs ev)
     {

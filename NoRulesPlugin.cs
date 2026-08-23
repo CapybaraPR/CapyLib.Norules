@@ -37,6 +37,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public BetterCoinsFeature BetterCoins { get; private set; } = null!;
     public BetterEscapeFeature BetterEscape { get; private set; } = null!;
     public VanishFeature Vanish { get; private set; } = null!;
+    public CapybaraPetFeature CapybaraPet { get; private set; } = null!;
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -53,7 +54,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .vanish (.v, .spec)</color>   <color=#c2c2c2>-- Режим свободного наблюдателя (из спектаторов)</color>");
 
-        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями и Vanish.");
+        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями, Vanish и CapybaraPet.");
         base.OnEnabled();
     }
 
@@ -78,8 +79,9 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         BetterEscape = new BetterEscapeFeature(Config.BetterEscape);
         Vanish = new VanishFeature();
         Vanish.Enable();
+        CapybaraPet = new CapybaraPetFeature(Config.CapybaraPet);
 
-        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish);
+        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet);
         _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList);
     }
 
@@ -108,6 +110,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         ServerEventsHandler.WaitingForPlayers += _serverEvents.OnWaitingForPlayers;
         ServerEventsHandler.RespawningTeam += Vanish.OnRespawningTeam;
         ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
+        ServerEventsHandler.RestartingRound += CapybaraPet.OnRoundRestarted;
 
         Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
 
@@ -153,6 +156,12 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             ServerEventsHandler.RespawningTeam -= Vanish.OnRespawningTeam;
             ServerEventsHandler.RestartingRound -= Vanish.OnRoundRestarted;
             Vanish.Disable();
+        }
+
+        if (CapybaraPet != null)
+        {
+            ServerEventsHandler.RestartingRound -= CapybaraPet.OnRoundRestarted;
+            CapybaraPet.OnRoundRestarted();
         }
 
         if (PinkCandy != null)

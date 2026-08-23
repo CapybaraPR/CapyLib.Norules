@@ -39,6 +39,9 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("8. Настройки расширенных сценариев побега (BetterEscape).")]
     public BetterEscapeConfig BetterEscape { get; set; } = new();
+
+    [Description("9. Настройки летающего питомца-капибары (Capybara Companion) для выбранных SteamID.")]
+    public CapybaraPetConfig CapybaraPet { get; set; } = new();
 }
 
 public sealed class DotResKillConfig
@@ -158,4 +161,22 @@ public sealed class EscapeScenarioModel
     public RoleTypeId OldRole { get; set; }
     public RoleTypeId NewRole { get; set; }
     public bool IsCuffed { get; set; }
+}
+
+public sealed class CapybaraPetConfig
+{
+    [Description("Включен ли летающий питомец-капибара.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Название схематики в MapEditorReborn.")]
+    public string SchematicName { get; set; } = "Capybara";
+
+    [Description("Масштаб капибары (0.35 - 0.5 — идеальный компактный размер питомца).")]
+    public float Scale { get; set; } = 0.4f;
+
+    [Description("Список SteamID игроков, за которыми летает капибара.")]
+    public List<string> OwnerSteamIds { get; set; } = new()
+    {
+        "76561198708583029"
+    };
 }
