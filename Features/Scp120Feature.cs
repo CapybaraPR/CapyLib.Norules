@@ -43,22 +43,23 @@ public sealed class Scp120Feature : IDisposable
     public List<ItemType> GoodItems { get; set; } = new()
     {
         ItemType.KeycardGuard, ItemType.KeycardContainmentEngineer,
-        ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCrossvec, ItemType.GrenadeHE
+        ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCrossvec, ItemType.GunCOM18, ItemType.GrenadeHE
     };
 
     public List<ItemType> RareItems { get; set; } = new()
     {
         ItemType.KeycardMTFPrivate, ItemType.KeycardMTFOperative, ItemType.ArmorHeavy,
-        ItemType.GunRevolver, ItemType.GunShotgun, ItemType.GunCom45, ItemType.GunA7,
-        ItemType.GunAK, ItemType.GunE11SR, ItemType.AntiSCP207,
+        ItemType.GunE11SR, ItemType.GunAK, ItemType.GunShotgun, ItemType.GunRevolver,
+        ItemType.GunCom45, ItemType.GunA7, ItemType.GunCrossvec, ItemType.AntiSCP207,
         ItemType.SCP1576, ItemType.SCP018
     };
 
     public List<ItemType> VeryRareItems { get; set; } = new()
     {
-        ItemType.KeycardFacilityManager, ItemType.KeycardO5, ItemType.KeycardMTFCaptain,
-        ItemType.KeycardChaosInsurgency, ItemType.ParticleDisruptor, ItemType.MicroHID,
-        ItemType.Jailbird, ItemType.GunFRMG0, ItemType.GunLogicer, ItemType.SCP268, ItemType.SCP1344, ItemType.SCP500
+        ItemType.KeycardFacilityManager, ItemType.KeycardMTFCaptain, ItemType.KeycardChaosInsurgency,
+        ItemType.GunFRMG0, ItemType.GunLogicer, ItemType.GunE11SR, ItemType.GunAK,
+        ItemType.GunShotgun, ItemType.GunA7, ItemType.GunCom45, ItemType.GunRevolver,
+        ItemType.SCP268, ItemType.SCP1344, ItemType.SCP500
     };
 
     private readonly Dictionary<RoomType, Vector3> _targetRooms = new()
