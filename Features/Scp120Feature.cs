@@ -169,7 +169,7 @@ public sealed class Scp120Feature : IDisposable
                 }
             }
 
-            // 2. Проверка трансформации брошенных в воду предметов (по одному с кд ~1 сек между обменами)
+            // 2. Проверка трансформации брошенных в воду предметов (только когда предмет упал в воду)
             if (!_isItemTransforming && DateTime.UtcNow >= _nextItemAllowedTransformTime)
             {
                 foreach (Pickup pickup in Pickup.List.ToList())
@@ -180,9 +180,10 @@ public sealed class Scp120Feature : IDisposable
                     float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
                     float yDiff = pickup.Position.y - poolPos.y;
 
-                    if (dist2D <= 1.8f && yDiff >= -1.0f && yDiff <= 1.8f)
+                    // Срабатывает только когда предмет действительно попал в воду бассейна
+                    if (dist2D <= 1.45f && yDiff >= -0.4f && yDiff <= 0.65f)
                     {
-                        Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.20f));
+                        Timing.RunCoroutine(ProcessItemTransformation(pickup));
                         break;
                     }
                 }
@@ -255,45 +256,51 @@ public sealed class Scp120Feature : IDisposable
         _nextPlayerAllowedTeleportTime = DateTime.UtcNow.AddSeconds(1.0);
     }
 
-    private IEnumerator<float> ProcessItemTransformation(Pickup pickup, float targetY)
+    private IEnumerator<float> ProcessItemTransformation(Pickup pickup)
     {
         _isItemTransforming = true;
         _activePickupSerials.Add(pickup.Serial);
         ItemType droppedType = pickup.Type;
 
         DisablePhysics(pickup);
+        Vector3 splashPos = pickup.Position;
 
-        Vector3 startPos = pickup.Position;
-        float elapsed = 0f;
-        const float sinkDuration = 1.1f;
+        // Вспышка и мгновенное растворение брошенного предмета в воде
+        Map.ExplodeEffect(splashPos, ProjectileType.Flashbang);
+        pickup.Destroy();
 
-        while (elapsed < sinkDuration && pickup != null && pickup.GameObject != null)
+        ItemType upgradedItem = CalculateUpgradedItem(droppedType);
+
+        yield return Timing.WaitForSeconds(0.15f);
+
+        // Появление нового предмета из глубины воды и плавное всплытие
+        var newPickup = Pickup.Create(upgradedItem);
+        if (newPickup != null)
         {
-            float t = Mathf.SmoothStep(0f, 1f, elapsed / sinkDuration);
-            pickup.Position = Vector3.Lerp(startPos, new Vector3(startPos.x, targetY, startPos.z), t);
+            Vector3 startFloatPos = new Vector3(splashPos.x, splashPos.y - 0.10f, splashPos.z);
+            Vector3 targetFloatPos = new Vector3(splashPos.x, splashPos.y + 0.40f, splashPos.z);
 
-            elapsed += 0.05f;
-            yield return Timing.WaitForSeconds(0.05f);
-        }
+            newPickup.Position = startFloatPos;
+            newPickup.Spawn();
+            DisablePhysics(newPickup);
+            _activePickupSerials.Add(newPickup.Serial);
 
-        if (pickup != null && pickup.GameObject != null)
-        {
-            Vector3 finalPos = pickup.Position;
-            pickup.Destroy();
-
-            Map.ExplodeEffect(finalPos, ProjectileType.Flashbang);
-
-            ItemType upgradedItem = CalculateUpgradedItem(droppedType);
-
-            yield return Timing.WaitForSeconds(0.08f);
-
-            var newPickup = Pickup.Create(upgradedItem);
-            if (newPickup != null)
+            // Плавное всплытие на поверхность за 0.5 сек
+            float elapsed = 0f;
+            const float riseDuration = 0.5f;
+            while (elapsed < riseDuration && newPickup != null && newPickup.GameObject != null)
             {
-                newPickup.Position = finalPos + Vector3.up * 0.45f;
-                newPickup.Spawn();
+                float t = Mathf.SmoothStep(0f, 1f, elapsed / riseDuration);
+                newPickup.Position = Vector3.Lerp(startFloatPos, targetFloatPos, t);
+
+                elapsed += 0.05f;
+                yield return Timing.WaitForSeconds(0.05f);
+            }
+
+            if (newPickup != null && newPickup.GameObject != null)
+            {
+                newPickup.Position = targetFloatPos;
                 DisablePhysics(newPickup);
-                _activePickupSerials.Add(newPickup.Serial);
             }
         }
 
