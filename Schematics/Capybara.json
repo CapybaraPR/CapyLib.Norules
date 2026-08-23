@@ -1,0 +1,1643 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "Mat Base",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.01,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.96,
+        "y": 0.02,
+        "z": 1.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3B5E3ADD",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mat Rim Left",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.46,
+        "y": 0.015,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.025,
+        "z": 1.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "2B482BDD",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mat Rim Right",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.46,
+        "y": 0.015,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.025,
+        "z": 1.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "2B482BDD",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Torso Core Box",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.4,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.66,
+        "y": 0.46,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "8A5529FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rump Main Box",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.42,
+        "z": -0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.48,
+        "z": 0.46
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "78471FFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rump Top Bevel",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.51,
+        "z": -0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.58,
+        "y": 0.16,
+        "z": 0.42
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "71421CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rump Back Wall",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.4,
+        "z": -0.44
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.62,
+        "y": 0.42,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6E3F1AFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Spine Center Top",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.54,
+        "y": 0.14,
+        "z": 0.5
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "825026FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Shoulder Front Box",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.39,
+        "z": 0.16
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.62,
+        "y": 0.44,
+        "z": 0.36
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "8F5B2DFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Belly Pale Plate",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.24,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.14,
+        "z": 0.68
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "C89665FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Throat Pale Plate",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.28,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.48,
+        "y": 0.16,
+        "z": 0.32
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "D4A373FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Flank Left Plate",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.26,
+        "y": 0.38,
+        "z": -0.08
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.38,
+        "z": 0.6
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "835025FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Flank Right Plate",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.26,
+        "y": 0.38,
+        "z": -0.08
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.38,
+        "z": 0.6
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "835025FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Neck Collar Block",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.48,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.38,
+        "z": 0.24
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "8A562BFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Head Cranium Box",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.56,
+        "z": 0.44
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.42,
+        "y": 0.4,
+        "z": 0.36
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "8F5B2DFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Head Top Crown",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.63,
+        "z": 0.42
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.38,
+        "y": 0.12,
+        "z": 0.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "825026FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Nose Bridge Box",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.55,
+        "z": 0.6
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.36,
+        "y": 0.34,
+        "z": 0.36
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7E4C24FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Nose Bridge Top Strip",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.6,
+        "z": 0.58
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.3,
+        "y": 0.1,
+        "z": 0.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "764620FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Snout Box Core",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.48,
+        "z": 0.72
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.36,
+        "y": 0.32,
+        "z": 0.32
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6E3F1CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Snout Front Block",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.48,
+        "z": 0.84
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.32,
+        "y": 0.3,
+        "z": 0.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "593114FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Snout Tip Dark",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.49,
+        "z": 0.93
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.26,
+        "y": 0.24,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "44230CFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Nose Black Leather",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.54,
+        "z": 0.95
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.2,
+        "y": 0.12,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E1006FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Nostril Left",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.065,
+        "y": 0.54,
+        "z": 0.978
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.045,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0502FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Nostril Right",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.065,
+        "y": 0.54,
+        "z": 0.978
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.045,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0502FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Philtrum Groove Vertical",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.46,
+        "z": 0.975
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.032,
+        "y": 0.075,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "120A04FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Smile Line Main",
+      "ObjectId": 10026,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.42,
+        "z": 0.965
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.035,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "120A04FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Smile Corner Left",
+      "ObjectId": 10027,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.09,
+        "y": 0.435,
+        "z": 0.95
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.045,
+        "y": 0.032,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "120A04FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Smile Corner Right",
+      "ObjectId": 10028,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.09,
+        "y": 0.435,
+        "z": 0.95
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": -20
+      },
+      "Scale": {
+        "x": 0.045,
+        "y": 0.032,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "120A04FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Lower Lip Pale Pad",
+      "ObjectId": 10029,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.38,
+        "z": 0.94
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.05,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "D4A373FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Lower Jaw Box",
+      "ObjectId": 10030,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.36,
+        "z": 0.66
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.26,
+        "y": 0.16,
+        "z": 0.36
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "B58153FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Chin Front Plate",
+      "ObjectId": 10031,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.38,
+        "z": 0.8
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.2,
+        "y": 0.14,
+        "z": 0.14
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A67245FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Frame L",
+      "ObjectId": 10032,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.21,
+        "y": 0.6,
+        "z": 0.52
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.13,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "45260EFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Frame R",
+      "ObjectId": 10033,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.21,
+        "y": 0.6,
+        "z": 0.52
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.13,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "45260EFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Pupil L",
+      "ObjectId": 10034,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.228,
+        "y": 0.6,
+        "z": 0.52
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.09,
+        "z": 0.1
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A0AFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Pupil R",
+      "ObjectId": 10035,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.228,
+        "y": 0.6,
+        "z": 0.52
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.09,
+        "z": 0.1
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A0AFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Glint Major L",
+      "ObjectId": 10036,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.242,
+        "y": 0.625,
+        "z": 0.545
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.026,
+        "y": 0.038,
+        "z": 0.038
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFFFFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Glint Major R",
+      "ObjectId": 10037,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.242,
+        "y": 0.625,
+        "z": 0.545
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.026,
+        "y": 0.038,
+        "z": 0.038
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFFFFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Glint Minor L",
+      "ObjectId": 10038,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.242,
+        "y": 0.582,
+        "z": 0.495
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.018,
+        "y": 0.022,
+        "z": 0.022
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFFFFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eye Glint Minor R",
+      "ObjectId": 10039,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.242,
+        "y": 0.582,
+        "z": 0.495
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.018,
+        "y": 0.022,
+        "z": 0.022
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFFFFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eyelid Trim L",
+      "ObjectId": 10040,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.232,
+        "y": 0.648,
+        "z": 0.52
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.035,
+        "y": 0.032,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "825026FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Eyelid Trim R",
+      "ObjectId": 10041,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.232,
+        "y": 0.648,
+        "z": 0.52
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -18,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.035,
+        "y": 0.032,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "825026FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ear Base L",
+      "ObjectId": 10042,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2,
+        "y": 0.73,
+        "z": 0.32
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -15,
+        "z": -20
+      },
+      "Scale": {
+        "x": 0.09,
+        "y": 0.08,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4D260DFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ear Base R",
+      "ObjectId": 10043,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.2,
+        "y": 0.73,
+        "z": 0.32
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 15,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.09,
+        "y": 0.08,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4D260DFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ear Inner L",
+      "ObjectId": 10044,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.198,
+        "y": 0.735,
+        "z": 0.33
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -15,
+        "z": -20
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.06,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7A3B1EFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ear Inner R",
+      "ObjectId": 10045,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.198,
+        "y": 0.735,
+        "z": 0.33
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 15,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.06,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7A3B1EFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Leg Front L",
+      "ObjectId": 10046,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.22,
+        "y": 0.18,
+        "z": 0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.22,
+        "z": 0.16
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "663917FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Paw Front L",
+      "ObjectId": 10047,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.22,
+        "y": 0.05,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.17,
+        "y": 0.08,
+        "z": 0.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4E290FFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Toes Front L",
+      "ObjectId": 10048,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.22,
+        "y": 0.04,
+        "z": 0.315
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.05,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "361B09FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Leg Front R",
+      "ObjectId": 10049,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.22,
+        "y": 0.18,
+        "z": 0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.22,
+        "z": 0.16
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "663917FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Paw Front R",
+      "ObjectId": 10050,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.22,
+        "y": 0.05,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.17,
+        "y": 0.08,
+        "z": 0.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4E290FFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Toes Front R",
+      "ObjectId": 10051,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.22,
+        "y": 0.04,
+        "z": 0.315
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.05,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "361B09FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Leg Back L",
+      "ObjectId": 10052,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.24,
+        "y": 0.18,
+        "z": -0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.22,
+        "z": 0.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "663917FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Paw Back L",
+      "ObjectId": 10053,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.24,
+        "y": 0.05,
+        "z": -0.21
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.19,
+        "y": 0.08,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4E290FFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Toes Back L",
+      "ObjectId": 10054,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.24,
+        "y": 0.04,
+        "z": -0.115
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.05,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "361B09FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Leg Back R",
+      "ObjectId": 10055,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.24,
+        "y": 0.18,
+        "z": -0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.22,
+        "z": 0.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "663917FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Paw Back R",
+      "ObjectId": 10056,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.24,
+        "y": 0.05,
+        "z": -0.21
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.19,
+        "y": 0.08,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4E290FFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Toes Back R",
+      "ObjectId": 10057,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.24,
+        "y": 0.04,
+        "z": -0.115
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.05,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "361B09FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mandarin Main Cube",
+      "ObjectId": 10058,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.74,
+        "z": 0.44
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.2,
+        "y": 0.16,
+        "z": 0.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FF6A00FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mandarin Side Bevel X",
+      "ObjectId": 10059,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.74,
+        "z": 0.44
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 45,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.19,
+        "y": 0.155,
+        "z": 0.19
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FF7305FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mandarin Highlight Top",
+      "ObjectId": 10060,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.02,
+        "y": 0.8,
+        "z": 0.46
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.13,
+        "y": 0.06,
+        "z": 0.13
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFA426FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mandarin Stem",
+      "ObjectId": 10061,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.84,
+        "z": 0.44
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.025,
+        "y": 0.05,
+        "z": 0.025
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "381C06FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mandarin Leaf Base",
+      "ObjectId": 10062,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.045,
+        "y": 0.85,
+        "z": 0.46
+      },
+      "Rotation": {
+        "x": 10,
+        "y": 30,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.02,
+        "z": 0.045
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "2CA326FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Mandarin Leaf Tip",
+      "ObjectId": 10063,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.08,
+        "y": 0.86,
+        "z": 0.47
+      },
+      "Rotation": {
+        "x": 10,
+        "y": 30,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.015,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4BD444FF",
+        "PrimitiveFlags": 2
+      }
+    }
+  ]
+}
