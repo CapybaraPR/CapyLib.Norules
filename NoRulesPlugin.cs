@@ -76,6 +76,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         BetterCoins = new BetterCoinsFeature(Config.BetterCoins);
         BetterEscape = new BetterEscapeFeature(Config.BetterEscape);
         Vanish = new VanishFeature();
+        Vanish.Enable();
 
         _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish);
         _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList);

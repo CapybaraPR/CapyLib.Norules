@@ -53,7 +53,11 @@ public sealed class PlayerEvents
         _infinityStuff.OnSpawned(ev);
     }
 
-    public void OnFlippingCoin(FlippingCoinEventArgs ev) => _betterCoins.OnFlippingCoin(ev);
+    public void OnFlippingCoin(FlippingCoinEventArgs ev)
+    {
+        _vanish.OnFlippingCoin(ev);
+        _betterCoins.OnFlippingCoin(ev);
+    }
     public void OnEscaping(EscapingEventArgs ev) => _betterEscape.OnPlayerEscaping(ev);
     public void OnUsingRadioBattery(UsingRadioBatteryEventArgs ev) => _infinityStuff.OnUsingRadioBattery(ev);
     public void OnReloadingWeapon(ReloadingWeaponEventArgs ev) => _infinityStuff.OnReloadingWeapon(ev);

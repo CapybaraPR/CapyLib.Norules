@@ -40,7 +40,7 @@ public sealed class BetterCoinsFeature
 
     public void OnFlippingCoin(FlippingCoinEventArgs ev)
     {
-        if (!_config.IsEnabled || ev.Player == null || !ev.Player.IsAlive || ev.Player.IsScp)
+        if (!_config.IsEnabled || ev.Player == null || !ev.Player.IsAlive || ev.Player.IsScp || VanishFeature.IsVanished(ev.Player))
             return;
 
         if (_teleportingPlayers.Contains(ev.Player.Id))
