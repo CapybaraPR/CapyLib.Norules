@@ -62,7 +62,7 @@ public sealed class Scp120Config
     public float OffsetX { get; set; } = 4.68f;
 
     [Description("Смещение позиции бассейна по оси Y относительно центра комнаты GlassBox.")]
-    public float OffsetY { get; set; } = 0.15f;
+    public float OffsetY { get; set; } = -0.15f;
 
     [Description("Смещение позиции бассейна по оси Z относительно центра комнаты GlassBox.")]
     public float OffsetZ { get; set; } = 2.32f;
@@ -74,7 +74,7 @@ public sealed class Scp120Config
     public float TeleportCooldown { get; set; } = 1.5f;
 
     [Description("Радиус взаимодействия с бассейном (метры).")]
-    public float PoolRadius { get; set; } = 1.35f;
+    public float PoolRadius { get; set; } = 1.55f;
 }
 
 public sealed class DotResKillConfig

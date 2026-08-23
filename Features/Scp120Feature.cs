@@ -17,7 +17,7 @@ namespace Capy.NoRules.Features;
 
 /// <summary>
 /// Реализация аномального объекта SCP-120 («Детский бассейн-телепорт»).
-/// Обеспечивает телепортацию живых игроков и аномальную трансформацию/улучшение погруженных предметов.
+/// Обеспечивает мгновенную телепортацию игроков и плавную трансформацию/улучшение погруженных предметов.
 /// </summary>
 public sealed class Scp120Feature : IDisposable
 {
@@ -135,7 +135,7 @@ public sealed class Scp120Feature : IDisposable
             Vector3 poolPos = schematic.Position;
             Vector2 poolPos2D = new Vector2(poolPos.x, poolPos.z);
 
-            // 1. Проверка телепортации игроков (срабатывает только при шаге в воду)
+            // 1. Проверка телепортации игроков при входе в чашу бассейна
             foreach (Player player in Player.List)
             {
                 if (player == null || !player.IsAlive) continue;
@@ -144,7 +144,7 @@ public sealed class Scp120Feature : IDisposable
                 float dist2D = Vector2.Distance(playerPos2D, poolPos2D);
                 float yDiff = player.Position.y - poolPos.y;
 
-                if (dist2D <= _config.PoolRadius && yDiff >= -0.5f && yDiff <= 1.4f)
+                if (dist2D <= _config.PoolRadius && yDiff >= -0.6f && yDiff <= 1.5f)
                 {
                     if (_playerTeleportCooldowns.TryGetValue(player.Id, out var nextUse) && DateTime.UtcNow < nextUse)
                         continue;
@@ -154,7 +154,7 @@ public sealed class Scp120Feature : IDisposable
                 }
             }
 
-            // 2. Проверка трансформации предметов (только брошенные в воду предметы)
+            // 2. Проверка трансформации брошенных в воду предметов
             foreach (Pickup pickup in Pickup.List.ToList())
             {
                 if (pickup == null || pickup.GameObject == null || _activePickupSerials.Contains(pickup.Serial)) continue;
@@ -163,9 +163,9 @@ public sealed class Scp120Feature : IDisposable
                 float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
                 float yDiff = pickup.Position.y - poolPos.y;
 
-                if (dist2D <= _config.PoolRadius && yDiff >= -0.5f && yDiff <= 1.2f)
+                if (dist2D <= _config.PoolRadius && yDiff >= -0.6f && yDiff <= 1.4f)
                 {
-                    Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.15f));
+                    Timing.RunCoroutine(ProcessItemTransformation(pickup, poolPos.y + 0.20f));
                 }
             }
         }
@@ -195,16 +195,15 @@ public sealed class Scp120Feature : IDisposable
 
         Vector3 startPos = pickup.Position;
         float elapsed = 0f;
-        const float sinkDuration = 1.3f;
+        const float sinkDuration = 1.2f;
 
         while (elapsed < sinkDuration && pickup != null && pickup.GameObject != null)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / sinkDuration);
-            float wave = Mathf.Sin(elapsed * 8f) * 0.03f * (1f - t);
-            pickup.Position = Vector3.Lerp(startPos, new Vector3(startPos.x, targetY, startPos.z), t) + new Vector3(wave, 0, wave);
+            pickup.Position = Vector3.Lerp(startPos, new Vector3(startPos.x, targetY, startPos.z), t);
 
-            elapsed += Timing.DeltaTime;
-            yield return Timing.WaitForOneFrame;
+            elapsed += 0.04f;
+            yield return Timing.WaitForSeconds(0.04f);
         }
 
         if (pickup != null && pickup.GameObject != null)
@@ -222,7 +221,7 @@ public sealed class Scp120Feature : IDisposable
             var newPickup = Pickup.Create(upgradedItem);
             if (newPickup != null)
             {
-                newPickup.Position = finalPos + Vector3.up * 0.20f;
+                newPickup.Position = finalPos + Vector3.up * 0.35f;
                 newPickup.Spawn();
                 DisablePhysics(newPickup);
                 _activePickupSerials.Add(newPickup.Serial);
@@ -234,15 +233,14 @@ public sealed class Scp120Feature : IDisposable
 
     private IEnumerator<float> FloatingItemAnimation(Pickup pickup, Vector3 origin)
     {
-        float elapsed = 0f;
+        float startTime = Time.time;
         while (pickup != null && pickup.GameObject != null && _activePickupSerials.Contains(pickup.Serial))
         {
-            float bob = Mathf.Sin(elapsed * 2.5f) * 0.06f;
+            float time = Time.time - startTime;
+            float bob = Mathf.Sin(time * 2.0f) * 0.05f;
             pickup.Position = origin + new Vector3(0, bob, 0);
-            pickup.Rotation *= Quaternion.Euler(0, 45f * Timing.DeltaTime, 0);
 
-            elapsed += Timing.DeltaTime;
-            yield return Timing.WaitForOneFrame;
+            yield return Timing.WaitForSeconds(0.04f);
         }
     }
 
@@ -251,12 +249,12 @@ public sealed class Scp120Feature : IDisposable
         if (pickup == null || pickup.GameObject == null) return;
         try
         {
-            if (pickup.Rigidbody != null)
+            foreach (var rb in pickup.GameObject.GetComponentsInChildren<Rigidbody>())
             {
-                pickup.Rigidbody.isKinematic = true;
-                pickup.Rigidbody.useGravity = false;
-                pickup.Rigidbody.velocity = Vector3.zero;
-                pickup.Rigidbody.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
+                rb.useGravity = false;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
         }
         catch { }

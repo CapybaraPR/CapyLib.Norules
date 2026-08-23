@@ -16,14 +16,14 @@
         "z": 0
       },
       "Scale": {
-        "x": 4.2,
+        "x": 4.8,
         "y": 0.06,
-        "z": 4.2
+        "z": 4.8
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "1E2126FF",
+        "Color": "1B1E23FF",
         "PrimitiveFlags": 3
       }
     },
@@ -42,14 +42,14 @@
         "z": 0
       },
       "Scale": {
-        "x": 3.9,
+        "x": 4.5,
         "y": 0.015,
-        "z": 3.9
+        "z": 4.5
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "2E333CFF",
+        "Color": "2A2F38FF",
         "PrimitiveFlags": 3
       }
     },
@@ -68,9 +68,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 4.05,
+        "x": 4.65,
         "y": 0.02,
-        "z": 4.05
+        "z": 4.65
       },
       "BlockType": 1,
       "Properties": {
@@ -86,7 +86,7 @@
       "Position": {
         "x": 0,
         "y": 0.025,
-        "z": 2.15
+        "z": 2.45
       },
       "Rotation": {
         "x": 0,
@@ -94,14 +94,14 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.4,
+        "x": 1.6,
         "y": 0.05,
-        "z": 0.4
+        "z": 0.45
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "282C34FF",
+        "Color": "242830FF",
         "PrimitiveFlags": 3
       }
     },
@@ -112,7 +112,7 @@
       "Position": {
         "x": 0,
         "y": 0.055,
-        "z": 1.9
+        "z": 2.15
       },
       "Rotation": {
         "x": 0,
@@ -120,14 +120,14 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.4,
+        "x": 1.6,
         "y": 0.06,
-        "z": 0.35
+        "z": 0.4
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "2E333CFF",
+        "Color": "2A2F38FF",
         "PrimitiveFlags": 3
       }
     },
@@ -136,9 +136,9 @@
       "ObjectId": 20006,
       "ParentId": 20000,
       "Position": {
-        "x": -0.75,
+        "x": -0.85,
         "y": 0.05,
-        "z": 2.02
+        "z": 2.3
       },
       "Rotation": {
         "x": 0,
@@ -148,7 +148,7 @@
       "Scale": {
         "x": 0.1,
         "y": 0.1,
-        "z": 0.65
+        "z": 0.75
       },
       "BlockType": 1,
       "Properties": {
@@ -162,9 +162,9 @@
       "ObjectId": 20007,
       "ParentId": 20000,
       "Position": {
-        "x": 0.75,
+        "x": 0.85,
         "y": 0.05,
-        "z": 2.02
+        "z": 2.3
       },
       "Rotation": {
         "x": 0,
@@ -174,7 +174,7 @@
       "Scale": {
         "x": 0.1,
         "y": 0.1,
-        "z": 0.65
+        "z": 0.75
       },
       "BlockType": 1,
       "Properties": {
@@ -198,14 +198,14 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.8,
+        "x": 3.4,
         "y": 0.01,
-        "z": 2.8
+        "z": 3.4
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "0F4C5CFF",
+        "Color": "0D3B47FF",
         "PrimitiveFlags": 3
       }
     },
@@ -224,9 +224,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.4,
+        "x": 3.0,
         "y": 0.01,
-        "z": 2.4
+        "z": 3.0
       },
       "BlockType": 1,
       "Properties": {
@@ -240,9 +240,9 @@
       "ObjectId": 20010,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2439,
-        "y": 0.15,
-        "z": 1.226
+        "x": 0.3024,
+        "y": 0.18,
+        "z": 1.5202
       },
       "Rotation": {
         "x": 0,
@@ -250,9 +250,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -266,9 +266,9 @@
       "ObjectId": 20011,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2487,
-        "y": 0.28,
-        "z": 1.2505
+        "x": 0.3084,
+        "y": 0.36,
+        "z": 1.5506
       },
       "Rotation": {
         "x": 0,
@@ -276,9 +276,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -292,9 +292,9 @@
       "ObjectId": 20012,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2439,
-        "y": 0.41,
-        "z": 1.226
+        "x": 0.3084,
+        "y": 0.54,
+        "z": 1.5506
       },
       "Rotation": {
         "x": 0,
@@ -302,9 +302,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 0",
+      "ObjectId": 20013,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.3024,
+        "y": 0.72,
+        "z": 1.5202
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -315,12 +341,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 1",
-      "ObjectId": 20013,
+      "ObjectId": 20014,
       "ParentId": 20000,
       "Position": {
-        "x": 0.6945,
-        "y": 0.15,
-        "z": 1.0393
+        "x": 0.8611,
+        "y": 0.18,
+        "z": 1.2888
       },
       "Rotation": {
         "x": 0,
@@ -328,9 +354,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -341,12 +367,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 1",
-      "ObjectId": 20014,
+      "ObjectId": 20015,
       "ParentId": 20000,
       "Position": {
-        "x": 0.7084,
-        "y": 0.28,
-        "z": 1.0601
+        "x": 0.8784,
+        "y": 0.36,
+        "z": 1.3146
       },
       "Rotation": {
         "x": 0,
@@ -354,9 +380,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -367,12 +393,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 1",
-      "ObjectId": 20015,
+      "ObjectId": 20016,
       "ParentId": 20000,
       "Position": {
-        "x": 0.6945,
-        "y": 0.41,
-        "z": 1.0393
+        "x": 0.8784,
+        "y": 0.54,
+        "z": 1.3146
       },
       "Rotation": {
         "x": 0,
@@ -380,9 +406,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 1",
+      "ObjectId": 20017,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.8611,
+        "y": 0.72,
+        "z": 1.2888
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 33.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -393,12 +445,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 2",
-      "ObjectId": 20016,
+      "ObjectId": 20018,
       "ParentId": 20000,
       "Position": {
-        "x": 1.0393,
-        "y": 0.15,
-        "z": 0.6945
+        "x": 1.2888,
+        "y": 0.18,
+        "z": 0.8611
       },
       "Rotation": {
         "x": 0,
@@ -406,9 +458,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -419,12 +471,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 2",
-      "ObjectId": 20017,
+      "ObjectId": 20019,
       "ParentId": 20000,
       "Position": {
-        "x": 1.0601,
-        "y": 0.28,
-        "z": 0.7084
+        "x": 1.3146,
+        "y": 0.36,
+        "z": 0.8784
       },
       "Rotation": {
         "x": 0,
@@ -432,9 +484,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -445,12 +497,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 2",
-      "ObjectId": 20018,
+      "ObjectId": 20020,
       "ParentId": 20000,
       "Position": {
-        "x": 1.0393,
-        "y": 0.41,
-        "z": 0.6945
+        "x": 1.3146,
+        "y": 0.54,
+        "z": 0.8784
       },
       "Rotation": {
         "x": 0,
@@ -458,9 +510,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 2",
+      "ObjectId": 20021,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.2888,
+        "y": 0.72,
+        "z": 0.8611
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 56.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -471,12 +549,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 3",
-      "ObjectId": 20019,
+      "ObjectId": 20022,
       "ParentId": 20000,
       "Position": {
-        "x": 1.226,
-        "y": 0.15,
-        "z": 0.2439
+        "x": 1.5202,
+        "y": 0.18,
+        "z": 0.3024
       },
       "Rotation": {
         "x": 0,
@@ -484,9 +562,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -497,12 +575,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 3",
-      "ObjectId": 20020,
+      "ObjectId": 20023,
       "ParentId": 20000,
       "Position": {
-        "x": 1.2505,
-        "y": 0.28,
-        "z": 0.2487
+        "x": 1.5506,
+        "y": 0.36,
+        "z": 0.3084
       },
       "Rotation": {
         "x": 0,
@@ -510,9 +588,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -523,12 +601,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 3",
-      "ObjectId": 20021,
+      "ObjectId": 20024,
       "ParentId": 20000,
       "Position": {
-        "x": 1.226,
-        "y": 0.41,
-        "z": 0.2439
+        "x": 1.5506,
+        "y": 0.54,
+        "z": 0.3084
       },
       "Rotation": {
         "x": 0,
@@ -536,9 +614,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 3",
+      "ObjectId": 20025,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.5202,
+        "y": 0.72,
+        "z": 0.3024
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 78.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -549,12 +653,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 4",
-      "ObjectId": 20022,
+      "ObjectId": 20026,
       "ParentId": 20000,
       "Position": {
-        "x": 1.226,
-        "y": 0.15,
-        "z": -0.2439
+        "x": 1.5202,
+        "y": 0.18,
+        "z": -0.3024
       },
       "Rotation": {
         "x": 0,
@@ -562,9 +666,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -575,12 +679,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 4",
-      "ObjectId": 20023,
+      "ObjectId": 20027,
       "ParentId": 20000,
       "Position": {
-        "x": 1.2505,
-        "y": 0.28,
-        "z": -0.2487
+        "x": 1.5506,
+        "y": 0.36,
+        "z": -0.3084
       },
       "Rotation": {
         "x": 0,
@@ -588,9 +692,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -601,12 +705,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 4",
-      "ObjectId": 20024,
+      "ObjectId": 20028,
       "ParentId": 20000,
       "Position": {
-        "x": 1.226,
-        "y": 0.41,
-        "z": -0.2439
+        "x": 1.5506,
+        "y": 0.54,
+        "z": -0.3084
       },
       "Rotation": {
         "x": 0,
@@ -614,9 +718,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 4",
+      "ObjectId": 20029,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.5202,
+        "y": 0.72,
+        "z": -0.3024
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -627,12 +757,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 5",
-      "ObjectId": 20025,
+      "ObjectId": 20030,
       "ParentId": 20000,
       "Position": {
-        "x": 1.0393,
-        "y": 0.15,
-        "z": -0.6945
+        "x": 1.2888,
+        "y": 0.18,
+        "z": -0.8611
       },
       "Rotation": {
         "x": 0,
@@ -640,9 +770,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -653,12 +783,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 5",
-      "ObjectId": 20026,
+      "ObjectId": 20031,
       "ParentId": 20000,
       "Position": {
-        "x": 1.0601,
-        "y": 0.28,
-        "z": -0.7084
+        "x": 1.3146,
+        "y": 0.36,
+        "z": -0.8784
       },
       "Rotation": {
         "x": 0,
@@ -666,9 +796,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -679,12 +809,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 5",
-      "ObjectId": 20027,
+      "ObjectId": 20032,
       "ParentId": 20000,
       "Position": {
-        "x": 1.0393,
-        "y": 0.41,
-        "z": -0.6945
+        "x": 1.3146,
+        "y": 0.54,
+        "z": -0.8784
       },
       "Rotation": {
         "x": 0,
@@ -692,9 +822,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 5",
+      "ObjectId": 20033,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.2888,
+        "y": 0.72,
+        "z": -0.8611
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 123.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -705,12 +861,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 6",
-      "ObjectId": 20028,
+      "ObjectId": 20034,
       "ParentId": 20000,
       "Position": {
-        "x": 0.6945,
-        "y": 0.15,
-        "z": -1.0393
+        "x": 0.8611,
+        "y": 0.18,
+        "z": -1.2888
       },
       "Rotation": {
         "x": 0,
@@ -718,9 +874,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -731,12 +887,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 6",
-      "ObjectId": 20029,
+      "ObjectId": 20035,
       "ParentId": 20000,
       "Position": {
-        "x": 0.7084,
-        "y": 0.28,
-        "z": -1.0601
+        "x": 0.8784,
+        "y": 0.36,
+        "z": -1.3146
       },
       "Rotation": {
         "x": 0,
@@ -744,9 +900,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -757,12 +913,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 6",
-      "ObjectId": 20030,
+      "ObjectId": 20036,
       "ParentId": 20000,
       "Position": {
-        "x": 0.6945,
-        "y": 0.41,
-        "z": -1.0393
+        "x": 0.8784,
+        "y": 0.54,
+        "z": -1.3146
       },
       "Rotation": {
         "x": 0,
@@ -770,9 +926,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 6",
+      "ObjectId": 20037,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.8611,
+        "y": 0.72,
+        "z": -1.2888
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -783,12 +965,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 7",
-      "ObjectId": 20031,
+      "ObjectId": 20038,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2439,
-        "y": 0.15,
-        "z": -1.226
+        "x": 0.3024,
+        "y": 0.18,
+        "z": -1.5202
       },
       "Rotation": {
         "x": 0,
@@ -796,9 +978,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -809,12 +991,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 7",
-      "ObjectId": 20032,
+      "ObjectId": 20039,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2487,
-        "y": 0.28,
-        "z": -1.2505
+        "x": 0.3084,
+        "y": 0.36,
+        "z": -1.5506
       },
       "Rotation": {
         "x": 0,
@@ -822,9 +1004,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -835,12 +1017,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 7",
-      "ObjectId": 20033,
+      "ObjectId": 20040,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2439,
-        "y": 0.41,
-        "z": -1.226
+        "x": 0.3084,
+        "y": 0.54,
+        "z": -1.5506
       },
       "Rotation": {
         "x": 0,
@@ -848,9 +1030,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 7",
+      "ObjectId": 20041,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.3024,
+        "y": 0.72,
+        "z": -1.5202
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -861,12 +1069,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 8",
-      "ObjectId": 20034,
+      "ObjectId": 20042,
       "ParentId": 20000,
       "Position": {
-        "x": -0.2439,
-        "y": 0.15,
-        "z": -1.226
+        "x": -0.3024,
+        "y": 0.18,
+        "z": -1.5202
       },
       "Rotation": {
         "x": 0,
@@ -874,9 +1082,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -887,12 +1095,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 8",
-      "ObjectId": 20035,
+      "ObjectId": 20043,
       "ParentId": 20000,
       "Position": {
-        "x": -0.2487,
-        "y": 0.28,
-        "z": -1.2505
+        "x": -0.3084,
+        "y": 0.36,
+        "z": -1.5506
       },
       "Rotation": {
         "x": 0,
@@ -900,9 +1108,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -913,12 +1121,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 8",
-      "ObjectId": 20036,
+      "ObjectId": 20044,
       "ParentId": 20000,
       "Position": {
-        "x": -0.2439,
-        "y": 0.41,
-        "z": -1.226
+        "x": -0.3084,
+        "y": 0.54,
+        "z": -1.5506
       },
       "Rotation": {
         "x": 0,
@@ -926,9 +1134,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 8",
+      "ObjectId": 20045,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.3024,
+        "y": 0.72,
+        "z": -1.5202
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 191.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -939,12 +1173,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 9",
-      "ObjectId": 20037,
+      "ObjectId": 20046,
       "ParentId": 20000,
       "Position": {
-        "x": -0.6945,
-        "y": 0.15,
-        "z": -1.0393
+        "x": -0.8611,
+        "y": 0.18,
+        "z": -1.2888
       },
       "Rotation": {
         "x": 0,
@@ -952,9 +1186,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -965,12 +1199,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 9",
-      "ObjectId": 20038,
+      "ObjectId": 20047,
       "ParentId": 20000,
       "Position": {
-        "x": -0.7084,
-        "y": 0.28,
-        "z": -1.0601
+        "x": -0.8784,
+        "y": 0.36,
+        "z": -1.3146
       },
       "Rotation": {
         "x": 0,
@@ -978,9 +1212,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -991,12 +1225,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 9",
-      "ObjectId": 20039,
+      "ObjectId": 20048,
       "ParentId": 20000,
       "Position": {
-        "x": -0.6945,
-        "y": 0.41,
-        "z": -1.0393
+        "x": -0.8784,
+        "y": 0.54,
+        "z": -1.3146
       },
       "Rotation": {
         "x": 0,
@@ -1004,9 +1238,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 9",
+      "ObjectId": 20049,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.8611,
+        "y": 0.72,
+        "z": -1.2888
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 213.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1017,12 +1277,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 10",
-      "ObjectId": 20040,
+      "ObjectId": 20050,
       "ParentId": 20000,
       "Position": {
-        "x": -1.0393,
-        "y": 0.15,
-        "z": -0.6945
+        "x": -1.2888,
+        "y": 0.18,
+        "z": -0.8611
       },
       "Rotation": {
         "x": 0,
@@ -1030,9 +1290,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1043,12 +1303,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 10",
-      "ObjectId": 20041,
+      "ObjectId": 20051,
       "ParentId": 20000,
       "Position": {
-        "x": -1.0601,
-        "y": 0.28,
-        "z": -0.7084
+        "x": -1.3146,
+        "y": 0.36,
+        "z": -0.8784
       },
       "Rotation": {
         "x": 0,
@@ -1056,9 +1316,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1069,12 +1329,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 10",
-      "ObjectId": 20042,
+      "ObjectId": 20052,
       "ParentId": 20000,
       "Position": {
-        "x": -1.0393,
-        "y": 0.41,
-        "z": -0.6945
+        "x": -1.3146,
+        "y": 0.54,
+        "z": -0.8784
       },
       "Rotation": {
         "x": 0,
@@ -1082,9 +1342,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 10",
+      "ObjectId": 20053,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.2888,
+        "y": 0.72,
+        "z": -0.8611
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 236.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1095,12 +1381,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 11",
-      "ObjectId": 20043,
+      "ObjectId": 20054,
       "ParentId": 20000,
       "Position": {
-        "x": -1.226,
-        "y": 0.15,
-        "z": -0.2439
+        "x": -1.5202,
+        "y": 0.18,
+        "z": -0.3024
       },
       "Rotation": {
         "x": 0,
@@ -1108,9 +1394,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1121,12 +1407,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 11",
-      "ObjectId": 20044,
+      "ObjectId": 20055,
       "ParentId": 20000,
       "Position": {
-        "x": -1.2505,
-        "y": 0.28,
-        "z": -0.2487
+        "x": -1.5506,
+        "y": 0.36,
+        "z": -0.3084
       },
       "Rotation": {
         "x": 0,
@@ -1134,9 +1420,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1147,12 +1433,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 11",
-      "ObjectId": 20045,
+      "ObjectId": 20056,
       "ParentId": 20000,
       "Position": {
-        "x": -1.226,
-        "y": 0.41,
-        "z": -0.2439
+        "x": -1.5506,
+        "y": 0.54,
+        "z": -0.3084
       },
       "Rotation": {
         "x": 0,
@@ -1160,9 +1446,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 11",
+      "ObjectId": 20057,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.5202,
+        "y": 0.72,
+        "z": -0.3024
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 258.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1173,12 +1485,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 12",
-      "ObjectId": 20046,
+      "ObjectId": 20058,
       "ParentId": 20000,
       "Position": {
-        "x": -1.226,
-        "y": 0.15,
-        "z": 0.2439
+        "x": -1.5202,
+        "y": 0.18,
+        "z": 0.3024
       },
       "Rotation": {
         "x": 0,
@@ -1186,9 +1498,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1199,12 +1511,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 12",
-      "ObjectId": 20047,
+      "ObjectId": 20059,
       "ParentId": 20000,
       "Position": {
-        "x": -1.2505,
-        "y": 0.28,
-        "z": 0.2487
+        "x": -1.5506,
+        "y": 0.36,
+        "z": 0.3084
       },
       "Rotation": {
         "x": 0,
@@ -1212,9 +1524,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1225,12 +1537,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 12",
-      "ObjectId": 20048,
+      "ObjectId": 20060,
       "ParentId": 20000,
       "Position": {
-        "x": -1.226,
-        "y": 0.41,
-        "z": 0.2439
+        "x": -1.5506,
+        "y": 0.54,
+        "z": 0.3084
       },
       "Rotation": {
         "x": 0,
@@ -1238,9 +1550,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 12",
+      "ObjectId": 20061,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.5202,
+        "y": 0.72,
+        "z": 0.3024
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 281.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1251,12 +1589,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 13",
-      "ObjectId": 20049,
+      "ObjectId": 20062,
       "ParentId": 20000,
       "Position": {
-        "x": -1.0393,
-        "y": 0.15,
-        "z": 0.6945
+        "x": -1.2888,
+        "y": 0.18,
+        "z": 0.8611
       },
       "Rotation": {
         "x": 0,
@@ -1264,9 +1602,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1277,12 +1615,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 13",
-      "ObjectId": 20050,
+      "ObjectId": 20063,
       "ParentId": 20000,
       "Position": {
-        "x": -1.0601,
-        "y": 0.28,
-        "z": 0.7084
+        "x": -1.3146,
+        "y": 0.36,
+        "z": 0.8784
       },
       "Rotation": {
         "x": 0,
@@ -1290,9 +1628,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1303,12 +1641,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 13",
-      "ObjectId": 20051,
+      "ObjectId": 20064,
       "ParentId": 20000,
       "Position": {
-        "x": -1.0393,
-        "y": 0.41,
-        "z": 0.6945
+        "x": -1.3146,
+        "y": 0.54,
+        "z": 0.8784
       },
       "Rotation": {
         "x": 0,
@@ -1316,9 +1654,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 13",
+      "ObjectId": 20065,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.2888,
+        "y": 0.72,
+        "z": 0.8611
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 303.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1329,12 +1693,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 14",
-      "ObjectId": 20052,
+      "ObjectId": 20066,
       "ParentId": 20000,
       "Position": {
-        "x": -0.6945,
-        "y": 0.15,
-        "z": 1.0393
+        "x": -0.8611,
+        "y": 0.18,
+        "z": 1.2888
       },
       "Rotation": {
         "x": 0,
@@ -1342,9 +1706,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1355,12 +1719,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 14",
-      "ObjectId": 20053,
+      "ObjectId": 20067,
       "ParentId": 20000,
       "Position": {
-        "x": -0.7084,
-        "y": 0.28,
-        "z": 1.0601
+        "x": -0.8784,
+        "y": 0.36,
+        "z": 1.3146
       },
       "Rotation": {
         "x": 0,
@@ -1368,9 +1732,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1381,12 +1745,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 14",
-      "ObjectId": 20054,
+      "ObjectId": 20068,
       "ParentId": 20000,
       "Position": {
-        "x": -0.6945,
-        "y": 0.41,
-        "z": 1.0393
+        "x": -0.8784,
+        "y": 0.54,
+        "z": 1.3146
       },
       "Rotation": {
         "x": 0,
@@ -1394,9 +1758,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 14",
+      "ObjectId": 20069,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.8611,
+        "y": 0.72,
+        "z": 1.2888
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 326.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1407,12 +1797,12 @@
     },
     {
       "Name": "Ring Tier 1 seg 15",
-      "ObjectId": 20055,
+      "ObjectId": 20070,
       "ParentId": 20000,
       "Position": {
-        "x": -0.2439,
-        "y": 0.15,
-        "z": 1.226
+        "x": -0.3024,
+        "y": 0.18,
+        "z": 1.5202
       },
       "Rotation": {
         "x": 0,
@@ -1420,9 +1810,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1433,12 +1823,12 @@
     },
     {
       "Name": "Ring Tier 2 seg 15",
-      "ObjectId": 20056,
+      "ObjectId": 20071,
       "ParentId": 20000,
       "Position": {
-        "x": -0.2487,
-        "y": 0.28,
-        "z": 1.2505
+        "x": -0.3084,
+        "y": 0.36,
+        "z": 1.5506
       },
       "Rotation": {
         "x": 0,
@@ -1446,9 +1836,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1459,12 +1849,12 @@
     },
     {
       "Name": "Ring Tier 3 seg 15",
-      "ObjectId": 20057,
+      "ObjectId": 20072,
       "ParentId": 20000,
       "Position": {
-        "x": -0.2439,
-        "y": 0.41,
-        "z": 1.226
+        "x": -0.3084,
+        "y": 0.54,
+        "z": 1.5506
       },
       "Rotation": {
         "x": 0,
@@ -1472,9 +1862,35 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
+        "x": 0.7,
+        "y": 0.18,
+        "z": 0.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 15",
+      "ObjectId": 20073,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.3024,
+        "y": 0.72,
+        "z": 1.5202
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 348.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.68,
+        "y": 0.18,
+        "z": 0.28
       },
       "BlockType": 1,
       "Properties": {
@@ -1485,11 +1901,11 @@
     },
     {
       "Name": "SCP120 Water Deep Glow",
-      "ObjectId": 20058,
+      "ObjectId": 20074,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.18,
+        "y": 0.25,
         "z": 0
       },
       "Rotation": {
@@ -1498,9 +1914,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.3,
-        "y": 0.18,
-        "z": 2.3
+        "x": 2.9,
+        "y": 0.3,
+        "z": 2.9
       },
       "BlockType": 1,
       "Properties": {
@@ -1511,11 +1927,11 @@
     },
     {
       "Name": "SCP120 Water Surface Main",
-      "ObjectId": 20059,
+      "ObjectId": 20075,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.32,
+        "y": 0.5,
         "z": 0
       },
       "Rotation": {
@@ -1524,9 +1940,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.32,
-        "y": 0.04,
-        "z": 2.32
+        "x": 2.92,
+        "y": 0.05,
+        "z": 2.92
       },
       "BlockType": 1,
       "Properties": {
@@ -1537,11 +1953,11 @@
     },
     {
       "Name": "SCP120 Water Swirl Ring",
-      "ObjectId": 20060,
+      "ObjectId": 20076,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.22,
+        "y": 0.35,
         "z": 0
       },
       "Rotation": {
@@ -1550,9 +1966,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.6,
-        "y": 0.14,
-        "z": 1.6
+        "x": 2.0,
+        "y": 0.18,
+        "z": 2.0
       },
       "BlockType": 1,
       "Properties": {
@@ -1563,11 +1979,11 @@
     },
     {
       "Name": "SCP120 Vortex Core",
-      "ObjectId": 20061,
+      "ObjectId": 20077,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.28,
+        "y": 0.42,
         "z": 0
       },
       "Rotation": {
@@ -1576,9 +1992,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.8,
-        "y": 0.12,
-        "z": 0.8
+        "x": 1.1,
+        "y": 0.16,
+        "z": 1.1
       },
       "BlockType": 1,
       "Properties": {
@@ -1589,11 +2005,11 @@
     },
     {
       "Name": "SCP120 Water Foam Rim",
-      "ObjectId": 20062,
+      "ObjectId": 20078,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.33,
+        "y": 0.51,
         "z": 0
       },
       "Rotation": {
@@ -1602,9 +2018,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.34,
-        "y": 0.015,
-        "z": 2.34
+        "x": 2.94,
+        "y": 0.02,
+        "z": 2.94
       },
       "BlockType": 1,
       "Properties": {
@@ -1615,11 +2031,11 @@
     },
     {
       "Name": "SCP120 Underwater Primary Glow",
-      "ObjectId": 20063,
+      "ObjectId": 20079,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.25,
+        "y": 0.35,
         "z": 0
       },
       "Rotation": {
@@ -1635,18 +2051,18 @@
       "BlockType": 2,
       "Properties": {
         "Color": "00F5D4FF",
-        "Intensity": 3.5,
-        "Range": 6.5,
+        "Intensity": 3.8,
+        "Range": 7.5,
         "Shadows": true
       }
     },
     {
       "Name": "SCP120 Ambient Ceiling",
-      "ObjectId": 20064,
+      "ObjectId": 20080,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 1.5,
+        "y": 1.8,
         "z": 0
       },
       "Rotation": {
@@ -1662,19 +2078,19 @@
       "BlockType": 2,
       "Properties": {
         "Color": "48CAE4FF",
-        "Intensity": 1.2,
-        "Range": 5.0,
+        "Intensity": 1.5,
+        "Range": 6.0,
         "Shadows": true
       }
     },
     {
       "Name": "Terminal Stand",
-      "ObjectId": 20065,
+      "ObjectId": 20081,
       "ParentId": 20000,
       "Position": {
-        "x": 1.85,
-        "y": 0.55,
-        "z": 0.8
+        "x": 2.15,
+        "y": 0.6,
+        "z": 0.9
       },
       "Rotation": {
         "x": 0,
@@ -1682,25 +2098,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.18,
-        "y": 0.95,
-        "z": 0.18
+        "x": 0.2,
+        "y": 1.05,
+        "z": 0.2
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "1A1C20FF",
+        "Color": "181A1EFF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Terminal Screen Box",
-      "ObjectId": 20066,
+      "ObjectId": 20082,
       "ParentId": 20000,
       "Position": {
-        "x": 1.85,
-        "y": 1.1,
-        "z": 0.8
+        "x": 2.15,
+        "y": 1.2,
+        "z": 0.9
       },
       "Rotation": {
         "x": 15,
@@ -1708,25 +2124,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.36,
-        "z": 0.16
+        "x": 0.6,
+        "y": 0.4,
+        "z": 0.18
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "14161AFF",
+        "Color": "121418FF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Terminal Screen Display",
-      "ObjectId": 20067,
+      "ObjectId": 20083,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
-        "y": 1.1,
-        "z": 0.74
+        "x": 2.1,
+        "y": 1.2,
+        "z": 0.83
       },
       "Rotation": {
         "x": 15,
@@ -1734,8 +2150,8 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.48,
-        "y": 0.28,
+        "x": 0.52,
+        "y": 0.32,
         "z": 0.02
       },
       "BlockType": 1,
@@ -1747,12 +2163,12 @@
     },
     {
       "Name": "Terminal Status LED",
-      "ObjectId": 20068,
+      "ObjectId": 20084,
       "ParentId": 20000,
       "Position": {
-        "x": 1.9,
-        "y": 1.3,
-        "z": 0.82
+        "x": 2.2,
+        "y": 1.42,
+        "z": 0.92
       },
       "Rotation": {
         "x": 0,
@@ -1760,9 +2176,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.05,
-        "y": 0.05,
-        "z": 0.05
+        "x": 0.06,
+        "y": 0.06,
+        "z": 0.06
       },
       "BlockType": 1,
       "Properties": {
@@ -1773,12 +2189,12 @@
     },
     {
       "Name": "Railing Post 0",
-      "ObjectId": 20069,
+      "ObjectId": 20085,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
-        "y": 0.5,
-        "z": 1.2
+        "x": -2.1,
+        "y": 0.55,
+        "z": 1.5
       },
       "Rotation": {
         "x": 0,
@@ -1786,25 +2202,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.08,
-        "y": 0.85,
-        "z": 0.08
+        "x": 0.09,
+        "y": 0.95,
+        "z": 0.09
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "3F4550FF",
+        "Color": "3A404AFF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Railing Cap 0",
-      "ObjectId": 20070,
+      "ObjectId": 20086,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
-        "y": 0.95,
-        "z": 1.2
+        "x": -2.1,
+        "y": 1.05,
+        "z": 1.5
       },
       "Rotation": {
         "x": 0,
@@ -1812,9 +2228,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.12,
-        "y": 0.12,
-        "z": 0.12
+        "x": 0.13,
+        "y": 0.13,
+        "z": 0.13
       },
       "BlockType": 1,
       "Properties": {
@@ -1825,12 +2241,12 @@
     },
     {
       "Name": "Railing Post 1",
-      "ObjectId": 20071,
+      "ObjectId": 20087,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
-        "y": 0.5,
-        "z": -1.2
+        "x": -2.1,
+        "y": 0.55,
+        "z": -1.5
       },
       "Rotation": {
         "x": 0,
@@ -1838,25 +2254,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.08,
-        "y": 0.85,
-        "z": 0.08
+        "x": 0.09,
+        "y": 0.95,
+        "z": 0.09
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "3F4550FF",
+        "Color": "3A404AFF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Railing Cap 1",
-      "ObjectId": 20072,
+      "ObjectId": 20088,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
-        "y": 0.95,
-        "z": -1.2
+        "x": -2.1,
+        "y": 1.05,
+        "z": -1.5
       },
       "Rotation": {
         "x": 0,
@@ -1864,9 +2280,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.12,
-        "y": 0.12,
-        "z": 0.12
+        "x": 0.13,
+        "y": 0.13,
+        "z": 0.13
       },
       "BlockType": 1,
       "Properties": {
@@ -1877,12 +2293,12 @@
     },
     {
       "Name": "Railing Post 2",
-      "ObjectId": 20073,
+      "ObjectId": 20089,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.5,
-        "z": -1.9
+        "y": 0.55,
+        "z": -2.2
       },
       "Rotation": {
         "x": 0,
@@ -1890,25 +2306,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.08,
-        "y": 0.85,
-        "z": 0.08
+        "x": 0.09,
+        "y": 0.95,
+        "z": 0.09
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "3F4550FF",
+        "Color": "3A404AFF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Railing Cap 2",
-      "ObjectId": 20074,
+      "ObjectId": 20090,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.95,
-        "z": -1.9
+        "y": 1.05,
+        "z": -2.2
       },
       "Rotation": {
         "x": 0,
@@ -1916,9 +2332,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.12,
-        "y": 0.12,
-        "z": 0.12
+        "x": 0.13,
+        "y": 0.13,
+        "z": 0.13
       },
       "BlockType": 1,
       "Properties": {
@@ -1929,12 +2345,12 @@
     },
     {
       "Name": "Railing Post 3",
-      "ObjectId": 20075,
+      "ObjectId": 20091,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
-        "y": 0.5,
-        "z": -1.2
+        "x": 2.1,
+        "y": 0.55,
+        "z": -1.5
       },
       "Rotation": {
         "x": 0,
@@ -1942,25 +2358,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.08,
-        "y": 0.85,
-        "z": 0.08
+        "x": 0.09,
+        "y": 0.95,
+        "z": 0.09
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "3F4550FF",
+        "Color": "3A404AFF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Railing Cap 3",
-      "ObjectId": 20076,
+      "ObjectId": 20092,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
-        "y": 0.95,
-        "z": -1.2
+        "x": 2.1,
+        "y": 1.05,
+        "z": -1.5
       },
       "Rotation": {
         "x": 0,
@@ -1968,9 +2384,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.12,
-        "y": 0.12,
-        "z": 0.12
+        "x": 0.13,
+        "y": 0.13,
+        "z": 0.13
       },
       "BlockType": 1,
       "Properties": {
@@ -1981,12 +2397,12 @@
     },
     {
       "Name": "Railing Post 4",
-      "ObjectId": 20077,
+      "ObjectId": 20093,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
-        "y": 0.5,
-        "z": 1.2
+        "x": 2.1,
+        "y": 0.55,
+        "z": 1.5
       },
       "Rotation": {
         "x": 0,
@@ -1994,25 +2410,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.08,
-        "y": 0.85,
-        "z": 0.08
+        "x": 0.09,
+        "y": 0.95,
+        "z": 0.09
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "3F4550FF",
+        "Color": "3A404AFF",
         "PrimitiveFlags": 3
       }
     },
     {
       "Name": "Railing Cap 4",
-      "ObjectId": 20078,
+      "ObjectId": 20094,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
-        "y": 0.95,
-        "z": 1.2
+        "x": 2.1,
+        "y": 1.05,
+        "z": 1.5
       },
       "Rotation": {
         "x": 0,
@@ -2020,9 +2436,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.12,
-        "y": 0.12,
-        "z": 0.12
+        "x": 0.13,
+        "y": 0.13,
+        "z": 0.13
       },
       "BlockType": 1,
       "Properties": {
