@@ -2,12 +2,10 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using Capy.Engine.DevTools.Hud;
 using Capy.Engine.Hints;
 using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
-using Capy.Engine.Hints.Models;
-using Capy.Engine.Hints.Utilities;
+using Capy.Engine.Hud.Panels;
 using Capy.Engine.ServerSpecific;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -15,10 +13,8 @@ using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Scp173;
 using Exiled.Events.EventArgs.Server;
-using MEC;
 using PlayerRoles;
 using UnityEngine;
-using Hint = Capy.Engine.Hints.Models.Hint;
 
 namespace Capy.NoRules.Features;
 
@@ -31,8 +27,6 @@ public sealed class VanishSavedState
     public bool NoclipPermitted { get; set; }
     public bool NoclipEnabled { get; set; }
     public int TargetPlayerIndex { get; set; } = 0;
-    public string LastHudText { get; set; } = string.Empty;
-    public Hint? ActiveItemHint { get; set; }
 }
 
 /// <summary>
@@ -40,7 +34,7 @@ public sealed class VanishSavedState
 /// 1. Вход разрешен ТОЛЬКО из роли Spectator, выход возвращает в Spectator.
 /// 2. Спавн в башне на Поверхности (Surface Tower) в роли Tutorial.
 /// 3. Выдача монетки телепортации (ЛКМ - след. игрок, ПКМ - пред. игрок) и карты Хаоса (для змейки).
-/// 4. Отображение способностей монетки над полоской HP (без мерцаний, со сдвигом правее плюсика).
+/// 4. Отображение способностей монетки над полоской HP через нативный ItemHudPanel (100% без мерцания).
 /// 5. Полное скрытие сетевыми пакетами Mirror (ChangeAppearance -> Spectator), без эффекта шапки.
 /// 6. Полный игнор Tesla ворот (не реагируют, не бьют током), SCP-173 и SCP-096.
 /// 7. Авто-спавн в волнах подкрепления МОГ / Хаос.
@@ -49,47 +43,22 @@ public sealed class VanishFeature
 {
     private static readonly ConcurrentDictionary<int, VanishSavedState> VanishedStates = new();
     private static readonly Vector3 TowerSpawnPosition = new(39.2f, 1014.5f, -31.8f);
-    private CoroutineHandle _hudUpdateCoroutine;
 
     public static bool IsVanished(Player? player) => player != null && VanishedStates.ContainsKey(player.Id);
 
     public void Enable()
     {
         AssKeybinds.OnKeybindPressed += OnKeybindPressed;
-        _hudUpdateCoroutine = Timing.RunCoroutine(PeriodicHudCoroutine());
+        ItemHudPanel.ExternalItemHudProvider = GetVanishItemHudText;
     }
 
     public void Disable()
     {
         AssKeybinds.OnKeybindPressed -= OnKeybindPressed;
-        if (_hudUpdateCoroutine.IsValid) Timing.KillCoroutines(_hudUpdateCoroutine);
+        if (ItemHudPanel.ExternalItemHudProvider == GetVanishItemHudText)
+            ItemHudPanel.ExternalItemHudProvider = null;
 
-        foreach (var pair in VanishedStates)
-        {
-            var player = Player.Get(pair.Key);
-            if (player != null && pair.Value.ActiveItemHint != null)
-            {
-                PlayerDisplay.Get(player)?.RemoveHint(pair.Value.ActiveItemHint);
-            }
-        }
         VanishedStates.Clear();
-    }
-
-    private IEnumerator<float> PeriodicHudCoroutine()
-    {
-        while (true)
-        {
-            yield return Timing.WaitForSeconds(0.5f);
-
-            foreach (var id in VanishedStates.Keys.ToList())
-            {
-                var player = Player.Get(id);
-                if (player != null && player.IsConnected && IsVanished(player))
-                {
-                    UpdateItemHud(player);
-                }
-            }
-        }
     }
 
     public bool Toggle(Player player, out string response)
@@ -162,20 +131,12 @@ public sealed class VanishFeature
             "vanish_hud",
             22
         );
-
-        UpdateItemHud(player);
     }
 
     public void DisableVanish(Player player, bool respawnWave = false)
     {
         if (!VanishedStates.TryRemove(player.Id, out var state))
             return;
-
-        if (state.ActiveItemHint != null)
-        {
-            PlayerDisplay.Get(player)?.RemoveHint(state.ActiveItemHint);
-            state.ActiveItemHint = null;
-        }
 
         player.ClearInventory();
         player.IsGodModeEnabled = false;
@@ -219,37 +180,15 @@ public sealed class VanishFeature
         }
     }
 
-    public void OnChangedItem(ChangedItemEventArgs ev)
-    {
-        if (ev.Player != null && IsVanished(ev.Player))
-        {
-            UpdateItemHud(ev.Player);
-        }
-    }
+    public void OnChangedItem(ChangedItemEventArgs ev) { }
 
     /// <summary>
-    /// Отображает способности предмета над полоской HP с нулевым мерцанием.
+    /// Генерация текста для ItemHudPanel (вызывается нативным HUD-циклом без мерцания, как и таймер раунда).
     /// </summary>
-    public void UpdateItemHud(Player player)
+    private string? GetVanishItemHudText(Player player)
     {
-        if (player == null || !player.IsConnected || !IsVanished(player)) return;
-
-        var state = VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
-        var display = PlayerDisplay.Get(player);
-
-        if (player.CurrentItem == null)
-        {
-            if (state.ActiveItemHint != null)
-            {
-                display.RemoveHint(state.ActiveItemHint);
-                state.ActiveItemHint = null;
-                state.LastHudText = string.Empty;
-            }
-            return;
-        }
-
-        Vector2 pos = HudLayout.GetDynamicStatsPosition(player);
-        string hudText = string.Empty;
+        if (player == null || !IsVanished(player) || player.CurrentItem == null)
+            return null;
 
         if (player.CurrentItem.Type == ItemType.Coin)
         {
@@ -260,79 +199,36 @@ public sealed class VanishFeature
 
             if (alive.Count == 0)
             {
-                hudText = $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n<size=16><color=#ff4444>Нет живых игроков на сервере</color></size>";
+                return $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n<size=16><color=#ff4444>Нет живых игроков на сервере</color></size>";
             }
-            else
-            {
-                int count = alive.Count;
-                int currIdx = ((state.TargetPlayerIndex % count) + count) % count;
-                int nextIdx = (currIdx + 1) % count;
-                int prevIdx = ((currIdx - 1) % count + count) % count;
 
-                var curr = alive[currIdx];
-                var next = alive[nextIdx];
-                var prev = alive[prevIdx];
+            var state = VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
+            int count = alive.Count;
+            int currIdx = ((state.TargetPlayerIndex % count) + count) % count;
+            int nextIdx = (currIdx + 1) % count;
+            int prevIdx = ((currIdx - 1) % count + count) % count;
 
-                string currHex = ColorUtility.ToHtmlStringRGB(curr.Role.Color);
-                string nextHex = ColorUtility.ToHtmlStringRGB(next.Role.Color);
-                string prevHex = ColorUtility.ToHtmlStringRGB(prev.Role.Color);
+            var curr = alive[currIdx];
+            var next = alive[nextIdx];
+            var prev = alive[prevIdx];
 
-                hudText =
-                    $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n" +
-                    $"<size=16><color=#a3e635><b>[ЛКМ]</b></color> След: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
-                    $"<color=#f87171><b>[ПКМ]</b></color> Пред: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
-                    $"<color=#c2c2c2>Цель: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
-            }
+            string currHex = ColorUtility.ToHtmlStringRGB(curr.Role.Color);
+            string nextHex = ColorUtility.ToHtmlStringRGB(next.Role.Color);
+            string prevHex = ColorUtility.ToHtmlStringRGB(prev.Role.Color);
+
+            return $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n" +
+                   $"<size=16><color=#a3e635><b>[ЛКМ]</b></color> След: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
+                   $"<color=#f87171><b>[ПКМ]</b></color> Пред: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
+                   $"<color=#c2c2c2>Цель: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
         }
-        else if (player.CurrentItem.Type == ItemType.KeycardChaosInsurgency)
+
+        if (player.CurrentItem.Type == ItemType.KeycardChaosInsurgency)
         {
-            hudText =
-                $"<size=20><color=#608f38><b>[ Карта Доступа Хаоса ]</b></color></size>\n" +
-                $"<size=16><color=#cccccc>Осмотр карты: Мини-игра «Змейка»</color></size>";
+            return $"<size=20><color=#608f38><b>[ Карта Доступа Хаоса ]</b></color></size>\n" +
+                   $"<size=16><color=#cccccc>Осмотр карты: Мини-игра «Змейка»</color></size>";
         }
 
-        if (string.IsNullOrEmpty(hudText))
-        {
-            if (state.ActiveItemHint != null)
-            {
-                display.RemoveHint(state.ActiveItemHint);
-                state.ActiveItemHint = null;
-                state.LastHudText = string.Empty;
-            }
-            return;
-        }
-
-        if (hudText == state.LastHudText && state.ActiveItemHint != null)
-        {
-            // Текст не менялся — ничего не шлём, 0 мерцания
-            return;
-        }
-
-        state.LastHudText = hudText;
-
-        if (state.ActiveItemHint == null)
-        {
-            state.ActiveItemHint = new Hint
-            {
-                Text = hudText,
-                FontSize = 20,
-                XCoordinate = pos.x,
-                YCoordinate = pos.y,
-                Alignment = HintAlignment.Left,
-                YCoordinateAlign = HintVerticalAlign.Middle,
-                Tag = "custom_item_hud",
-                Layer = HintLayer.Notification,
-                Priority = 10,
-                SyncSpeed = HintSyncSpeed.Fast
-            };
-            display.AddHint(state.ActiveItemHint);
-        }
-        else
-        {
-            state.ActiveItemHint.Text = hudText;
-            state.ActiveItemHint.XCoordinate = pos.x;
-            state.ActiveItemHint.YCoordinate = pos.y;
-        }
+        return null;
     }
 
     /// <summary>
@@ -358,9 +254,6 @@ public sealed class VanishFeature
         var target = alivePlayers[state.TargetPlayerIndex];
 
         player.Position = target.Position + Vector3.up * 0.6f;
-
-        // Моментально обновляем HUD над HP
-        UpdateItemHud(player);
     }
 
     public void OnRespawningTeam(RespawningTeamEventArgs ev)
