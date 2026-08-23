@@ -73,8 +73,8 @@ public sealed class Scp120Config
     [Description("Кулдаун на телепортацию игрока в секундах.")]
     public float TeleportCooldown { get; set; } = 1.5f;
 
-    [Description("Радиус взаимодействия с бассейном (метры).")]
-    public float PoolRadius { get; set; } = 1.85f;
+    [Description("Радиус взаимодействия с бассейном (метры, 1.15м строго по воде внутри бассейна).")]
+    public float PoolRadius { get; set; } = 1.15f;
 }
 
 public sealed class DotResKillConfig

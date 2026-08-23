@@ -2,12 +2,12 @@
   "RootObjectId": 20000,
   "Blocks": [
     {
-      "Name": "Platform Base Main",
+      "Name": "Platform Base Bottom",
       "ObjectId": 20001,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.05,
+        "y": 0.04,
         "z": 0
       },
       "Rotation": {
@@ -16,14 +16,14 @@
         "z": 0
       },
       "Scale": {
-        "x": 4.2,
-        "y": 0.1,
-        "z": 4.2
+        "x": 4.4,
+        "y": 0.08,
+        "z": 4.4
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "2B2E34FF",
+        "Color": "23262BFF",
         "PrimitiveFlags": 2
       }
     },
@@ -33,7 +33,7 @@
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.11,
+        "y": 0.09,
         "z": 0
       },
       "Rotation": {
@@ -42,24 +42,24 @@
         "z": 0
       },
       "Scale": {
-        "x": 3.9,
+        "x": 4.1,
         "y": 0.02,
-        "z": 3.9
+        "z": 4.1
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "3A3F47FF",
+        "Color": "353A42FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Hazard Ring",
+      "Name": "Hazard Ring Outer",
       "ObjectId": 20003,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.105,
+        "y": 0.085,
         "z": 0
       },
       "Rotation": {
@@ -68,9 +68,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 4.05,
+        "x": 4.25,
         "y": 0.025,
-        "z": 4.05
+        "z": 4.25
       },
       "BlockType": 1,
       "Properties": {
@@ -80,13 +80,13 @@
       }
     },
     {
-      "Name": "Stairs Lower Step",
+      "Name": "Stairs Lower",
       "ObjectId": 20004,
       "ParentId": 20000,
       "Position": {
         "x": 0,
         "y": 0.035,
-        "z": 2.2
+        "z": 2.3
       },
       "Rotation": {
         "x": 0,
@@ -101,18 +101,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "33373EFF",
+        "Color": "2E323AFF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Stairs Upper Step",
+      "Name": "Stairs Upper",
       "ObjectId": 20005,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.08,
-        "z": 1.95
+        "y": 0.075,
+        "z": 2.05
       },
       "Rotation": {
         "x": 0,
@@ -127,18 +127,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "3A3F47FF",
+        "Color": "353A42FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Stairs Trim Left",
+      "Name": "Stairs Left Border",
       "ObjectId": 20006,
       "ParentId": 20000,
       "Position": {
         "x": -0.75,
-        "y": 0.08,
-        "z": 2.05
+        "y": 0.07,
+        "z": 2.15
       },
       "Rotation": {
         "x": 0,
@@ -147,7 +147,7 @@
       },
       "Scale": {
         "x": 0.1,
-        "y": 0.16,
+        "y": 0.14,
         "z": 0.75
       },
       "BlockType": 1,
@@ -158,13 +158,13 @@
       }
     },
     {
-      "Name": "Stairs Trim Right",
+      "Name": "Stairs Right Border",
       "ObjectId": 20007,
       "ParentId": 20000,
       "Position": {
         "x": 0.75,
-        "y": 0.08,
-        "z": 2.05
+        "y": 0.07,
+        "z": 2.15
       },
       "Rotation": {
         "x": 0,
@@ -173,7 +173,7 @@
       },
       "Scale": {
         "x": 0.1,
-        "y": 0.16,
+        "y": 0.14,
         "z": 0.75
       },
       "BlockType": 1,
@@ -189,7 +189,7 @@
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.125,
+        "y": 0.1,
         "z": 0
       },
       "Rotation": {
@@ -205,17 +205,17 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "1D5B79FF",
+        "Color": "164E63FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Vinyl Floor",
+      "Name": "Pool Deep Floor",
       "ObjectId": 20009,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.13,
+        "y": 0.105,
         "z": 0
       },
       "Rotation": {
@@ -224,24 +224,24 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.5,
+        "x": 2.4,
         "y": 0.01,
-        "z": 2.5
+        "z": 2.4
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Bottom 0",
+      "Name": "Ring Tier 1 seg 0",
       "ObjectId": 20010,
       "ParentId": 20000,
       "Position": {
         "x": 0.2439,
-        "y": 0.2,
+        "y": 0.18,
         "z": 1.226
       },
       "Rotation": {
@@ -251,23 +251,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 0",
+      "Name": "Ring Tier 2 seg 0",
       "ObjectId": 20011,
       "ParentId": 20000,
       "Position": {
         "x": 0.2487,
-        "y": 0.32,
+        "y": 0.34,
         "z": 1.2505
       },
       "Rotation": {
@@ -277,23 +277,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 0",
+      "Name": "Ring Tier 3 seg 0",
       "ObjectId": 20012,
       "ParentId": 20000,
       "Position": {
+        "x": 0.2487,
+        "y": 0.5,
+        "z": 1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 11.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 0",
+      "ObjectId": 20013,
+      "ParentId": 20000,
+      "Position": {
         "x": 0.2439,
-        "y": 0.44,
+        "y": 0.66,
         "z": 1.226
       },
       "Rotation": {
@@ -303,7 +329,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -314,12 +340,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 1",
-      "ObjectId": 20013,
+      "Name": "Ring Tier 1 seg 1",
+      "ObjectId": 20014,
       "ParentId": 20000,
       "Position": {
         "x": 0.6945,
-        "y": 0.2,
+        "y": 0.18,
         "z": 1.0393
       },
       "Rotation": {
@@ -329,23 +355,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 1",
-      "ObjectId": 20014,
+      "Name": "Ring Tier 2 seg 1",
+      "ObjectId": 20015,
       "ParentId": 20000,
       "Position": {
         "x": 0.7084,
-        "y": 0.32,
+        "y": 0.34,
         "z": 1.0601
       },
       "Rotation": {
@@ -355,23 +381,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 1",
-      "ObjectId": 20015,
+      "Name": "Ring Tier 3 seg 1",
+      "ObjectId": 20016,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.7084,
+        "y": 0.5,
+        "z": 1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 33.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 1",
+      "ObjectId": 20017,
       "ParentId": 20000,
       "Position": {
         "x": 0.6945,
-        "y": 0.44,
+        "y": 0.66,
         "z": 1.0393
       },
       "Rotation": {
@@ -381,7 +433,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -392,64 +444,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 2",
-      "ObjectId": 20016,
-      "ParentId": 20000,
-      "Position": {
-        "x": 1.0393,
-        "y": 0.2,
-        "z": 0.6945
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 56.25,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "00AFB9FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Middle 2",
-      "ObjectId": 20017,
-      "ParentId": 20000,
-      "Position": {
-        "x": 1.0601,
-        "y": 0.32,
-        "z": 0.7084
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 56.25,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "0081A7FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Top 2",
+      "Name": "Ring Tier 1 seg 2",
       "ObjectId": 20018,
       "ParentId": 20000,
       "Position": {
         "x": 1.0393,
-        "y": 0.44,
+        "y": 0.18,
         "z": 0.6945
       },
       "Rotation": {
@@ -459,85 +459,85 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "48CAE4FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Bottom 3",
+      "Name": "Ring Tier 2 seg 2",
       "ObjectId": 20019,
       "ParentId": 20000,
       "Position": {
-        "x": 1.226,
-        "y": 0.2,
-        "z": 0.2439
+        "x": 1.0601,
+        "y": 0.34,
+        "z": 0.7084
       },
       "Rotation": {
         "x": 0,
-        "y": 78.75,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "00AFB9FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Middle 3",
-      "ObjectId": 20020,
-      "ParentId": 20000,
-      "Position": {
-        "x": 1.2505,
-        "y": 0.32,
-        "z": 0.2487
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 78.75,
+        "y": 56.25,
         "z": 0
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 3",
-      "ObjectId": 20021,
+      "Name": "Ring Tier 3 seg 2",
+      "ObjectId": 20020,
       "ParentId": 20000,
       "Position": {
-        "x": 1.226,
-        "y": 0.44,
-        "z": 0.2439
+        "x": 1.0601,
+        "y": 0.5,
+        "z": 0.7084
       },
       "Rotation": {
         "x": 0,
-        "y": 78.75,
+        "y": 56.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 2",
+      "ObjectId": 20021,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.0393,
+        "y": 0.66,
+        "z": 0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 56.25,
         "z": 0
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -548,64 +548,116 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 4",
+      "Name": "Ring Tier 1 seg 3",
       "ObjectId": 20022,
       "ParentId": 20000,
       "Position": {
         "x": 1.226,
-        "y": 0.2,
-        "z": -0.2439
+        "y": 0.18,
+        "z": 0.2439
       },
       "Rotation": {
         "x": 0,
-        "y": 101.25,
+        "y": 78.75,
         "z": 0
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 4",
+      "Name": "Ring Tier 2 seg 3",
       "ObjectId": 20023,
       "ParentId": 20000,
       "Position": {
         "x": 1.2505,
-        "y": 0.32,
-        "z": -0.2487
+        "y": 0.34,
+        "z": 0.2487
       },
       "Rotation": {
         "x": 0,
-        "y": 101.25,
+        "y": 78.75,
         "z": 0
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 4",
+      "Name": "Ring Tier 3 seg 3",
       "ObjectId": 20024,
       "ParentId": 20000,
       "Position": {
+        "x": 1.2505,
+        "y": 0.5,
+        "z": 0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 78.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 3",
+      "ObjectId": 20025,
+      "ParentId": 20000,
+      "Position": {
         "x": 1.226,
-        "y": 0.44,
+        "y": 0.66,
+        "z": 0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 78.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 1 seg 4",
+      "ObjectId": 20026,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.226,
+        "y": 0.18,
         "z": -0.2439
       },
       "Rotation": {
@@ -615,75 +667,101 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "48CAE4FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Bottom 5",
-      "ObjectId": 20025,
-      "ParentId": 20000,
-      "Position": {
-        "x": 1.0393,
-        "y": 0.2,
-        "z": -0.6945
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 123.75,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "00AFB9FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Middle 5",
-      "ObjectId": 20026,
-      "ParentId": 20000,
-      "Position": {
-        "x": 1.0601,
-        "y": 0.32,
-        "z": -0.7084
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 123.75,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "0081A7FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Top 5",
+      "Name": "Ring Tier 2 seg 4",
       "ObjectId": 20027,
       "ParentId": 20000,
       "Position": {
+        "x": 1.2505,
+        "y": 0.34,
+        "z": -0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0077B6FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 3 seg 4",
+      "ObjectId": 20028,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.2505,
+        "y": 0.5,
+        "z": -0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 4",
+      "ObjectId": 20029,
+      "ParentId": 20000,
+      "Position": {
+        "x": 1.226,
+        "y": 0.66,
+        "z": -0.2439
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 101.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 1 seg 5",
+      "ObjectId": 20030,
+      "ParentId": 20000,
+      "Position": {
         "x": 1.0393,
-        "y": 0.44,
+        "y": 0.18,
         "z": -0.6945
       },
       "Rotation": {
@@ -693,153 +771,205 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "48CAE4FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Bottom 6",
-      "ObjectId": 20028,
-      "ParentId": 20000,
-      "Position": {
-        "x": 0.6945,
-        "y": 0.2,
-        "z": -1.0393
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 146.25,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "00AFB9FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Middle 6",
-      "ObjectId": 20029,
-      "ParentId": 20000,
-      "Position": {
-        "x": 0.7084,
-        "y": 0.32,
-        "z": -1.0601
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 146.25,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.56,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "0081A7FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Top 6",
-      "ObjectId": 20030,
-      "ParentId": 20000,
-      "Position": {
-        "x": 0.6945,
-        "y": 0.44,
-        "z": -1.0393
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 146.25,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.55,
-        "y": 0.14,
-        "z": 0.22
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "48CAE4FF",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Pool Ring Bottom 7",
+      "Name": "Ring Tier 2 seg 5",
       "ObjectId": 20031,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2439,
-        "y": 0.2,
-        "z": -1.226
+        "x": 1.0601,
+        "y": 0.34,
+        "z": -0.7084
       },
       "Rotation": {
         "x": 0,
-        "y": 168.75,
+        "y": 123.75,
         "z": 0
       },
       "Scale": {
-        "x": 0.55,
-        "y": 0.14,
+        "x": 0.56,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 7",
+      "Name": "Ring Tier 3 seg 5",
       "ObjectId": 20032,
       "ParentId": 20000,
       "Position": {
-        "x": 0.2487,
-        "y": 0.32,
-        "z": -1.2505
+        "x": 1.0601,
+        "y": 0.5,
+        "z": -0.7084
       },
       "Rotation": {
         "x": 0,
-        "y": 168.75,
+        "y": 123.75,
         "z": 0
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 7",
+      "Name": "Ring Tier 4 seg 5",
       "ObjectId": 20033,
       "ParentId": 20000,
       "Position": {
+        "x": 1.0393,
+        "y": 0.66,
+        "z": -0.6945
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 123.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 1 seg 6",
+      "ObjectId": 20034,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.6945,
+        "y": 0.18,
+        "z": -1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 2 seg 6",
+      "ObjectId": 20035,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.7084,
+        "y": 0.34,
+        "z": -1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0077B6FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 3 seg 6",
+      "ObjectId": 20036,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.7084,
+        "y": 0.5,
+        "z": -1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 6",
+      "ObjectId": 20037,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.6945,
+        "y": 0.66,
+        "z": -1.0393
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 146.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "48CAE4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 1 seg 7",
+      "ObjectId": 20038,
+      "ParentId": 20000,
+      "Position": {
         "x": 0.2439,
-        "y": 0.44,
+        "y": 0.18,
         "z": -1.226
       },
       "Rotation": {
@@ -849,7 +979,85 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 2 seg 7",
+      "ObjectId": 20039,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2487,
+        "y": 0.34,
+        "z": -1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0077B6FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 3 seg 7",
+      "ObjectId": 20040,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2487,
+        "y": 0.5,
+        "z": -1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 7",
+      "ObjectId": 20041,
+      "ParentId": 20000,
+      "Position": {
+        "x": 0.2439,
+        "y": 0.66,
+        "z": -1.226
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 168.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -860,12 +1068,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 8",
-      "ObjectId": 20034,
+      "Name": "Ring Tier 1 seg 8",
+      "ObjectId": 20042,
       "ParentId": 20000,
       "Position": {
         "x": -0.2439,
-        "y": 0.2,
+        "y": 0.18,
         "z": -1.226
       },
       "Rotation": {
@@ -875,23 +1083,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 8",
-      "ObjectId": 20035,
+      "Name": "Ring Tier 2 seg 8",
+      "ObjectId": 20043,
       "ParentId": 20000,
       "Position": {
         "x": -0.2487,
-        "y": 0.32,
+        "y": 0.34,
         "z": -1.2505
       },
       "Rotation": {
@@ -901,23 +1109,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 8",
-      "ObjectId": 20036,
+      "Name": "Ring Tier 3 seg 8",
+      "ObjectId": 20044,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2487,
+        "y": 0.5,
+        "z": -1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 191.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 8",
+      "ObjectId": 20045,
       "ParentId": 20000,
       "Position": {
         "x": -0.2439,
-        "y": 0.44,
+        "y": 0.66,
         "z": -1.226
       },
       "Rotation": {
@@ -927,7 +1161,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -938,12 +1172,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 9",
-      "ObjectId": 20037,
+      "Name": "Ring Tier 1 seg 9",
+      "ObjectId": 20046,
       "ParentId": 20000,
       "Position": {
         "x": -0.6945,
-        "y": 0.2,
+        "y": 0.18,
         "z": -1.0393
       },
       "Rotation": {
@@ -953,23 +1187,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 9",
-      "ObjectId": 20038,
+      "Name": "Ring Tier 2 seg 9",
+      "ObjectId": 20047,
       "ParentId": 20000,
       "Position": {
         "x": -0.7084,
-        "y": 0.32,
+        "y": 0.34,
         "z": -1.0601
       },
       "Rotation": {
@@ -979,23 +1213,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 9",
-      "ObjectId": 20039,
+      "Name": "Ring Tier 3 seg 9",
+      "ObjectId": 20048,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.7084,
+        "y": 0.5,
+        "z": -1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 213.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 9",
+      "ObjectId": 20049,
       "ParentId": 20000,
       "Position": {
         "x": -0.6945,
-        "y": 0.44,
+        "y": 0.66,
         "z": -1.0393
       },
       "Rotation": {
@@ -1005,7 +1265,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1016,12 +1276,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 10",
-      "ObjectId": 20040,
+      "Name": "Ring Tier 1 seg 10",
+      "ObjectId": 20050,
       "ParentId": 20000,
       "Position": {
         "x": -1.0393,
-        "y": 0.2,
+        "y": 0.18,
         "z": -0.6945
       },
       "Rotation": {
@@ -1031,23 +1291,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 10",
-      "ObjectId": 20041,
+      "Name": "Ring Tier 2 seg 10",
+      "ObjectId": 20051,
       "ParentId": 20000,
       "Position": {
         "x": -1.0601,
-        "y": 0.32,
+        "y": 0.34,
         "z": -0.7084
       },
       "Rotation": {
@@ -1057,23 +1317,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 10",
-      "ObjectId": 20042,
+      "Name": "Ring Tier 3 seg 10",
+      "ObjectId": 20052,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0601,
+        "y": 0.5,
+        "z": -0.7084
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 236.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 10",
+      "ObjectId": 20053,
       "ParentId": 20000,
       "Position": {
         "x": -1.0393,
-        "y": 0.44,
+        "y": 0.66,
         "z": -0.6945
       },
       "Rotation": {
@@ -1083,7 +1369,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1094,12 +1380,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 11",
-      "ObjectId": 20043,
+      "Name": "Ring Tier 1 seg 11",
+      "ObjectId": 20054,
       "ParentId": 20000,
       "Position": {
         "x": -1.226,
-        "y": 0.2,
+        "y": 0.18,
         "z": -0.2439
       },
       "Rotation": {
@@ -1109,23 +1395,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 11",
-      "ObjectId": 20044,
+      "Name": "Ring Tier 2 seg 11",
+      "ObjectId": 20055,
       "ParentId": 20000,
       "Position": {
         "x": -1.2505,
-        "y": 0.32,
+        "y": 0.34,
         "z": -0.2487
       },
       "Rotation": {
@@ -1135,23 +1421,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 11",
-      "ObjectId": 20045,
+      "Name": "Ring Tier 3 seg 11",
+      "ObjectId": 20056,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.2505,
+        "y": 0.5,
+        "z": -0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 258.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 11",
+      "ObjectId": 20057,
       "ParentId": 20000,
       "Position": {
         "x": -1.226,
-        "y": 0.44,
+        "y": 0.66,
         "z": -0.2439
       },
       "Rotation": {
@@ -1161,7 +1473,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1172,12 +1484,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 12",
-      "ObjectId": 20046,
+      "Name": "Ring Tier 1 seg 12",
+      "ObjectId": 20058,
       "ParentId": 20000,
       "Position": {
         "x": -1.226,
-        "y": 0.2,
+        "y": 0.18,
         "z": 0.2439
       },
       "Rotation": {
@@ -1187,23 +1499,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 12",
-      "ObjectId": 20047,
+      "Name": "Ring Tier 2 seg 12",
+      "ObjectId": 20059,
       "ParentId": 20000,
       "Position": {
         "x": -1.2505,
-        "y": 0.32,
+        "y": 0.34,
         "z": 0.2487
       },
       "Rotation": {
@@ -1213,23 +1525,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 12",
-      "ObjectId": 20048,
+      "Name": "Ring Tier 3 seg 12",
+      "ObjectId": 20060,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.2505,
+        "y": 0.5,
+        "z": 0.2487
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 281.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 12",
+      "ObjectId": 20061,
       "ParentId": 20000,
       "Position": {
         "x": -1.226,
-        "y": 0.44,
+        "y": 0.66,
         "z": 0.2439
       },
       "Rotation": {
@@ -1239,7 +1577,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1250,12 +1588,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 13",
-      "ObjectId": 20049,
+      "Name": "Ring Tier 1 seg 13",
+      "ObjectId": 20062,
       "ParentId": 20000,
       "Position": {
         "x": -1.0393,
-        "y": 0.2,
+        "y": 0.18,
         "z": 0.6945
       },
       "Rotation": {
@@ -1265,23 +1603,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 13",
-      "ObjectId": 20050,
+      "Name": "Ring Tier 2 seg 13",
+      "ObjectId": 20063,
       "ParentId": 20000,
       "Position": {
         "x": -1.0601,
-        "y": 0.32,
+        "y": 0.34,
         "z": 0.7084
       },
       "Rotation": {
@@ -1291,23 +1629,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 13",
-      "ObjectId": 20051,
+      "Name": "Ring Tier 3 seg 13",
+      "ObjectId": 20064,
+      "ParentId": 20000,
+      "Position": {
+        "x": -1.0601,
+        "y": 0.5,
+        "z": 0.7084
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 303.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 13",
+      "ObjectId": 20065,
       "ParentId": 20000,
       "Position": {
         "x": -1.0393,
-        "y": 0.44,
+        "y": 0.66,
         "z": 0.6945
       },
       "Rotation": {
@@ -1317,7 +1681,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1328,12 +1692,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 14",
-      "ObjectId": 20052,
+      "Name": "Ring Tier 1 seg 14",
+      "ObjectId": 20066,
       "ParentId": 20000,
       "Position": {
         "x": -0.6945,
-        "y": 0.2,
+        "y": 0.18,
         "z": 1.0393
       },
       "Rotation": {
@@ -1343,23 +1707,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 14",
-      "ObjectId": 20053,
+      "Name": "Ring Tier 2 seg 14",
+      "ObjectId": 20067,
       "ParentId": 20000,
       "Position": {
         "x": -0.7084,
-        "y": 0.32,
+        "y": 0.34,
         "z": 1.0601
       },
       "Rotation": {
@@ -1369,23 +1733,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 14",
-      "ObjectId": 20054,
+      "Name": "Ring Tier 3 seg 14",
+      "ObjectId": 20068,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.7084,
+        "y": 0.5,
+        "z": 1.0601
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 326.25,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 14",
+      "ObjectId": 20069,
       "ParentId": 20000,
       "Position": {
         "x": -0.6945,
-        "y": 0.44,
+        "y": 0.66,
         "z": 1.0393
       },
       "Rotation": {
@@ -1395,7 +1785,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1406,12 +1796,12 @@
       }
     },
     {
-      "Name": "Pool Ring Bottom 15",
-      "ObjectId": 20055,
+      "Name": "Ring Tier 1 seg 15",
+      "ObjectId": 20070,
       "ParentId": 20000,
       "Position": {
         "x": -0.2439,
-        "y": 0.2,
+        "y": 0.18,
         "z": 1.226
       },
       "Rotation": {
@@ -1421,23 +1811,23 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "00AFB9FF",
+        "Color": "0096C7FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Middle 15",
-      "ObjectId": 20056,
+      "Name": "Ring Tier 2 seg 15",
+      "ObjectId": 20071,
       "ParentId": 20000,
       "Position": {
         "x": -0.2487,
-        "y": 0.32,
+        "y": 0.34,
         "z": 1.2505
       },
       "Rotation": {
@@ -1447,23 +1837,49 @@
       },
       "Scale": {
         "x": 0.56,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "0081A7FF",
+        "Color": "0077B6FF",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Pool Ring Top 15",
-      "ObjectId": 20057,
+      "Name": "Ring Tier 3 seg 15",
+      "ObjectId": 20072,
+      "ParentId": 20000,
+      "Position": {
+        "x": -0.2487,
+        "y": 0.5,
+        "z": 1.2505
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 348.75,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.16,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0096C7FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Ring Tier 4 seg 15",
+      "ObjectId": 20073,
       "ParentId": 20000,
       "Position": {
         "x": -0.2439,
-        "y": 0.44,
+        "y": 0.66,
         "z": 1.226
       },
       "Rotation": {
@@ -1473,7 +1889,7 @@
       },
       "Scale": {
         "x": 0.55,
-        "y": 0.14,
+        "y": 0.16,
         "z": 0.22
       },
       "BlockType": 1,
@@ -1484,12 +1900,12 @@
       }
     },
     {
-      "Name": "SCP120 Water Deep",
-      "ObjectId": 20058,
+      "Name": "SCP120 Water Deep Abyss",
+      "ObjectId": 20074,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.22,
+        "y": 0.25,
         "z": 0
       },
       "Rotation": {
@@ -1498,9 +1914,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.35,
-        "y": 0.16,
-        "z": 2.35
+        "x": 2.3,
+        "y": 0.28,
+        "z": 2.3
       },
       "BlockType": 1,
       "Properties": {
@@ -1511,11 +1927,11 @@
     },
     {
       "Name": "SCP120 Water Surface",
-      "ObjectId": 20059,
+      "ObjectId": 20075,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.36,
+        "y": 0.44,
         "z": 0
       },
       "Rotation": {
@@ -1524,9 +1940,9 @@
         "z": 0
       },
       "Scale": {
-        "x": 2.38,
-        "y": 0.04,
-        "z": 2.38
+        "x": 2.32,
+        "y": 0.05,
+        "z": 2.32
       },
       "BlockType": 1,
       "Properties": {
@@ -1536,12 +1952,12 @@
       }
     },
     {
-      "Name": "SCP120 Swirl Center",
-      "ObjectId": 20060,
+      "Name": "SCP120 Inner Swirl",
+      "ObjectId": 20076,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.26,
+        "y": 0.3,
         "z": 0
       },
       "Rotation": {
@@ -1550,24 +1966,24 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.4,
-        "y": 0.18,
-        "z": 1.4
+        "x": 1.5,
+        "y": 0.2,
+        "z": 1.5
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 0,
-        "Color": "70E000AA",
+        "Color": "52B788AA",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "SCP120 Underwater Glow",
-      "ObjectId": 20061,
+      "ObjectId": 20077,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 0.3,
+        "y": 0.32,
         "z": 0
       },
       "Rotation": {
@@ -1583,18 +1999,18 @@
       "BlockType": 2,
       "Properties": {
         "Color": "00F5D4FF",
-        "Intensity": 2.2,
-        "Range": 6.5,
+        "Intensity": 2.4,
+        "Range": 6.0,
         "Shadows": true
       }
     },
     {
-      "Name": "SCP120 Ambient Top",
-      "ObjectId": 20062,
+      "Name": "SCP120 Pool Ambient Top",
+      "ObjectId": 20078,
       "ParentId": 20000,
       "Position": {
         "x": 0,
-        "y": 1.8,
+        "y": 1.6,
         "z": 0
       },
       "Rotation": {
@@ -1610,17 +2026,17 @@
       "BlockType": 2,
       "Properties": {
         "Color": "48CAE4FF",
-        "Intensity": 0.8,
-        "Range": 5.0,
+        "Intensity": 0.7,
+        "Range": 4.5,
         "Shadows": true
       }
     },
     {
       "Name": "Terminal Stand",
-      "ObjectId": 20063,
+      "ObjectId": 20079,
       "ParentId": 20000,
       "Position": {
-        "x": 1.85,
+        "x": 1.9,
         "y": 0.65,
         "z": 0.8
       },
@@ -1637,16 +2053,16 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "22252AFF",
+        "Color": "1F2228FF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Terminal Screen Box",
-      "ObjectId": 20064,
+      "ObjectId": 20080,
       "ParentId": 20000,
       "Position": {
-        "x": 1.85,
+        "x": 1.9,
         "y": 1.25,
         "z": 0.8
       },
@@ -1663,16 +2079,16 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "1E1E24FF",
+        "Color": "18191EFF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Terminal Screen Display",
-      "ObjectId": 20065,
+      "ObjectId": 20081,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
+        "x": 1.85,
         "y": 1.25,
         "z": 0.74
       },
@@ -1694,11 +2110,11 @@
       }
     },
     {
-      "Name": "Terminal Status Green",
-      "ObjectId": 20066,
+      "Name": "Terminal Status LED",
+      "ObjectId": 20082,
       "ParentId": 20000,
       "Position": {
-        "x": 1.88,
+        "x": 1.92,
         "y": 1.48,
         "z": 0.82
       },
@@ -1721,12 +2137,12 @@
     },
     {
       "Name": "Railing Post 0",
-      "ObjectId": 20067,
+      "ObjectId": 20083,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
+        "x": -1.9,
         "y": 0.6,
-        "z": 1.2
+        "z": 1.3
       },
       "Rotation": {
         "x": 0,
@@ -1741,18 +2157,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "4A505CFF",
+        "Color": "474D58FF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Railing Cap 0",
-      "ObjectId": 20068,
+      "ObjectId": 20084,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
+        "x": -1.9,
         "y": 1.12,
-        "z": 1.2
+        "z": 1.3
       },
       "Rotation": {
         "x": 0,
@@ -1773,12 +2189,12 @@
     },
     {
       "Name": "Railing Post 1",
-      "ObjectId": 20069,
+      "ObjectId": 20085,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
+        "x": -1.9,
         "y": 0.6,
-        "z": -1.2
+        "z": -1.3
       },
       "Rotation": {
         "x": 0,
@@ -1793,18 +2209,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "4A505CFF",
+        "Color": "474D58FF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Railing Cap 1",
-      "ObjectId": 20070,
+      "ObjectId": 20086,
       "ParentId": 20000,
       "Position": {
-        "x": -1.8,
+        "x": -1.9,
         "y": 1.12,
-        "z": -1.2
+        "z": -1.3
       },
       "Rotation": {
         "x": 0,
@@ -1825,12 +2241,12 @@
     },
     {
       "Name": "Railing Post 2",
-      "ObjectId": 20071,
+      "ObjectId": 20087,
       "ParentId": 20000,
       "Position": {
         "x": 0,
         "y": 0.6,
-        "z": -1.9
+        "z": -2.0
       },
       "Rotation": {
         "x": 0,
@@ -1845,18 +2261,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "4A505CFF",
+        "Color": "474D58FF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Railing Cap 2",
-      "ObjectId": 20072,
+      "ObjectId": 20088,
       "ParentId": 20000,
       "Position": {
         "x": 0,
         "y": 1.12,
-        "z": -1.9
+        "z": -2.0
       },
       "Rotation": {
         "x": 0,
@@ -1877,12 +2293,12 @@
     },
     {
       "Name": "Railing Post 3",
-      "ObjectId": 20073,
+      "ObjectId": 20089,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
+        "x": 1.9,
         "y": 0.6,
-        "z": -1.2
+        "z": -1.3
       },
       "Rotation": {
         "x": 0,
@@ -1897,18 +2313,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "4A505CFF",
+        "Color": "474D58FF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Railing Cap 3",
-      "ObjectId": 20074,
+      "ObjectId": 20090,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
+        "x": 1.9,
         "y": 1.12,
-        "z": -1.2
+        "z": -1.3
       },
       "Rotation": {
         "x": 0,
@@ -1929,12 +2345,12 @@
     },
     {
       "Name": "Railing Post 4",
-      "ObjectId": 20075,
+      "ObjectId": 20091,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
+        "x": 1.9,
         "y": 0.6,
-        "z": 1.2
+        "z": 1.3
       },
       "Rotation": {
         "x": 0,
@@ -1949,18 +2365,18 @@
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 2,
-        "Color": "4A505CFF",
+        "Color": "474D58FF",
         "PrimitiveFlags": 2
       }
     },
     {
       "Name": "Railing Cap 4",
-      "ObjectId": 20076,
+      "ObjectId": 20092,
       "ParentId": 20000,
       "Position": {
-        "x": 1.8,
+        "x": 1.9,
         "y": 1.12,
-        "z": 1.2
+        "z": 1.3
       },
       "Rotation": {
         "x": 0,
