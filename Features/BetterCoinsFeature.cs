@@ -15,7 +15,12 @@ using Random = UnityEngine.Random;
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Магическая монетка: телепортация в случайную комнату при подбрасывании.
+/// Магическая монетка (BetterCoins):
+/// Бесконечная телепортация в случайную безопасную комнату комплекса.
+/// Полностью исключены:
+/// - Ворота (Gate A, Gate B, Поверхность)
+/// - Комнаты с Tesla-воротами (HczTesla и любые комнаты с активными теслами)
+/// - Карманное измерение (Pocket)
 /// </summary>
 public sealed class BetterCoinsFeature
 {
@@ -79,7 +84,7 @@ public sealed class BetterCoinsFeature
             int roll = Random.Range(0, 100);
             if (roll < _config.TeleportChance)
             {
-                var validRooms = Room.List.Where(r => r.Type != RoomType.Pocket && r.Type != RoomType.Unknown).ToList();
+                var validRooms = Room.List.Where(IsValidTeleportRoom).ToList();
                 if (validRooms.Count > 0)
                 {
                     var targetRoom = validRooms[Random.Range(0, validRooms.Count)];
@@ -94,5 +99,45 @@ public sealed class BetterCoinsFeature
         }
 
         _teleportingPlayers.Remove(player.Id);
+    }
+
+    /// <summary>
+    /// Проверяет, пригодна ли комната для безопасной телепортации монетки.
+    /// Исключает гейты, теслы, поверхность и карманку.
+    /// </summary>
+    private static bool IsValidTeleportRoom(Room room)
+    {
+        if (room == null) return false;
+
+        // 1. Исключаем карманку, поверхность, неизвестные
+        if (room.Type is RoomType.Pocket or RoomType.Unknown or RoomType.Surface)
+            return false;
+
+        // 2. Исключаем Ворота (Gate A, Gate B)
+        if (room.Type is RoomType.EzGateA or RoomType.EzGateB)
+            return false;
+
+        // 3. Исключаем Теслы
+        if (room.Type is RoomType.HczTesla)
+            return false;
+
+        // 4. Проверяем расстояние до любых тесла-ворот на карте
+        try
+        {
+            if (Exiled.API.Features.TeslaGate.List != null && Exiled.API.Features.TeslaGate.List.Any(t => t != null && (t.Room == room || Vector3.Distance(t.Position, room.Position) < 20f)))
+                return false;
+        }
+        catch { }
+
+        // 5. Дополнительная фильтрация по названию
+        string name = room.Name ?? string.Empty;
+        if (name.IndexOf("gate", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("surface", StringComparison.OrdinalIgnoreCase) >= 0)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
