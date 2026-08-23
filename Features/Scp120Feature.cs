@@ -61,11 +61,6 @@ public sealed class Scp120Feature : IDisposable
         ItemType.Jailbird, ItemType.GunFRMG0, ItemType.GunLogicer, ItemType.SCP268, ItemType.SCP1344, ItemType.SCP500
     };
 
-    public List<ItemType> AmmoTypes { get; set; } = new()
-    {
-        ItemType.Ammo12gauge, ItemType.Ammo44cal, ItemType.Ammo556x45, ItemType.Ammo762x39, ItemType.Ammo9x19
-    };
-
     private readonly Dictionary<RoomType, Vector3> _targetRooms = new()
     {
         { RoomType.Lcz914, new Vector3(0f, 1f, 0f) },
@@ -270,17 +265,15 @@ public sealed class Scp120Feature : IDisposable
         // 1. Обычные предметы (монетка, фонарик, рация, карточка уборщика, аптечка)
         if (CommonItems.Contains(inputType))
         {
-            if (roll <= 10) return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
-            if (roll <= 55) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)]; // 45% Uncommon
-            if (roll <= 85) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 30% Good
-            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];                         // 15% Rare
+            if (roll <= 50) return UncommonItems[UnityEngine.Random.Range(0, UncommonItems.Count)]; // 50% Uncommon
+            if (roll <= 80) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 30% Good
+            return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];                         // 20% Rare
         }
 
         // 2. Необычные предметы (Учёный, COM-15, COM-18, SCP-207, Легкая броня)
         if (UncommonItems.Contains(inputType))
         {
-            if (roll <= 10) return AmmoTypes[UnityEngine.Random.Range(0, AmmoTypes.Count)];
-            if (roll <= 45) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 35% Good
+            if (roll <= 45) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 45% Good
             if (roll <= 85) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 40% Rare
             return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 15% VeryRare
         }
@@ -288,7 +281,7 @@ public sealed class Scp120Feature : IDisposable
         // 3. Хорошие предметы (Охранник, Боевая броня, FSP-9, Crossvec, Граната)
         if (GoodItems.Contains(inputType))
         {
-            if (roll <= 15) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];
+            if (roll <= 15) return GoodItems[UnityEngine.Random.Range(0, GoodItems.Count)];         // 15% Good
             if (roll <= 65) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 50% Rare
             return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 35% VeryRare
         }
@@ -296,11 +289,11 @@ public sealed class Scp120Feature : IDisposable
         // 4. Редкие предметы (МОГ Сержант, Тяжелая броня, E-11, AK, Дробовик, SCP-018)
         if (RareItems.Contains(inputType))
         {
-            if (roll <= 30) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 30% Rare
-            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 70% VeryRare
+            if (roll <= 25) return RareItems[UnityEngine.Random.Range(0, RareItems.Count)];         // 25% Rare
+            return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];                 // 75% VeryRare
         }
 
-        // 5. Легендарные / Очень редкие предметы (O5, MicroHID, SCP-500, Particle Disruptor)
+        // 5. Легендарные / Очень редкие предметы (O5, MicroHID, SCP-500, Particle Disruptor, Jailbird)
         if (VeryRareItems.Contains(inputType))
         {
             return VeryRareItems[UnityEngine.Random.Range(0, VeryRareItems.Count)];
