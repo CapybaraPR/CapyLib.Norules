@@ -92,12 +92,13 @@ public sealed class Scp120Feature : IDisposable
             var glassBox = Room.List.FirstOrDefault(r => r.Type == RoomType.LczGlassBox);
             if (glassBox != null)
             {
-                // Проверяем, не заспавнена ли уже
                 var existing = SchematicLoader.SpawnedSchematics.FirstOrDefault(s => s.Name.Equals(_config.SchematicName, StringComparison.OrdinalIgnoreCase));
                 if (existing == null)
                 {
-                    Vector3 spawnPos = glassBox.Position + Vector3.up * 0.1f;
-                    SchematicLoader.Spawn(_config.SchematicName, spawnPos, glassBox.Rotation);
+                    Vector3 localPos = new Vector3(_config.OffsetX, _config.OffsetY, _config.OffsetZ);
+                    Quaternion localRot = Quaternion.Euler(0f, _config.RotationY, 0f);
+
+                    MapManager.SpawnInRoom(glassBox, _config.SchematicName, localPos, localRot);
                 }
             }
         }

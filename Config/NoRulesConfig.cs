@@ -58,6 +58,18 @@ public sealed class Scp120Config
     [Description("Автоматически спавнить SCP-120 в GlassBox (LCZ) при старте раунда.")]
     public bool AutoSpawnInGlassBox { get; set; } = true;
 
+    [Description("Смещение позиции бассейна по оси X относительно центра комнаты GlassBox.")]
+    public float OffsetX { get; set; } = 0.0f;
+
+    [Description("Смещение позиции бассейна по оси Y относительно центра комнаты GlassBox.")]
+    public float OffsetY { get; set; } = 1.25f;
+
+    [Description("Смещение позиции бассейна по оси Z относительно центра комнаты GlassBox.")]
+    public float OffsetZ { get; set; } = -3.5f;
+
+    [Description("Поворот бассейна по оси Y относительно комнаты GlassBox.")]
+    public float RotationY { get; set; } = 0.0f;
+
     [Description("Кулдаун на телепортацию игрока в секундах.")]
     public float TeleportCooldown { get; set; } = 1.5f;
 
