@@ -103,14 +103,14 @@ public sealed class BetterCoinsFeature
 
     /// <summary>
     /// Проверяет, пригодна ли комната для безопасной телепортации монетки.
-    /// Исключает гейты, теслы, поверхность и карманку.
+    /// Исключает гейты, теслы и карманку. Поверхность (улица) разрешена.
     /// </summary>
     private static bool IsValidTeleportRoom(Room room)
     {
         if (room == null) return false;
 
-        // 1. Исключаем карманку, поверхность, неизвестные
-        if (room.Type is RoomType.Pocket or RoomType.Unknown or RoomType.Surface)
+        // 1. Исключаем карманку и неизвестные
+        if (room.Type is RoomType.Pocket or RoomType.Unknown)
             return false;
 
         // 2. Исключаем Ворота (Gate A, Gate B)
@@ -129,11 +129,10 @@ public sealed class BetterCoinsFeature
         }
         catch { }
 
-        // 5. Дополнительная фильтрация по названию
+        // 5. Дополнительная фильтрация по названию (гейты и теслы)
         string name = room.Name ?? string.Empty;
         if (name.IndexOf("gate", StringComparison.OrdinalIgnoreCase) >= 0 ||
-            name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0 ||
-            name.IndexOf("surface", StringComparison.OrdinalIgnoreCase) >= 0)
+            name.IndexOf("tesla", StringComparison.OrdinalIgnoreCase) >= 0)
         {
             return false;
         }
