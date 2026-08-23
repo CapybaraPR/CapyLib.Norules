@@ -1,12 +1,18 @@
+using System;
+using System.Globalization;
+using Capy.Engine.Hints;
 using Capy.Engine.Hints.Extensions;
 using Capy.NoRules.Config;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Система отображения хитмаркеров и урона при стрельбе через единый HUD.
+/// Система динамических хитмаркеров (всплывающий урон вокруг прицела и плашка "Убит!").
+/// В точности воспроизводит поведение хитмаркеров из Hazbin.
 /// </summary>
 public sealed class HitmarkerFeature
 {
@@ -22,10 +28,32 @@ public sealed class HitmarkerFeature
         if (!_config.IsEnabled || ev.Attacker == null || ev.Player == null || ev.Attacker == ev.Player)
             return;
 
-        if (_config.ShowDamageNumber && ev.Amount > 1f)
-        {
-            bool isKill = ev.Player.Health <= ev.Amount;
-            ev.Attacker.ShowHitmarker(ev.Amount, isKill);
-        }
+        if (ev.Amount <= 0f || ev.Player.IsGodModeEnabled)
+            return;
+
+        // Проверка Friendly Fire
+        if (!Server.FriendlyFire && ev.Attacker.Role.Side == ev.Player.Role.Side)
+            return;
+
+        float damage = (float)Math.Round(ev.Amount, 1);
+        int xOffset = Random.Range(-120, 120);
+        int yOffset = Random.Range(-40, 60);
+
+        string hitText = $"<align=center><voffset={yOffset}><pos={xOffset}><b><color=#ffffff>-{damage.ToString("0.#", CultureInfo.InvariantCulture)}</color></b></pos></voffset></align>";
+
+        ev.Attacker.ShowZoneHint(HintZone.BottomCenter, hitText, 1.5f, $"hit_{Random.Range(1, 1000)}", 20);
+    }
+
+    public void OnPlayerDied(DiedEventArgs ev)
+    {
+        if (!_config.IsEnabled || ev.Attacker == null || ev.Player == null || ev.Attacker == ev.Player)
+            return;
+
+        int xOffset = Random.Range(-100, 100);
+        int yOffset = Random.Range(20, 80);
+
+        string killText = $"<align=center><voffset={yOffset}><pos={xOffset}><b><color=#f24e4e><size=26>Убит!</size></color></b></pos></voffset></align>";
+
+        ev.Attacker.ShowZoneHint(HintZone.BottomCenter, killText, 2.5f, "kill_toast", 26);
     }
 }

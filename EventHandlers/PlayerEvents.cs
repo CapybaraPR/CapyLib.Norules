@@ -29,7 +29,12 @@ public sealed class PlayerEvents
     }
 
     public void OnHurting(HurtingEventArgs ev) => _hitmarkers.OnPlayerHurting(ev);
-    public void OnDied(DiedEventArgs ev) => _dotResKill.OnPlayerDeath(ev);
+    public void OnDied(DiedEventArgs ev)
+    {
+        _hitmarkers.OnPlayerDied(ev);
+        _dotResKill.OnPlayerDeath(ev);
+    }
+
     public void OnSpawned(SpawnedEventArgs ev) => _betterCoins.OnPlayerSpawned(ev);
     public void OnFlippingCoin(FlippingCoinEventArgs ev) => _betterCoins.OnFlippingCoin(ev);
     public void OnEscaping(EscapingEventArgs ev) => _betterEscape.OnPlayerEscaping(ev);
