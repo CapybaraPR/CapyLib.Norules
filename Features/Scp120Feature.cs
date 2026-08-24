@@ -30,12 +30,20 @@ public sealed class Scp120Feature : IDisposable
     private readonly Scp120Config _config;
     private CoroutineHandle _scanLoop;
     private CoroutineHandle _doorCloseLoop;
+    private CoroutineHandle _ambientLoop;
     private readonly HashSet<ushort> _activePickupSerials = new();
     private readonly HashSet<int> _teleportingPlayerIds = new();
 
     private DateTime _nextPlayerAllowedTeleportTime = DateTime.MinValue;
     private DateTime _nextItemAllowedTransformTime = DateTime.MinValue;
     private bool _isItemTransforming = false;
+
+    // Позиция бассейна для пространственного аудио
+    private Vector3? _poolAudioPosition;
+
+    private const string PoolAudioKey = "Capy120Pool";
+    private const string ClipPoolAmbient = "pool_soundtrack";
+    private const string ClipItemDrop = "droping_item_pool_soundtrack";
 
     // 1. Обычные предметы: расходники, свет, связь, базовые карточки
     public List<ItemType> CommonItems { get; set; } = new()
@@ -116,6 +124,7 @@ public sealed class Scp120Feature : IDisposable
         }
 
         _scanLoop = Timing.RunCoroutine(ScanPoolLoop());
+        _ambientLoop = Timing.RunCoroutine(PoolAmbientLoop());
     }
 
     private IEnumerator<float> DoorCloseCoroutine()
@@ -147,9 +156,15 @@ public sealed class Scp120Feature : IDisposable
         if (_doorCloseLoop.IsRunning)
             Timing.KillCoroutines(_doorCloseLoop);
 
+        if (_ambientLoop.IsRunning)
+            Timing.KillCoroutines(_ambientLoop);
+
         _activePickupSerials.Clear();
         _teleportingPlayerIds.Clear();
         _isItemTransforming = false;
+
+        DestroyPoolAudio();
+        _poolAudioPosition = null;
     }
 
     private IEnumerator<float> ScanPoolLoop()
@@ -162,6 +177,7 @@ public sealed class Scp120Feature : IDisposable
             if (schematic == null || schematic.IsDestroyed) continue;
 
             Vector3 poolPos = schematic.Position;
+            _poolAudioPosition = poolPos + Vector3.up * 0.3f;
             Vector2 poolPos2D = new Vector2(poolPos.x, poolPos.z);
 
             // 1. Проверка телепортации игроков (по одному с кд ~1 сек между игроками)
@@ -324,6 +340,9 @@ public sealed class Scp120Feature : IDisposable
         DisablePhysics(pickup);
         Vector3 splashPos = pickup.Position;
 
+        // Всплеск: предмет упал в аномальную воду
+        PlayPoolOnce(ClipItemDrop);
+
         // Вспышка и мгновенное растворение брошенного предмета в воде
         Map.ExplodeEffect(splashPos, ProjectileType.Flashbang);
         pickup.Destroy();
@@ -435,5 +454,63 @@ public sealed class Scp120Feature : IDisposable
     public void Dispose()
     {
         StopLoop();
+    }
+
+    // --- Аудио ---
+
+    private AudioPlayer? GetOrCreatePoolAudio()
+    {
+        if (_poolAudioPosition == null) return null;
+
+        try
+        {
+            return AudioPlayer.CreateOrGet(PoolAudioKey, onIntialCreation: p =>
+            {
+                var speaker = p.AddSpeaker("Main", isSpatial: true, minDistance: 2f, maxDistance: 18f, volume: 1f);
+                speaker.transform.position = _poolAudioPosition.Value;
+            });
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private void DestroyPoolAudio()
+    {
+        try
+        {
+            if (AudioPlayer.TryGet(PoolAudioKey, out var ap))
+                ap.Destroy();
+        }
+        catch { }
+    }
+
+    private void PlayPoolOnce(string clipName)
+    {
+        try
+        {
+            if (_poolAudioPosition == null || !AudioClipStorage.AudioClips.ContainsKey(clipName))
+                return;
+
+            if (GetOrCreatePoolAudio() is { } ap)
+                ap.AddClip(clipName, destroyOnEnd: true);
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Периодические "живые" звуки бассейна (всплески) — случайный интервал 25-50 секунд.
+    /// </summary>
+    private IEnumerator<float> PoolAmbientLoop()
+    {
+        while (true)
+        {
+            yield return Timing.WaitForSeconds(UnityEngine.Random.Range(25f, 50f));
+
+            if (_poolAudioPosition == null) continue;
+
+            PlayPoolOnce(ClipPoolAmbient);
+        }
     }
 }
