@@ -72,6 +72,63 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("19. Remote Keycard — карты доступа работают из любого слота инвентаря.")]
     public RemoteKeycardConfig RemoteKeycard { get; set; } = new();
+
+    [Description("20. Концепт «Отряд СО₂» — фракция МОГ с миссией затопления комплекса угарным газом.")]
+    public Co2Config Co2 { get; set; } = new();
+}
+
+public sealed class Co2Config
+{
+    [Description("Включен ли концепт «Отряд СО₂».")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Шанс замены волны МОГ на отряд СО₂ (в процентах), если условия выполнены.")]
+    public int ChancePercent { get; set; } = 50;
+
+    [Description("Минимум спектаторов для формирования отряда.")]
+    public int MinSpectators { get; set; } = 4;
+
+    [Description("Максимальный размер отряда.")]
+    public int SquadSizeMax { get; set; } = 10;
+
+    [Description("Требовать сбежавших учёных для спавна отряда.")]
+    public bool RequireEscapedScientists { get; set; } = true;
+
+    [Description("Радиус взаимодействия с панелями (метры). Нажмите [E] рядом.")]
+    public float PanelRadius { get; set; } = 2.5f;
+
+    [Description("Смещение панелей относительно центра HID-комнаты по X.")]
+    public float OffsetX { get; set; } = 0f;
+
+    [Description("Смещение панелей относительно центра HID-комнаты по Y.")]
+    public float OffsetY { get; set; } = 1.43f;
+
+    [Description("Смещение панелей относительно центра HID-комнаты по Z.")]
+    public float OffsetZ { get; set; } = -7.08f;
+
+    [Description("Сколько секунд нужно удерживать активацию панели.")]
+    public float ActivateConfirmSeconds { get; set; } = 2f;
+
+    [Description("Задержка перед началом отравления после активации (секунды).")]
+    public float PoisonDelaySeconds { get; set; } = 160f;
+
+    [Description("Пауза между объявлением герметизации и началом урона (секунды).")]
+    public float PoisonGraceSeconds { get; set; } = 36f;
+
+    [Description("Урон от отравления CO2 в секунду (не-SCP игрокам).")]
+    public float PoisonDamagePerSecond { get; set; } = 10f;
+
+    [Description("Сколько секунд после начала отравления до конца раунда.")]
+    public float EndAfterPoisonSeconds { get; set; } = 60f;
+
+    [Description("Опыт за успешную активацию (без делителя).")]
+    public float MissionXp { get; set; } = 500f;
+
+    [Description("CASSIE-сообщение при активации.")]
+    public string CassieActivate { get; set; } = "DANGER . DANGER . FACILITY GAS LEAK DETECTED . ALL PERSONNEL EVACUATE IMMEDIATELY";
+
+    [Description("CASSIE-сообщение при отмене.")]
+    public string CassieCancel { get; set; } = "GAS LEAK CONTAINED . FACILITY SECURE";
 }
 
 public sealed class Scp1162Config
