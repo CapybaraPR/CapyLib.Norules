@@ -65,7 +65,35 @@ public sealed class PlayerXpFeature
         Exiled.Events.Handlers.Player.InteractingDoor += OnInteractingDoor;
         Exiled.Events.Handlers.Server.RestartingRound += OnRestartingRound;
 
+        CleanupInvalidRecords();
+
         RegisterBridgeHooks();
+    }
+
+    /// <summary>
+    /// Удаляет записи с некорректными UserId (созданные старыми командами без резолва игрока).
+    /// Валидный UserId всегда содержит '@' (например, "76561198...@steam").
+    /// </summary>
+    private static void CleanupInvalidRecords()
+    {
+        try
+        {
+            var db = Db;
+            if (db == null) return;
+
+            foreach (var model in db.GetAllPlayers())
+            {
+                if (!string.IsNullOrEmpty(model.Id) && !model.Id.Contains('@'))
+                {
+                    db.DeletePlayer(model.Id);
+                    Log.Warn($"[PlayerXp] Удалена битая запись опыта: '{model.Id}' ({model.Xp:F0} XP)");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"[PlayerXp] Ошибка очистки записей: {ex.Message}");
+        }
     }
 
     public void Disable()
@@ -113,9 +141,10 @@ public sealed class PlayerXpFeature
 
         AddRawXp(player.UserId, player.Nickname, exp);
 
-        player.ShowZoneHint(HintZone.Notification,
-            $"<b>Вы получили <color=#ffe91f>{Math.Round(exp, 2)}</color> опыта!</b>",
-            2.4f, "xp", 24);
+        // Правый нижний угол (зеркально полоске HP); быстрый спам наград просто обновляет текст
+        player.ShowZoneHint(HintZone.LowerRight,
+            $"<b>Вы получили <color=#ffe91f>+{Math.Round(exp, 2)}</color> опыта!</b>",
+            2.5f, "xp", 24);
 
         ApplyLevelBadge(player);
     }

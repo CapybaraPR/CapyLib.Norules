@@ -100,6 +100,9 @@ public sealed class PlayerXpConfig
     [Description("Опыт за один тик жизни.")]
     public float AliveXpAmount { get; set; } = 1f;
 
+    [Description("Начислять ли опыт игрокам с включённым 'Do Not Track' (по умолчанию — нет, как в оригинале).")]
+    public bool AwardDnt { get; set; } = false;
+
     [Description("Текст уровня для неизвестных/DNT игроков.")]
     public string UnknownText { get; set; } = "Неизвестно";
 
