@@ -142,6 +142,10 @@ public sealed class Scp294Feature
     private Vector3? _machinePosition;
     private bool _enabled;
 
+    private const string MachineAudioKey = "Capy294Machine";
+    private const string ClipMaking = "making";
+    private const string ClipDontMake = "dontmake";
+
     public Scp294Feature(Scp294Config config)
     {
         _config = config;
@@ -185,6 +189,95 @@ public sealed class Scp294Feature
         _trackedCups.Clear();
         _preparingPlayers.Clear();
         _machinePosition = null;
+
+        DestroyMachineAudio();
+    }
+
+    // --- Аудио ---
+
+    private AudioPlayer? GetOrCreateMachineAudio()
+    {
+        if (_machinePosition == null) return null;
+
+        try
+        {
+            return AudioPlayer.CreateOrGet(MachineAudioKey, onIntialCreation: p =>
+            {
+                var speaker = p.AddSpeaker("Main", isSpatial: true, minDistance: 1f, maxDistance: 15f, volume: 1f);
+                speaker.transform.position = _machinePosition.Value;
+            });
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private void DestroyMachineAudio()
+    {
+        try
+        {
+            if (AudioPlayer.TryGet(MachineAudioKey, out var ap))
+                ap.Destroy();
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Пространственный звук кофемашины (идёт пока напиток готовится).
+    /// </summary>
+    private void StartMakingSound()
+    {
+        try
+        {
+            if (AudioClipStorage.AudioClips.ContainsKey(ClipMaking) && GetOrCreateMachineAudio() is { } ap)
+                ap.AddClip(ClipMaking, destroyOnEnd: false);
+        }
+        catch { }
+    }
+
+    private void StopMakingSound()
+    {
+        try
+        {
+            if (AudioPlayer.TryGet(MachineAudioKey, out var ap))
+                ap.RemoveClipByName(ClipMaking);
+        }
+        catch { }
+    }
+
+    /// <summary>
+    /// Голосовая подсказка лично игроку (не выбран напиток).
+    /// </summary>
+    private static void PlayDontMakeSound(Player player)
+    {
+        try
+        {
+            if (player == null || !player.IsConnected || !AudioClipStorage.AudioClips.ContainsKey(ClipDontMake))
+                return;
+
+            string key = $"Capy294Voice_{player.Id}";
+            var ap = AudioPlayer.CreateOrGet(key, onIntialCreation: p =>
+            {
+                p.transform.parent = player.GameObject.transform;
+                var speaker = p.AddSpeaker("Main", isSpatial: false, volume: 1f);
+                speaker.transform.parent = player.Transform;
+                speaker.transform.localPosition = Vector3.zero;
+            });
+
+            ap.AddClip(ClipDontMake, destroyOnEnd: true);
+
+            Timing.CallDelayed(12f, () =>
+            {
+                try
+                {
+                    if (AudioPlayer.TryGet(key, out var stale) && stale.ClipsById.Count == 0)
+                        stale.Destroy();
+                }
+                catch { }
+            });
+        }
+        catch { }
     }
 
     private void OnRoundStarted()
@@ -251,6 +344,7 @@ public sealed class Scp294Feature
         if (!_selectedDrink.TryGetValue(player.UserId, out int drinkIndex))
         {
             player.ShowZoneHint(HintZone.Notification, "<color=#facc15>Вы не выбрали напиток!\nПропишите в консоли [~]: <b>.drink</b></color>", 3f, "scp294", 20);
+            PlayDontMakeSound(player);
             return;
         }
 
@@ -272,6 +366,7 @@ public sealed class Scp294Feature
 
         // Машина готовит напиток 5 секунд; если игрок отойдёт — приготовление отменяется
         _preparingPlayers.Add(player.Id);
+        StartMakingSound();
         Timing.RunCoroutine(PrepareDrinkCoroutine(player, drinkIndex));
     }
 
@@ -312,6 +407,7 @@ public sealed class Scp294Feature
         }
         finally
         {
+            StopMakingSound();
             _preparingPlayers.Remove(player.Id);
         }
     }

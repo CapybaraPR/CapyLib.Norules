@@ -80,5 +80,9 @@
             <HintPath>..\CapyLib\_deps\Mirror.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="AudioPlayerApi">
+            <HintPath>..\CapyLib\_deps\AudioPlayerApi.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
     </ItemGroup>
 </Project>
