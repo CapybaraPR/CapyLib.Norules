@@ -57,6 +57,119 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("14. Настройки системы опыта и уровней игроков (синхронизируется с Discord).")]
     public PlayerXpConfig PlayerXp { get; set; } = new();
+
+    [Description("15. SCP-1162 (дыра в камере 173 — суешь предмет, получаешь случайный).")]
+    public Scp1162Config Scp1162 { get; set; } = new();
+
+    [Description("16. Глобальный чат через .say (сообщения выводятся всем в HUD).")]
+    public ChatSayConfig ChatSay { get; set; } = new();
+
+    [Description("17. Голосование за рестарт раунда (.vote).")]
+    public CallVoteConfig CallVote { get; set; } = new();
+
+    [Description("18. Смена SCP-роли командой .swap в начале раунда.")]
+    public ScpSwapConfig ScpSwap { get; set; } = new();
+
+    [Description("19. Remote Keycard — карты доступа работают из любого слота инвентаря.")]
+    public RemoteKeycardConfig RemoteKeycard { get; set; } = new();
+}
+
+public sealed class Scp1162Config
+{
+    [Description("Включен ли SCP-1162.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Имя схематики дыры.")]
+    public string SchematicName { get; set; } = "SCP1162";
+
+    [Description("Смещение дыры относительно центра комнаты по X.")]
+    public float OffsetX { get; set; } = 0f;
+
+    [Description("Смещение позиции дыры относительно центра комнаты по Y.")]
+    public float OffsetY { get; set; } = 0f;
+
+    [Description("Смещение позиции дыры относительно центра комнаты по Z.")]
+    public float OffsetZ { get; set; } = 0f;
+
+    [Description("Радиус взаимодействия с дырой (метры). Нажмите [E], стоя рядом.")]
+    public float InteractRadius { get; set; } = 1.8f;
+
+    [Description("Шанс неудачи (урон и предмет остаётся) в процентах.")]
+    public int FailChancePercent { get; set; } = 5;
+
+    [Description("Урон при неудаче.")]
+    public float FailDamage { get; set; } = 30f;
+
+    [Description("Белый список предметов, которые можно получить из дыры.")]
+    public List<ItemType> AllowedItems { get; set; } = new()
+    {
+        ItemType.KeycardJanitor, ItemType.KeycardScientist, ItemType.KeycardResearchCoordinator,
+        ItemType.KeycardZoneManager, ItemType.KeycardGuard, ItemType.KeycardContainmentEngineer,
+        ItemType.KeycardMTFPrivate, ItemType.KeycardMTFOperative, ItemType.KeycardMTFCaptain,
+        ItemType.KeycardFacilityManager, ItemType.KeycardChaosInsurgency,
+        ItemType.Radio, ItemType.GunCOM15, ItemType.Medkit, ItemType.Flashlight,
+        ItemType.SCP500, ItemType.SCP207, ItemType.GrenadeHE, ItemType.GrenadeFlash,
+        ItemType.GunFSP9, ItemType.SCP018, ItemType.SCP268, ItemType.Adrenaline,
+        ItemType.Painkillers, ItemType.Coin, ItemType.SCP2176, ItemType.SCP1853,
+        ItemType.AntiSCP207, ItemType.Lantern
+    };
+}
+
+public sealed class ChatSayConfig
+{
+    [Description("Включен ли глобальный чат .say.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Сколько последних сообщений показывать в HUD.")]
+    public int HistorySize { get; set; } = 6;
+
+    [Description("Сколько секунд сообщения висят на экране.")]
+    public float MessageLifetime { get; set; } = 12f;
+
+    [Description("Кулдаун между сообщениями одного игрока (секунды).")]
+    public float CooldownSeconds { get; set; } = 3f;
+
+    [Description("Максимальная длина сообщения.")]
+    public int MaxLength { get; set; } = 160;
+}
+
+public sealed class CallVoteConfig
+{
+    [Description("Включено ли голосование за рестарт раунда.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Длительность голосования (секунды).")]
+    public float DurationSeconds { get; set; } = 30f;
+
+    [Description("Кулдаун между голосованиями (секунды, глобальный).")]
+    public float CooldownSeconds { get; set; } = 60f;
+
+    [Description("Минимум живых игроков для старта голосования.")]
+    public int MinimumAlivePlayers { get; set; } = 4;
+}
+
+public sealed class ScpSwapConfig
+{
+    [Description("Включен ли .swap для SCP.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Сколько секунд с начала раунда доступна смена роли.")]
+    public float WindowSeconds { get; set; } = 90f;
+}
+
+public sealed class RemoteKeycardConfig
+{
+    [Description("Включен ли Remote Keycard.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Работают ли карты для дверей.")]
+    public bool AllowDoors { get; set; } = true;
+
+    [Description("Работают ли карты для шкафчиков.")]
+    public bool AllowLockers { get; set; } = true;
+
+    [Description("Показывать подсказку при открытии картой не из рук.")]
+    public bool ShowHint { get; set; } = true;
 }
 
 public sealed class FacilityAuthConfig
@@ -266,6 +379,9 @@ public sealed class PinkCandyConfig
 
     [Description("Шанс получения розовой конфеты в процентах (0 - 100).")]
     public int PinkCandyChance { get; set; } = 35;
+
+    [Description("Бонус к шансу за каждую ранее съеденную розовую конфету в этом раунде (в процентах).")]
+    public int ProgressiveBonusPercent { get; set; } = 25;
 }
 
 public sealed class BetterCoinsConfig

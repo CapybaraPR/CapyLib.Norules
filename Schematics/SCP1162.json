@@ -1,0 +1,317 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "Hole Abyss",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.02,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.4,
+        "y": 0.02,
+        "z": 1.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "050208FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Hole Depth Core",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -0.15,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.9,
+        "y": 0.25,
+        "z": 1.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "020106FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rim Glow Front",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.03,
+        "z": 0.92
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 0.04,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7C3AEDCC",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rim Glow Back",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.03,
+        "z": -0.92
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 0.04,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7C3AEDCC",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rim Glow Left",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.72,
+        "y": 0.03,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.04,
+        "z": 1.9
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7C3AEDCC",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rim Glow Right",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.72,
+        "y": 0.03,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.04,
+        "z": 1.9
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7C3AEDCC",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Frame Plate Top",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.035,
+        "z": 1.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.9,
+        "y": 0.05,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3E3428FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame Plate Bottom",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.035,
+        "z": -1.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.9,
+        "y": 0.05,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3E3428FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame Plate Left",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.88,
+        "y": 0.035,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.05,
+        "z": 2.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "453A2DFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame Plate Right",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.88,
+        "y": 0.035,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.05,
+        "z": 2.28
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "453A2DFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Bone Debris 1",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.5,
+        "y": 0.06,
+        "z": 0.55
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 30,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.25,
+        "y": 0.03,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "B8AC98FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Bone Debris 2",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.45,
+        "y": 0.06,
+        "z": -0.6
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -45,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.2,
+        "y": 0.03,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A89C88FF",
+        "PrimitiveFlags": 3
+      }
+    }
+  ]
+}
