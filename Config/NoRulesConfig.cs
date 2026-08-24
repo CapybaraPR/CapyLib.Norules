@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Interfaces;
 using PlayerRoles;
@@ -118,7 +118,7 @@ public sealed class Scp294Config
     [Description("Имя схематики кофемашины.")]
     public string SchematicName { get; set; } = "SCP294";
 
-    [Description("Комната, в которую спавнится машина при старте раунда (EzUpstairsPcs = большой двухэтажный офис).")]
+    [Description("Комната, в которую спавнится машина при старте раунда большой двухэтажный офис EZ.")]
     public Exiled.API.Enums.RoomType SpawnRoom { get; set; } = Exiled.API.Enums.RoomType.EzUpstairsPcs;
 
     [Description("Смещение позиции машины относительно центра комнаты по X.")]
