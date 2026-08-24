@@ -470,7 +470,7 @@ public sealed class Scp120Feature : IDisposable
         {
             return AudioPlayer.CreateOrGet(PoolAudioKey, onIntialCreation: p =>
             {
-                var speaker = p.AddSpeaker("Main", isSpatial: true, minDistance: 2f, maxDistance: 18f, volume: 1f);
+                var speaker = p.AddSpeaker("Main", isSpatial: true, minDistance: 2f, maxDistance: 35f, volume: 2f);
                 speaker.transform.position = _poolAudioPosition.Value;
             });
         }

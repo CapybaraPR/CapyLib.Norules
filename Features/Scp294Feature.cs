@@ -203,7 +203,7 @@ public sealed class Scp294Feature
         {
             return AudioPlayer.CreateOrGet(MachineAudioKey, onIntialCreation: p =>
             {
-                var speaker = p.AddSpeaker("Main", isSpatial: true, minDistance: 1f, maxDistance: 15f, volume: 1f);
+                var speaker = p.AddSpeaker("Main", isSpatial: true, minDistance: 1f, maxDistance: 30f, volume: 2f);
                 speaker.transform.position = _machinePosition.Value;
             });
         }
@@ -260,7 +260,7 @@ public sealed class Scp294Feature
             var ap = AudioPlayer.CreateOrGet(key, onIntialCreation: p =>
             {
                 p.transform.parent = player.GameObject.transform;
-                var speaker = p.AddSpeaker("Main", isSpatial: false, volume: 1f);
+                var speaker = p.AddSpeaker("Main", isSpatial: false, volume: 1.5f);
                 speaker.transform.parent = player.Transform;
                 speaker.transform.localPosition = Vector3.zero;
             });
