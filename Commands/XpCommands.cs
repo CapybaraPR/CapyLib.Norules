@@ -28,18 +28,17 @@ public sealed class GiveXpCommand : ICommand
             return false;
         }
 
-        var db = NoRulesPlugin.Instance?.PlayerXp?.Database;
-        if (db == null)
+        var feature = NoRulesPlugin.Instance?.PlayerXp;
+        if (feature == null || !feature.IsEnabled())
         {
             response = "Система опыта выключена.";
             return false;
         }
 
-        db.EnsurePlayer(userId, db.GetNickname(userId) ?? string.Empty);
-        db.GiveXp(userId, amount);
+        feature.SetRawXp(userId, string.Empty, feature.GetXp(userId) + amount);
 
-        var level = db.GetLevel(userId);
-        response = $"Выдано {userId} {amount} опыта. Уровень: {(level != null ? $"{level.Text} ({db.GetXp(userId):F1} XP)" : "—")}";
+        var level = feature.GetLevelFor(userId);
+        response = $"Выдано {userId} {amount} опыта. Итого: {feature.GetXp(userId):F1} XP{(level != null ? $", уровень: {level.Text}" : "")}.";
         return true;
     }
 }
@@ -67,16 +66,14 @@ public sealed class SetXpCommand : ICommand
             return false;
         }
 
-        var db = NoRulesPlugin.Instance?.PlayerXp?.Database;
-        if (db == null)
+        var feature = NoRulesPlugin.Instance?.PlayerXp;
+        if (feature == null || !feature.IsEnabled())
         {
             response = "Система опыта выключена.";
             return false;
         }
 
-        db.EnsurePlayer(userId, db.GetNickname(userId) ?? string.Empty);
-        db.SetXp(userId, amount);
-
+        feature.SetRawXp(userId, string.Empty, amount);
         response = $"Установлено {userId} {amount} опыта.";
         return true;
     }
@@ -99,21 +96,21 @@ public sealed class CheckXpCommand : ICommand
         }
 
         string userId = arguments.At(0);
-        var db = NoRulesPlugin.Instance?.PlayerXp?.Database;
-        if (db == null)
+        var feature = NoRulesPlugin.Instance?.PlayerXp;
+        if (feature == null || !feature.IsEnabled())
         {
             response = "Система опыта выключена.";
             return false;
         }
 
-        if (!db.Contains(userId))
+        if (!feature.HasRecord(userId))
         {
             response = $"Игрок {userId} не найден в базе опыта.";
             return false;
         }
 
-        float xp = db.GetXp(userId);
-        var level = db.GetLevel(userId);
+        float xp = feature.GetXp(userId);
+        var level = feature.GetLevelFor(userId);
         response = $"У игрока {userId} {xp:F1} опыта{(level != null ? $", уровень: {level.Text}" : "")}.";
         return true;
     }

@@ -22,7 +22,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public override string Name => "CapyLib.NoRules";
     public override string Author => "CapybaraPR";
     public override string Prefix => "norules";
-    public override Version Version => new(1, 3, 0);
+    public override Version Version => new(1, 3, 1);
     public override Version RequiredExiledVersion => new(8, 9, 0);
 
     public static NoRulesPlugin Instance { get; private set; } = null!;

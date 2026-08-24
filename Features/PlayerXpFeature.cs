@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Capy.API.DiscordBridge;
+using Capy.Core.Database.Models;
 using Capy.Engine.Hints;
 using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
 using Capy.NoRules.Config;
 using Capy.NoRules.Features.Models;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items;
 using MEC;
 using PlayerRoles;
-using Exiled.API.Enums;
 
 namespace Capy.NoRules.Features;
 
@@ -21,11 +23,12 @@ namespace Capy.NoRules.Features;
 /// Система опыта и уровней игроков (порт Hazbin.NoRules.PlayerXp на EXILED).
 /// Опыт начисляется за игровые действия, уровень отображается над ником и
 /// синхронизируется с Discord через Bridge API (v1/xp).
+/// Хранение — общая БД CapyLib (PlayerDataModel.Xp), вместе со статистикой и .top.
 /// </summary>
 public sealed class PlayerXpFeature
 {
     private readonly PlayerXpConfig _config;
-    private XpDatabase? _database;
+    private XpLevelStore? _levels;
     private bool _enabled;
 
     // Активные корутины начисления за жизнь: userId -> handle
@@ -36,15 +39,20 @@ public sealed class PlayerXpFeature
         _config = config;
     }
 
-    public XpDatabase? Database => _database;
+    public XpLevelStore? Levels => _levels;
+
+    private static Capy.Core.Database.IDatabaseProvider? Db => CapyPlugin.Instance?.Database;
+
+    /// <summary>Включена ли система (для команд).</summary>
+    public bool IsEnabled() => _enabled;
 
     public void Enable()
     {
         if (_enabled || !_config.IsEnabled) return;
         _enabled = true;
 
-        string dir = System.IO.Path.Combine(Exiled.API.Features.Paths.Configs, "CapyLib", "PlayerXp");
-        _database = new XpDatabase(dir);
+        string dir = Path.Combine(Exiled.API.Features.Paths.Configs, "CapyLib", "PlayerXp");
+        _levels = new XpLevelStore(dir);
 
         Exiled.Events.Handlers.Player.Joined += OnJoined;
         Exiled.Events.Handlers.Player.Left += OnLeft;
@@ -82,18 +90,17 @@ public sealed class PlayerXpFeature
             Timing.KillCoroutines(handle);
 
         _aliveCoroutines.Clear();
-        _database?.Dispose();
-        _database = null;
+        _levels = null;
     }
 
     // --- Начисление ---
 
     /// <summary>
-    /// Начисляет опыт игроку (с делителем и множителем тега) и обновляет HUD.
+    /// Начисляет опыт игроку (с делителем и множителем тега) и обновляет HUD/БД.
     /// </summary>
     public void GiveXp(Player player, float exp)
     {
-        if (_database == null || player == null || player.DoNotTrack || !player.IsConnected)
+        if (player == null || player.DoNotTrack || !player.IsConnected || !player.IsVerified)
             return;
 
         exp /= Math.Max(0.01f, _config.XpDivisor);
@@ -104,14 +111,72 @@ public sealed class PlayerXpFeature
             exp *= _config.TaggedMultiplier;
         }
 
-        _database.EnsurePlayer(player.UserId, player.Nickname);
-        _database.GiveXp(player.UserId, exp);
+        AddRawXp(player.UserId, player.Nickname, exp);
 
         player.ShowZoneHint(HintZone.Notification,
             $"<b>Вы получили <color=#ffe91f>{Math.Round(exp, 2)}</color> опыта!</b>",
             2.4f, "xp", 24);
 
         ApplyLevelBadge(player);
+    }
+
+    private static void AddRawXp(string userId, string nickname, float amount)
+    {
+        try
+        {
+            var db = Db;
+            if (db == null || string.IsNullOrWhiteSpace(userId)) return;
+
+            PlayerDataModel model = db.GetPlayer(userId) ?? new PlayerDataModel { Id = userId };
+            model.LastNickname = !string.IsNullOrWhiteSpace(nickname) ? nickname : model.LastNickname;
+            model.Xp += amount;
+            model.LastSeen = DateTime.UtcNow;
+            db.SavePlayer(model);
+        }
+        catch (Exception ex)
+        {
+            Log.Debug($"[PlayerXp] AddRawXp: {ex.Message}");
+        }
+    }
+
+    public float GetXp(string userId)
+    {
+        return Db?.GetPlayer(userId)?.Xp ?? 0f;
+    }
+
+    public bool HasRecord(string userId)
+    {
+        return Db?.GetPlayer(userId) != null;
+    }
+
+    /// <summary>
+    /// Устанавливает точное количество опыта (админ-команда).
+    /// </summary>
+    public void SetRawXp(string userId, string nickname, float amount)
+    {
+        try
+        {
+            var db = Db;
+            if (db == null || string.IsNullOrWhiteSpace(userId)) return;
+
+            PlayerDataModel model = db.GetPlayer(userId) ?? new PlayerDataModel { Id = userId };
+            model.LastNickname = !string.IsNullOrWhiteSpace(nickname) ? nickname : model.LastNickname;
+            model.Xp = amount;
+            model.LastSeen = DateTime.UtcNow;
+            db.SavePlayer(model);
+        }
+        catch (Exception ex)
+        {
+            Log.Debug($"[PlayerXp] SetRawXp: {ex.Message}");
+        }
+    }
+
+    public XpLevel? GetLevelFor(string userId)
+    {
+        if (_levels == null || Db == null) return null;
+
+        var model = Db.GetPlayer(userId);
+        return model == null ? null : _levels.GetLevelForXp(model.Xp);
     }
 
     /// <summary>
@@ -121,8 +186,7 @@ public sealed class PlayerXpFeature
     {
         try
         {
-            if (player == null || !player.IsConnected) return;
-            if (_database == null) return;
+            if (player == null || !player.IsConnected || _levels == null) return;
 
             string nickname = player.Nickname.Replace('[', '(').Replace(']', ')');
 
@@ -132,7 +196,7 @@ public sealed class PlayerXpFeature
             }
             else
             {
-                var level = _database.GetLevel(player.UserId);
+                var level = GetLevelFor(player.UserId);
                 string text = level != null
                     ? $"<color={level.ColorHex}>{level.Text}</color>"
                     : $"<color={_config.UnknownColorHex}>{_config.UnknownText}</color>";
@@ -152,11 +216,9 @@ public sealed class PlayerXpFeature
 
     private void OnJoined(JoinedEventArgs ev)
     {
-        if (_database == null || ev.Player == null || ev.Player.DoNotTrack)
-            return;
+        if (ev.Player == null || ev.Player.DoNotTrack) return;
 
-        _database.EnsurePlayer(ev.Player.UserId, ev.Player.Nickname);
-
+        AddRawXp(ev.Player.UserId, ev.Player.Nickname, 0f); // создаёт запись и обновляет ник
         Timing.CallDelayed(0.45f, () => ApplyLevelBadge(ev.Player));
     }
 
@@ -170,7 +232,7 @@ public sealed class PlayerXpFeature
 
     private void OnChangingRole(ChangingRoleEventArgs ev)
     {
-        if (ev.Player == null || _database == null) return;
+        if (ev.Player == null) return;
 
         ApplyLevelBadge(ev.Player);
 
@@ -268,8 +330,6 @@ public sealed class PlayerXpFeature
             Timing.KillCoroutines(handle);
 
         _aliveCoroutines.Clear();
-        _database?.Dispose();
-        _database = new XpDatabase(System.IO.Path.Combine(Exiled.API.Features.Paths.Configs, "CapyLib", "PlayerXp"));
     }
 
     private IEnumerator<float> AliveCoroutine(Player player)
@@ -290,29 +350,32 @@ public sealed class PlayerXpFeature
     {
         BridgeXpRegistry.GetXp = userId =>
         {
-            if (_database == null) return null;
-            float xp = _database.GetXp(userId);
-            var level = _database.GetLevel(userId);
+            if (_levels == null || Db == null) return null;
+
+            var model = Db.GetPlayer(userId);
+            if (model == null) return null;
+
+            var level = _levels.GetLevelForXp(model.Xp);
             return new XpSnapshot
             {
-                Xp = xp,
-                LevelText = level?.Text ?? _config.UnknownText,
-                LevelColor = level?.ColorHex ?? _config.UnknownColorHex
+                Xp = model.Xp,
+                LevelText = level.Text,
+                LevelColor = level.ColorHex
             };
         };
 
         BridgeXpRegistry.GetLeaderboard = count =>
         {
-            if (_database == null) return null;
+            if (_levels == null || Db == null) return null;
 
-            return _database.GetTop(count)
-                .Select(e => new XpLeaderboardEntry
+            return Db.GetTopPlayers(nameof(PlayerDataModel.Xp), count)
+                .Select(m => new XpLeaderboardEntry
                 {
-                    UserId = e.Record.UserId,
-                    Nickname = e.Record.Nickname,
-                    Xp = e.Record.Xp,
-                    LevelText = e.Level.Text,
-                    LevelColor = e.Level.ColorHex
+                    UserId = m.Id,
+                    Nickname = m.LastNickname,
+                    Xp = m.Xp,
+                    LevelText = _levels.GetLevelForXp(m.Xp).Text,
+                    LevelColor = _levels.GetLevelForXp(m.Xp).ColorHex
                 })
                 .ToList();
         };
