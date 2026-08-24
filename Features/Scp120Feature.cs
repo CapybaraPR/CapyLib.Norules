@@ -44,6 +44,7 @@ public sealed class Scp120Feature : IDisposable
     private const string PoolAudioKey = "Capy120Pool";
     private const string ClipPoolAmbient = "pool_soundtrack";
     private const string ClipItemDrop = "droping_item_pool_soundtrack";
+    private const string ClipPlayerSink = "human_falls_into_pool";
 
     // 1. Обычные предметы: расходники, свет, связь, базовые карточки
     public List<ItemType> CommonItems { get; set; } = new()
@@ -275,6 +276,9 @@ public sealed class Scp120Feature : IDisposable
             }
 
             Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
+
+            // Всплеск: игрок уходит в аномалию (звук играет у бассейна)
+            PlayPoolOnce(ClipPlayerSink);
 
             try
             {
