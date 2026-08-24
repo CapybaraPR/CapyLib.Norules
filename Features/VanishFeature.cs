@@ -17,7 +17,7 @@ using UnityEngine;
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// Сохраненное состояние игрока до входа в режим свободного наблюдателя (Vanish).
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Vanish).
 /// </summary>
 public sealed class VanishSavedState
 {
@@ -25,19 +25,19 @@ public sealed class VanishSavedState
     public bool NoclipPermitted { get; set; }
     public int TargetPlayerIndex { get; set; } = 0;
 
-    // Сохранённое состояние изоляции — восстанавливается при выходе из vanish,
-    // чтобы игрок не мог снять с себя админский мут или слетевший godmode
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ vanish,
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ godmode
     public bool WasMuted { get; set; }
     public bool WasGodMode { get; set; }
 }
 
 /// <summary>
-/// Режим свободного наблюдателя (Vanish):
-/// 1. Вход разрешен только из роли Spectator (возврат в Spectator).
-/// 2. Спавн в башне на Поверхности (Surface Tower) в роли Tutorial.
-/// 3. Навигационная монетка (ЛКМ - след., ПКМ - пред.) и карта Хаоса (Змейка).
-/// 4. Динамический HUD способностей над полоской HP (в общем цикле без мерцания).
-/// 5. Полная физическая (пули летят насквозь), сетевая и логическая изоляция (VanishIsolationHandler).
+/// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Vanish):
+/// 1. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ Spectator (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Spectator).
+/// 2. пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Surface Tower) пїЅ пїЅпїЅпїЅпїЅ Tutorial.
+/// 3. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ., пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ.) пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ).
+/// 4. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HUD пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HP (пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
+/// 5. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (VanishIsolationHandler).
 /// </summary>
 public sealed class VanishFeature
 {
@@ -47,7 +47,7 @@ public sealed class VanishFeature
     public static bool IsVanished(Player? player) => player != null && VanishedStates.ContainsKey(player.Id);
 
     /// <summary>
-    /// Сохранённое состояние vanish-игрока (для изоляции/восстановления).
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ vanish-пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
     /// </summary>
     public static VanishSavedState GetSavedState(Player player)
     {
@@ -75,27 +75,27 @@ public sealed class VanishFeature
     {
         if (player == null || !player.IsConnected)
         {
-            response = "Игрок не подключен.";
+            response = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.";
             return false;
         }
 
         if (IsVanished(player))
         {
             DisableVanish(player);
-            response = $"<color=yellow>[VANISH]</color> Режим свободного наблюдателя для <b>{player.Nickname}</b> выключен (возврат в Spectator).";
+            response = $"<color=yellow>[VANISH]</color> пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ <b>{player.Nickname}</b> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Spectator).";
             return true;
         }
         else
         {
-            // Разрешено входить ТОЛЬКО из роли Spectator!
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ Spectator!
             if (player.Role.Type != RoleTypeId.Spectator)
             {
-                response = "<color=red>[ОШИБКА]</color> Режим свободного наблюдателя (Vanish) можно включить <b>только находясь в наблюдателях (Spectator)</b>.";
+                response = "<color=red>[пїЅпїЅпїЅпїЅпїЅпїЅ]</color> пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Vanish) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ <b>пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Spectator)</b>.";
                 return false;
             }
 
             EnableVanish(player);
-            response = $"<color=green>[VANISH]</color> Режим свободного наблюдателя для <b>{player.Nickname}</b> успешно включен.";
+            response = $"<color=green>[VANISH]</color> пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ <b>{player.Nickname}</b> пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.";
             return true;
         }
     }
@@ -112,22 +112,22 @@ public sealed class VanishFeature
 
         VanishedStates[player.Id] = state;
 
-        // 1. Переводим в роль Tutorial и спавним в башне на Поверхности
+        // 1. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ Tutorial пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         player.Role.Set(RoleTypeId.Tutorial);
         player.Position = TowerSpawnPosition;
 
-        // 2. Выдаем монетку навигации и карту Хаоса (для игры в змейку)
+        // 2. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
         player.ClearInventory();
         player.AddItem(ItemType.Coin);
         player.AddItem(ItemType.KeycardChaosInsurgency);
 
-        // 3. Полная физическая (пули насквозь), сетевая и игровая изоляция
+        // 3. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         VanishIsolationHandler.ApplyIsolation(player);
 
-        // 4. Оповещение вверху экрана
+        // 4. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         player.ShowZoneHint(
             HintZone.TopCenter,
-            "<color=#38bdf8><b>?? [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • ?? ЛКМ/ПКМ: <color=#a3e635>Телепорт к игрокам</color> • ? Тесла: <color=#a3e635>Игнорирует</color></color>",
+            "<color=#38bdf8><b>?? [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ] пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</b></color>\n<color=#c2c2c2>пїЅпїЅпїЅпїЅпїЅ: <color=#ffa94e>пїЅпїЅпїЅпїЅпїЅ</color> пїЅ ?? пїЅпїЅпїЅ/пїЅпїЅпїЅ: <color=#a3e635>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</color> пїЅ ? пїЅпїЅпїЅпїЅпїЅ: <color=#a3e635>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</color></color>",
             6.0f,
             "vanish_hud",
             22
@@ -143,13 +143,13 @@ public sealed class VanishFeature
         player.ClearInventory();
         player.IsNoclipPermitted = state.NoclipPermitted;
 
-        // Если выход НЕ по волне возрождения — возвращаем строго в Spectator
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Spectator
         if (!respawnWave)
         {
             player.Role.Set(RoleTypeId.Spectator);
             player.ShowZoneHint(
                 HintZone.TopCenter,
-                "<color=#ff4444><b>?? [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВЫКЛЮЧЕН</b></color>",
+                "<color=#ff4444><b>?? [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</b></color>",
                 3.5f,
                 "vanish_hud",
                 22
@@ -162,7 +162,7 @@ public sealed class VanishFeature
         if (ev.Player == null || !IsVanished(ev.Player))
             return;
 
-        // Полностью отменяем дефолтную анимацию монетки
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         ev.IsAllowed = false;
     }
 
@@ -180,7 +180,7 @@ public sealed class VanishFeature
     }
 
     /// <summary>
-    /// Генерация текста для ItemHudPanel (вызывается нативным HUD-циклом без мерцания).
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ItemHudPanel (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HUD-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
     /// </summary>
     private string? GetVanishItemHudText(Player player)
     {
@@ -196,7 +196,7 @@ public sealed class VanishFeature
 
             if (alive.Count == 0)
             {
-                return $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n<size=16><color=#ff4444>Нет живых игроков на сервере</color></size>";
+                return $"<size=20><color=#ffa94e><b>[ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ]</b></color></size>\n<size=16><color=#ff4444>пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</color></size>";
             }
 
             var state = VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
@@ -213,23 +213,23 @@ public sealed class VanishFeature
             string nextHex = ColorUtility.ToHtmlStringRGB(next.Role.Color);
             string prevHex = ColorUtility.ToHtmlStringRGB(prev.Role.Color);
 
-            return $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n" +
-                   $"<size=16><color=#a3e635><b>[ЛКМ]</b></color> След: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
-                   $"<color=#f87171><b>[ПКМ]</b></color> Пред: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
-                   $"<color=#c2c2c2>Цель: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
+            return $"<size=20><color=#ffa94e><b>[ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ]</b></color></size>\n" +
+                   $"<size=16><color=#a3e635><b>[пїЅпїЅпїЅ]</b></color> пїЅпїЅпїЅпїЅ: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
+                   $"<color=#f87171><b>[пїЅпїЅпїЅ]</b></color> пїЅпїЅпїЅпїЅ: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
+                   $"<color=#c2c2c2>пїЅпїЅпїЅпїЅ: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
         }
 
         if (player.CurrentItem.Type == ItemType.KeycardChaosInsurgency)
         {
-            return $"<size=20><color=#608f38><b>[ Карта Доступа Хаоса ]</b></color></size>\n" +
-                   $"<size=16><color=#cccccc>Осмотр карты: Мини-игра «Змейка»</color></size>";
+            return $"<size=20><color=#608f38><b>[ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ]</b></color></size>\n" +
+                   $"<size=16><color=#cccccc>пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ</color></size>";
         }
 
         return null;
     }
 
     /// <summary>
-    /// Телепортирует свободного наблюдателя к следующему (direction=1) или предыдущему (direction=-1) живому игроку.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (direction=1) пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (direction=-1) пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     public void TeleportToPlayer(Player player, int direction)
     {
@@ -242,7 +242,7 @@ public sealed class VanishFeature
 
         if (alivePlayers.Count == 0)
         {
-            player.ShowZoneHint(HintZone.Notification, "<color=#ff4444><b>Нет живых игроков для наблюдения.</b></color>", 2.0f, "spectator_tp", 20);
+            player.ShowZoneHint(HintZone.Notification, "<color=#ff4444><b>пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</b></color>", 2.0f, "spectator_tp", 20);
             return;
         }
 
@@ -264,8 +264,24 @@ public sealed class VanishFeature
             {
                 if (ev.Players.Count < ev.MaximumRespawnAmount && !ev.Players.Contains(player))
                 {
+                    // Р’С‹РІРѕРґРёРј РёР· vanish РЅРµРјРµРґР»РµРЅРЅРѕ Рё РІРѕР·РІСЂР°С‰Р°РµРј РІ Spectator,
+                    // С‡С‚РѕР±С‹ РІРѕР»РЅР° Р·Р°СЃРїР°РІРЅРёР»Р° РёРіСЂРѕРєР° Р±РµР· РѕРєРЅР° В«РіРѕР»РѕРіРѕВ» Tutorial
+                    if (VanishedStates.TryRemove(player.Id, out var state))
+                    {
+                        VanishIsolationHandler.RemoveIsolation(player);
+                        player.ClearInventory();
+                        player.IsNoclipPermitted = state.NoclipPermitted;
+                        player.Role.Set(RoleTypeId.Spectator);
+                        player.ShowZoneHint(
+                            HintZone.TopCenter,
+                            "<color=#a3e635><b>рџљЃ [Vanish] Р’Р°СЃ Р·Р°Р±РёСЂР°РµС‚ РІРѕР»РЅР° РІРѕР·СЂРѕР¶РґРµРЅРёСЏ!</b></color>",
+                            3.5f,
+                            "vanish_hud",
+                            22
+                        );
+                    }
+
                     ev.Players.Add(player);
-                    DisableVanish(player, respawnWave: true);
                 }
             }
         }

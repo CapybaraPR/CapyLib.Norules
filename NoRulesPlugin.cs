@@ -1,4 +1,4 @@
-п»їusing System;
+using System;
 using Capy.Commands;
 using Capy.NoRules.Config;
 using Capy.NoRules.EventHandlers;
@@ -13,9 +13,9 @@ using ServerEventsHandler = Exiled.Events.Handlers.Server;
 namespace Capy.NoRules;
 
 /// <summary>
-/// Р“Р»Р°РІРЅС‹Р№ РїР»Р°РіРёРЅ РёРіСЂРѕРІРѕРіРѕ СЂРµР¶РёРјР° NoRules СЃРµСЂРІРµСЂРѕРІ РљР°РїРёР±Р°СЂР° SCP:SL.
-/// Р’РєР»СЋС‡Р°РµС‚: .kill/.res, FriendlyFire РІ РєРѕРЅС†Рµ СЂР°СѓРЅРґР°, РҐРёС‚РјР°СЂРєРµСЂС‹, Р‘РµСЃРєРѕРЅРµС‡РЅС‹Рµ СЂРµСЃСѓСЂСЃС‹,
-/// РњРѕРЅРёС‚РѕСЂРёРЅРі РРЅС‚РµСЂРєРѕРјР°, Р РѕР·РѕРІСѓСЋ РєРѕРЅС„РµС‚Сѓ, РњР°РіРёС‡РµСЃРєСѓСЋ РјРѕРЅРµС‚РєСѓ, Р Р°СЃС€РёСЂРµРЅРЅС‹Р№ РїРѕР±РµРі, gci, gcr Рё Vanish.
+/// Главный плагин игрового режима NoRules серверов Капибара SCP:SL.
+/// Включает: .kill/.res, FriendlyFire в конце раунда, Хитмаркеры, Бесконечные ресурсы,
+/// Мониторинг Интеркома, Розовую конфету, Магическую монетку, Расширенный побег, gci, gcr и Vanish.
 /// </summary>
 public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 {
@@ -27,7 +27,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
     public static NoRulesPlugin Instance { get; private set; } = null!;
 
-    // РРіСЂРѕРІС‹Рµ РїРѕРґСЃРёСЃС‚РµРјС‹
+    // Игровые подсистемы
     public DotResKillFeature DotResKill { get; private set; } = null!;
     public FriendlyFireFeature FriendlyFire { get; private set; } = null!;
     public HitmarkerFeature Hitmarkers { get; private set; } = null!;
@@ -55,13 +55,13 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         RegisterFeatures();
         RegisterEvents();
 
-        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Р‘С‹СЃС‚СЂРѕРµ РІРѕР·СЂРѕР¶РґРµРЅРёРµ РІ РїРµСЂРІС‹Рµ 3 РјРёРЅ (РЅР°Р±Р»СЋРґР°С‚РµР»Рё)</color>");
-        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- РЎРѕРІРµСЂС€РёС‚СЊ СЃР°РјРѕСѓР±РёР№СЃС‚РІРѕ (Р¶РёРІС‹Рµ РёРіСЂРѕРєРё)</color>");
-        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .vanish (.v, .spec)</color>   <color=#c2c2c2>-- Р РµР¶РёРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ (РёР· СЃРїРµРєС‚Р°С‚РѕСЂРѕРІ)</color>");
-        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .drink (.dr)</color>       <color=#c2c2c2>-- Р’С‹Р±СЂР°С‚СЊ РЅР°РїРёС‚РѕРє SCP-294 (РєРѕС„РµРјР°С€РёРЅР° РІ РѕС„РёСЃР°С…)</color>");
-        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* /level, /top</color>        <color=#c2c2c2>-- РЈСЂРѕРІРµРЅСЊ Рё С‚РѕРї РёРіСЂРѕРєРѕРІ РІ РЅР°С€РµРј Discord</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Быстрое возрождение в первые 3 мин (наблюдатели)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .vanish (.v, .spec)</color>   <color=#c2c2c2>-- Режим свободного наблюдателя (из спектаторов)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .drink (.dr)</color>       <color=#c2c2c2>-- Выбрать напиток SCP-294 (кофемашина в офисах)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* /level, /top</color>        <color=#c2c2c2>-- Уровень и топ игроков в нашем Discord</color>");
 
-        Log.Info($"[NoRules] РџР»Р°РіРёРЅ СѓСЃРїРµС€РЅРѕ Р·Р°РїСѓС‰РµРЅ (v{Version}) СЃРѕ РІСЃРµРјРё РёРіСЂРѕРІС‹РјРё РјРѕРґСѓР»СЏРјРё, Vanish, CapybaraPet Рё SCP-120.");
+        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями, Vanish, CapybaraPet и SCP-120.");
         base.OnEnabled();
     }
 
@@ -75,7 +75,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerXp?.Disable();
 
         Instance = null!;
-        Log.Info("[NoRules] РџР»Р°РіРёРЅ РІС‹РєР»СЋС‡РµРЅ.");
+        Log.Info("[NoRules] Плагин выключен.");
         base.OnDisabled();
     }
 

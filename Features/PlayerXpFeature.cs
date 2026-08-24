@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -34,6 +34,10 @@ public sealed class PlayerXpFeature
     // Активные корутины начисления за жизнь: userId -> handle
     private readonly ConcurrentDictionary<string, CoroutineHandle> _aliveCoroutines = new();
 
+    // Троттлинг мелких наград (двери/подбор/шкафчики/юз) против фарма дроп-подбором
+    private readonly ConcurrentDictionary<string, DateTime> _minorAwardGate = new();
+    private const double MinorAwardWindowSeconds = 2.0;
+
     public PlayerXpFeature(PlayerXpConfig config)
     {
         _config = config;
@@ -54,6 +58,21 @@ public sealed class PlayerXpFeature
     {
         if (player == null || !player.IsVerified) return true;
         return player.DoNotTrack && !_config.AwardDnt;
+    }
+
+    /// <summary>
+    /// Пропускает мелкие награды не чаще раза в MinorAwardWindowSeconds на игрока
+    /// (анти-фарм циклом выбросил/поднял). Крупные начисления идут напрямую через GiveXp.
+    /// </summary>
+    private bool TryPassMinorGate(Player player)
+    {
+        DateTime now = DateTime.UtcNow;
+        if (_minorAwardGate.TryGetValue(player.UserId, out var last) &&
+            (now - last).TotalSeconds < MinorAwardWindowSeconds)
+            return false;
+
+        _minorAwardGate[player.UserId] = now;
+        return true;
     }
 
     public void Enable()
@@ -267,6 +286,8 @@ public sealed class PlayerXpFeature
 
         if (_aliveCoroutines.TryRemove(ev.Player.UserId, out var handle))
             Timing.KillCoroutines(handle);
+
+        _minorAwardGate.TryRemove(ev.Player.UserId, out _);
     }
 
     private void OnChangingRole(ChangingRoleEventArgs ev)
@@ -331,7 +352,7 @@ public sealed class PlayerXpFeature
 
     private void OnPickingUpItem(PickingUpItemEventArgs ev)
     {
-        if (ev.Player == null || ev.Pickup == null)
+        if (ev.Player == null || ev.Pickup == null || IsXpBlocked(ev.Player) || !TryPassMinorGate(ev.Player))
             return;
 
         if (ev.Pickup.Type is ItemType.MicroHID or ItemType.Jailbird or ItemType.ParticleDisruptor)
@@ -341,6 +362,7 @@ public sealed class PlayerXpFeature
         else if (ev.Pickup.Category == ItemCategory.SpecialWeapon)
             GiveXp(ev.Player, 7.5f);
         else if (ev.Pickup.Category == ItemCategory.Firearm)
+            if (!IsXpBlocked(ev.Player) && TryPassMinorGate(ev.Player))
             GiveXp(ev.Player, 0.5f);
         else if (ev.Pickup.Category == ItemCategory.Keycard)
             GiveXp(ev.Player, 0.2f);
@@ -350,7 +372,7 @@ public sealed class PlayerXpFeature
 
     private void OnUsedItem(UsedItemEventArgs ev)
     {
-        if (ev.Player == null || ev.Item == null)
+        if (ev.Player == null || ev.Item == null || IsXpBlocked(ev.Player) || !TryPassMinorGate(ev.Player))
             return;
 
         GiveXp(ev.Player, ev.Item.Category == ItemCategory.SCPItem ? 10f : 0.5f);
@@ -358,12 +380,14 @@ public sealed class PlayerXpFeature
 
     private void OnInteractingLocker(InteractingLockerEventArgs ev)
     {
-        GiveXp(ev.Player, 0.5f);
+        if (!IsXpBlocked(ev.Player) && TryPassMinorGate(ev.Player))
+            GiveXp(ev.Player, 0.5f);
     }
 
     private void OnInteractingDoor(InteractingDoorEventArgs ev)
     {
         if (ev.Door != null)
+            if (!IsXpBlocked(ev.Player) && TryPassMinorGate(ev.Player))
             GiveXp(ev.Player, 0.5f);
     }
 
@@ -373,6 +397,7 @@ public sealed class PlayerXpFeature
             Timing.KillCoroutines(handle);
 
         _aliveCoroutines.Clear();
+        _minorAwardGate.Clear();
     }
 
     private IEnumerator<float> AliveCoroutine(Player player)
