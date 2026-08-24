@@ -17,23 +17,27 @@ using UnityEngine;
 namespace Capy.NoRules.Features;
 
 /// <summary>
-/// РЎРѕС…СЂР°РЅРµРЅРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РёРіСЂРѕРєР° РґРѕ РІС…РѕРґР° РІ СЂРµР¶РёРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ (Vanish).
+/// Сохраненное состояние игрока до входа в режим свободного наблюдателя (Vanish).
 /// </summary>
 public sealed class VanishSavedState
 {
     public Vector3 Position { get; set; }
     public bool NoclipPermitted { get; set; }
-    public bool NoclipEnabled { get; set; }
     public int TargetPlayerIndex { get; set; } = 0;
+
+    // Сохранённое состояние изоляции — восстанавливается при выходе из vanish,
+    // чтобы игрок не мог снять с себя админский мут или слетевший godmode
+    public bool WasMuted { get; set; }
+    public bool WasGodMode { get; set; }
 }
 
 /// <summary>
-/// Р РµР¶РёРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ (Vanish):
-/// 1. Р’С…РѕРґ СЂР°Р·СЂРµС€РµРЅ С‚РѕР»СЊРєРѕ РёР· СЂРѕР»Рё Spectator (РІРѕР·РІСЂР°С‚ РІ Spectator).
-/// 2. РЎРїР°РІРЅ РІ Р±Р°С€РЅРµ РЅР° РџРѕРІРµСЂС…РЅРѕСЃС‚Рё (Surface Tower) РІ СЂРѕР»Рё Tutorial.
-/// 3. РќР°РІРёРіР°С†РёРѕРЅРЅР°СЏ РјРѕРЅРµС‚РєР° (Р›РљРњ - СЃР»РµРґ., РџРљРњ - РїСЂРµРґ.) Рё РєР°СЂС‚Р° РҐР°РѕСЃР° (Р—РјРµР№РєР°).
-/// 4. Р”РёРЅР°РјРёС‡РµСЃРєРёР№ HUD СЃРїРѕСЃРѕР±РЅРѕСЃС‚РµР№ РЅР°Рґ РїРѕР»РѕСЃРєРѕР№ HP (РІ РѕР±С‰РµРј С†РёРєР»Рµ Р±РµР· РјРµСЂС†Р°РЅРёСЏ).
-/// 5. РџРѕР»РЅР°СЏ С„РёР·РёС‡РµСЃРєР°СЏ (РїСѓР»Рё Р»РµС‚СЏС‚ РЅР°СЃРєРІРѕР·СЊ), СЃРµС‚РµРІР°СЏ Рё Р»РѕРіРёС‡РµСЃРєР°СЏ РёР·РѕР»СЏС†РёСЏ (VanishIsolationHandler).
+/// Режим свободного наблюдателя (Vanish):
+/// 1. Вход разрешен только из роли Spectator (возврат в Spectator).
+/// 2. Спавн в башне на Поверхности (Surface Tower) в роли Tutorial.
+/// 3. Навигационная монетка (ЛКМ - след., ПКМ - пред.) и карта Хаоса (Змейка).
+/// 4. Динамический HUD способностей над полоской HP (в общем цикле без мерцания).
+/// 5. Полная физическая (пули летят насквозь), сетевая и логическая изоляция (VanishIsolationHandler).
 /// </summary>
 public sealed class VanishFeature
 {
@@ -41,6 +45,14 @@ public sealed class VanishFeature
     private static readonly Vector3 TowerSpawnPosition = new(39.2f, 1014.5f, -31.8f);
 
     public static bool IsVanished(Player? player) => player != null && VanishedStates.ContainsKey(player.Id);
+
+    /// <summary>
+    /// Сохранённое состояние vanish-игрока (для изоляции/восстановления).
+    /// </summary>
+    public static VanishSavedState GetSavedState(Player player)
+    {
+        return VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
+    }
 
     public void Enable()
     {
@@ -63,27 +75,27 @@ public sealed class VanishFeature
     {
         if (player == null || !player.IsConnected)
         {
-            response = "РРіСЂРѕРє РЅРµ РїРѕРґРєР»СЋС‡РµРЅ.";
+            response = "Игрок не подключен.";
             return false;
         }
 
         if (IsVanished(player))
         {
             DisableVanish(player);
-            response = $"<color=yellow>[VANISH]</color> Р РµР¶РёРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ РґР»СЏ <b>{player.Nickname}</b> РІС‹РєР»СЋС‡РµРЅ (РІРѕР·РІСЂР°С‚ РІ Spectator).";
+            response = $"<color=yellow>[VANISH]</color> Режим свободного наблюдателя для <b>{player.Nickname}</b> выключен (возврат в Spectator).";
             return true;
         }
         else
         {
-            // Р Р°Р·СЂРµС€РµРЅРѕ РІС…РѕРґРёС‚СЊ РўРћР›Р¬РљРћ РёР· СЂРѕР»Рё Spectator!
+            // Разрешено входить ТОЛЬКО из роли Spectator!
             if (player.Role.Type != RoleTypeId.Spectator)
             {
-                response = "<color=red>[РћРЁРР‘РљРђ]</color> Р РµР¶РёРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ (Vanish) РјРѕР¶РЅРѕ РІРєР»СЋС‡РёС‚СЊ <b>С‚РѕР»СЊРєРѕ РЅР°С…РѕРґСЏСЃСЊ РІ РЅР°Р±Р»СЋРґР°С‚РµР»СЏС… (Spectator)</b>.";
+                response = "<color=red>[ОШИБКА]</color> Режим свободного наблюдателя (Vanish) можно включить <b>только находясь в наблюдателях (Spectator)</b>.";
                 return false;
             }
 
             EnableVanish(player);
-            response = $"<color=green>[VANISH]</color> Р РµР¶РёРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ РґР»СЏ <b>{player.Nickname}</b> СѓСЃРїРµС€РЅРѕ РІРєР»СЋС‡РµРЅ.";
+            response = $"<color=green>[VANISH]</color> Режим свободного наблюдателя для <b>{player.Nickname}</b> успешно включен.";
             return true;
         }
     }
@@ -94,28 +106,28 @@ public sealed class VanishFeature
         {
             Position = player.Position,
             NoclipPermitted = player.IsNoclipPermitted,
-            NoclipEnabled = player.IsNoclipEnabled,
+            
             TargetPlayerIndex = 0
         };
 
         VanishedStates[player.Id] = state;
 
-        // 1. РџРµСЂРµРІРѕРґРёРј РІ СЂРѕР»СЊ Tutorial Рё СЃРїР°РІРЅРёРј РІ Р±Р°С€РЅРµ РЅР° РџРѕРІРµСЂС…РЅРѕСЃС‚Рё
+        // 1. Переводим в роль Tutorial и спавним в башне на Поверхности
         player.Role.Set(RoleTypeId.Tutorial);
         player.Position = TowerSpawnPosition;
 
-        // 2. Р’С‹РґР°РµРј РјРѕРЅРµС‚РєСѓ РЅР°РІРёРіР°С†РёРё Рё РєР°СЂС‚Сѓ РҐР°РѕСЃР° (РґР»СЏ РёРіСЂС‹ РІ Р·РјРµР№РєСѓ)
+        // 2. Выдаем монетку навигации и карту Хаоса (для игры в змейку)
         player.ClearInventory();
         player.AddItem(ItemType.Coin);
         player.AddItem(ItemType.KeycardChaosInsurgency);
 
-        // 3. РџРѕР»РЅР°СЏ С„РёР·РёС‡РµСЃРєР°СЏ (РїСѓР»Рё РЅР°СЃРєРІРѕР·СЊ), СЃРµС‚РµРІР°СЏ Рё РёРіСЂРѕРІР°СЏ РёР·РѕР»СЏС†РёСЏ
+        // 3. Полная физическая (пули насквозь), сетевая и игровая изоляция
         VanishIsolationHandler.ApplyIsolation(player);
 
-        // 4. РћРїРѕРІРµС‰РµРЅРёРµ РІРІРµСЂС…Сѓ СЌРєСЂР°РЅР°
+        // 4. Оповещение вверху экрана
         player.ShowZoneHint(
             HintZone.TopCenter,
-            "<color=#38bdf8><b>рџ‘» [РЎР’РћР‘РћР”РќР«Р™ РќРђР‘Р›Р®Р”РђРўР•Р›Р¬] Р’РљР›Р®Р§Р•Рќ</b></color>\n<color=#c2c2c2>РЎРїР°РІРЅ: <color=#ffa94e>Р‘Р°С€РЅСЏ</color> вЂў рџЄ™ Р›РљРњ/РџРљРњ: <color=#a3e635>РўРµР»РµРїРѕСЂС‚ Рє РёРіСЂРѕРєР°Рј</color> вЂў вљЎ РўРµСЃР»Р°: <color=#a3e635>РРіРЅРѕСЂРёСЂСѓРµС‚</color></color>",
+            "<color=#38bdf8><b>?? [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВКЛЮЧЕН</b></color>\n<color=#c2c2c2>Спавн: <color=#ffa94e>Башня</color> • ?? ЛКМ/ПКМ: <color=#a3e635>Телепорт к игрокам</color> • ? Тесла: <color=#a3e635>Игнорирует</color></color>",
             6.0f,
             "vanish_hud",
             22
@@ -131,13 +143,13 @@ public sealed class VanishFeature
         player.ClearInventory();
         player.IsNoclipPermitted = state.NoclipPermitted;
 
-        // Р•СЃР»Рё РІС‹С…РѕРґ РќР• РїРѕ РІРѕР»РЅРµ РІРѕР·СЂРѕР¶РґРµРЅРёСЏ вЂ” РІРѕР·РІСЂР°С‰Р°РµРј СЃС‚СЂРѕРіРѕ РІ Spectator
+        // Если выход НЕ по волне возрождения — возвращаем строго в Spectator
         if (!respawnWave)
         {
             player.Role.Set(RoleTypeId.Spectator);
             player.ShowZoneHint(
                 HintZone.TopCenter,
-                "<color=#ff4444><b>рџ‘» [РЎР’РћР‘РћР”РќР«Р™ РќРђР‘Р›Р®Р”РђРўР•Р›Р¬] Р’Р«РљР›Р®Р§Р•Рќ</b></color>",
+                "<color=#ff4444><b>?? [СВОБОДНЫЙ НАБЛЮДАТЕЛЬ] ВЫКЛЮЧЕН</b></color>",
                 3.5f,
                 "vanish_hud",
                 22
@@ -150,7 +162,7 @@ public sealed class VanishFeature
         if (ev.Player == null || !IsVanished(ev.Player))
             return;
 
-        // РџРѕР»РЅРѕСЃС‚СЊСЋ РѕС‚РјРµРЅСЏРµРј РґРµС„РѕР»С‚РЅСѓСЋ Р°РЅРёРјР°С†РёСЋ РјРѕРЅРµС‚РєРё
+        // Полностью отменяем дефолтную анимацию монетки
         ev.IsAllowed = false;
     }
 
@@ -168,7 +180,7 @@ public sealed class VanishFeature
     }
 
     /// <summary>
-    /// Р“РµРЅРµСЂР°С†РёСЏ С‚РµРєСЃС‚Р° РґР»СЏ ItemHudPanel (РІС‹Р·С‹РІР°РµС‚СЃСЏ РЅР°С‚РёРІРЅС‹Рј HUD-С†РёРєР»РѕРј Р±РµР· РјРµСЂС†Р°РЅРёСЏ).
+    /// Генерация текста для ItemHudPanel (вызывается нативным HUD-циклом без мерцания).
     /// </summary>
     private string? GetVanishItemHudText(Player player)
     {
@@ -184,7 +196,7 @@ public sealed class VanishFeature
 
             if (alive.Count == 0)
             {
-                return $"<size=20><color=#ffa94e><b>[ РњРѕРЅРµС‚РєР° РќР°Р±Р»СЋРґР°С‚РµР»СЏ ]</b></color></size>\n<size=16><color=#ff4444>РќРµС‚ Р¶РёРІС‹С… РёРіСЂРѕРєРѕРІ РЅР° СЃРµСЂРІРµСЂРµ</color></size>";
+                return $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n<size=16><color=#ff4444>Нет живых игроков на сервере</color></size>";
             }
 
             var state = VanishedStates.GetOrAdd(player.Id, _ => new VanishSavedState());
@@ -201,23 +213,23 @@ public sealed class VanishFeature
             string nextHex = ColorUtility.ToHtmlStringRGB(next.Role.Color);
             string prevHex = ColorUtility.ToHtmlStringRGB(prev.Role.Color);
 
-            return $"<size=20><color=#ffa94e><b>[ РњРѕРЅРµС‚РєР° РќР°Р±Р»СЋРґР°С‚РµР»СЏ ]</b></color></size>\n" +
-                   $"<size=16><color=#a3e635><b>[Р›РљРњ]</b></color> РЎР»РµРґ: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
-                   $"<color=#f87171><b>[РџРљРњ]</b></color> РџСЂРµРґ: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
-                   $"<color=#c2c2c2>Р¦РµР»СЊ: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
+            return $"<size=20><color=#ffa94e><b>[ Монетка Наблюдателя ]</b></color></size>\n" +
+                   $"<size=16><color=#a3e635><b>[ЛКМ]</b></color> След: <color=#ffffff>{next.Nickname}</color> <color=#{nextHex}>[{next.Role.Name}]</color>\n" +
+                   $"<color=#f87171><b>[ПКМ]</b></color> Пред: <color=#ffffff>{prev.Nickname}</color> <color=#{prevHex}>[{prev.Role.Name}]</color>\n" +
+                   $"<color=#c2c2c2>Цель: <color=#{currHex}><b>{curr.Nickname}</b></color> [{curr.Role.Name}] ({currIdx + 1}/{count})</color></size>";
         }
 
         if (player.CurrentItem.Type == ItemType.KeycardChaosInsurgency)
         {
-            return $"<size=20><color=#608f38><b>[ РљР°СЂС‚Р° Р”РѕСЃС‚СѓРїР° РҐР°РѕСЃР° ]</b></color></size>\n" +
-                   $"<size=16><color=#cccccc>РћСЃРјРѕС‚СЂ РєР°СЂС‚С‹: РњРёРЅРё-РёРіСЂР° В«Р—РјРµР№РєР°В»</color></size>";
+            return $"<size=20><color=#608f38><b>[ Карта Доступа Хаоса ]</b></color></size>\n" +
+                   $"<size=16><color=#cccccc>Осмотр карты: Мини-игра «Змейка»</color></size>";
         }
 
         return null;
     }
 
     /// <summary>
-    /// РўРµР»РµРїРѕСЂС‚РёСЂСѓРµС‚ СЃРІРѕР±РѕРґРЅРѕРіРѕ РЅР°Р±Р»СЋРґР°С‚РµР»СЏ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ (direction=1) РёР»Рё РїСЂРµРґС‹РґСѓС‰РµРјСѓ (direction=-1) Р¶РёРІРѕРјСѓ РёРіСЂРѕРєСѓ.
+    /// Телепортирует свободного наблюдателя к следующему (direction=1) или предыдущему (direction=-1) живому игроку.
     /// </summary>
     public void TeleportToPlayer(Player player, int direction)
     {
@@ -230,7 +242,7 @@ public sealed class VanishFeature
 
         if (alivePlayers.Count == 0)
         {
-            player.ShowZoneHint(HintZone.Notification, "<color=#ff4444><b>РќРµС‚ Р¶РёРІС‹С… РёРіСЂРѕРєРѕРІ РґР»СЏ РЅР°Р±Р»СЋРґРµРЅРёСЏ.</b></color>", 2.0f, "spectator_tp", 20);
+            player.ShowZoneHint(HintZone.Notification, "<color=#ff4444><b>Нет живых игроков для наблюдения.</b></color>", 2.0f, "spectator_tp", 20);
             return;
         }
 

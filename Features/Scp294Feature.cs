@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -226,12 +226,21 @@ public sealed class Scp294Feature
     /// <summary>
     /// Пространственный звук кофемашины (идёт пока напиток готовится).
     /// </summary>
+    // Сколько игроков прямо сейчас готовит напиток — звук глушим только когда все закончили
+    private int _activePrepares;
+
     private void StartMakingSound()
     {
         try
         {
+            _activePrepares++;
+            if (_activePrepares > 1) return; // звук уже играет для другого игрока
+
             if (AudioClipStorage.AudioClips.ContainsKey(ClipMaking) && GetOrCreateMachineAudio() is { } ap)
+            {
+                ap.RemoveClipByName(ClipMaking);
                 ap.AddClip(ClipMaking, destroyOnEnd: false);
+            }
         }
         catch { }
     }
@@ -240,6 +249,9 @@ public sealed class Scp294Feature
     {
         try
         {
+            _activePrepares = Math.Max(0, _activePrepares - 1);
+            if (_activePrepares > 0) return; // кто-то ещё готовит
+
             if (AudioPlayer.TryGet(MachineAudioKey, out var ap))
                 ap.RemoveClipByName(ClipMaking);
         }

@@ -51,6 +51,10 @@ public sealed class HitmarkerFeature
         if (!_config.IsEnabled || ev.Attacker == null || ev.Player == null || ev.Attacker == ev.Player)
             return;
 
+        // Числовой урон отключен в конфиге
+        if (!_config.ShowDamageNumber)
+            return;
+
         if (IsTeammate(ev.Attacker, ev.Player))
             return;
 

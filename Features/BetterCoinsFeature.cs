@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Capy.Engine.Hints;
@@ -98,6 +98,12 @@ public sealed class BetterCoinsFeature
                         var targetRoom = validRooms[Random.Range(0, validRooms.Count)];
                         player.Position = targetRoom.Position + Vector3.up * 1.2f;
                         player.ShowZoneHint(HintZone.BottomCenter, "<color=#a3e635><b>Успешная телепортация! 🌀</b></color>", 2.5f, "coin_tp");
+                    }
+                    else
+                    {
+                        // Пул комнат пуст (аномальная карта) — отправляем на Поверхность
+                        player.Position = SurfaceTowerPosition;
+                        player.ShowZoneHint(HintZone.BottomCenter, "<color=#a3e635><b>Телепортация! 🌀 Комната не нашлась — ты на Поверхности.</b></color>", 2.5f, "coin_tp");
                     }
                 }
             }

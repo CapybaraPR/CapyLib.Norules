@@ -154,7 +154,7 @@ public sealed class GiveCustomRoleCommand : ICommand
 
         if (exiledRoles.Count == 0 && capyRoles.Count == 0)
         {
-            sb.AppendLine("  <color=#c2c2c2>В данный момент кастомные предметы не зарегистрированы.</color>");
+            sb.AppendLine("  <color=#c2c2c2>В данный момент кастомные роли не зарегистрированы.</color>");
         }
         else
         {

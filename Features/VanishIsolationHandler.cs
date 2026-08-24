@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
@@ -51,6 +51,12 @@ public static class VanishIsolationHandler
         Capy.Core.Extensions.NetworkExtensions.ChangeAppearance(player, PlayerRoles.RoleTypeId.Spectator, true);
 
         // 4. Бессмертие, выключение байпаса и мут микрофона для живых
+        // 4. Бессмертие, отключение голоса и все права телефонной будки.
+        //    Предыдущее состояние сохраняется и восстанавливается в RemoveIsolation.
+        var saved = VanishFeature.GetSavedState(player);
+        saved.WasGodMode = player.IsGodModeEnabled;
+        saved.WasMuted = player.IsMuted;
+
         player.IsGodModeEnabled = true;
         player.IsBypassModeEnabled = false;
         player.IsMuted = true;
@@ -78,9 +84,11 @@ public static class VanishIsolationHandler
             fpcRole.IsInvisible = false;
         }
 
-        player.IsGodModeEnabled = false;
+        var saved = VanishFeature.GetSavedState(player);
+        player.IsGodModeEnabled = saved.WasGodMode;
+
         player.IsNoclipEnabled = false;
-        player.IsMuted = false;
+        player.IsMuted = VanishFeature.GetSavedState(player).WasMuted;
     }
 
     public static void Register()

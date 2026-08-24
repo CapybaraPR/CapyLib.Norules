@@ -227,22 +227,27 @@ public sealed class CapybaraPetFeature
 
         while (player != null && player.IsConnected && player.IsAlive && pet != null && !pet.IsDestroyed)
         {
-            try
+            // Vanished-владелец: питомец замирает на месте и не следует за игроком,
+            // чтобы не выдавать его позицию наблюдателям
+            if (!VanishFeature.IsVanished(player))
             {
-                float hover = Mathf.Sin(Time.time * 2.5f) * 0.06f;
-                Vector3 targetCenter = player.Position + (player.Rotation * new Vector3(0.55f, 1.35f + hover, -0.15f));
+                try
+                {
+                    float hover = Mathf.Sin(Time.time * 2.5f) * 0.06f;
+                    Vector3 targetCenter = player.Position + (player.Rotation * new Vector3(0.55f, 1.35f + hover, -0.15f));
 
-                float tilt = Mathf.Sin(Time.time * 2.5f) * 3.5f;
-                Quaternion targetRot = Quaternion.Euler(0, player.Rotation.eulerAngles.y - 10f, tilt);
+                    float tilt = Mathf.Sin(Time.time * 2.5f) * 3.5f;
+                    Quaternion targetRot = Quaternion.Euler(0, player.Rotation.eulerAngles.y - 10f, tilt);
 
-                currentCenter = Vector3.Lerp(currentCenter, targetCenter, 0.32f);
-                currentRotation = Quaternion.Slerp(currentRotation, targetRot, 0.32f);
+                    currentCenter = Vector3.Lerp(currentCenter, targetCenter, 0.32f);
+                    currentRotation = Quaternion.Slerp(currentRotation, targetRot, 0.32f);
 
-                pet.SetTransform(currentCenter, currentRotation);
-            }
-            catch
-            {
-                break;
+                    pet.SetTransform(currentCenter, currentRotation);
+                }
+                catch
+                {
+                    break;
+                }
             }
 
             yield return Timing.WaitForOneFrame;

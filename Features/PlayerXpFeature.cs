@@ -46,6 +46,16 @@ public sealed class PlayerXpFeature
     /// <summary>Включена ли система (для команд).</summary>
     public bool IsEnabled() => _enabled;
 
+    /// <summary>
+    /// Единая DNT-проверка: игрок с 'Do Not Track' не получает опыт,
+    /// если в конфиге не включён award_dnt.
+    /// </summary>
+    private bool IsXpBlocked(Player? player)
+    {
+        if (player == null || !player.IsVerified) return true;
+        return player.DoNotTrack && !_config.AwardDnt;
+    }
+
     public void Enable()
     {
         if (_enabled || !_config.IsEnabled) return;
@@ -128,7 +138,7 @@ public sealed class PlayerXpFeature
     /// </summary>
     public void GiveXp(Player player, float exp)
     {
-        if (player == null || player.DoNotTrack || !player.IsConnected || !player.IsVerified)
+        if (IsXpBlocked(player) || !player.IsConnected)
             return;
 
         exp /= Math.Max(0.01f, _config.XpDivisor);
@@ -219,19 +229,19 @@ public sealed class PlayerXpFeature
 
             string nickname = player.Nickname.Replace('[', '(').Replace(']', ')');
 
-            if (player.DoNotTrack)
+            // DNT без award_dnt -> титул скрываем
+            if (player.DoNotTrack && !_config.AwardDnt)
             {
-                player.CustomInfo = $"(<color={_config.UnknownColorHex}>{_config.UnknownText}</color>)\n{nickname}";
+                player.CustomInfo = $"({_config.UnknownText})\n{nickname}";
+                player.InfoArea = (PlayerInfoArea)~(int)PlayerInfoArea.Nickname;
+                return;
             }
-            else
-            {
-                var level = GetLevelFor(player.UserId);
-                string text = level != null
-                    ? $"<color={level.ColorHex}>{level.Text}</color>"
-                    : $"<color={_config.UnknownColorHex}>{_config.UnknownText}</color>";
 
-                player.CustomInfo = $"({text})\n{nickname}";
-            }
+            var level = GetLevelFor(player.UserId);
+            string text = level != null ? level.Text : _config.UnknownText;
+
+            // ВАЖНО: EXILED запрещает rich-text в CustomInfo — только чистый текст
+            player.CustomInfo = $"({text})\n{nickname}";
 
             player.InfoArea = (PlayerInfoArea)~(int)PlayerInfoArea.Nickname;
         }
@@ -245,7 +255,7 @@ public sealed class PlayerXpFeature
 
     private void OnJoined(JoinedEventArgs ev)
     {
-        if (ev.Player == null || ev.Player.DoNotTrack) return;
+        if (ev.Player == null) return;
 
         AddRawXp(ev.Player.UserId, ev.Player.Nickname, 0f); // создаёт запись и обновляет ник
         Timing.CallDelayed(0.45f, () => ApplyLevelBadge(ev.Player));
@@ -265,12 +275,17 @@ public sealed class PlayerXpFeature
 
         ApplyLevelBadge(ev.Player);
 
-        if (ev.Player.DoNotTrack)
+        if (IsXpBlocked(ev.Player))
             return;
 
-        // Запускаем тик жизни при переходе в живую человеческую роль
+        // Запускаем тик жизни при переходе в живую человеческую роль.
+        // Старую корутину обязательно гасим — иначе смена роль->роль стекует начисления.
+        if (_aliveCoroutines.TryRemove(ev.Player.UserId, out var stale))
+            Timing.KillCoroutines(stale);
+
         if (ev.NewRole != RoleTypeId.None && ev.NewRole != RoleTypeId.Spectator &&
-            ev.NewRole != RoleTypeId.Overwatch && !IsScpRole(ev.NewRole))
+            ev.NewRole != RoleTypeId.Overwatch && ev.NewRole != RoleTypeId.Tutorial &&
+            !IsScpRole(ev.NewRole))
         {
             string tag = $"xpAlive.{ev.Player.UserId}";
             _aliveCoroutines[ev.Player.UserId] = Timing.RunCoroutine(AliveCoroutine(ev.Player), tag);
@@ -288,7 +303,7 @@ public sealed class PlayerXpFeature
     /// </summary>
     private void OnEscaped(EscapedEventArgs ev)
     {
-        if (ev.Player == null || ev.Player.DoNotTrack) return;
+        if (ev.Player == null || IsXpBlocked(ev.Player)) return;
 
         if (ev.Player.IsCuffed && ev.Player.Cuffer != null)
             GiveXp(ev.Player.Cuffer, 100f);
@@ -316,7 +331,7 @@ public sealed class PlayerXpFeature
 
     private void OnPickingUpItem(PickingUpItemEventArgs ev)
     {
-        if (ev.Player == null || ev.Pickup == null || ev.Player.DoNotTrack)
+        if (ev.Player == null || ev.Pickup == null)
             return;
 
         if (ev.Pickup.Type is ItemType.MicroHID or ItemType.Jailbird or ItemType.ParticleDisruptor)
@@ -335,7 +350,7 @@ public sealed class PlayerXpFeature
 
     private void OnUsedItem(UsedItemEventArgs ev)
     {
-        if (ev.Player == null || ev.Item == null || ev.Player.DoNotTrack)
+        if (ev.Player == null || ev.Item == null)
             return;
 
         GiveXp(ev.Player, ev.Item.Category == ItemCategory.SCPItem ? 10f : 0.5f);
@@ -343,13 +358,12 @@ public sealed class PlayerXpFeature
 
     private void OnInteractingLocker(InteractingLockerEventArgs ev)
     {
-        if (ev.Player?.DoNotTrack == false)
-            GiveXp(ev.Player, 0.5f);
+        GiveXp(ev.Player, 0.5f);
     }
 
     private void OnInteractingDoor(InteractingDoorEventArgs ev)
     {
-        if (ev.Door != null && ev.Player?.DoNotTrack == false)
+        if (ev.Door != null)
             GiveXp(ev.Player, 0.5f);
     }
 

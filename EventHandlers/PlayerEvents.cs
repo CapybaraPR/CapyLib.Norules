@@ -37,6 +37,7 @@ public class PlayerEvents
     public void OnHurting(HurtingEventArgs ev) => _hitmarkers.OnPlayerHurting(ev);
     public void OnDied(DiedEventArgs ev)
     {
+        _hitmarkers.OnPlayerDied(ev);
         _dotResKill.OnPlayerDeath(ev);
         _capybaraPet.OnPlayerDeath(ev);
     }

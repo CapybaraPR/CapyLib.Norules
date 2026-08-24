@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Capy.Engine.Hints;
@@ -160,6 +160,10 @@ public sealed class Scp120Feature : IDisposable
         if (_ambientLoop.IsRunning)
             Timing.KillCoroutines(_ambientLoop);
 
+        // Телепортации/трансформации запускаются "голыми" корутинами — гасим по тегам
+        Timing.KillCoroutines("scp120_tp");
+        Timing.KillCoroutines("scp120_item");
+
         _activePickupSerials.Clear();
         _teleportingPlayerIds.Clear();
         _isItemTransforming = false;
@@ -194,7 +198,7 @@ public sealed class Scp120Feature : IDisposable
 
                     if (dist2D <= _config.PlayerDetectRadius && yDiff >= -1.0f && yDiff <= 2.2f)
                     {
-                        Timing.RunCoroutine(TeleportPlayerCoroutine(player, poolPos));
+                        Timing.RunCoroutine(TeleportPlayerCoroutine(player, poolPos), "scp120_tp");
                         break;
                     }
                 }
@@ -214,7 +218,7 @@ public sealed class Scp120Feature : IDisposable
                     // Срабатывает только когда предмет действительно попал в воду бассейна
                     if (dist2D <= _config.ItemDetectRadius && yDiff >= -0.4f && yDiff <= 0.65f)
                     {
-                        Timing.RunCoroutine(ProcessItemTransformation(pickup));
+                        Timing.RunCoroutine(ProcessItemTransformation(pickup), "scp120_item");
                         break;
                     }
                 }
@@ -225,6 +229,9 @@ public sealed class Scp120Feature : IDisposable
     private IEnumerator<float> TeleportPlayerCoroutine(Player player, Vector3 poolPos)
     {
         _teleportingPlayerIds.Add(player.Id);
+
+        try
+        {
 
         // Накладываем эффекты затягивания (замедление — игрок может вырваться, покинув зону бассейна)
         try
@@ -317,10 +324,14 @@ public sealed class Scp120Feature : IDisposable
 
             Map.ExplodeEffect(player.Position, ProjectileType.Flashbang);
             player.ShowZoneHint(HintZone.Notification, "<color=#00f5d4>🌀 <b>SCP-120: Телепортация завершена!</b></color>", 2.5f, "scp120_tp", 20);
-        }
 
-        _teleportingPlayerIds.Remove(player.Id);
-        _nextPlayerAllowedTeleportTime = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.TeleportCooldown));
+            _nextPlayerAllowedTeleportTime = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.TeleportCooldown));
+            }
+        }
+        finally
+        {
+            _teleportingPlayerIds.Remove(player.Id);
+        }
     }
 
     private static void RemoveEffectsAndForget(Player player)
@@ -339,6 +350,9 @@ public sealed class Scp120Feature : IDisposable
     {
         _isItemTransforming = true;
         _activePickupSerials.Add(pickup.Serial);
+
+        try
+        {
         ItemType droppedType = pickup.Type;
 
         DisablePhysics(pickup);
@@ -386,8 +400,12 @@ public sealed class Scp120Feature : IDisposable
             }
         }
 
-        _isItemTransforming = false;
-        _nextItemAllowedTransformTime = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.TeleportCooldown));
+            _nextItemAllowedTransformTime = DateTime.UtcNow.AddSeconds(Mathf.Max(0f, _config.TeleportCooldown));
+        }
+        finally
+        {
+            _isItemTransforming = false;
+        }
     }
 
     private static void DisablePhysics(Pickup? pickup)
