@@ -22,7 +22,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public override string Name => "CapyLib.NoRules";
     public override string Author => "CapybaraPR";
     public override string Prefix => "norules";
-    public override Version Version => new(1, 2, 0);
+    public override Version Version => new(1, 3, 0);
     public override Version RequiredExiledVersion => new(8, 9, 0);
 
     public static NoRulesPlugin Instance { get; private set; } = null!;
@@ -40,6 +40,9 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public CapybaraPetFeature CapybaraPet { get; private set; } = null!;
     public Scp120Feature Scp120 { get; private set; } = null!;
     public Scp294Feature Scp294 { get; private set; } = null!;
+    public FacilityAuthFeature FacilityAuth { get; private set; } = null!;
+    public ShowReportsFeature ShowReports { get; private set; } = null!;
+    public PlayerXpFeature PlayerXp { get; private set; } = null!;
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -56,6 +59,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .kill</color>                  <color=#c2c2c2>-- Совершить самоубийство (живые игроки)</color>");
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .vanish (.v, .spec)</color>   <color=#c2c2c2>-- Режим свободного наблюдателя (из спектаторов)</color>");
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .drink (.dr)</color>       <color=#c2c2c2>-- Выбрать напиток SCP-294 (кофемашина в офисах)</color>");
+        HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* /level, /top</color>        <color=#c2c2c2>-- Уровень и топ игроков в нашем Discord</color>");
 
         Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми игровыми модулями, Vanish, CapybaraPet и SCP-120.");
         base.OnEnabled();
@@ -66,6 +70,9 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         UnregisterEvents();
         Scp120?.Dispose();
         Scp294?.Disable();
+        FacilityAuth?.Disable();
+        ShowReports?.Disable();
+        PlayerXp?.Disable();
 
         Instance = null!;
         Log.Info("[NoRules] Плагин выключен.");
@@ -88,6 +95,15 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         Scp120 = new Scp120Feature(Config.Scp120);
         Scp294 = new Scp294Feature(Config.Scp294);
         Scp294.Enable();
+
+        FacilityAuth = new FacilityAuthFeature(Config.FacilityAuth);
+        FacilityAuth.Enable();
+
+        ShowReports = new ShowReportsFeature(Config.ShowReports);
+        ShowReports.Enable();
+
+        PlayerXp = new PlayerXpFeature(Config.PlayerXp);
+        PlayerXp.Enable();
 
         _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet, Scp120);
         _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList, Scp120);

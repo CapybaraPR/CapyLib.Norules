@@ -48,6 +48,63 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("11. Настройки SCP-294 (Кофемашина — выдаёт напитки по выбору игрока).")]
     public Scp294Config Scp294 { get; set; } = new();
+
+    [Description("12. Настройки Facility Auth (тесла не бьёт игроков с картой доступа, кроме карты Хаоса).")]
+    public FacilityAuthConfig FacilityAuth { get; set; } = new();
+
+    [Description("13. Настройки уведомлений о репортах для администрации.")]
+    public ShowReportsConfig ShowReports { get; set; } = new();
+
+    [Description("14. Настройки системы опыта и уровней игроков (синхронизируется с Discord).")]
+    public PlayerXpConfig PlayerXp { get; set; } = new();
+}
+
+public sealed class FacilityAuthConfig
+{
+    [Description("Включен ли Facility Auth (тесла игнорирует игроков с любой картой, кроме KeycardChaosInsurgency).")]
+    public bool IsEnabled { get; set; } = true;
+}
+
+public sealed class ShowReportsConfig
+{
+    [Description("Включены ли уведомления о репортах.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Сообщение репортёру после отправки жалобы.")]
+    public string ReporterMessage { get; set; } = "<color=#ffd285><b>Репорт</b></color> на {target} отправлен <color=#a3e635>админам и в дискорд</color>!";
+
+    [Description("Длительность показа сообщения репортёру (секунды).")]
+    public float ReporterMessageDuration { get; set; } = 10f;
+
+    [Description("Длительность показа уведомления админам (секунды).")]
+    public float AdminNotifyDuration { get; set; } = 10f;
+}
+
+public sealed class PlayerXpConfig
+{
+    [Description("Включена ли система опыта и уровней.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Делитель опыта (весь получаемый опыт делится на это число), как в оригинале Hazbin.")]
+    public float XpDivisor { get; set; } = 3f;
+
+    [Description("Множитель опыта для игроков с тегом в нике.")]
+    public float TaggedMultiplier { get; set; } = 2f;
+
+    [Description("Тег в нике для множителя опыта (регистр не важен).")]
+    public string SpecialTag { get; set; } = "#капибара";
+
+    [Description("Сколько раз в секундах начисляется опыт за жизнь.")]
+    public float AliveTickSeconds { get; set; } = 60f;
+
+    [Description("Опыт за один тик жизни.")]
+    public float AliveXpAmount { get; set; } = 1f;
+
+    [Description("Текст уровня для неизвестных/DNT игроков.")]
+    public string UnknownText { get; set; } = "Неизвестно";
+
+    [Description("HEX-цвет уровня для неизвестных/DNT игроков.")]
+    public string UnknownColorHex { get; set; } = "#8a6f46";
 }
 
 public sealed class Scp294Config
