@@ -75,6 +75,18 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("20. Концепт «Отряд СО₂» — фракция МОГ с миссией затопления комплекса угарным газом.")]
     public Co2Config Co2 { get; set; } = new();
+
+    [Description("21. Концепт «Хакеры» — группировка с миссией взлома Omega Warhead.")]
+    public HackersConfig Hackers { get; set; } = new();
+
+    [Description("22. Концепт «SCP-008» — вирусные трубки, открываемые SCP.")]
+    public Scp008Config Scp008 { get; set; } = new();
+
+    [Description("23. Концепт «Рагнарёк» — культ Священников и Верующих.")]
+    public RagnarokConfig Ragnarok { get; set; } = new();
+
+    [Description("24. Концепт «AirDrop» — грузовой самолёт с лутом над Поверхностью.")]
+    public AirDropConfig AirDrop { get; set; } = new();
 }
 
 public sealed class Co2Config
@@ -492,5 +504,130 @@ public sealed class CapybaraPetConfig
     public List<string> OwnerSteamIds { get; set; } = new()
     {
         "76561198708583029"
+    };
+}
+
+public sealed class HackersConfig
+{
+    [Description("Включен ли концепт «Хакеры».")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Шанс замены волны на группировку Хакеров (в процентах), если СО2 не взял волну.")]
+    public int ChancePercent { get; set; } = 30;
+
+    [Description("Минимум спектаторов для формирования группировки.")]
+    public int MinSpectators { get; set; } = 3;
+
+    [Description("Максимальный размер группировки.")]
+    public int SquadSizeMax { get; set; } = 6;
+
+    [Description("Комната, в которой строится панель взлома.")]
+    public string PanelRoom { get; set; } = "HczServers";
+
+    [Description("Смещение панели относительно центра комнаты по X.")]
+    public float OffsetX { get; set; } = 0f;
+
+    [Description("Смещение панели относительно центра комнаты по Y.")]
+    public float OffsetY { get; set; } = 0f;
+
+    [Description("Смещение панели относительно центра комнаты по Z.")]
+    public float OffsetZ { get; set; } = -1.5f;
+
+    [Description("Радиус взаимодействия с панелью (метры).")]
+    public float PanelRadius { get; set; } = 2.2f;
+
+    [Description("Сколько секунд длится один тик взлома.")]
+    public float HackTickSeconds { get; set; } = 1f;
+
+    [Description("Сколько тиков взлома нужно (тик = HackTickSeconds).")]
+    public int HackTicksRequired { get; set; } = 75;
+
+    [Description("Дальше этого радиуса от панели прогресс сбрасывается (метры).")]
+    public float HackRadius { get; set; } = 7f;
+
+    [Description("Обратный отсчёт Omega Warhead после взлома (секунды).")]
+    public float OmegaCountdownSeconds { get; set; } = 240f;
+
+    [Description("Опыт за успешный взлом (без делителя).")]
+    public float MissionXp { get; set; } = 300f;
+
+    [Description("CASSIE-оповещение при вторжении (на 50% взлома).")]
+    public string CassieAlert { get; set; } = "ATTENTION . UNAUTHORIZED ACCESS TO CONTROL SYSTEMS DETECTED";
+}
+
+public sealed class Scp008Config
+{
+    [Description("Включен ли концепт «SCP-008».")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Радиус взаимодействия с трубкой (метры).")]
+    public float TubeRadius { get; set; } = 2.2f;
+
+    [Description("Смещение трубок относительно центра комнаты по X.")]
+    public float OffsetX { get; set; } = 0f;
+
+    [Description("Смещение трубок относительно центра комнаты по Y.")]
+    public float OffsetY { get; set; } = 0f;
+
+    [Description("Смещение трубок относительно центра комнаты по Z.")]
+    public float OffsetZ { get; set; } = -4f;
+
+    [Description("Сколько секунд после открытия трубки до начала вспышки вируса.")]
+    public float OpenDurationToOutbreak { get; set; } = 45f;
+
+    [Description("Периодичность тика урона вируса (секунды).")]
+    public float TickSeconds { get; set; } = 10f;
+
+    [Description("Урон людям за один тик за каждую открытую трубку.")]
+    public float OutbreakDamagePerTick { get; set; } = 2f;
+
+    [Description("Лечить ли SCP-сторону на каждом тике вспышки.")]
+    public bool HealScpsOnTick { get; set; } = true;
+
+    [Description("Сколько HP получает каждый SCP за тик (если HealScpsOnTick).")]
+    public float ScpHealAmount { get; set; } = 15f;
+
+    [Description("CASSIE-сообщение при открытии трубки.")]
+    public string CassieOutbreak { get; set; } = "DANGER . VIRUS SCP 0 0 8 CONTAINMENT BREACH DETECTED";
+}
+
+public sealed class RagnarokConfig
+{
+    [Description("Включен ли концепт «Рагнарёк».")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("SteamID (или часть SteamID), которым доступна роль Священника.")]
+    public System.Collections.Generic.List<string> PriestSteamIds { get; set; } = new()
+    {
+        "76561198708583029"
+    };
+
+    [Description("Минимум Верующих и Священников рядом для начала ритуала.")]
+    public int MinParticipants { get; set; } = 3;
+
+    [Description("Длительность ритуала (секунды).")]
+    public float RitualSeconds { get; set; } = 90f;
+
+    [Description("Количество единиц оружия из Ковчега.")]
+    public int LootGunsCount { get; set; } = 3;
+}
+
+public sealed class AirDropConfig
+{
+    [Description("Включен ли концепт «AirDrop».")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Задержка первого прилёта после старта раунда (секунды).")]
+    public float FirstDelaySeconds { get; set; } = 200f;
+
+    [Description("Интервал между прилётами (секунды).")]
+    public float IntervalSeconds { get; set; } = 200f;
+
+    [Description("Предметы, которые сбрасывает самолёт.")]
+    public System.Collections.Generic.List<ItemType> DropItems { get; set; } = new()
+    {
+        ItemType.Medkit, ItemType.Adrenaline, ItemType.SCP207,
+        ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCOM18,
+        ItemType.SCP500, ItemType.Flashlight, ItemType.Radio
     };
 }

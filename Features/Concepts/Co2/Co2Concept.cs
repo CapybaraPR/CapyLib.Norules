@@ -82,7 +82,7 @@ public sealed class Co2Concept
         Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
         Exiled.Events.Handlers.Server.RoundStarted += OnRoundStarted;
         Exiled.Events.Handlers.Server.RestartingRound += OnRestartingRound;
-        Exiled.Events.Handlers.Server.RespawningTeam += OnRespawningTeam;
+
         Exiled.Events.Handlers.Server.AddingUnitName += OnAddingUnitName;
         Exiled.Events.Handlers.Player.Spawned += OnSpawned;
         Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;
@@ -97,7 +97,7 @@ public sealed class Co2Concept
         Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
         Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStarted;
         Exiled.Events.Handlers.Server.RestartingRound -= OnRestartingRound;
-        Exiled.Events.Handlers.Server.RespawningTeam -= OnRespawningTeam;
+
         Exiled.Events.Handlers.Server.AddingUnitName -= OnAddingUnitName;
         Exiled.Events.Handlers.Player.Spawned -= OnSpawned;
         Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;
@@ -320,14 +320,17 @@ public sealed class Co2Concept
         return spectators.Take(max).ToList();
     }
 
-    private void OnRespawningTeam(RespawningTeamEventArgs ev)
+    /// <summary>
+    /// Попытка конвертировать волну МОГ в Отряд СО2. false — условия не выполнены.
+    /// </summary>
+    public bool TryTakeWave(RespawningTeamEventArgs ev)
     {
         if (!_config.IsEnabled || _spawnedThisRound || !CanAutoSpawn())
-            return;
+            return false;
 
         var squad = CollectCandidates(Math.Min(_config.SquadSizeMax, ev.MaximumRespawnAmount));
         if (squad == null || squad.Count == 0)
-            return;
+            return false;
 
         ev.Players.Clear();
         ev.Players.AddRange(squad);
@@ -336,6 +339,7 @@ public sealed class Co2Concept
         _pendingSquadWave = true;
 
         RegisterSquad(squad);
+        return true;
     }
 
     /// <summary>Принудительный вызов отряда админ-командой.</summary>
