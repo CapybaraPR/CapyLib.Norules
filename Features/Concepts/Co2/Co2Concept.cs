@@ -419,10 +419,18 @@ public sealed class Co2Concept
             _spawnProtection[member.UserId] = DateTime.UtcNow.AddSeconds(10f);
 
             member.ShowZoneHint(HintZone.TopCenter,
-                $"<color=#14b1e0><b>Вы — {rank} отряда активации <color=#0099ff>СО₂</color> МОГ</b></color>\n" +
-                "<size=70%><color=#c2c2c2>Миссия: обеспечить активацию CO2 на двух панелях в HID-комнате.\n" +
-                "[E] рядом с панелью. Держитесь рядом во время активации!</color></size>",
-                10f, "co2_brief", 20);
+                "<color=#14b1e0><b>☠ Вы — " + rank + " ОТРЯДА-СМЕРТНИКА СО₂</b></color>\n" +
+                "<size=65%><color=#c2c2c2>МОГ • Операция «Чистый воздух»</color></size>\n\n" +
+                "<color=#ff6b6b><b>⚠ ВНИМАНИЕ: ЭТО МИССИЯ-САМОУБИЙСТВО</b></color>\n" +
+                "<color=#e5e7eb>Активация CO2 убьёт ВСЕХ в комплексе — включая вас.</color>\n" +
+                "<color=#e5e7eb>Но и все SCP погибнут. Это ваш последний подвиг.</color>\n\n" +
+                "<color=#ffd285><b>КАК ВЫПОЛНИТЬ:</b></color>\n" +
+                "<size=65%><color=#c2c2c2>1. Идите в комнату турели (H.I.D.) в HCZ\n" +
+                "2. Активируйте обе панели — жмите [E] рядом с каждой\n" +
+                "3. Держитесь рядом 2 секунды на каждой панели\n" +
+                "4. Обе панели должны быть активны ОДНОВРЕМЕННО\n\n" +
+                "<color=#a3e635>НАГРАДА: +500 XP</color></size></size>",
+                15f, "co2_brief", 18);
         }
 
         BroadcastToAll($"<color=#14b1e0>🚁 На комплекс прибыл <b>Отряд СО₂</b> МОГ ({squad.Count} чел.)</color>");

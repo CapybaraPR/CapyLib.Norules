@@ -141,9 +141,15 @@ public sealed class RagnarokConcept
         StartNimbus(player);
 
         player.ShowZoneHint(HintZone.TopCenter,
-            "<color=#f2d410>✝ Вы стали <b>Священником</b></color>\n" +
-            "<size=70%><color=#6f6f6f>Соберите 2+ Верующих (.believe) в crossing-комнате\n" +
-            "и произнесите призыв: <b>.pray</b></color></size>", 8f, "rag_priest", 22);
+            "<color=#f2d410>✝ Вы стали <b>СВЯЩЕННИКОМ</b></color>\n\n" +
+            "<color=#ffd285><b>РИТУАЛ ПРИЗЫВА:</b></color>\n" +
+            "<size=65%><color=#c2c2c2>1. Другие игроки пишут .rag believe чтобы стать Верующими\n" +
+            "2. Соберите 2+ Верующих в crossing-комнате (перекрёсток)\n" +
+            "3. Пропишите .rag pray для начала ритуала\n\n" +
+            "Ритуал длится 90 секунд. Комната будет заперта.\n" +
+            "После завершения из Ковчега выпадет ОРУЖИЕ!</color></size>\n\n" +
+            "<color=#6f6f6f>Верующие: .rag believe | Призыв: .rag pray</color>",
+            15f, "rag_priest", 18);
 
         return "Вы стали Священником. Команды: .believe (для других), .pray (ритуал).";
     }

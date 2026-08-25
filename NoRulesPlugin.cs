@@ -28,7 +28,7 @@ using Capy.NoRules.Features.Concepts.Hackers;
 
 using Exiled.API.Features;
 
-
+using Exiled.Events.EventArgs.Server;
 
 using PlayerEventsHandler = Exiled.Events.Handlers.Player;
 
@@ -616,6 +616,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
 
 
+        ServerEventsHandler.RespawningTeam += WaveDispatcher;
         ServerEventsHandler.RespawningTeam += Vanish.OnRespawningTeam;
 
 
@@ -885,6 +886,13 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     }
 
 
+
+    private void WaveDispatcher(RespawningTeamEventArgs ev)
+    {
+        // Сначала пробуем CO2, потом Хакеров
+        if (Co2?.TryTakeWave(ev) == true) return;
+        if (Hackers?.TryTakeWave(ev) == true) return;
+    }
 
     private void PinkCandyStaticRestart()
 

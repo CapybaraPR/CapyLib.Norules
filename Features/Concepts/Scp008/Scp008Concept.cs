@@ -249,7 +249,18 @@ public sealed class Scp008Concept
         catch { }
 
         opener.ShowZoneHint(HintZone.Notification,
-            $"<color=#84cc16>☣ Труба в зоне {tube.RoomName} открыта!</color>", 3f, "scp008", 22);
+            $"<color=#84cc16>☣ Труба в зоне {tube.RoomName} открыта! +50 XP</color>\n" +
+            "<size=65%><color=#c2c2c2>Вирус отравляет людей. SCP лечатся от вспышки.\n" +
+            "Откройте больше трубок чтобы усилить вирус!</color></size>", 5f, "scp008", 22);
+
+        // Бриффинг для людей
+        foreach (var human in Player.List.Where(x => x != null && x.IsAlive && x.Role.Side != Side.Scp))
+        {
+            human.ShowZoneHint(HintZone.Notification,
+                "<color=#84cc16>☣ SCP открыли трубку с вирусом SCP-008!</color>\n" +
+                "<size=65%><color=#c2c2c2>Вы заражены. Кровотечение не остановить без медкита.\n" +
+                "Покиньте комплекс или используйте аптечки!</color></size>", 6f, "scp008_human", 20);
+        }
 
         // Награда открывшему
         NoRulesPlugin.Instance?.PlayerXp?.SetRawXp(opener.UserId, string.Empty,
