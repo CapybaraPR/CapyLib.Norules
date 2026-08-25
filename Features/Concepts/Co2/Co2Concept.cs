@@ -310,7 +310,7 @@ public sealed class Co2Concept
     private List<Player>? CollectCandidates(int max)
     {
         var spectators = Player.List
-            .Where(p => p != null && p.IsConnected && !p.IsNPC &&
+            .Where(p => p != null && p.IsConnected &&
                         (p.Role.Type == RoleTypeId.Spectator || p.Role.Type == RoleTypeId.Overwatch))
             .ToList();
 
