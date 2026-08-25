@@ -110,10 +110,10 @@ public sealed class Co2Config
     public float Panel1X { get; set; } = 5.29f;
 
     [Description("Панель 1: смещение Y.")]
-    public float Panel1Y { get; set; } = 5.46f;
+    public float Panel1Y { get; set; } = 4.2f;
 
     [Description("Панель 1: смещение Z.")]
-    public float Panel1Z { get; set; } = -2.42f;
+    public float Panel1Z { get; set; } = -2.9f;
 
     [Description("Панель 1: поворот Y.")]
     public float Panel1RotY { get; set; } = 102.75f;
@@ -122,10 +122,10 @@ public sealed class Co2Config
     public float Panel2X { get; set; } = -6.4f;
 
     [Description("Панель 2: смещение Y.")]
-    public float Panel2Y { get; set; } = 5.45f;
+    public float Panel2Y { get; set; } = 4.2f;
 
     [Description("Панель 2: смещение Z.")]
-    public float Panel2Z { get; set; } = 4.89f;
+    public float Panel2Z { get; set; } = 5.4f;
 
     [Description("Панель 2: поворот Y.")]
     public float Panel2RotY { get; set; } = 270.25f;
