@@ -276,6 +276,36 @@ public sealed class HackersConcept
         => role is RoleTypeId.Scp049 or RoleTypeId.Scp0492 or RoleTypeId.Scp079 or RoleTypeId.Scp096
             or RoleTypeId.Scp106 or RoleTypeId.Scp173 or RoleTypeId.Scp3114 or RoleTypeId.Scp939;
 
+    /// <summary>
+    /// Добавляет одного игрока в группировку Хакеров (для .gcr).
+    /// </summary>
+    public void AddMember(Player player)
+    {
+        if (player == null || !player.IsAlive) return;
+
+        _squadMembers.Add(player.UserId);
+        CustomUnits.AssignMember(player, "Группировка «Хакеры»", "#a78bfa", "Хакер");
+
+        try
+        {
+            player.ClearInventory();
+            player.AddItem(ItemType.KeycardFacilityManager);
+            player.AddItem(ItemType.GunCOM18);
+            player.AddItem(ItemType.SCP268);
+            player.AddItem(ItemType.Flashlight);
+            player.AddItem(ItemType.Radio);
+            player.AddItem(ItemType.ArmorCombat);
+        }
+        catch { }
+
+        _spawnProtection[player.UserId] = DateTime.UtcNow.AddSeconds(10f);
+
+        player.ShowZoneHint(HintZone.TopCenter,
+            "<color=#a78bfa><b>Вы — Хакер</b></color>\n" +
+            "<size=70%><color=#c2c2c2>Найдите серверную комнату и взломайте панель [E]</color></size>",
+            8f, "hackers_brief", 20);
+    }
+
     private void Teardown()
     {
         foreach (var go in _spawnedObjects)

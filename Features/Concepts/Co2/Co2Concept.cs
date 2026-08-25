@@ -343,6 +343,24 @@ public sealed class Co2Concept
         return true;
     }
 
+    /// <summary>
+    /// Добавляет одного игрока в отряд СО2 (для .gcr).
+    /// </summary>
+    public void AddMember(Player player)
+    {
+        if (player == null || !player.IsAlive) return;
+
+        _squadMembers.Add(player.UserId);
+        CustomUnits.AssignMember(player, "Отряд СО2", "#14b1e0", "Оперативник");
+        ApplyKit(player, 2);
+        _spawnProtection[player.UserId] = DateTime.UtcNow.AddSeconds(10f);
+
+        player.ShowZoneHint(HintZone.TopCenter,
+            "<color=#14b1e0><b>Вы — Оперативник отряда активации СО₂ МОГ</b></color>\n" +
+            "<size=70%><color=#c2c2c2>[E] рядом с панелями в HID для активации CO2</color></size>",
+            8f, "co2_brief", 20);
+    }
+
     /// <summary>Принудительный вызов отряда админ-командой.</summary>
     public string ForceSpawnFromSpectators()
     {

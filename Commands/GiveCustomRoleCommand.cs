@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,6 +48,14 @@ public sealed class GiveCustomRoleCommand : ICommand
                 response = "<color=red>[ОШИБКА]</color> Не удалось определить игрока. Укажите ID или никнейм цели вторым аргументом.";
                 return false;
             }
+        }
+
+        // 2.5 Концепты (СО₂, Хакеры) — проверяем до обычных кастомных ролей
+        var conceptResult = TryGiveConceptRole(query, target);
+        if (conceptResult != null)
+        {
+            response = conceptResult;
+            return true;
         }
 
         // 3. Поиск ролей по префиксу / имени
@@ -139,6 +147,23 @@ public sealed class GiveCustomRoleCommand : ICommand
 
         response = $"<color=red>[ОШИБКА]</color> Кастомная роль по запросу '<b>{query}</b>' не найдена.\nИспользуйте <b>gcr list</b> для просмотра доступных ролей.";
         return false;
+    }
+
+    private static string? TryGiveConceptRole(string query, Player target)
+    {
+        switch (query)
+        {
+            case "co2" or "со2" or "co2squad":
+                NoRulesPlugin.Instance?.Co2?.AddMember(target);
+                return $"<color=green>[КОНЦЕПТ]</color> <b>{target.Nickname}</b> добавлен в <color=#14b1e0>Отряд СО₂</color>.";
+
+            case "hackers" or "hacker" or "хакеры":
+                NoRulesPlugin.Instance?.Hackers?.AddMember(target);
+                return $"<color=green>[КОНЦЕПТ]</color> <b>{target.Nickname}</b> добавлен в <color=#a78bfa>Группировку Хакеров</color>.";
+
+            default:
+                return null;
+        }
     }
 
     private static string BuildRolesList()
