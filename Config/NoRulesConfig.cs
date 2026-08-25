@@ -82,9 +82,6 @@ public sealed class NoRulesConfig : IConfig
     [Description("22. Концепт «SCP-008» — вирусные трубки, открываемые SCP.")]
     public Scp008Config Scp008 { get; set; } = new();
 
-    [Description("23. Концепт «Рагнарёк» — культ Священников и Верующих.")]
-    public RagnarokConfig Ragnarok { get; set; } = new();
-
     [Description("24. Концепт «AirDrop» — грузовой самолёт с лутом над Поверхностью.")]
     public AirDropConfig AirDrop { get; set; } = new();
 }
@@ -109,14 +106,29 @@ public sealed class Co2Config
     [Description("Радиус взаимодействия с панелями (метры). Нажмите [E] рядом. Панели находятся в комнате турели (H.I.D.) в HCZ.")]
     public float PanelRadius { get; set; } = 2.5f;
 
-    [Description("Смещение панелей относительно центра комнаты турели по X.")]
-    public float OffsetX { get; set; } = 0f;
+    [Description("Панель 1: смещение X относительно центра комнаты турели.")]
+    public float Panel1X { get; set; } = 5.29f;
 
-    [Description("Смещение панелей относительно центра комнаты турели по Y.")]
-    public float OffsetY { get; set; } = 1.43f;
+    [Description("Панель 1: смещение Y.")]
+    public float Panel1Y { get; set; } = 5.46f;
 
-    [Description("Смещение панелей относительно центра комнаты турели по Z.")]
-    public float OffsetZ { get; set; } = -7.08f;
+    [Description("Панель 1: смещение Z.")]
+    public float Panel1Z { get; set; } = -2.42f;
+
+    [Description("Панель 1: поворот Y.")]
+    public float Panel1RotY { get; set; } = 102.75f;
+
+    [Description("Панель 2: смещение X относительно центра комнаты турели.")]
+    public float Panel2X { get; set; } = -6.4f;
+
+    [Description("Панель 2: смещение Y.")]
+    public float Panel2Y { get; set; } = 5.45f;
+
+    [Description("Панель 2: смещение Z.")]
+    public float Panel2Z { get; set; } = 4.89f;
+
+    [Description("Панель 2: поворот Y.")]
+    public float Panel2RotY { get; set; } = 270.25f;
 
     [Description("Сколько секунд нужно удерживать активацию панели.")]
     public float ActivateConfirmSeconds { get; set; } = 2f;
@@ -152,13 +164,13 @@ public sealed class Scp1162Config
     public string SchematicName { get; set; } = "SCP1162";
 
     [Description("Смещение дыры относительно центра комнаты по X.")]
-    public float OffsetX { get; set; } = 0f;
+    public float OffsetX { get; set; } = 22.1f;
 
     [Description("Смещение позиции дыры относительно центра комнаты по Y.")]
-    public float OffsetY { get; set; } = 0f;
+    public float OffsetY { get; set; } = 13.06f;
 
     [Description("Смещение позиции дыры относительно центра комнаты по Z.")]
-    public float OffsetZ { get; set; } = 0f;
+    public float OffsetZ { get; set; } = 8.3f;
 
     [Description("Радиус взаимодействия с дырой (метры). Нажмите [E], стоя рядом.")]
     public float InteractRadius { get; set; } = 1.8f;
@@ -587,29 +599,8 @@ public sealed class Scp008Config
     [Description("Сколько HP получает каждый SCP за тик (если HealScpsOnTick).")]
     public float ScpHealAmount { get; set; } = 15f;
 
-    [Description("CASSIE-сообщение при открытии трубки.")]
+    [Description("CASSIE-сообщение при открытии трубке.")]
     public string CassieOutbreak { get; set; } = "DANGER . VIRUS SCP 0 0 8 CONTAINMENT BREACH DETECTED";
-}
-
-public sealed class RagnarokConfig
-{
-    [Description("Включен ли концепт «Рагнарёк».")]
-    public bool IsEnabled { get; set; } = true;
-
-    [Description("SteamID (или часть SteamID), которым доступна роль Священника.")]
-    public System.Collections.Generic.List<string> PriestSteamIds { get; set; } = new()
-    {
-        "76561198708583029"
-    };
-
-    [Description("Минимум Верующих и Священников рядом для начала ритуала.")]
-    public int MinParticipants { get; set; } = 3;
-
-    [Description("Длительность ритуала (секунды).")]
-    public float RitualSeconds { get; set; } = 90f;
-
-    [Description("Количество единиц оружия из Ковчега.")]
-    public int LootGunsCount { get; set; } = 3;
 }
 
 public sealed class AirDropConfig

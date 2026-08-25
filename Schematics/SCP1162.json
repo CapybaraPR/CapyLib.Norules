@@ -2,12 +2,12 @@
   "RootObjectId": 10000,
   "Blocks": [
     {
-      "Name": "Hole Abyss",
+      "Name": "Void_Core",
       "ObjectId": 10001,
       "ParentId": 10000,
       "Position": {
         "x": 0,
-        "y": 0.02,
+        "y": 0.8,
         "z": 0
       },
       "Rotation": {
@@ -16,25 +16,103 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.4,
-        "y": 0.02,
-        "z": 1.8
+        "x": 0.85,
+        "y": 1.25,
+        "z": 0.05
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "050208FF",
+        "Color": "01000100",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Hole Depth Core",
+      "Name": "Void_Layer2",
       "ObjectId": 10002,
       "ParentId": 10000,
       "Position": {
         "x": 0,
-        "y": -0.15,
+        "y": 0.8,
+        "z": 0.03
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
         "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 1.1,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0212E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Void_Layer3",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.8,
+        "z": 0.06
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.9,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "120518D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Void_Deep",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.75,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.3,
+        "y": 0.5,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "000000FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Edge_Top",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.48,
+        "z": -0.01
       },
       "Rotation": {
         "x": 0,
@@ -43,102 +121,24 @@
       },
       "Scale": {
         "x": 0.9,
-        "y": 0.25,
-        "z": 1.2
+        "y": 0.05,
+        "z": 0.04
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "020106FF",
+        "Color": "7C3AEDD0",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Rim Glow Front",
-      "ObjectId": 10003,
-      "ParentId": 10000,
-      "Position": {
-        "x": 0,
-        "y": 0.03,
-        "z": 0.92
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "Scale": {
-        "x": 1.5,
-        "y": 0.04,
-        "z": 0.08
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "7C3AEDCC",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Rim Glow Back",
-      "ObjectId": 10004,
-      "ParentId": 10000,
-      "Position": {
-        "x": 0,
-        "y": 0.03,
-        "z": -0.92
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "Scale": {
-        "x": 1.5,
-        "y": 0.04,
-        "z": 0.08
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "7C3AEDCC",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Rim Glow Left",
-      "ObjectId": 10005,
-      "ParentId": 10000,
-      "Position": {
-        "x": -0.72,
-        "y": 0.03,
-        "z": 0
-      },
-      "Rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "Scale": {
-        "x": 0.08,
-        "y": 0.04,
-        "z": 1.9
-      },
-      "BlockType": 1,
-      "Properties": {
-        "PrimitiveType": 3,
-        "Color": "7C3AEDCC",
-        "PrimitiveFlags": 2
-      }
-    },
-    {
-      "Name": "Rim Glow Right",
+      "Name": "Edge_Top2",
       "ObjectId": 10006,
       "ParentId": 10000,
       "Position": {
-        "x": 0.72,
-        "y": 0.03,
-        "z": 0
+        "x": 0,
+        "y": 1.53,
+        "z": -0.005
       },
       "Rotation": {
         "x": 0,
@@ -146,25 +146,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.08,
-        "y": 0.04,
-        "z": 1.9
+        "x": 0.7,
+        "y": 0.03,
+        "z": 0.03
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "7C3AEDCC",
+        "Color": "9B59B6A0",
         "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Frame Plate Top",
+      "Name": "Edge_Bottom",
       "ObjectId": 10007,
       "ParentId": 10000,
       "Position": {
         "x": 0,
-        "y": 0.035,
-        "z": 1.05
+        "y": 0.12,
+        "z": -0.01
       },
       "Rotation": {
         "x": 0,
@@ -172,25 +172,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.9,
+        "x": 0.9,
         "y": 0.05,
-        "z": 0.18
+        "z": 0.04
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "3E3428FF",
-        "PrimitiveFlags": 3
+        "Color": "7C3AEDD0",
+        "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Frame Plate Bottom",
+      "Name": "Edge_Bottom2",
       "ObjectId": 10008,
       "ParentId": 10000,
       "Position": {
         "x": 0,
-        "y": 0.035,
-        "z": -1.05
+        "y": 0.07,
+        "z": -0.005
       },
       "Rotation": {
         "x": 0,
@@ -198,25 +198,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 1.9,
-        "y": 0.05,
-        "z": 0.18
+        "x": 0.65,
+        "y": 0.03,
+        "z": 0.03
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "3E3428FF",
-        "PrimitiveFlags": 3
+        "Color": "4A2060E0",
+        "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Frame Plate Left",
+      "Name": "Edge_Left",
       "ObjectId": 10009,
       "ParentId": 10000,
       "Position": {
-        "x": -0.88,
-        "y": 0.035,
-        "z": 0
+        "x": -0.45,
+        "y": 0.8,
+        "z": -0.01
       },
       "Rotation": {
         "x": 0,
@@ -224,25 +224,25 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.18,
-        "y": 0.05,
-        "z": 2.28
+        "x": 0.05,
+        "y": 1.35,
+        "z": 0.04
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "453A2DFF",
-        "PrimitiveFlags": 3
+        "Color": "7C3AEDD0",
+        "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Frame Plate Right",
+      "Name": "Edge_Left2",
       "ObjectId": 10010,
       "ParentId": 10000,
       "Position": {
-        "x": 0.88,
-        "y": 0.035,
-        "z": 0
+        "x": -0.5,
+        "y": 0.8,
+        "z": -0.005
       },
       "Rotation": {
         "x": 0,
@@ -250,67 +250,1549 @@
         "z": 0
       },
       "Scale": {
-        "x": 0.18,
-        "y": 0.05,
-        "z": 2.28
+        "x": 0.03,
+        "y": 1.2,
+        "z": 0.03
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "453A2DFF",
-        "PrimitiveFlags": 3
+        "Color": "9B59B6A0",
+        "PrimitiveFlags": 2
       }
     },
     {
-      "Name": "Bone Debris 1",
+      "Name": "Edge_Right",
       "ObjectId": 10011,
       "ParentId": 10000,
       "Position": {
-        "x": -0.5,
-        "y": 0.06,
-        "z": 0.55
+        "x": 0.45,
+        "y": 0.8,
+        "z": -0.01
       },
       "Rotation": {
         "x": 0,
-        "y": 30,
+        "y": 0,
         "z": 0
       },
       "Scale": {
-        "x": 0.25,
+        "x": 0.05,
+        "y": 1.35,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "7C3AEDD0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Edge_Right2",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.5,
+        "y": 0.8,
+        "z": -0.005
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.03,
+        "y": 1.2,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4A2060E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_0",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.5,
+        "y": 1.55,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 15,
+        "y": 0,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.08,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "8A2BE2C0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_0_Glow",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.5,
+        "y": 1.59,
+        "z": 0.07
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_1",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.5,
+        "y": 1.55,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": -15,
+        "y": 0,
+        "z": -20
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "8A2BE2C0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_1_Glow",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.5,
+        "y": 1.61,
+        "z": 0.07
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_2",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.52,
+        "y": 0.05,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 25,
+        "y": 0,
+        "z": -15
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.16,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "8A2BE2C0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_2_Glow",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.52,
+        "y": 0.13,
+        "z": 0.07
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_3",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.52,
+        "y": 0.05,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": -25,
+        "y": 0,
+        "z": 15
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.08,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "8A2BE2C0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_3_Glow",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.52,
+        "y": 0.09,
+        "z": 0.07
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_4",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.62,
+        "z": 0.03
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 5,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "8A2BE2C0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_4_Glow",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.68,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_5",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -0.02,
+        "z": 0.03
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -5,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.16,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "8A2BE2C0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_5_Glow",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.06,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_0",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.3188,
+        "y": 0.9139,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
         "y": 0.03,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "6A1FB0D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_1",
+      "ObjectId": 10026,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.2673,
+        "y": 1.1564,
+        "z": 0.04
+      },
+      "Rotation": {
+        "x": 10,
+        "y": 15,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.045,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_2",
+      "ObjectId": 10027,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.1103,
+        "y": 1.3486,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 20,
+        "y": 30,
+        "z": 40
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.06,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "6A1FB0D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_3",
+      "ObjectId": 10028,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.0854,
+        "y": 1.225,
+        "z": 0.04
+      },
+      "Rotation": {
+        "x": 30,
+        "y": 45,
+        "z": 60
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_4",
+      "ObjectId": 10029,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2673,
+        "y": 1.1564,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 40,
+        "y": 60,
+        "z": 80
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.03,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "6A1FB0D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_5",
+      "ObjectId": 10030,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.4115,
+        "y": 0.947,
+        "z": 0.04
+      },
+      "Rotation": {
+        "x": 50,
+        "y": 75,
+        "z": 100
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.045,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_6",
+      "ObjectId": 10031,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.3188,
+        "y": 0.6861,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 60,
+        "y": 90,
+        "z": 120
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.06,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "6A1FB0D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_7",
+      "ObjectId": 10032,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2673,
+        "y": 0.4436,
+        "z": 0.04
+      },
+      "Rotation": {
+        "x": 70,
+        "y": 105,
+        "z": 140
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_8",
+      "ObjectId": 10033,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.1103,
+        "y": 0.2514,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 80,
+        "y": 120,
+        "z": 160
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.03,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "6A1FB0D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_9",
+      "ObjectId": 10034,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.0854,
+        "y": 0.375,
+        "z": 0.04
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 135,
+        "z": 180
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.045,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_10",
+      "ObjectId": 10035,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.2673,
+        "y": 0.4436,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 100,
+        "y": 150,
+        "z": 200
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.06,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "6A1FB0D0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crystal_Small_11",
+      "ObjectId": 10036,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.4115,
+        "y": 0.653,
+        "z": 0.04
+      },
+      "Rotation": {
+        "x": 110,
+        "y": 165,
+        "z": 220
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.075,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crack_0",
+      "ObjectId": 10037,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.3876,
+        "y": 0.9924,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 20
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.15,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A08E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crack_1",
+      "ObjectId": 10038,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.086,
+        "y": 1.4647,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 80
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.22999999999999998,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A08E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crack_2",
+      "ObjectId": 10039,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.316,
+        "y": 1.1616,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 140
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.31,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A08E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crack_3",
+      "ObjectId": 10040,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.4651,
+        "y": 0.5691,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 200
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.15,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A08E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crack_4",
+      "ObjectId": 10041,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.0716,
+        "y": 0.246,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 260
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.22999999999999998,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A08E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Crack_5",
+      "ObjectId": 10042,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.3792,
+        "y": 0.3661,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 320
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.31,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0A0A08E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Debris_0",
+      "ObjectId": 10043,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.7,
+        "y": -0.1,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 20,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.04,
         "z": 0.06
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "B8AC98FF",
+        "Color": "4A453FFF",
         "PrimitiveFlags": 3
       }
     },
     {
-      "Name": "Bone Debris 2",
-      "ObjectId": 10012,
+      "Name": "Debris_1",
+      "ObjectId": 10044,
       "ParentId": 10000,
       "Position": {
-        "x": 0.45,
-        "y": 0.06,
-        "z": -0.6
+        "x": 0.65,
+        "y": -0.05,
+        "z": 0.08
       },
       "Rotation": {
         "x": 0,
-        "y": -45,
+        "y": -30,
         "z": 0
       },
       "Scale": {
-        "x": 0.2,
+        "x": 0.06,
+        "y": 0.03,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3530FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Debris_2",
+      "ObjectId": 10045,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.55,
+        "y": -0.2,
+        "z": 0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 45,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.03,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4A453FFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Debris_3",
+      "ObjectId": 10046,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.7,
+        "y": -0.15,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -15,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.07,
+        "y": 0.04,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3530FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Debris_4",
+      "ObjectId": 10047,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.0,
+        "y": -0.25,
+        "z": 0.06
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.1,
         "y": 0.03,
         "z": 0.06
       },
       "BlockType": 1,
       "Properties": {
         "PrimitiveType": 3,
-        "Color": "A89C88FF",
+        "Color": "4A453FFF",
         "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Debris_5",
+      "ObjectId": 10048,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.3,
+        "y": -0.15,
+        "z": 0.09
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 60,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.02,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3530FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Debris_6",
+      "ObjectId": 10049,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": -0.2,
+        "z": 0.07
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -40,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.03,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4A453FFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame_Top",
+      "ObjectId": 10050,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.75,
+        "z": -0.04
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.6,
+        "y": 0.12,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3835FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame_Bottom",
+      "ObjectId": 10051,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -0.15,
+        "z": -0.04
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.6,
+        "y": 0.15,
+        "z": 0.1
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3835FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame_Bottom2",
+      "ObjectId": 10052,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -0.25,
+        "z": -0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 0.06,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "2A2825FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame_Left",
+      "ObjectId": 10053,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.75,
+        "y": 0.8,
+        "z": -0.04
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 1.9,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "2A2825FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Frame_Right",
+      "ObjectId": 10054,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.75,
+        "y": 0.8,
+        "z": -0.04
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 1.9,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "3A3835FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HDR_Center",
+      "ObjectId": 10055,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.8,
+        "z": -0.15
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.06,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "7C3AEDD0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "HDR_TopGlow",
+      "ObjectId": 10056,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.55,
+        "z": -0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.04,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "9B59B6A0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "HDR_BottomGlow",
+      "ObjectId": 10057,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.05,
+        "z": -0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.04,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "4A2060E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "HDR_Ambient",
+      "ObjectId": 10058,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.8,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.05,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "6A3A9A80",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_0",
+      "ObjectId": 10059,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.1854,
+        "y": 0.9049,
+        "z": 0.08
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.012,
+        "y": 0.012,
+        "z": 0.012
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "FFD70090",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_1",
+      "ObjectId": 10060,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.1016,
+        "y": 1.1851,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_2",
+      "ObjectId": 10061,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.1199,
+        "y": 1.3154,
+        "z": 0.08
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.012,
+        "y": 0.012,
+        "z": 0.012
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "9B59B6A0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_3",
+      "ObjectId": 10062,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.1841,
+        "y": 0.9094,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "FFD70090",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_4",
+      "ObjectId": 10063,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2411,
+        "y": 0.7136,
+        "z": 0.08
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.012,
+        "y": 0.012,
+        "z": 0.012
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_5",
+      "ObjectId": 10064,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.125,
+        "y": 0.4876,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "9B59B6A0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_6",
+      "ObjectId": 10065,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.0749,
+        "y": 0.5404,
+        "z": 0.08
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.012,
+        "y": 0.012,
+        "z": 0.012
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "FFD70090",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Particle_7",
+      "ObjectId": 10066,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.2393,
+        "y": 0.7078,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "B366FFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rust_0",
+      "ObjectId": 10067,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.6,
+        "y": 1.1,
+        "z": -0.015
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.03,
+        "y": 0.2,
+        "z": 0.008
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6A3520FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rust_1",
+      "ObjectId": 10068,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.6,
+        "y": 0.6,
+        "z": -0.015
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.03,
+        "y": 0.15,
+        "z": 0.008
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6A3520FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Rust_2",
+      "ObjectId": 10069,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.0,
+        "y": 1.8,
+        "z": -0.015
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.03,
+        "y": 0.1,
+        "z": 0.008
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "6A3520FF",
+        "PrimitiveFlags": 2
       }
     }
   ]

@@ -190,22 +190,18 @@ public sealed class Co2Concept
                 return;
             }
 
-            Vector3 rootPos = room.Position + room.Rotation *
-                new Vector3(_config.OffsetX, _config.OffsetY, _config.OffsetZ);
-            Quaternion rootRot = room.Rotation;
-
-            BuildPanel(rootPos, rootRot, left: true);
-            BuildPanel(rootPos, rootRot, left: false);
+            BuildPanel(room.Position, room.Rotation, left: true);
+            BuildPanel(room.Position, room.Rotation, left: false);
 
             var station1 = StationsManager.Register(
                 "co2_panel1",
-                PanelWorldPos(rootPos, rootRot, -1.3f),
+                room.Position + room.Rotation * new Vector3(_config.Panel1X, _config.Panel1Y, _config.Panel1Z),
                 Mathf.Max(1.5f, _config.PanelRadius),
                 p => Interact(p, isPanel1: true));
 
             StationsManager.Register(
                 "co2_panel2",
-                PanelWorldPos(rootPos, rootRot, 1.3f),
+                room.Position + room.Rotation * new Vector3(_config.Panel2X, _config.Panel2Y, _config.Panel2Z),
                 Mathf.Max(1.5f, _config.PanelRadius),
                 p => Interact(p, isPanel1: false));
 
@@ -217,15 +213,18 @@ public sealed class Co2Concept
         }
     }
 
-    private Vector3 PanelWorldPos(Vector3 rootPos, Quaternion rootRot, float xOffset)
-        => rootPos + rootRot * new Vector3(xOffset, 0f, 1.2f);
-
-    private void BuildPanel(Vector3 rootPos, Quaternion rootRot, bool left)
+    private void BuildPanel(Vector3 roomPos, Quaternion roomRot, bool left)
     {
-        float side = left ? -1.6f : 1.6f;
+        float px = left ? _config.Panel1X : _config.Panel2X;
+        float py = left ? _config.Panel1Y : _config.Panel2Y;
+        float pz = left ? _config.Panel1Z : _config.Panel2Z;
+        float rotY = left ? _config.Panel1RotY : _config.Panel2RotY;
+
+        var rp = roomPos + roomRot * new Vector3(px, py, pz);
+        var rr = Quaternion.Euler(0f, rotY, 0f);
 
         // Спавним детальную JSON-схематику
-        var schematic = SchematicLoader.Spawn("CO2Panel", rootPos + rootRot * new Vector3(side, 0f, 1.2f), rootRot);
+        var schematic = SchematicLoader.Spawn("CO2Panel", rp, rr);
         if (schematic != null)
         {
             foreach (var go in schematic.SpawnedGameObjects)
@@ -245,8 +244,8 @@ public sealed class Co2Concept
             {
                 var wsGo = UnityEngine.Object.Instantiate(
                     PrefabManager.WorkstationPrefab.gameObject,
-                    rootPos + rootRot * new Vector3(side, -0.35f, 0.6f),
-                    rootRot * Quaternion.Euler(0f, 180f, 0f));
+                    rp + rr * new Vector3(0f, -0.35f, -0.6f),
+                    rr * Quaternion.Euler(0f, 180f, 0f));
                 wsGo.transform.localScale = new Vector3(0.193f, 0.232f, 0.06f);
                 NetworkServer.Spawn(wsGo);
                 Track(wsGo);
@@ -258,13 +257,13 @@ public sealed class Co2Concept
         }
 
         // === ДИНАМИЧЕСКИЙ ИНДИКАТОР (поверх схематики) ===
-        Vector3 indicatorPos = rootPos + rootRot * new Vector3(side, 0.9f + 0.42f, 1.2f - 0.27f);
+        Vector3 indicatorPos = rp + rr * new Vector3(0f, 0.42f, -0.27f);
 
         var indicator = Primitive.Create(
             primitiveType: PrimitiveType.Cube,
             flags: AdminToys.PrimitiveFlags.Visible,
             position: indicatorPos,
-            rotation: rootRot.eulerAngles,
+            rotation: rr.eulerAngles,
             scale: new Vector3(0.62f, 0.14f, 0.03f),
             spawn: true,
             color: IndicatorIdle);
@@ -278,7 +277,7 @@ public sealed class Co2Concept
 
         // HDR-свечение индикатора
         var indicatorGlow = Light.Create(
-            position: indicatorPos + rootRot * new Vector3(0f, 0f, -0.1f),
+            position: indicatorPos + rr * new Vector3(0f, 0f, -0.1f),
             rotation: null,
             scale: Vector3.one,
             spawn: false,

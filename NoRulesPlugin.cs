@@ -20,7 +20,6 @@ using Capy.NoRules.Features.Concepts;
 
 using Capy.NoRules.Features.Concepts.Co2;
 using Capy.NoRules.Features.Concepts.AirDrop;
-using Capy.NoRules.Features.Concepts.Ragnarok;
 using Capy.NoRules.Features.Concepts.Scp008;
 using Capy.NoRules.Features.Concepts.Hackers;
 
@@ -197,7 +196,6 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public Co2Concept Co2 { get; private set; } = null!;
     public HackersConcept Hackers { get; private set; } = null!;
     public Scp008Concept Scp008 { get; private set; } = null!;
-    public RagnarokConcept Ragnarok { get; private set; } = null!;
     public AirDropConcept AirDrop { get; private set; } = null!;
 
 
@@ -475,9 +473,6 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
         Scp008 = new Scp008Concept(Config.Scp008);
         Scp008.Enable();
-
-        Ragnarok = new RagnarokConcept(Config.Ragnarok);
-        Ragnarok.Enable();
 
         AirDrop = new AirDropConcept(Config.AirDrop);
         AirDrop.Enable();
