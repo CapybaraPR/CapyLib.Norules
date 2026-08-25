@@ -1,0 +1,499 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "Fuselage",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "Scale": {
+        "x": 14,
+        "y": 2.2,
+        "z": 2.2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "A01010E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Nose",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": -7.5,
+        "y": 0,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 1.8,
+        "z": 1.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "500808FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "WingL",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1,
+        "y": -0.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 3,
+        "y": 0.15,
+        "z": 12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A01010E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "WingR",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 2.5,
+        "y": -0.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 3,
+        "y": 0.15,
+        "z": 12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A01010E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "WingTipL",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": -2.5,
+        "y": -0.3,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 0.1,
+        "z": 2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "500808FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "WingTipR",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 4.5,
+        "y": -0.3,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 0.1,
+        "z": 2
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "500808FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "TailVert",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 6.5,
+        "y": 1.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.5,
+        "y": 3,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A01010E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "TailHorizL",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": 6.5,
+        "y": 0.5,
+        "z": -1.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 0.1,
+        "z": 3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A01010E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "TailHorizR",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": 6.5,
+        "y": 0.5,
+        "z": 1.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 0.1,
+        "z": 3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A01010E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Engine_-3.5",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -0.8,
+        "z": -3.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2,
+        "y": 0.7,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "303030FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "EngineIntake_-3.5",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.2,
+        "y": -0.8,
+        "z": -3.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.3,
+        "y": 0.6,
+        "z": 0.6
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "500808FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Engine_3.5",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -0.8,
+        "z": 3.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2,
+        "y": 0.7,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "303030FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "EngineIntake_3.5",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.2,
+        "y": -0.8,
+        "z": 3.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.3,
+        "y": 0.6,
+        "z": 0.6
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "500808FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Stripe",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.9,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 12,
+        "y": 0.1,
+        "z": 0.1
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FFD700E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Cockpit",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": -6.5,
+        "y": 0.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 0.6,
+        "z": 1.4
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "88CCFFC0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "LightWingTipL",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": -3,
+        "y": -0.3,
+        "z": -5.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.15,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "FF3333FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "LightWingTipR",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": -3,
+        "y": -0.3,
+        "z": 5.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.15,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "33FF33FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "LightTail",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 7.5,
+        "y": 2.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "FFFFFFE0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "CargoDoor",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": -1.15,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 3,
+        "y": 0.06,
+        "z": 1.5
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "500808FF",
+        "PrimitiveFlags": 2
+      }
+    }
+  ]
+}

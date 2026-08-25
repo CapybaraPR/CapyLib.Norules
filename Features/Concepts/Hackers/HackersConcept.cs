@@ -5,6 +5,7 @@ using Capy.Engine.Hints;
 using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
 using Capy.Engine.ServerSpecific;
+using Capy.Engine.Studio.Core;
 using Capy.NoRules.Config;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -164,85 +165,43 @@ public sealed class HackersConcept
 
     private void BuildServerRoom(Vector3 root, Quaternion rot)
     {
-        // Серверные стойки (тёмные шкафы с цветными огоньками)
-        for (int i = -1; i <= 1; i++)
+        // Спавним детальную JSON-схематику серверной
+        var schematic = SchematicLoader.Spawn("HackerPanel", root, rot);
+        if (schematic != null)
         {
-            var rack = Primitive.Create(
-                PrimitiveType.Cube,
-                AdminToys.PrimitiveFlags.Visible,
-                root + rot * new Vector3(i * 0.9f, 0f, -0.9f),
-                rot.eulerAngles,
-                new Vector3(0.7f, 2.1f, 0.45f),
-                spawn: true,
-                color: new Color32(18, 20, 24, 255));
-
-            if (rack != null) Track(rack.GameObject);
-
-            // Огоньки на стойке (HDR-свечение через Light)
-            var rackLight = Light.Create(
-                position: root + rot * new Vector3(i * 0.9f, 1.4f, -0.55f),
-                rotation: null,
-                scale: Vector3.one,
-                spawn: false,
-                color: i == 0 ? new Color32(255, 80, 80, 255) : new Color32(80, 200, 120, 255));
-
-            if (rackLight != null)
+            foreach (var go in schematic.SpawnedGameObjects)
             {
-                rackLight.Intensity = 2f;
-                rackLight.Range = 1.2f;
-                rackLight.Spawn();
-                Track(rackLight.GameObject);
-                _glowLights.Add(rackLight);
+                if (go != null) Track(go);
+            }
+            foreach (var prim in schematic.SpawnedPrimitives)
+            {
+                try { if (prim?.GameObject != null) Track(prim.GameObject); } catch { }
             }
         }
 
-        // Главная панель взлома
-        var panelBody = Primitive.Create(
-            PrimitiveType.Cube,
-            AdminToys.PrimitiveFlags.Visible,
-            root,
-            rot.eulerAngles,
-            new Vector3(1.1f, 0.85f, 0.14f),
-            spawn: true,
-            color: new Color32(28, 32, 40, 255));
-
-        if (panelBody != null) Track(panelBody.GameObject);
-
-        // Экраны панели (тёмные — «выключены», загораются при взломе)
+        // Динамические экраны (меняют цвет при взломе)
         _panelScreen1 = Primitive.Create(
-            PrimitiveType.Cube,
-            AdminToys.PrimitiveFlags.Visible,
-            root + rot * new Vector3(-0.26f, 0.12f, -0.08f),
-            rot.eulerAngles,
-            new Vector3(0.42f, 0.42f, 0.02f),
+            primitiveType: PrimitiveType.Cube,
+            flags: AdminToys.PrimitiveFlags.Visible,
+            position: root + rot * new Vector3(-0.26f, 0.12f, 0.22f),
+            rotation: rot.eulerAngles,
+            scale: new Vector3(0.42f, 0.42f, 0.02f),
             spawn: true,
             color: new Color32(8, 10, 12, 255));
 
         _panelScreen2 = Primitive.Create(
-            PrimitiveType.Cube,
-            AdminToys.PrimitiveFlags.Visible,
-            root + rot * new Vector3(0.26f, 0.12f, -0.08f),
-            rot.eulerAngles,
-            new Vector3(0.42f, 0.42f, 0.02f),
+            primitiveType: PrimitiveType.Cube,
+            flags: AdminToys.PrimitiveFlags.Visible,
+            position: root + rot * new Vector3(0.26f, 0.12f, 0.22f),
+            rotation: rot.eulerAngles,
+            scale: new Vector3(0.42f, 0.42f, 0.02f),
             spawn: true,
             color: new Color32(8, 10, 12, 255));
 
         if (_panelScreen1 != null) Track(_panelScreen1.GameObject);
         if (_panelScreen2 != null) Track(_panelScreen2.GameObject);
 
-        // Красная кнопка запуска
-        var button = Primitive.Create(
-            PrimitiveType.Cylinder,
-            AdminToys.PrimitiveFlags.Visible | AdminToys.PrimitiveFlags.Collidable,
-            root + rot * new Vector3(0f, -0.28f, -0.09f),
-            rot.eulerAngles,
-            new Vector3(0.08f, 0.03f, 0.08f),
-            spawn: true,
-            color: new Color32(220, 40, 40, 255));
-
-        if (button != null) Track(button.GameObject);
-
-        // HDR-подсветка панели (всегда включена — привлекает внимание к точке взлома)
+        // HDR-подсветка панели
         _panelGlow = Light.Create(
             position: root + rot * new Vector3(0f, 0.3f, 0.35f),
             rotation: null,

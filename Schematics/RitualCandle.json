@@ -1,0 +1,213 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "CandleBody",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.02,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.04,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "D6CDB4FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "CandleTop",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.05,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.01,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "E8DFC8FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "WaxDrip1",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.03,
+        "y": 0.01,
+        "z": 0.02
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.015,
+        "y": 0.03,
+        "z": 0.015
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "C4BB9FFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "WaxDrip2",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.025,
+        "y": 0.015,
+        "z": -0.015
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.012,
+        "y": 0.025,
+        "z": 0.012
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "B8AF97FF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Wick",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.07,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.005,
+        "y": 0.015,
+        "z": 0.005
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0D0C0BFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "FlameOuter",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.1,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.025,
+        "y": 0.05,
+        "z": 0.025
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "FF9900E0",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "FlameInner",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.1,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.012,
+        "y": 0.03,
+        "z": 0.012
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "FFFFCCFF",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "FlameGlow",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.11,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.03,
+        "y": 0.03,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 0,
+        "Color": "F5BB49FF",
+        "PrimitiveFlags": 2
+      }
+    }
+  ]
+}

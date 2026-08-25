@@ -6,6 +6,7 @@ using Capy.Engine.Hints;
 using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
 using Capy.Engine.ServerSpecific;
+using Capy.Engine.Studio.Core;
 using Capy.NoRules.Config;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -139,41 +140,23 @@ public sealed class Scp008Concept
 
     private void BuildTube(Vector3 pos, Color32 glowColor, string roomName)
     {
-        // Стеклянная колба (прозрачная)
-        var glass = Light.Create(
-            position: pos,
-            rotation: null,
-            scale: Vector3.one,
-            spawn: false,
-            color: glowColor);
+        // Спавним детальную JSON-схематику труб
+        var schematic = SchematicLoader.Spawn("VirusTube", pos, Quaternion.identity);
+        if (schematic != null)
+        {
+            foreach (var go in schematic.SpawnedGameObjects)
+            {
+                if (go != null) Track(go);
+            }
+            foreach (var prim in schematic.SpawnedPrimitives)
+            {
+                try { if (prim?.GameObject != null) Track(prim.GameObject); } catch { }
+            }
+        }
 
-        // Колба из примитива — прозрачный цилиндр
-        var glassPrim = Primitive.Create(
-            primitiveType: PrimitiveType.Cylinder,
-            flags: AdminToys.PrimitiveFlags.Visible,
-            position: pos,
-            rotation: Vector3.zero,
-            scale: new Vector3(0.5f, 1.1f, 0.5f),
-            spawn: true,
-            color: new Color32(glowColor.r, glowColor.g, glowColor.b, 90));
-
-        if (glassPrim != null) Track(glassPrim.GameObject);
-
-        // Основание трубы
-        var basePrim = Primitive.Create(
-            primitiveType: PrimitiveType.Cylinder,
-            flags: AdminToys.PrimitiveFlags.Visible | AdminToys.PrimitiveFlags.Collidable,
-            position: pos + Vector3.down * 0.6f,
-            rotation: Vector3.zero,
-            scale: new Vector3(0.65f, 0.12f, 0.65f),
-            spawn: true,
-            color: new Color32(40, 40, 44, 255));
-
-        if (basePrim != null) Track(basePrim.GameObject);
-
-        // Свечение внутри колбы
+        // Динамическое HDR-свечение (меняется при открытии)
         var glow = Light.Create(
-            position: pos,
+            position: pos + Vector3.up * 0.75f,
             rotation: null,
             scale: Vector3.one,
             spawn: false,
@@ -191,7 +174,6 @@ public sealed class Scp008Concept
         {
             RoomName = roomName,
             Position = pos,
-            Glass = glassPrim,
             Glow = glow
         });
     }

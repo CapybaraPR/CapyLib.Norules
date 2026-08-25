@@ -19,6 +19,7 @@ using MapGeneration.Distributors;
 using MEC;
 using Mirror;
 using UnityEngine;
+using Light = Exiled.API.Features.Toys.Light;
 
 namespace Capy.NoRules.Features.Concepts.Co2;
 
@@ -157,6 +158,25 @@ public sealed class Co2Concept
     //  Построение панелей в HID
     // ------------------------------------------------------------------
 
+    private void Track(GameObject go) => _spawnedObjects.Add(go);
+
+    private void TeardownVisuals()
+    {
+        foreach (var go in _spawnedObjects)
+        {
+            try
+            {
+                if (go == null) continue;
+                NetworkServer.UnSpawn(go);
+                UnityEngine.Object.Destroy(go);
+            }
+            catch { }
+        }
+        _spawnedObjects.Clear();
+        _indicator1 = null;
+        _indicator2 = null;
+    }
+
     private void OnRoundStarted()
     {
         _roundStartTime = DateTime.UtcNow;
@@ -198,54 +218,35 @@ public sealed class Co2Concept
     }
 
     private Vector3 PanelWorldPos(Vector3 rootPos, Quaternion rootRot, float xOffset)
-        => rootPos + rootRot * new Vector3(xOffset, 0f, 0.075f);
+        => rootPos + rootRot * new Vector3(xOffset, 0f, 1.2f);
 
     private void BuildPanel(Vector3 rootPos, Quaternion rootRot, bool left)
     {
-        float side = left ? -1.3f : 1.3f;
-        Vector3 framePos = rootPos + rootRot * new Vector3(side, 0f, 0f);
+        float side = left ? -1.6f : 1.6f;
 
-        // Рамка панели (декор)
-        var frame = Primitive.Create(
-            primitiveType: PrimitiveType.Cube,
-            flags: AdminToys.PrimitiveFlags.Visible,
-            position: framePos,
-            rotation: rootRot.eulerAngles,
-            scale: new Vector3(0.3f, 0.2f, 0.1f),
-            spawn: true,
-            color: FrameColor);
-
-        if (frame != null)
-            Track(frame.GameObject);
-
-        // Индикатор состояния (меняет цвет серый ↔ синий)
-        var indicator = Primitive.Create(
-            primitiveType: PrimitiveType.Cube,
-            flags: AdminToys.PrimitiveFlags.Visible,
-            position: PanelWorldPos(rootPos, rootRot, side),
-            rotation: rootRot.eulerAngles,
-            scale: new Vector3(0.5f, 0.277f, 0.1f),
-            spawn: true,
-            color: IndicatorIdle);
-
-        if (indicator != null)
+        // Спавним детальную JSON-схематику
+        var schematic = SchematicLoader.Spawn("CO2Panel", rootPos + rootRot * new Vector3(side, 0f, 1.2f), rootRot);
+        if (schematic != null)
         {
-            if (left) _indicator1 = indicator;
-            else _indicator2 = indicator;
-
-            Track(indicator.GameObject);
+            foreach (var go in schematic.SpawnedGameObjects)
+            {
+                if (go != null) Track(go);
+            }
+            foreach (var prim in schematic.SpawnedPrimitives)
+            {
+                try { if (prim?.GameObject != null) Track(prim.GameObject); } catch { }
+            }
         }
 
-        // Настоящая воркстейшн для антуража и взаимодействия взглядом
+        // Настоящая воркстейшн позади панели
         try
         {
             if (PrefabManager.WorkstationPrefab != null)
             {
                 var wsGo = UnityEngine.Object.Instantiate(
                     PrefabManager.WorkstationPrefab.gameObject,
-                    framePos + rootRot * new Vector3(0f, -0.35f, 0.05f),
+                    rootPos + rootRot * new Vector3(side, -0.35f, 0.6f),
                     rootRot * Quaternion.Euler(0f, 180f, 0f));
-
                 wsGo.transform.localScale = new Vector3(0.193f, 0.232f, 0.06f);
                 NetworkServer.Spawn(wsGo);
                 Track(wsGo);
@@ -255,30 +256,41 @@ public sealed class Co2Concept
         {
             Log.Debug($"[CO2] Воркстейшн не заспавнен: {ex.Message}");
         }
-    }
 
-    private void Track(GameObject go)
-    {
-        _spawnedObjects.Add(go);
-    }
+        // === ДИНАМИЧЕСКИЙ ИНДИКАТОР (поверх схематики) ===
+        Vector3 indicatorPos = rootPos + rootRot * new Vector3(side, 0.9f + 0.42f, 1.2f - 0.27f);
 
-    private void TeardownVisuals()
-    {
-        foreach (var go in _spawnedObjects)
+        var indicator = Primitive.Create(
+            primitiveType: PrimitiveType.Cube,
+            flags: AdminToys.PrimitiveFlags.Visible,
+            position: indicatorPos,
+            rotation: rootRot.eulerAngles,
+            scale: new Vector3(0.62f, 0.14f, 0.03f),
+            spawn: true,
+            color: IndicatorIdle);
+
+        if (indicator != null)
         {
-            try
-            {
-                if (go == null) continue;
-
-                NetworkServer.UnSpawn(go);
-                UnityEngine.Object.Destroy(go);
-            }
-            catch { }
+            if (left) _indicator1 = indicator;
+            else _indicator2 = indicator;
+            Track(indicator.GameObject);
         }
 
-        _spawnedObjects.Clear();
-        _indicator1 = null;
-        _indicator2 = null;
+        // HDR-свечение индикатора
+        var indicatorGlow = Light.Create(
+            position: indicatorPos + rootRot * new Vector3(0f, 0f, -0.1f),
+            rotation: null,
+            scale: Vector3.one,
+            spawn: false,
+            color: IndicatorIdle);
+
+        if (indicatorGlow != null)
+        {
+            indicatorGlow.Intensity = 2f;
+            indicatorGlow.Range = 1f;
+            indicatorGlow.Spawn();
+            Track(indicatorGlow.GameObject);
+        }
     }
 
     private void SetIndicator(bool panel1, Color32 color)
