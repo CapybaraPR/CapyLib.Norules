@@ -106,16 +106,16 @@ public sealed class Co2Config
     [Description("Требовать сбежавших учёных для спавна отряда.")]
     public bool RequireEscapedScientists { get; set; } = true;
 
-    [Description("Радиус взаимодействия с панелями (метры). Нажмите [E] рядом.")]
+    [Description("Радиус взаимодействия с панелями (метры). Нажмите [E] рядом. Панели находятся в комнате турели (H.I.D.) в HCZ.")]
     public float PanelRadius { get; set; } = 2.5f;
 
-    [Description("Смещение панелей относительно центра HID-комнаты по X.")]
+    [Description("Смещение панелей относительно центра комнаты турели по X.")]
     public float OffsetX { get; set; } = 0f;
 
-    [Description("Смещение панелей относительно центра HID-комнаты по Y.")]
+    [Description("Смещение панелей относительно центра комнаты турели по Y.")]
     public float OffsetY { get; set; } = 1.43f;
 
-    [Description("Смещение панелей относительно центра HID-комнаты по Z.")]
+    [Description("Смещение панелей относительно центра комнаты турели по Z.")]
     public float OffsetZ { get; set; } = -7.08f;
 
     [Description("Сколько секунд нужно удерживать активацию панели.")]
