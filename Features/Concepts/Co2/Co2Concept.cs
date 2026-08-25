@@ -310,7 +310,8 @@ public sealed class Co2Concept
     private List<Player>? CollectCandidates(int max)
     {
         var spectators = Player.List
-            .Where(p => p is { IsVerified: true, IsNPC: false, Role.Type: RoleTypeId.Spectator })
+            .Where(p => p != null && p.IsConnected && !p.IsNPC &&
+                        (p.Role.Type == RoleTypeId.Spectator || p.Role.Type == RoleTypeId.Overwatch))
             .ToList();
 
         if (spectators.Count < Math.Max(1, _config.MinSpectators))

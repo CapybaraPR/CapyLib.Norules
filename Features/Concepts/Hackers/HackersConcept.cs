@@ -42,6 +42,8 @@ public sealed class HackersConcept
 
     private CoroutineHandle _hackLoop;
     private CoroutineHandle _omegaLoop;
+    private readonly Dictionary<Exiled.API.Features.Room, Color32> _originalRoomColors = new();
+    private bool _lightsModified;
     private bool _enabled;
     private int _hackProgress;
     private bool _spawnedThisRound;
@@ -297,12 +299,35 @@ public sealed class HackersConcept
         StationsManager.Unregister("hackers_panel");
     }
 
-    private void RestoreLights()
+    private void SnapshotLights()
+    {
+        _originalRoomColors.Clear();
+        foreach (var room in Room.List)
+        {
+            try { _originalRoomColors[room] = room.Color; } catch { }
+        }
+        _lightsModified = true;
+    }
+
+    private void SetAllRoomsColor(Color32 color)
     {
         foreach (var room in Room.List)
         {
-            try { room.Color = new Color32(38, 38, 38, 255); } catch { }
+            try { room.Color = color; } catch { }
         }
+    }
+
+    private void RestoreLights()
+    {
+        if (!_lightsModified) return;
+
+        foreach (var kvp in _originalRoomColors)
+        {
+            try { kvp.Key.Color = kvp.Value; } catch { }
+        }
+
+        _originalRoomColors.Clear();
+        _lightsModified = false;
     }
 
     // ------------------------------------------------------------------
@@ -341,7 +366,8 @@ public sealed class HackersConcept
     private List<Player>? CollectCandidates(int max)
     {
         var spectators = Player.List
-            .Where(p => p is { IsVerified: true, IsNPC: false, Role.Type: RoleTypeId.Spectator })
+            .Where(p => p != null && p.IsConnected && !p.IsNPC &&
+                        (p.Role.Type == RoleTypeId.Spectator || p.Role.Type == RoleTypeId.Overwatch))
             .ToList();
 
         if (spectators.Count < Math.Max(1, _config.MinSpectators))
@@ -638,6 +664,8 @@ public sealed class HackersConcept
         float elapsed = 0f;
         bool pulseBright = false;
 
+        SnapshotLights();
+
         // Красное пульсирующее освещение весь отсчёт
         while (elapsed < _config.OmegaCountdownSeconds)
         {
@@ -645,16 +673,9 @@ public sealed class HackersConcept
             elapsed += 1f;
             pulseBright = !pulseBright;
 
-            foreach (var room in Room.List)
-            {
-                try
-                {
-                    room.Color = pulseBright
-                        ? new Color32(120, 10, 10, 255)
-                        : new Color32(35, 5, 5, 255);
-                }
-                catch { }
-            }
+            SetAllRoomsColor(pulseBright
+                ? new Color32(120, 10, 10, 255)
+                : new Color32(35, 5, 5, 255));
 
             int remaining = (int)(_config.OmegaCountdownSeconds - elapsed);
 
