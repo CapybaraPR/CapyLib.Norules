@@ -1,4 +1,4 @@
-using Capy.NoRules.Features.Concepts.Co2;
+﻿using Capy.NoRules.Concepts.Co2;
 using CommandSystem;
 using Exiled.API.Features;
 
@@ -28,3 +28,4 @@ public sealed class Co2GroupCommand : ICommand
         return true;
     }
 }
+

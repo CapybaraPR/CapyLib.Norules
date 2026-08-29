@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Interfaces;
 using PlayerRoles;
@@ -82,8 +82,11 @@ public sealed class NoRulesConfig : IConfig
     [Description("22. Концепт «SCP-008» — вирусные трубки, открываемые SCP.")]
     public Scp008Config Scp008 { get; set; } = new();
 
-    [Description("24. Концепт «AirDrop» — грузовой самолёт с лутом над Поверхностью.")]
-    public AirDropConfig AirDrop { get; set; } = new();
+    [Description("23. Настройки спавна SCP-173 в старой камере содержания (Old 173 Spawn в LCZ 173).")]
+    public Old173SpawnConfig Old173Spawn { get; set; } = new();
+
+    [Description("24. Синхронизация донат-привилегий и выдача предметов с сайта (.get).")]
+    public DonateControllerConfig DonateController { get; set; } = new();
 }
 
 public sealed class Co2Config
@@ -133,11 +136,11 @@ public sealed class Co2Config
     [Description("Сколько секунд нужно удерживать активацию панели.")]
     public float ActivateConfirmSeconds { get; set; } = 2f;
 
-    [Description("Задержка перед началом отравления после активации (секунды).")]
-    public float PoisonDelaySeconds { get; set; } = 160f;
+    [Description("Задержка перед началом отравления после активации (секунды, 90 = 1.5 мин окно отмены).")]
+    public float PoisonDelaySeconds { get; set; } = 90f;
 
-    [Description("Пауза между объявлением герметизации и началом урона (секунды).")]
-    public float PoisonGraceSeconds { get; set; } = 36f;
+    [Description("Пауза между объявлением герметизации и началом урона (секунды, 21 сек до 1:51 кульминации).")]
+    public float PoisonGraceSeconds { get; set; } = 21f;
 
     [Description("Урон от отравления CO2 в секунду (не-SCP игрокам).")]
     public float PoisonDamagePerSecond { get; set; } = 10f;
@@ -164,13 +167,16 @@ public sealed class Scp1162Config
     public string SchematicName { get; set; } = "SCP1162";
 
     [Description("Смещение дыры относительно центра комнаты по X.")]
-    public float OffsetX { get; set; } = 22.1f;
+    public float OffsetX { get; set; } = 21.90f;
 
     [Description("Смещение позиции дыры относительно центра комнаты по Y.")]
     public float OffsetY { get; set; } = 13.06f;
 
     [Description("Смещение позиции дыры относительно центра комнаты по Z.")]
     public float OffsetZ { get; set; } = 8.3f;
+
+    [Description("Поворот дыры относительно комнаты по Y (Euler градусы, 90 по умолчанию).")]
+    public float RotationY { get; set; } = 90f;
 
     [Description("Радиус взаимодействия с дырой (метры). Нажмите [E], стоя рядом.")]
     public float InteractRadius { get; set; } = 1.8f;
@@ -377,6 +383,15 @@ public sealed class Scp120Config
 
     [Description("Дополнительный допуск к радиусу при проверке зоны перед самой телепортацией (множитель). Игрок, вышедший из зоны во время погружения, остаётся на месте.")]
     public float CancelZoneMultiplier { get; set; } = 1.3f;
+
+    [Description("Минимальная дистанция пространственного звука бассейна (метры).")]
+    public float AudioMinDistance { get; set; } = 1.5f;
+
+    [Description("Максимальная дистанция слышимости звука бассейна (метры, по умолчанию 14m вместо 35m чтобы не слышать с PT).")]
+    public float AudioMaxDistance { get; set; } = 14f;
+
+    [Description("Громкость звуков бассейна.")]
+    public float AudioVolume { get; set; } = 3.2f;
 }
 
 public sealed class DotResKillConfig
@@ -503,16 +518,16 @@ public sealed class EscapeScenarioModel
 
 public sealed class CapybaraPetConfig
 {
-    [Description("Включен ли летающий питомец-капибара.")]
+    [Description("Включен ли летающий питомец-капибара для владельца.")]
     public bool IsEnabled { get; set; } = true;
 
     [Description("Название схематики в MapEditorReborn.")]
-    public string SchematicName { get; set; } = "Capybara";
+    public string SchematicName { get; set; } = "CapybaraCrown";
 
     [Description("Масштаб капибары (0.35 - 0.5 — идеальный компактный размер питомца).")]
     public float Scale { get; set; } = 0.4f;
 
-    [Description("Список SteamID игроков, за которыми летает капибара.")]
+    [Description("Список SteamID владельцев сервера, за которыми летает королевская капибара с короной.")]
     public List<string> OwnerSteamIds { get; set; } = new()
     {
         "76561198708583029"
@@ -532,6 +547,9 @@ public sealed class HackersConfig
 
     [Description("Максимальный размер группировки.")]
     public int SquadSizeMax { get; set; } = 6;
+
+    [Description("Количество хакеров (взломщиков) в отряде (остальные участники — охранники).")]
+    public int HackersCount { get; set; } = 2;
 
     [Description("Комната, в которой строится панель взлома.")]
     public string PanelRoom { get; set; } = "HczServers";
@@ -557,68 +575,162 @@ public sealed class HackersConfig
     [Description("Дальше этого радиуса от панели прогресс сбрасывается (метры).")]
     public float HackRadius { get; set; } = 7f;
 
-    [Description("Обратный отсчёт Omega Warhead после взлома (секунды).")]
-    public float OmegaCountdownSeconds { get; set; } = 240f;
+    [Description("Обратный отсчёт Omega Warhead после взлома (секунды, 159 = 2 мин 39 сек под саундтрек).")]
+    public float OmegaCountdownSeconds { get; set; } = 159f;
 
     [Description("Опыт за успешный взлом (без делителя).")]
     public float MissionXp { get; set; } = 300f;
 
     [Description("CASSIE-оповещение при вторжении (на 50% взлома).")]
     public string CassieAlert { get; set; } = "ATTENTION . UNAUTHORIZED ACCESS TO CONTROL SYSTEMS DETECTED";
+
+    [Description("Интервал распространения радиации по комнатам HCZ (секунды, по умолчанию 30с для плавного нарастания).")]
+    public float RadiationSpreadIntervalSeconds { get; set; } = 30f;
+
+    [Description("Шанс распространения радиации в каждую соседнюю чистую комнату на каждом тике (от 0.0 до 1.0, по умолчанию 0.35 = 35%).")]
+    public float RadiationSpreadChance { get; set; } = 0.35f;
+
+    [Description("Количество секунд нахождения в радиоактивной комнате для получения лучевой болезни.")]
+    public float ContaminationThresholdSeconds { get; set; } = 18f;
+
+    [Description("Урон от лучевой болезни за один тик людям (HP, по умолчанию 10).")]
+    public float RadiationDamage { get; set; } = 10f;
+
+    [Description("Урон от радиации за один тик SCP-106 (Дед, разлагающаяся субстанция крайне уязвима к ионизации).")]
+    public float RadiationDamageScp106 { get; set; } = 120f;
+
+    [Description("Урон от радиации за один тик SCP-049 (Чумной Доктор, биологическая ткань).")]
+    public float RadiationDamageScp049 { get; set; } = 90f;
+
+    [Description("Урон от радиации за один тик SCP-939 (Собака, биологический хищник).")]
+    public float RadiationDamageScp939 { get; set; } = 70f;
+
+    [Description("Урон от радиации за один тик SCP-096 (Скромник, аномальная органика).")]
+    public float RadiationDamageScp096 { get; set; } = 60f;
+
+    [Description("Урон от радиации за один тик SCP-049-2 (Зомби, некротическая плоть).")]
+    public float RadiationDamageScp0492 { get; set; } = 45f;
+
+    [Description("Урон от радиации за один тик SCP-3114 (Скелет, костная структура).")]
+    public float RadiationDamageScp3114 { get; set; } = 40f;
+
+    [Description("Урон от радиации за один тик SCP-173 (Печенька, арматура и бетон — высокая радиационная защита).")]
+    public float RadiationDamageScp173 { get; set; } = 25f;
+
+    [Description("Урон от радиации за один тик остальным SCP по умолчанию.")]
+    public float RadiationDamageScpDefault { get; set; } = 60f;
+
+    [Description("Интервал нанесения урона от лучевой болезни (секунды).")]
+    public float RadiationDamageIntervalSeconds { get; set; } = 7f;
+
+    [Description("Множитель получаемого урона при лучевой болезни (+25% = 1.25).")]
+    public float RadiationVulnerabilityMultiplier { get; set; } = 1.25f;
+
+    [Description("Сколько секунд в чистой комнате нужно провести для излечения от лучевой болезни.")]
+    public float RadiationRecoverySeconds { get; set; } = 30f;
+
+    [Description("Время после взрыва OMEGA до начала протокола деконтаминации HCZ (секунды, 900 = 15 мин).")]
+    public float HczDeconTimeSeconds { get; set; } = 900f;
+
+    [Description("Урон деконтаминации HCZ в секунду для людей.")]
+    public float HczDeconHumanDps { get; set; } = 18f;
+
+    [Description("Урон деконтаминации HCZ в секунду для SCP.")]
+    public float HczDeconScpDps { get; set; } = 150f;
 }
 
 public sealed class Scp008Config
 {
-    [Description("Включен ли концепт «SCP-008».")]
+    [Description("Включен ли концепт «SCP-008 (Длань Змея и зомби-вирус)».")]
     public bool IsEnabled { get; set; } = true;
 
-    [Description("Радиус взаимодействия с трубкой (метры).")]
-    public float TubeRadius { get; set; } = 2.2f;
+    [Description("Шанс спавна отряда Длани Змея (в процентах).")]
+    public int SpawnChancePercent { get; set; } = 60;
 
-    [Description("Смещение трубок относительно центра комнаты по X.")]
-    public float OffsetX { get; set; } = 0f;
+    [Description("Минимум спектаторов для спавна отряда Длани Змея.")]
+    public int MinSpectators { get; set; } = 3;
 
-    [Description("Смещение трубок относительно центра комнаты по Y.")]
-    public float OffsetY { get; set; } = 0f;
+    [Description("Максимальный размер отряда Длани Змея.")]
+    public int SquadSizeMax { get; set; } = 8;
 
-    [Description("Смещение трубок относительно центра комнаты по Z.")]
-    public float OffsetZ { get; set; } = -4f;
+    [Description("Минимум секунд от начала раунда до первой попытки спавна Длани Змея.")]
+    public float MinSpawnDelaySeconds { get; set; } = 300f;
 
-    [Description("Сколько секунд после открытия трубки до начала вспышки вируса.")]
-    public float OpenDurationToOutbreak { get; set; } = 45f;
+    [Description("Максимум секунд от начала раунда до первой попытки спавна Длани Змея.")]
+    public float MaxSpawnDelaySeconds { get; set; } = 480f;
 
-    [Description("Периодичность тика урона вируса (секунды).")]
-    public float TickSeconds { get; set; } = 10f;
+    [Description("Радиус взаимодействия с вентилями и консолью (метры).")]
+    public float InteractRadius { get; set; } = 2.5f;
 
-    [Description("Урон людям за один тик за каждую открытую трубку.")]
-    public float OutbreakDamagePerTick { get; set; } = 2f;
+    [Description("Длительность окна отмены после запуска (секунды, 110 = 1:50 под саундтрек 2:35).")]
+    public float CancelWindowSeconds { get; set; } = 110f;
 
-    [Description("Лечить ли SCP-сторону на каждом тике вспышки.")]
-    public bool HealScpsOnTick { get; set; } = true;
+    [Description("Пауза от точки невозврата до выброса вируса и блокировки лифтов (секунды, 45 сек, сумма = 155 сек / 2:35).")]
+    public float GraceSeconds { get; set; } = 45f;
 
-    [Description("Сколько HP получает каждый SCP за тик (если HealScpsOnTick).")]
-    public float ScpHealAmount { get; set; } = 15f;
+    [Description("Урон от заражения SCP-008 в секунду (не-SCP игрокам внутри комплекса).")]
+    public float PoisonDamagePerSecond { get; set; } = 10f;
 
-    [Description("CASSIE-сообщение при открытии трубке.")]
-    public string CassieOutbreak { get; set; } = "DANGER . VIRUS SCP 0 0 8 CONTAINMENT BREACH DETECTED";
+    [Description("Опыт за успешный запуск протокола SCP-008 (без делителя).")]
+    public float MissionXp { get; set; } = 500f;
+
+    [Description("CASSIE-сообщение при запуске.")]
+    public string CassieActivate { get; set; } = "ATTENTION ALL PERSONNEL . SCP 0 0 8 CONTAMINANT RELEASE IN PROGRESS . FACILITY LOCKDOWN IMMINENT";
+
+    [Description("CASSIE-сообщение при отмене.")]
+    public string CassieCancel { get; set; } = "SCP 0 0 8 CONTAMINANT RELEASE ABORTED . SYSTEM SECURED";
 }
 
-public sealed class AirDropConfig
+public sealed class Old173SpawnConfig
 {
-    [Description("Включен ли концепт «AirDrop».")]
+    [Description("Включен ли спавн SCP-173 в старую оригинальную камеру содержания (LCZ 173).")]
     public bool IsEnabled { get; set; } = true;
 
-    [Description("Задержка первого прилёта после старта раунда (секунды).")]
-    public float FirstDelaySeconds { get; set; } = 200f;
+    [Description("Локальное смещение относительно комнаты Lcz173.")]
+    public UnityEngine.Vector3 SpawnOffset { get; set; } = new(15.79f, 12.43f, 7.99f);
 
-    [Description("Интервал между прилётами (секунды).")]
-    public float IntervalSeconds { get; set; } = 200f;
+    [Description("Локальный угол поворота (Euler).")]
+    public UnityEngine.Vector3 SpawnRotation { get; set; } = new(0.17f, 270.24f, 0.00f);
 
-    [Description("Предметы, которые сбрасывает самолёт.")]
-    public System.Collections.Generic.List<ItemType> DropItems { get; set; } = new()
-    {
-        ItemType.Medkit, ItemType.Adrenaline, ItemType.SCP207,
-        ItemType.ArmorCombat, ItemType.GunFSP9, ItemType.GunCOM18,
-        ItemType.SCP500, ItemType.Flashlight, ItemType.Radio
-    };
+    [Description("Задержка телепортации после спавна (в секундах).")]
+    public float TeleportDelay { get; set; } = 0.15f;
+
+    [Description("Блокировать ли дверь камеры содержания после спавна SCP-173.")]
+    public bool LockDoorOnSpawn { get; set; } = true;
+
+    [Description("Время блокировки двери камеры в секундах перед автоматическим открытием.")]
+    public float DoorUnlockSeconds { get; set; } = 15f;
 }
+
+public sealed class DonateControllerConfig
+{
+    [Description("Включена ли синхронизация донат-привилегий с сайтом.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Включена ли система выдачи купленных предметов из инвентаря сайта (.get / .items).")]
+    public bool IsMarketEnabled { get; set; } = true;
+
+    [Description("Включен ли вывод отладочной информации.")]
+    public bool Debug { get; set; } = false;
+
+    [Description("URL API для проверки доната и рангов.")]
+    public string ApiUrl { get; set; } = "http://127.0.0.1:5000/check/";
+
+    [Description("URL API для списания и выдачи предметов из инвентаря сайта.")]
+    public string MarketApiUrl { get; set; } = "http://127.0.0.1:5000/api/take_items";
+
+    [Description("Идентификатор сервера в системе доната (например, mrp, norules, classic).")]
+    public string ServerType { get; set; } = "mrp";
+
+    [Description("Интервал периодической синхронизации рангов (в секундах). 0 для отключения периодического опроса.")]
+    public float UpdateInterval { get; set; } = 60f;
+
+    [Description("Задержка от начала раунда перед разрешением забирать предметы командой .get (в секундах).")]
+    public float MarketCooldownSeconds { get; set; } = 360f;
+
+    [Description("Группы, которые запрещено перезаписывать донат-рангами (администрация/владельцы).")]
+    public System.Collections.Generic.List<string> IgnoredGroups { get; set; } = new()
+    {
+        "owner", "admin", "texadmin", "headadmin", "manager", "создатель", "руководитель"
+    };
+}

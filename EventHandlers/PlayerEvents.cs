@@ -1,4 +1,7 @@
-using Capy.NoRules.Features;
+﻿using Capy.NoRules.Addons;
+using Capy.NoRules.Modules;
+using Capy.NoRules.Concepts;
+using Capy.NoRules.Scps;
 using Exiled.Events.EventArgs.Player;
 
 namespace Capy.NoRules.EventHandlers;
@@ -88,3 +91,4 @@ public class PlayerEvents
         _scp120.OnPickingUpItem(ev);
     }
 }
+

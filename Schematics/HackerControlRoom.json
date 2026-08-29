@@ -1,0 +1,1726 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "Cmd_Platform_Base",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.02,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 4.6,
+        "y": 0.04,
+        "z": 3.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1A1D24FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Platform_Trim_Back",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.5,
+        "z": -1.85
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 4.6,
+        "y": 0.95,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "111319FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Platform_Trim_L",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": -2.25,
+        "y": 0.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.95,
+        "z": 3.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "111319FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Platform_Trim_R",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 2.25,
+        "y": 0.5,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.95,
+        "z": 3.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "111319FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Floor_Circuit_L",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.2,
+        "y": 0.045,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.01,
+        "z": 2.6
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Floor_Circuit_R",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.2,
+        "y": 0.045,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.01,
+        "z": 2.6
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Floor_Hazard_Front",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.045,
+        "z": 1.85
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 4.4,
+        "y": 0.01,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_Base",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.4,
+        "z": 0.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.0,
+        "y": 0.75,
+        "z": 0.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "161922FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_Top",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.78,
+        "z": 0.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.2,
+        "y": 0.06,
+        "z": 0.9
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "242936FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_WingL",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.15,
+        "y": 0.4,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.95,
+        "y": 0.75,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "161922FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_WingL_Top",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.15,
+        "y": 0.78,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.05,
+        "y": 0.06,
+        "z": 0.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "242936FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_PanelL",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.15,
+        "y": 0.82,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.02,
+        "z": 0.45
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_WingR",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.15,
+        "y": 0.4,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.95,
+        "y": 0.75,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "161922FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_WingR_Top",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.15,
+        "y": 0.78,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.05,
+        "y": 0.06,
+        "z": 0.8
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "242936FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_PanelR",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.15,
+        "y": 0.82,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.02,
+        "z": 0.45
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A855F7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_Keyboard",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.82,
+        "z": 0.35
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.8,
+        "y": 0.025,
+        "z": 0.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0E1017FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Desk_KeyGlow",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.835,
+        "z": 0.35
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.75,
+        "y": 0.01,
+        "z": 0.25
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Keycard_Slot",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.5,
+        "y": 0.83,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.2,
+        "y": 0.03,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "DC2626FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Keycard_Glow",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.5,
+        "y": 0.85,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.01,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Chair_Base",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.2,
+        "z": -0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.45,
+        "y": 0.35,
+        "z": 0.45
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "1E222EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Chair_Seat",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.42,
+        "z": -0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.08,
+        "z": 0.5
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Chair_Back",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.75,
+        "z": -0.42
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.48,
+        "y": 0.6,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Chair_Headrest",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.1,
+        "z": -0.42
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.35,
+        "y": 0.18,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_StandC",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.05,
+        "z": 0.85
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.5,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_FrameC",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.35,
+        "z": 0.85
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.25,
+        "y": 0.65,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0F19FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_ScreenC",
+      "ObjectId": 10026,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.35,
+        "z": 0.82
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.18,
+        "y": 0.58,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E1B4BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_GlowC",
+      "ObjectId": 10027,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.35,
+        "z": 0.8
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.05,
+        "y": 0.48,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "818CF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_StandL",
+      "ObjectId": 10028,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.9,
+        "y": 1.05,
+        "z": 0.98
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.5,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_FrameL",
+      "ObjectId": 10029,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.9,
+        "y": 1.35,
+        "z": 0.98
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.9,
+        "y": 0.55,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0F19FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_ScreenL",
+      "ObjectId": 10030,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.9,
+        "y": 1.35,
+        "z": 0.95
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.84,
+        "y": 0.49,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "064E3BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_GlowL",
+      "ObjectId": 10031,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.9,
+        "y": 1.35,
+        "z": 0.93
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.72,
+        "y": 0.38,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "34D399FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_StandR",
+      "ObjectId": 10032,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.9,
+        "y": 1.05,
+        "z": 0.98
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.5,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_FrameR",
+      "ObjectId": 10033,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.9,
+        "y": 1.35,
+        "z": 0.98
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.9,
+        "y": 0.55,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0F19FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_ScreenR",
+      "ObjectId": 10034,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.9,
+        "y": 1.35,
+        "z": 0.95
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.84,
+        "y": 0.49,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "450A0AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Monitor_GlowR",
+      "ObjectId": 10035,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.9,
+        "y": 1.35,
+        "z": 0.93
+      },
+      "Rotation": {
+        "x": 0,
+        "y": -28,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.72,
+        "y": 0.38,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F87171FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Overhead_Frame",
+      "ObjectId": 10036,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 2.05,
+        "z": 0.85
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.6,
+        "y": 0.28,
+        "z": 0.1
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0F19FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Overhead_Glow",
+      "ObjectId": 10037,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 2.05,
+        "z": 0.79
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 2.4,
+        "y": 0.2,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "EF4444FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerL_Body",
+      "ObjectId": 10038,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 1.05,
+        "z": -0.6
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 2.0,
+        "z": 0.75
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0D14FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerL_Front",
+      "ObjectId": 10039,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 1.05,
+        "z": -0.21
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 1.85,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E2433FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerL_LED1",
+      "ObjectId": 10040,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 1.5,
+        "z": -0.18
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerL_LED2",
+      "ObjectId": 10041,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 1.05,
+        "z": -0.18
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "34D399FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerL_LED3",
+      "ObjectId": 10042,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 0.6,
+        "z": -0.18
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerR_Body",
+      "ObjectId": 10043,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 1.05,
+        "z": -0.6
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 2.0,
+        "z": 0.75
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0D14FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerR_Front",
+      "ObjectId": 10044,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 1.05,
+        "z": -0.21
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 1.85,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E2433FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerR_LED1",
+      "ObjectId": 10045,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 1.5,
+        "z": -0.18
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A855F7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerR_LED2",
+      "ObjectId": 10046,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 1.05,
+        "z": -0.18
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FBBF24FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_ServerR_LED3",
+      "ObjectId": 10047,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 0.6,
+        "z": -0.18
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.3,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A855F7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_PowerBus_L",
+      "ObjectId": 10048,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 2.15,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.12,
+        "z": 1.4
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_PowerBus_R",
+      "ObjectId": 10049,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 2.15,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.12,
+        "z": 1.4
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_PowerBus_Arch",
+      "ObjectId": 10050,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 2.22,
+        "z": 0.85
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 3.4,
+        "y": 0.1,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Holo_Base",
+      "ObjectId": 10051,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.35,
+        "z": -1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.9,
+        "y": 0.5,
+        "z": 0.9
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "1E293BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Holo_Emitter",
+      "ObjectId": 10052,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.65,
+        "z": -1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.08,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "00E5FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Holo_Beam",
+      "ObjectId": 10053,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.2,
+        "z": -1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.9,
+        "z": 0.15
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Holo_OrbRing1",
+      "ObjectId": 10054,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": -1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 45,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.7,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFAA",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Cmd_Holo_OrbRing2",
+      "ObjectId": 10055,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": -1.1
+      },
+      "Rotation": {
+        "x": 35,
+        "y": 0,
+        "z": 35
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.02,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "C084FCAA",
+        "PrimitiveFlags": 2
+      }
+    },
+    {
+      "Name": "Cmd_Loot_TableL",
+      "ObjectId": 10056,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.55,
+        "y": 0.3,
+        "z": 1.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.8,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E2433FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Loot_CrateL",
+      "ObjectId": 10057,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.55,
+        "y": 0.65,
+        "z": 1.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 0.22,
+        "z": 0.38
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "065F46FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Loot_LockL",
+      "ObjectId": 10058,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.55,
+        "y": 0.65,
+        "z": 1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.08,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Loot_TableR",
+      "ObjectId": 10059,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.55,
+        "y": 0.3,
+        "z": 1.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.8,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E2433FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Loot_CrateR",
+      "ObjectId": 10060,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.55,
+        "y": 0.65,
+        "z": 1.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 0.22,
+        "z": 0.38
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "991B1BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Loot_CrossR",
+      "ObjectId": 10061,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.55,
+        "y": 0.65,
+        "z": 1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.16,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F8FAFCFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Cmd_Light_MainConsole",
+      "ObjectId": 10062,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.4,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "00E5FFFF",
+        "Intensity": 3.5,
+        "Range": 5.5,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "Cmd_Light_HoloRadar",
+      "ObjectId": 10063,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.3,
+        "z": -1.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "A855F7FF",
+        "Intensity": 3.8,
+        "Range": 6.0,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "Cmd_Light_ServerLeft",
+      "ObjectId": 10064,
+      "ParentId": 10000,
+      "Position": {
+        "x": -1.65,
+        "y": 1.5,
+        "z": -0.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "34D399FF",
+        "Intensity": 2.2,
+        "Range": 4.5,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "Cmd_Light_ServerRight",
+      "ObjectId": 10065,
+      "ParentId": 10000,
+      "Position": {
+        "x": 1.65,
+        "y": 1.5,
+        "z": -0.5
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "FBBF24FF",
+        "Intensity": 2.2,
+        "Range": 4.5,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "Cmd_Light_TopWarning",
+      "ObjectId": 10066,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 2.1,
+        "z": 0.7
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "EF4444FF",
+        "Intensity": 3.0,
+        "Range": 5.0,
+        "Shadows": false
+      }
+    }
+  ]
+}

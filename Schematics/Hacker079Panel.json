@@ -1,0 +1,865 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "079_Plinth",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.05,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.6,
+        "y": 0.1,
+        "z": 0.9
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "181B22FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Hazard_Front",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.06,
+        "z": 0.42
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.56,
+        "y": 0.02,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Frame_Main",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.95,
+        "z": -0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.5,
+        "y": 1.7,
+        "z": 0.7
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F242DFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Frame_Trim",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.95,
+        "z": -0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.54,
+        "y": 1.74,
+        "z": 0.65
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F1218FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Tape_Bay",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 1.35,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.65,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "11141AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Reel_L1",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.55,
+        "y": 1.48,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.03,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "CBD5E1FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Reel_L2",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.35,
+        "y": 1.48,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.03,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "CBD5E1FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Reel_Hub1",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.55,
+        "y": 1.48,
+        "z": 0.32
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.02,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0284C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Reel_Hub2",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.35,
+        "y": 1.48,
+        "z": 0.32
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 0.02,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0284C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Tape_StatusLED",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 1.15,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.35,
+        "y": 0.04,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CoreMem_Bay",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 0.5,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.7,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CoreMem_Grid1",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 0.65,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.12,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CoreMem_Grid2",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 0.45,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.12,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CoreMem_Grid3",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 0.25,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.4,
+        "y": 0.12,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CRT_Bezel",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 1.35,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 0.65,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E293BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CRT_Screen",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 1.35,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.56,
+        "y": 0.52,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "022C22FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_CRT_PhosphorGlow",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 1.35,
+        "z": 0.315
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.45,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Warning_Frame",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.82,
+        "z": -0.05
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.4,
+        "y": 0.16,
+        "z": 0.1
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F1218FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Warning_Glow",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.82,
+        "z": 0.01
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.3,
+        "y": 0.1,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_SubCRT_Frame",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 0.85,
+        "z": 0.26
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 0.28,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E293BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_SubCRT_Screen",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 0.85,
+        "z": 0.3
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.58,
+        "y": 0.22,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "451A03FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_SubCRT_Glow",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 0.85,
+        "z": 0.315
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.52,
+        "y": 0.16,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Console_Desk",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.78,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.45,
+        "y": 0.08,
+        "z": 0.45
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "262E3BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Console_Keyboard",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.1,
+        "y": 0.83,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.75,
+        "y": 0.03,
+        "z": 0.3
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Console_KeyGlow",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.1,
+        "y": 0.845,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.7,
+        "y": 0.01,
+        "z": 0.25
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "4ADE80FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Switch_Box",
+      "ObjectId": 10026,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.48,
+        "y": 0.84,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.28,
+        "y": 0.04,
+        "z": 0.25
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F1218FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Switch_Lever1",
+      "ObjectId": 10027,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.42,
+        "y": 0.89,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.08,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "EF4444FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Switch_Lever2",
+      "ObjectId": 10028,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.54,
+        "y": 0.89,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 0.08,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Conduit_L",
+      "ObjectId": 10029,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.72,
+        "y": 0.95,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.7,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Conduit_R",
+      "ObjectId": 10030,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.72,
+        "y": 0.95,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 1.7,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Conduit_Top",
+      "ObjectId": 10031,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.88,
+        "z": 0.1
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 90
+      },
+      "Scale": {
+        "x": 0.06,
+        "y": 1.45,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "334155FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "079_Light_Phosphor",
+      "ObjectId": 10032,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.35,
+        "y": 1.4,
+        "z": 0.65
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "22C55EFF",
+        "Intensity": 3.2,
+        "Range": 4.5,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "079_Light_Amber",
+      "ObjectId": 10033,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.45,
+        "y": 1.2,
+        "z": 0.65
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "F59E0BFF",
+        "Intensity": 2.6,
+        "Range": 4.0,
+        "Shadows": false
+      }
+    }
+  ]
+}

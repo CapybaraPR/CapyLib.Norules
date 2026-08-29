@@ -1,0 +1,995 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "HID_BasePlinth",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.04,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.06,
+        "y": 0.08,
+        "z": 0.58
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "181B22FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Hazard_Front",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.05,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.02,
+        "y": 0.02,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_MainBody",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.85,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.02,
+        "y": 1.62,
+        "z": 0.52
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "11141DFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_OuterTrim",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.85,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.06,
+        "y": 1.66,
+        "z": 0.48
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0D14FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_TopCap",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.68,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.06,
+        "y": 0.06,
+        "z": 0.56
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E2430FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapL_Mount",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.38,
+        "y": 1.15,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.85,
+        "z": 0.16
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "1E293BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapL_Core",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.38,
+        "y": 1.15,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.75,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapL_Ring1",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.38,
+        "y": 1.35,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.04,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0284C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapL_Ring2",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.38,
+        "y": 0.95,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.04,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0284C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapR_Mount",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.38,
+        "y": 1.15,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.16,
+        "y": 0.85,
+        "z": 0.16
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "1E293BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapR_Core",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.38,
+        "y": 1.15,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.75,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapR_Ring1",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.38,
+        "y": 1.35,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.04,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0284C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CapR_Ring2",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.38,
+        "y": 0.95,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.04,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "0284C7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CellBay_BG",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.42,
+        "z": 0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.92,
+        "y": 0.62,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "090B10FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell1",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.22,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.86,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell1_LED",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2,
+        "y": 0.22,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.35,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell1_Meter",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.22,
+        "y": 0.22,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.04,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell2",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.38,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.86,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell2_LED",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2,
+        "y": 0.38,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.35,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell2_Meter",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.22,
+        "y": 0.38,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.04,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell3",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.54,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.86,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell3_LED",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.2,
+        "y": 0.54,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.35,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Cell3_Meter",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.22,
+        "y": 0.54,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.15,
+        "y": 0.04,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "FBBF24FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Console_Desk",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.8,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.96,
+        "y": 0.06,
+        "z": 0.34
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "242A38FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Keyboard_Tray",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.08,
+        "y": 0.82,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.55,
+        "y": 0.02,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Keyboard_Glow",
+      "ObjectId": 10026,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.08,
+        "y": 0.835,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.008,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Lever_Base",
+      "ObjectId": 10027,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.32,
+        "y": 0.82,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.18,
+        "y": 0.03,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F1218FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Lever_Stick",
+      "ObjectId": 10028,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.32,
+        "y": 0.87,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.03,
+        "y": 0.08,
+        "z": 0.03
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "EF4444FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_CardSlot",
+      "ObjectId": 10029,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.32,
+        "y": 0.82,
+        "z": 0.16
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.14,
+        "y": 0.02,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Monitor_Frame",
+      "ObjectId": 10030,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.5,
+        "y": 0.56,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E2433FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Monitor_Screen",
+      "ObjectId": 10031,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.23
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.44,
+        "y": 0.5,
+        "z": 0.02
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "082F49FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Monitor_Display",
+      "ObjectId": 10032,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.38,
+        "y": 0.44,
+        "z": 0.008
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Warning_Frame",
+      "ObjectId": 10033,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.6,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.86,
+        "y": 0.1,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "111319FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Warning_Glow",
+      "ObjectId": 10034,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.6,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.78,
+        "y": 0.06,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Bus_L",
+      "ObjectId": 10035,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.48,
+        "y": 0.85,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 1.55,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "374151FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Bus_R",
+      "ObjectId": 10036,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.48,
+        "y": 0.85,
+        "z": 0.12
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 1.55,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 2,
+        "Color": "374151FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "HID_Light_Plasma",
+      "ObjectId": 10037,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.55
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "00E5FFFF",
+        "Intensity": 3.2,
+        "Range": 4.5,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "HID_Light_Warning",
+      "ObjectId": 10038,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.65,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "F59E0BFF",
+        "Intensity": 2.2,
+        "Range": 3.5,
+        "Shadows": false
+      }
+    }
+  ]
+}

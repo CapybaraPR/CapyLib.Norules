@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CommandSystem;
 using Exiled.API.Features;
 
@@ -33,3 +33,4 @@ public sealed class VanishCommand : ICommand
         return NoRulesPlugin.Instance.Vanish.Toggle(player, out response);
     }
 }
+

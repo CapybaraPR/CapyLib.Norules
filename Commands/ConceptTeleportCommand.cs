@@ -39,7 +39,6 @@ public sealed class ConceptTeleportCommand : ICommand
                        "<color=#a3e635>• cptp 008_049</color> — Трубка 008 (Hcz049)\n" +
                        "<color=#a3e635>• cptp 008_939</color> — Трубка 008 (Hcz939)\n" +
                        "<color=#a3e635>• cptp 008_ez</color> — Трубка 008 (EzShelter)\n" +
-                       "<color=#a3e635>• cptp airdrop</color> — Точка дропа AirDrop (Поверхность)\n" +
                        "<color=#a3e635>• cptp 294</color> — Кофемашина SCP-294 (EzUpstairsPcs)\n" +
                        "<color=#a3e635>• cptp 120</color> — Бассейн SCP-120 (LczGlassBox)\n" +
                        "<color=#a3e635>• cptp 1162</color> — Дыра SCP-1162 (Lcz173)\n";
@@ -54,7 +53,6 @@ public sealed class ConceptTeleportCommand : ICommand
             "008_049" => GetRoomPos(RoomType.Hcz049, 0f, 1f, -4f),
             "008_939" => GetRoomPos(RoomType.Hcz939, 0f, 1f, -4f),
             "008_ez" => GetRoomPos(RoomType.EzShelter, 0f, 1f, -3f),
-            "airdrop" or "дроп" => DropSpotSurface(),
             "294" => GetSchematicPos("SCP294", RoomType.EzUpstairsPcs, 0f, 1.5f, 0f),
             "120" => GetSchematicPos("SCP120", RoomType.LczGlassBox, 0f, 1.5f, 0f),
             "1162" => GetSchematicPos("SCP1162", RoomType.Lcz173, 0f, 1f, 0f),
@@ -90,10 +88,5 @@ public sealed class ConceptTeleportCommand : ICommand
 
         return GetRoomPos(fallbackRoom, ox, oy, oz);
     }
-
-    private static Vector3 DropSpotSurface()
-    {
-        // Одна из точек AirDrop — башня на Поверхности
-        return new Vector3(39.2f, 1015.5f, -31.8f);
-    }
 }
+

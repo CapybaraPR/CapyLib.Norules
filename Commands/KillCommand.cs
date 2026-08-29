@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CommandSystem;
 using Exiled.API.Features;
 
@@ -29,3 +29,4 @@ public sealed class KillCommand : ICommand
         return NoRulesPlugin.Instance.DotResKill.ExecuteKill(player, out response);
     }
 }
+

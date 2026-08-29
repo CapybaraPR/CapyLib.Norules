@@ -15,18 +15,18 @@ public sealed class GiveCustomRoleCommand : ICommand
 {
     public string Command => "givecustomrole";
     public string[] Aliases => new[] { "gcr", "giverole" };
-    public string Description => "Выдать кастомную роль игроку (с поддержкой поиска по префиксу/буквам).";
+    public string Description => "Выдать кастомную роль или роль концепта игроку.";
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        // 1. Если аргументов нет — выводим список всех ролей
+        // 1. Без аргументов или list — красивый компактный список
         if (arguments.Count < 1 || arguments.At(0).Equals("list", StringComparison.OrdinalIgnoreCase))
         {
             response = BuildRolesList();
             return true;
         }
 
-        string query = arguments.At(0).ToLowerInvariant();
+        string query = arguments.At(0).Trim().ToLowerInvariant();
 
         // 2. Определение целевого игрока
         Player? target = null;
@@ -36,7 +36,7 @@ public sealed class GiveCustomRoleCommand : ICommand
             target = Player.Get(playerQuery);
             if (target == null)
             {
-                response = $"<color=red>[ОШИБКА]</color> Игрок '{playerQuery}' не найден.";
+                response = $"<color=#ef4444>✖</color> Игрок '<b>{playerQuery}</b>' не найден.";
                 return false;
             }
         }
@@ -45,12 +45,12 @@ public sealed class GiveCustomRoleCommand : ICommand
             target = Player.Get(sender);
             if (target == null)
             {
-                response = "<color=red>[ОШИБКА]</color> Не удалось определить игрока. Укажите ID или никнейм цели вторым аргументом.";
+                response = "<color=#ef4444>✖</color> Укажите ID или ник игрока: <b>gcr hack [id]</b>.";
                 return false;
             }
         }
 
-        // 2.5 Концепты (СО₂, Хакеры) — проверяем до обычных кастомных ролей
+        // 3. Быстрые роли концептов (Хакеры, СО₂)
         var conceptResult = TryGiveConceptRole(query, target);
         if (conceptResult != null)
         {
@@ -58,7 +58,7 @@ public sealed class GiveCustomRoleCommand : ICommand
             return true;
         }
 
-        // 3. Поиск ролей по префиксу / имени
+        // 4. Поиск обычных кастомных ролей (CapyLib & EXILED)
         var allExiledRoles = CustomRole.Registered.ToList();
         var allCapyRoles = CustomRolesManager.Roles.ToList();
 
@@ -70,7 +70,7 @@ public sealed class GiveCustomRoleCommand : ICommand
         if (exactExiled != null)
         {
             exactExiled.AddRole(target);
-            response = $"<color=green>[УСПЕХ]</color> Роль <b>{exactExiled.Name}</b> (ID: {exactExiled.Id}) выдана игроку <b>{target.Nickname}</b>.";
+            response = $"<color=#4ade80>✔</color> Роль <b>{exactExiled.Name}</b> (ID: {exactExiled.Id}) выдана игроку <b>{target.Nickname}</b>.";
             return true;
         }
 
@@ -80,11 +80,11 @@ public sealed class GiveCustomRoleCommand : ICommand
         if (exactCapy != null)
         {
             exactCapy.OnAssigned(target);
-            response = $"<color=green>[УСПЕХ]</color> Роль <b>{exactCapy.Name}</b> выдана игроку <b>{target.Nickname}</b>.";
+            response = $"<color=#4ade80>✔</color> Роль <b>{exactCapy.Name}</b> выдана игроку <b>{target.Nickname}</b>.";
             return true;
         }
 
-        // Поиск по префиксу (начинается с query)
+        // Поиск по префиксу
         var prefixMatchesExiled = allExiledRoles
             .Where(r => r.Name.ToLowerInvariant().StartsWith(query))
             .ToList();
@@ -101,19 +101,19 @@ public sealed class GiveCustomRoleCommand : ICommand
             {
                 var role = prefixMatchesExiled[0];
                 role.AddRole(target);
-                response = $"<color=green>[УСПЕХ]</color> Роль <b>{role.Name}</b> (ID: {role.Id}) выдана игроку <b>{target.Nickname}</b>.";
+                response = $"<color=#4ade80>✔</color> Роль <b>{role.Name}</b> (ID: {role.Id}) выдана игроку <b>{target.Nickname}</b>.";
                 return true;
             }
             else
             {
                 var role = prefixMatchesCapy[0];
                 role.OnAssigned(target);
-                response = $"<color=green>[УСПЕХ]</color> Роль <b>{role.Name}</b> выдана игроку <b>{target.Nickname}</b>.";
+                response = $"<color=#4ade80>✔</color> Роль <b>{role.Name}</b> выдана игроку <b>{target.Nickname}</b>.";
                 return true;
             }
         }
 
-        // Частичный поиск (содержит query)
+        // Частичный поиск
         var containsMatchesExiled = allExiledRoles
             .Where(r => r.Name.ToLowerInvariant().Contains(query))
             .ToList();
@@ -123,29 +123,29 @@ public sealed class GiveCustomRoleCommand : ICommand
             .ToList();
 
         var allMatches = new List<string>();
-        allMatches.AddRange(prefixMatchesExiled.Select(r => $"[Exiled] {r.Name} (ID: {r.Id})"));
-        allMatches.AddRange(prefixMatchesCapy.Select(r => $"[Capy] {r.Name}"));
+        allMatches.AddRange(prefixMatchesExiled.Select(r => $"{r.Name} (ID: {r.Id})"));
+        allMatches.AddRange(prefixMatchesCapy.Select(r => r.Name));
 
         if (allMatches.Count == 0)
         {
-            allMatches.AddRange(containsMatchesExiled.Select(r => $"[Exiled] {r.Name} (ID: {r.Id})"));
-            allMatches.AddRange(containsMatchesCapy.Select(r => $"[Capy] {r.Name}"));
+            allMatches.AddRange(containsMatchesExiled.Select(r => $"{r.Name} (ID: {r.Id})"));
+            allMatches.AddRange(containsMatchesCapy.Select(r => r.Name));
         }
 
         if (allMatches.Count > 1)
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"<color=yellow>[ВНИМАНИЕ]</color> По запросу '<b>{query}</b>' найдено {allMatches.Count} ролей:");
+            sb.AppendLine($"<color=#facc15>⚠</color> По запросу '<b>{query}</b>' найдено {allMatches.Count} ролей:");
             foreach (var match in allMatches)
             {
                 sb.AppendLine($"  <color=#ffd285>• {match}</color>");
             }
-            sb.Append("Уточните название роли или укажите её точный ID.");
+            sb.Append("Уточните название или введите <b>gcr</b>.");
             response = sb.ToString();
             return false;
         }
 
-        response = $"<color=red>[ОШИБКА]</color> Кастомная роль по запросу '<b>{query}</b>' не найдена.\nИспользуйте <b>gcr list</b> для просмотра доступных ролей.";
+        response = $"<color=#ef4444>✖</color> Роль '<b>{query}</b>' не найдена.\nВведите <b>gcr</b> для списка всех доступных ролей.";
         return false;
     }
 
@@ -153,13 +153,27 @@ public sealed class GiveCustomRoleCommand : ICommand
     {
         switch (query)
         {
-            case "co2" or "со2" or "co2squad":
-                NoRulesPlugin.Instance?.Co2?.AddMember(target);
-                return $"<color=green>[КОНЦЕПТ]</color> <b>{target.Nickname}</b> добавлен в <color=#14b1e0>Отряд СО₂</color>.";
+            // === ХАКЕРЫ ===
+            case "hack" or "hacker" or "hackers" or "h" or "хакер" or "хакеры" or "hacker_lead":
+                NoRulesPlugin.Instance?.Hackers?.AddHacker(target);
+                return $"<color=#4ade80>✔</color> Игроку <b>{target.Nickname}</b> выдана роль <color=#a78bfa><b>Хакер</b></color>.";
 
-            case "hackers" or "hacker" or "хакеры":
-                NoRulesPlugin.Instance?.Hackers?.AddMember(target);
-                return $"<color=green>[КОНЦЕПТ]</color> <b>{target.Nickname}</b> добавлен в <color=#a78bfa>Группировку Хакеров</color>.";
+            case "hackg" or "guard" or "hg" or "hguard" or "hackerguard" or "hacker_guard" or "охранник" or "гвард" or "охранник_хакера":
+                NoRulesPlugin.Instance?.Hackers?.AddGuard(target);
+                return $"<color=#4ade80>✔</color> Игроку <b>{target.Nickname}</b> выдана роль <color=#ef4444><b>Охранник Хакера</b></color>.";
+
+            // === СО2 ===
+            case "co2cap" or "co2c" or "cap" or "co2_captain" or "co2captain" or "капитан_со2" or "со2_капитан" or "капитан":
+                NoRulesPlugin.Instance?.Co2?.AddCaptain(target);
+                return $"<color=#4ade80>✔</color> Игроку <b>{target.Nickname}</b> выдана роль <color=#14b1e0><b>Капитан СО₂</b></color>.";
+
+            case "co2spec" or "co2s" or "spec" or "co2_spec" or "co2_specialist" or "спец" or "специалист" or "со2_специалист":
+                NoRulesPlugin.Instance?.Co2?.AddSpecialist(target);
+                return $"<color=#4ade80>✔</color> Игроку <b>{target.Nickname}</b> выдана роль <color=#14b1e0><b>Специалист СО₂</b></color>.";
+
+            case "co2" or "co2cadet" or "co2_cadet" or "со2" or "кадет" or "co2squad" or "co2_operative":
+                NoRulesPlugin.Instance?.Co2?.AddCadet(target);
+                return $"<color=#4ade80>✔</color> Игроку <b>{target.Nickname}</b> выдана роль <color=#14b1e0><b>Оперативник СО₂</b></color>.";
 
             default:
                 return null;
@@ -169,34 +183,32 @@ public sealed class GiveCustomRoleCommand : ICommand
     private static string BuildRolesList()
     {
         var sb = new StringBuilder();
-        sb.AppendLine();
-        sb.AppendLine("<color=#ffa94e>====================================================</color>");
-        sb.AppendLine("<b><color=#ffd285>        [ СПИСОК ДОСТУПНЫХ КАСТОМНЫХ РОЛЕЙ ]</color></b>");
-        sb.AppendLine("<color=#ffa94e>====================================================</color>");
+        sb.AppendLine("<color=#ffd285><b>⚡ КАСТОМНЫЕ РОЛИ // МЕНЮ ВЫДАЧИ:</b></color>\n");
 
-        var exiledRoles = CustomRole.Registered.ToList();
+        sb.AppendLine("<color=#a78bfa><b>💻 Группировка «Хакеры»:</b></color>");
+        sb.AppendLine("  • <color=#a78bfa><b>hack</b></color> <color=#94a3b8>(hacker, h)</color> — Хакер (Взлом терминалов HCZ, запуск OMEGA)");
+        sb.AppendLine("  • <color=#ef4444><b>hackg</b></color> <color=#94a3b8>(guard, hg)</color> — Охранник Хакера (Тяжёлая броня, дробовик, гранаты)\n");
+
+        sb.AppendLine("<color=#14b1e0><b>☣️ Спецотряд «СО₂»:</b></color>");
+        sb.AppendLine("  • <color=#14b1e0><b>co2cap</b></color> <color=#94a3b8>(cap)</color> — Капитан СО₂ (Particle Disruptor + Карта)");
+        sb.AppendLine("  • <color=#14b1e0><b>co2spec</b></color> <color=#94a3b8>(spec)</color> — Специалист СО₂ (E-11 + Карта МОГ + Медкит)");
+        sb.AppendLine("  • <color=#14b1e0><b>co2</b></color> <color=#94a3b8>(cadet)</color> — Оперативник / Кадет СО₂\n");
+
         var capyRoles = CustomRolesManager.Roles.ToList();
+        var exiledRoles = CustomRole.Registered.ToList();
 
-        if (exiledRoles.Count == 0 && capyRoles.Count == 0)
+        if (capyRoles.Count > 0 || exiledRoles.Count > 0)
         {
-            sb.AppendLine("  <color=#c2c2c2>В данный момент кастомные роли не зарегистрированы.</color>");
-        }
-        else
-        {
-            foreach (var role in capyRoles)
-            {
-                sb.AppendLine($"  <color=#a3e635>• [Capy]</color> <color=#ffd285><b>{role.Name}</b></color> <color=#c2c2c2>(Базовая роль: {role.BaseRole})</color>");
-            }
-            foreach (var role in exiledRoles)
-            {
-                sb.AppendLine($"  <color=#38bdf8>• [ID: {role.Id}]</color> <color=#ffd285><b>{role.Name}</b></color> <color=#c2c2c2>(Базовая роль: {role.Role})</color>");
-            }
+            sb.AppendLine("<color=#a3e635><b>🧩 Дополнительные роли:</b></color>");
+            foreach (var r in capyRoles)
+                sb.AppendLine($"  • <color=#ffd285><b>{r.Name}</b></color> <color=#94a3b8>(база: {r.BaseRole})</color>");
+            foreach (var r in exiledRoles)
+                sb.AppendLine($"  • <color=#ffd285><b>{r.Name}</b></color> <color=#94a3b8>(ID: {r.Id}, база: {r.Role})</color>");
+            sb.AppendLine();
         }
 
-        sb.AppendLine("<color=#ffa94e>====================================================</color>");
-        sb.AppendLine("<color=#c2c2c2>Использование: <color=#ffd285>gcr <название/ID/префикс> [ID_игрока]</color></color>");
-        sb.Append("<color=#ffa94e>====================================================</color>");
-
+        sb.Append("<color=#64748b>Быстрый ввод: <b>gcr hack [id]</b> | <b>gcr hackg [id]</b> | <b>gcr co2cap [id]</b></color>");
         return sb.ToString();
     }
 }
+

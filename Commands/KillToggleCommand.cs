@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CommandSystem;
 
 namespace Capy.NoRules.Commands;
@@ -25,3 +25,4 @@ public sealed class KillToggleCommand : ICommand
         return true;
     }
 }
+

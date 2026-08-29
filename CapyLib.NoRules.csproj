@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
         <LangVersion>latest</LangVersion>
@@ -88,5 +88,11 @@
             <HintPath>..\CapyLib\_deps\AudioPlayerApi.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.2" />
+        <PackageReference Include="System.Text.Json" Version="9.0.2" />
     </ItemGroup>
 </Project>

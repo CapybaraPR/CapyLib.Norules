@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -175,3 +175,4 @@ public sealed class GiveCustomItemCommand : ICommand
         return sb.ToString();
     }
 }
+

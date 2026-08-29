@@ -1,0 +1,943 @@
+{
+  "RootObjectId": 10000,
+  "Blocks": [
+    {
+      "Name": "Srv_MainBody",
+      "ObjectId": 10001,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.84,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.02,
+        "y": 1.68,
+        "z": 0.55
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "12141CFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_OuterTrim",
+      "ObjectId": 10002,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.84,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.06,
+        "y": 1.7,
+        "z": 0.52
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "090B10FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_BasePlinth",
+      "ObjectId": 10003,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.04,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.08,
+        "y": 0.08,
+        "z": 0.58
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E222EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_TopCap",
+      "ObjectId": 10004,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.66,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.08,
+        "y": 0.06,
+        "z": 0.58
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E222EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Hazard_Front",
+      "ObjectId": 10005,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.05,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1.04,
+        "y": 0.02,
+        "z": 0.06
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "F59E0BFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_BladeBay_BG",
+      "ObjectId": 10006,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.42,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.92,
+        "y": 0.65,
+        "z": 0.08
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0B0D14FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade1",
+      "ObjectId": 10007,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.2,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.88,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade1_LEDs",
+      "ObjectId": 10008,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.25,
+        "y": 0.2,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.28,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade1_Status",
+      "ObjectId": 10009,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.25,
+        "y": 0.2,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade2",
+      "ObjectId": 10010,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.36,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.88,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade2_LEDs",
+      "ObjectId": 10011,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.25,
+        "y": 0.36,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.28,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A855F7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade2_Status",
+      "ObjectId": 10012,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.25,
+        "y": 0.36,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade3",
+      "ObjectId": 10013,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.52,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.88,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade3_LEDs",
+      "ObjectId": 10014,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.25,
+        "y": 0.52,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.28,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade3_Status",
+      "ObjectId": 10015,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.25,
+        "y": 0.52,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "38BDF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade4",
+      "ObjectId": 10016,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.68,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.88,
+        "y": 0.12,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1F2937FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade4_LEDs",
+      "ObjectId": 10017,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.25,
+        "y": 0.68,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.28,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "34D399FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Blade4_Status",
+      "ObjectId": 10018,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.25,
+        "y": 0.68,
+        "z": 0.265
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.08,
+        "y": 0.03,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Console_Desk",
+      "ObjectId": 10019,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.82,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.96,
+        "y": 0.06,
+        "z": 0.35
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "242A38FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Console_Bevel",
+      "ObjectId": 10020,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.8,
+        "z": 0.38
+      },
+      "Rotation": {
+        "x": 20,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.94,
+        "y": 0.04,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "161A24FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Keyboard_Tray",
+      "ObjectId": 10021,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.84,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.65,
+        "y": 0.02,
+        "z": 0.22
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Keyboard_Glow",
+      "ObjectId": 10022,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.852,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.6,
+        "y": 0.008,
+        "z": 0.18
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00E5FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_CardSlot",
+      "ObjectId": 10023,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.38,
+        "y": 0.85,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.12,
+        "y": 0.02,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "DC2626FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_CardGlow",
+      "ObjectId": 10024,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.38,
+        "y": 0.865,
+        "z": 0.28
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.05,
+        "y": 0.008,
+        "z": 0.05
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "22C55EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Mon_Cavity",
+      "ObjectId": 10025,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.2
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.92,
+        "y": 0.7,
+        "z": 0.12
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "090B10FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Mon_Frame",
+      "ObjectId": 10026,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.86,
+        "y": 0.58,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "1E222EFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Mon_Screen",
+      "ObjectId": 10027,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.8,
+        "y": 0.52,
+        "z": 0.015
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "0F172AFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Mon_DisplayGlow",
+      "ObjectId": 10028,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.25,
+        "z": 0.255
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.74,
+        "y": 0.46,
+        "z": 0.008
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "818CF8FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Ticker_Frame",
+      "ObjectId": 10029,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.58,
+        "z": 0.22
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.86,
+        "y": 0.1,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "111319FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Ticker_Glow",
+      "ObjectId": 10030,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.58,
+        "z": 0.245
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.78,
+        "y": 0.06,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "EF4444FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_BusLine_L",
+      "ObjectId": 10031,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.46,
+        "y": 1.25,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.025,
+        "y": 0.58,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "00F0FFFF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_BusLine_R",
+      "ObjectId": 10032,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.46,
+        "y": 1.25,
+        "z": 0.24
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.025,
+        "y": 0.58,
+        "z": 0.01
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "A855F7FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Conduit_L",
+      "ObjectId": 10033,
+      "ParentId": 10000,
+      "Position": {
+        "x": -0.48,
+        "y": 0.84,
+        "z": 0.15
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 1.5,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "374151FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Conduit_R",
+      "ObjectId": 10034,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0.48,
+        "y": 0.84,
+        "z": 0.15
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 0.04,
+        "y": 1.5,
+        "z": 0.04
+      },
+      "BlockType": 1,
+      "Properties": {
+        "PrimitiveType": 3,
+        "Color": "374151FF",
+        "PrimitiveFlags": 3
+      }
+    },
+    {
+      "Name": "Srv_Light_Console",
+      "ObjectId": 10035,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 1.2,
+        "z": 0.55
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "00E5FFFF",
+        "Intensity": 3.0,
+        "Range": 4.5,
+        "Shadows": false
+      }
+    },
+    {
+      "Name": "Srv_Light_Accent",
+      "ObjectId": 10036,
+      "ParentId": 10000,
+      "Position": {
+        "x": 0,
+        "y": 0.6,
+        "z": 0.45
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "BlockType": 2,
+      "Properties": {
+        "Color": "A855F7FF",
+        "Intensity": 2.2,
+        "Range": 3.5,
+        "Shadows": false
+      }
+    }
+  ]
+}
