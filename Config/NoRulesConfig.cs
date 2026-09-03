@@ -96,6 +96,9 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("27. Случайное масштабирование роста игроков (RandomScale).")]
     public RandomScaleConfig RandomScale { get; set; } = new();
+
+    [Description("28. Переработка эффектов SCP-914 для игроков (SCP-914 Rework).")]
+    public Scp914ReworkConfig Scp914Rework { get; set; } = new();
 }
 
 public sealed class LobbyConfig

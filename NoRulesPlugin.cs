@@ -68,6 +68,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public LobbyMusicFeature LobbyMusic => FeatureRegistry.Get<LobbyMusicFeature>();
     public DisarmedProtectionFeature DisarmedProtection => FeatureRegistry.Get<DisarmedProtectionFeature>();
     public RandomScaleFeature RandomScale => FeatureRegistry.Get<RandomScaleFeature>();
+    public Scp914ReworkFeature Scp914Rework => FeatureRegistry.Get<Scp914ReworkFeature>();
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -211,6 +212,10 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         {
             Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
         }
+        if (Scp914Rework != null)
+        {
+            Exiled.Events.Handlers.Scp914.UpgradingPlayer += Scp914Rework.OnUpgradingPlayer;
+        }
 
         _isEventsRegistered = true;
     }
@@ -290,6 +295,10 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         if (PinkCandy != null)
         {
             Scp330EventsHandler.InteractingScp330 -= PinkCandy.OnInteractingScp330;
+        }
+        if (Scp914Rework != null)
+        {
+            Exiled.Events.Handlers.Scp914.UpgradingPlayer -= Scp914Rework.OnUpgradingPlayer;
         }
 
         _isEventsRegistered = false;
