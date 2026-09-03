@@ -691,8 +691,12 @@ public sealed class Co2Concept
 
         foreach (var userId in activators.Distinct())
         {
-            NoRulesPlugin.Instance?.PlayerXp?.SetRawXp(userId, string.Empty,
-                NoRulesPlugin.Instance.PlayerXp.GetXp(userId) + _config.MissionXp);
+            var p = Player.Get(userId);
+            if (p != null)
+                NoRulesPlugin.Instance?.PlayerXp?.GiveXp(p, _config.MissionXp);
+            else
+                NoRulesPlugin.Instance?.PlayerXp?.SetRawXp(userId, string.Empty,
+                    NoRulesPlugin.Instance.PlayerXp.GetXp(userId) + _config.MissionXp);
         }
 
         BroadcastToAll($"<color=#0099ff><b>⚠ CO2 АКТИВИРОВАН</b></color>\n<size=70%><color=#c2c2c2>Комплекс будет затоплен угарным газом. Покиньте facility или наденьте противогаз...</color></size>");

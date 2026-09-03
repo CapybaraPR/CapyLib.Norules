@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Capy.Core.Features;
 using Capy.Engine.Hints.Extensions;
 using Capy.NoRules.Config;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
@@ -19,8 +20,8 @@ public sealed class DotResKillFeature
     public bool ResAllowed { get; set; } = true;
     public bool KillAllowed { get; set; } = true;
 
-    private readonly Dictionary<int, DateTime> _resCooldowns = new();
-    private readonly Dictionary<int, DateTime> _killCooldowns = new();
+    private readonly Dictionary<string, DateTime> _resCooldowns = new();
+    private readonly Dictionary<string, DateTime> _killCooldowns = new();
 
     public DotResKillFeature(DotResKillConfig config)
     {
@@ -73,7 +74,8 @@ public sealed class DotResKillFeature
             return false;
         }
 
-        if (_killCooldowns.TryGetValue(player.Id, out var expire) && DateTime.UtcNow < expire)
+        string userId = player.UserId;
+        if (!string.IsNullOrEmpty(userId) && _killCooldowns.TryGetValue(userId, out var expire) && DateTime.UtcNow < expire)
         {
             double remaining = (expire - DateTime.UtcNow).TotalSeconds;
             response = $"Подождите ещё {remaining:F1} сек. перед следующим вызовом .kill.";
@@ -85,7 +87,8 @@ public sealed class DotResKillFeature
             : "Суицид";
 
         player.Kill(reason);
-        _killCooldowns[player.Id] = DateTime.UtcNow.AddSeconds(_config.KillCooldownSeconds);
+        if (!string.IsNullOrEmpty(userId))
+            _killCooldowns[userId] = DateTime.UtcNow.AddSeconds(_config.KillCooldownSeconds);
 
         response = $"<color=#ff4444>{reason}</color>";
         return true;
@@ -111,7 +114,8 @@ public sealed class DotResKillFeature
             return false;
         }
 
-        if (_resCooldowns.TryGetValue(player.Id, out var expire) && DateTime.UtcNow < expire)
+        string userId = player.UserId;
+        if (!string.IsNullOrEmpty(userId) && _resCooldowns.TryGetValue(userId, out var expire) && DateTime.UtcNow < expire)
         {
             double remaining = (expire - DateTime.UtcNow).TotalSeconds;
             response = $"Подождите ещё {remaining:F1} сек. перед повторной попыткой.";
@@ -122,8 +126,9 @@ public sealed class DotResKillFeature
             ? RoleTypeId.ClassD
             : RoleTypeId.Scientist;
 
-        player.Role.Set(targetRole);
-        _resCooldowns[player.Id] = DateTime.UtcNow.AddSeconds(_config.ResCooldownSeconds);
+        player.Role.Set(targetRole, SpawnReason.Respawn, RoleSpawnFlags.All);
+        if (!string.IsNullOrEmpty(userId))
+            _resCooldowns[userId] = DateTime.UtcNow.AddSeconds(_config.ResCooldownSeconds);
 
         string roleName = targetRole == RoleTypeId.ClassD
             ? "<color=#ff9933>Класс D</color>"

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Capy.Engine.Hints.Enum;
 using Capy.Engine.Hints.Extensions;
@@ -56,6 +56,7 @@ public static class VanishIsolationHandler
         var saved = VanishFeature.GetSavedState(player);
         saved.WasGodMode = player.IsGodModeEnabled;
         saved.WasMuted = player.IsMuted;
+        saved.NoclipPermitted = player.IsNoclipPermitted;
 
         player.IsGodModeEnabled = true;
         player.IsBypassModeEnabled = false;
@@ -88,7 +89,8 @@ public static class VanishIsolationHandler
         player.IsGodModeEnabled = saved.WasGodMode;
 
         player.IsNoclipEnabled = false;
-        player.IsMuted = VanishFeature.GetSavedState(player).WasMuted;
+        player.IsNoclipPermitted = saved.NoclipPermitted;
+        player.IsMuted = saved.WasMuted;
     }
 
     public static void Register()

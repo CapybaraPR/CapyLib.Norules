@@ -1083,8 +1083,7 @@ public sealed class HackersConcept
         _activeHackProgress = 0;
         SetPanelGlowColor(panel, new Color32(74, 222, 128, 255), 4.0f);
 
-        NoRulesPlugin.Instance?.PlayerXp?.SetRawXp(hacker.UserId, string.Empty,
-            NoRulesPlugin.Instance.PlayerXp.GetXp(hacker.UserId) + 100f);
+        NoRulesPlugin.Instance?.PlayerXp?.GiveXp(hacker, 100f);
 
         int total = _panels.Count(p => p.Hacked);
 
@@ -1321,8 +1320,7 @@ public sealed class HackersConcept
         if (_controlRoom != null) _controlRoom.Hacked = true;
         IsActive = true;
 
-        NoRulesPlugin.Instance?.PlayerXp?.SetRawXp(hacker.UserId, string.Empty,
-            NoRulesPlugin.Instance.PlayerXp.GetXp(hacker.UserId) + _config.MissionXp);
+        NoRulesPlugin.Instance?.PlayerXp?.GiveXp(hacker, _config.MissionXp);
 
         BroadcastToAll("<color=#a78bfa><b>💀 СИСТЕМЫ КОМПЛЕКСА ВЗЛОМАНЫ</b></color>\n" +
             "<size=70%><color=#ef4444>Инициируется протокол OMEGA WARHEAD...</color></size>");
