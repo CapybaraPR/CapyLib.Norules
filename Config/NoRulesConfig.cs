@@ -90,6 +90,9 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("25. Настройки кастомного лобби ожидания игроков перед началом раунда (Lobby).")]
     public LobbyConfig Lobby { get; set; } = new();
+
+    [Description("26. Защита связанных и обезоруженных пленных от токсичного расстрела (DisarmedProtection).")]
+    public DisarmedProtectionConfig DisarmedProtection { get; set; } = new();
 }
 
 public sealed class LobbyConfig

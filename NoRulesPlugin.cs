@@ -66,6 +66,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
     public DonateControllerFeature DonateController => FeatureRegistry.Get<DonateControllerFeature>();
     public LobbyFeature Lobby => FeatureRegistry.Get<LobbyFeature>();
     public LobbyMusicFeature LobbyMusic => FeatureRegistry.Get<LobbyMusicFeature>();
+    public DisarmedProtectionFeature DisarmedProtection => FeatureRegistry.Get<DisarmedProtectionFeature>();
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
@@ -111,7 +112,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         FeatureRegistry.InitializeAll(Config);
 
         // 2. Инициализация диспетчеров событий
-        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet, Scp120, Lobby);
+        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet, Scp120, Lobby, DisarmedProtection);
         _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList, Scp120, Lobby, LobbyMusic);
 
         RegisterEvents();

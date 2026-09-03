@@ -17,6 +17,7 @@ public class PlayerEvents
     private readonly CapybaraPetFeature _capybaraPet;
     private readonly Scp120Feature _scp120;
     private readonly LobbyFeature _lobby;
+    private readonly DisarmedProtectionFeature _disarmedProtection;
 
     public PlayerEvents(
         HitmarkerFeature hitmarkers,
@@ -27,7 +28,8 @@ public class PlayerEvents
         VanishFeature vanish,
         CapybaraPetFeature capybaraPet,
         Scp120Feature scp120,
-        LobbyFeature lobby)
+        LobbyFeature lobby,
+        DisarmedProtectionFeature disarmedProtection)
     {
         _hitmarkers = hitmarkers;
         _dotResKill = dotResKill;
@@ -38,12 +40,17 @@ public class PlayerEvents
         _capybaraPet = capybaraPet;
         _scp120 = scp120;
         _lobby = lobby;
+        _disarmedProtection = disarmedProtection;
     }
 
     public void OnHurting(HurtingEventArgs ev)
     {
         _lobby.OnPlayerHurting(ev);
         if (!ev.IsAllowed) return;
+
+        _disarmedProtection.OnPlayerHurting(ev);
+        if (!ev.IsAllowed) return;
+
         _hitmarkers.OnPlayerHurting(ev);
     }
     public void OnDied(DiedEventArgs ev)
