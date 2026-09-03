@@ -87,6 +87,48 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("24. Синхронизация донат-привилегий и выдача предметов с сайта (.get).")]
     public DonateControllerConfig DonateController { get; set; } = new();
+
+    [Description("25. Настройки кастомного лобби ожидания игроков перед началом раунда (Lobby).")]
+    public LobbyConfig Lobby { get; set; } = new();
+}
+
+public sealed class LobbyConfig
+{
+    [Description("Включено ли кастомное лобби ожидания игроков перед раундом.")]
+    public bool IsEnabled { get; set; } = true;
+
+    [Description("Имя схематики лобби для спавна.")]
+    public string SchematicName { get; set; } = "Lobby";
+
+    [Description("Координаты спавна схематики лобби (на поверхности).")]
+    public UnityEngine.Vector3 LobbyPosition { get; set; } = new(-0.598f, 325.782f, -46.28f);
+
+    [Description("Смещение точки спавна игроков относительно центра схематики (центр малой комнаты).")]
+    public UnityEngine.Vector3 PlayerSpawnOffset { get; set; } = new(2.35f, -1.21f, 5.84f);
+
+    [Description("Роль, выдаваемая игрокам в лобби ожидания.")]
+    public PlayerRoles.RoleTypeId LobbyRole { get; set; } = PlayerRoles.RoleTypeId.Tutorial;
+
+    [Description("Блокировать ли урон между игроками в лобби ожидания.")]
+    public bool BlockDamage { get; set; } = true;
+
+    [Description("Сообщение/Broadcast при входе в лобби ожидания.")]
+    public string WelcomeMessage { get; set; } = "<color=#DDAA55><b>Добро пожаловать в Лобби Капибар!</b></color>\\n<color=#C2C2C2>Ожидание начала раунда...</color>";
+
+    [Description("Время ожидания в лобби до старта раунда (в секундах).")]
+    public int LobbyDuration { get; set; } = 20;
+
+    [Description("Минимальное количество игроков для начала обратного отсчета лобби.")]
+    public int MinPlayers { get; set; } = 2;
+
+    [Description("Длительность сообщения в секундах.")]
+    public ushort MessageDuration { get; set; } = 10;
+
+    [Description("Включена ли фоновая музыка в лобби ожидания.")]
+    public bool EnableMusic { get; set; } = true;
+
+    [Description("Громкость фоновой музыки в лобби (от 0.0 до 1.0).")]
+    public float MusicVolume { get; set; } = 0.35f;
 }
 
 public sealed class Co2Config

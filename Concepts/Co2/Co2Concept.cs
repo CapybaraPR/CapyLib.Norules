@@ -752,14 +752,7 @@ public sealed class Co2Concept
                         continue;
 
                     float dmg = _config.PoisonDamagePerSecond;
-                    if (pl.Health > dmg)
-                    {
-                        pl.Health -= dmg;
-                    }
-                    else
-                    {
-                        pl.Kill("Отравление угарным газом (CO2)");
-                    }
+                    pl.Hurt(dmg, DamageType.Custom, "Отравление угарным газом (CO2)");
                 }
                 catch { }
             }

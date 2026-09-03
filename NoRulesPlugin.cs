@@ -1,5 +1,7 @@
 using System;
+using HarmonyLib;
 using Capy.Commands;
+using Capy.Core.DRM;
 using Capy.NoRules.Addons;
 using Capy.NoRules.Concepts;
 using Capy.NoRules.Concepts.Co2;
@@ -7,6 +9,7 @@ using Capy.NoRules.Concepts.Hackers;
 using Capy.NoRules.Concepts.Scp008;
 using Capy.NoRules.Config;
 using Capy.NoRules.Controllers;
+using Capy.NoRules.Core;
 using Capy.NoRules.EventHandlers;
 using Capy.NoRules.Modules;
 using Capy.NoRules.Scps;
@@ -23,8 +26,7 @@ namespace Capy.NoRules;
 
 /// <summary>
 /// Главный плагин игрового режима NoRules серверов Капибара SCP:SL.
-/// Включает: .kill/.res, FriendlyFire в конце раунда, Хитмаркеры, Бесконечные ресурсы,
-/// Мониторинг Интеркома, Розовую конфету, Магическую монетку, Расширенный побег, gci, gcr и Vanish.
+/// Автоматически управляет всеми подсистемами, фичами и концептами через FeatureRegistry на базе рефлексии.
 /// </summary>
 public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 {
@@ -36,46 +38,82 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
 
     public static NoRulesPlugin Instance { get; private set; } = null!;
 
-    // Игровые подсистемы
-    public DotResKillFeature DotResKill { get; private set; } = null!;
-    public FriendlyFireFeature FriendlyFire { get; private set; } = null!;
-    public HitmarkerFeature Hitmarkers { get; private set; } = null!;
-    public InfinityStuffFeature InfinityStuff { get; private set; } = null!;
-    public IntercomListFeature IntercomList { get; private set; } = null!;
-    public PinkCandyFeature PinkCandy { get; private set; } = null!;
-    public BetterCoinsFeature BetterCoins { get; private set; } = null!;
-    public BetterEscapeFeature BetterEscape { get; private set; } = null!;
-    public VanishFeature Vanish { get; private set; } = null!;
-    public CapybaraPetFeature CapybaraPet { get; private set; } = null!;
-    public Scp120Feature Scp120 { get; private set; } = null!;
-    public Scp294Feature Scp294 { get; private set; } = null!;
-    public FacilityAuthFeature FacilityAuth { get; private set; } = null!;
-    public ShowReportsFeature ShowReports { get; private set; } = null!;
-    public PlayerXpFeature PlayerXp { get; private set; } = null!;
-    public Scp1162Feature Scp1162 { get; private set; } = null!;
-    public ChatSayFeature ChatSay { get; private set; } = null!;
-    public CallVoteFeature CallVote { get; private set; } = null!;
-    public ScpSwapFeature ScpSwap { get; private set; } = null!;
-    public RemoteKeycardFeature RemoteKeycard { get; private set; } = null!;
-    public Co2Concept Co2 { get; private set; } = null!;
-    public HackersConcept Hackers { get; private set; } = null!;
-    public Scp008Concept Scp008 { get; private set; } = null!;
-    public Old173SpawnFeature Old173Spawn { get; private set; } = null!;
-    public DonateControllerFeature DonateController { get; private set; } = null!;
+    // Динамический доступ к зарегистрированным фичам через рефлексивный реестр
+    public DotResKillFeature DotResKill => FeatureRegistry.Get<DotResKillFeature>();
+    public FriendlyFireFeature FriendlyFire => FeatureRegistry.Get<FriendlyFireFeature>();
+    public HitmarkerFeature Hitmarkers => FeatureRegistry.Get<HitmarkerFeature>();
+    public InfinityStuffFeature InfinityStuff => FeatureRegistry.Get<InfinityStuffFeature>();
+    public IntercomListFeature IntercomList => FeatureRegistry.Get<IntercomListFeature>();
+    public PinkCandyFeature PinkCandy => FeatureRegistry.Get<PinkCandyFeature>();
+    public BetterCoinsFeature BetterCoins => FeatureRegistry.Get<BetterCoinsFeature>();
+    public BetterEscapeFeature BetterEscape => FeatureRegistry.Get<BetterEscapeFeature>();
+    public VanishFeature Vanish => FeatureRegistry.Get<VanishFeature>();
+    public CapybaraPetFeature CapybaraPet => FeatureRegistry.Get<CapybaraPetFeature>();
+    public Scp120Feature Scp120 => FeatureRegistry.Get<Scp120Feature>();
+    public Scp294Feature Scp294 => FeatureRegistry.Get<Scp294Feature>();
+    public FacilityAuthFeature FacilityAuth => FeatureRegistry.Get<FacilityAuthFeature>();
+    public ShowReportsFeature ShowReports => FeatureRegistry.Get<ShowReportsFeature>();
+    public PlayerXpFeature PlayerXp => FeatureRegistry.Get<PlayerXpFeature>();
+    public Scp1162Feature Scp1162 => FeatureRegistry.Get<Scp1162Feature>();
+    public ChatSayFeature ChatSay => FeatureRegistry.Get<ChatSayFeature>();
+    public CallVoteFeature CallVote => FeatureRegistry.Get<CallVoteFeature>();
+    public ScpSwapFeature ScpSwap => FeatureRegistry.Get<ScpSwapFeature>();
+    public RemoteKeycardFeature RemoteKeycard => FeatureRegistry.Get<RemoteKeycardFeature>();
+    public Co2Concept Co2 => FeatureRegistry.Get<Co2Concept>();
+    public HackersConcept Hackers => FeatureRegistry.Get<HackersConcept>();
+    public Scp008Concept Scp008 => FeatureRegistry.Get<Scp008Concept>();
+    public Old173SpawnFeature Old173Spawn => FeatureRegistry.Get<Old173SpawnFeature>();
+    public DonateControllerFeature DonateController => FeatureRegistry.Get<DonateControllerFeature>();
+    public LobbyFeature Lobby => FeatureRegistry.Get<LobbyFeature>();
+    public LobbyMusicFeature LobbyMusic => FeatureRegistry.Get<LobbyMusicFeature>();
 
     private PlayerEvents _playerEvents = null!;
     private ServerEvents _serverEvents = null!;
     private bool _isEventsRegistered;
+    private bool _isStarted;
 
     public override void OnEnabled()
     {
         Instance = this;
 
+        LicenseManager.LicenseConfirmed += OnLicenseConfirmed;
+
+        if (LicenseManager.IsLicenseValid)
+        {
+            StartPlugin();
+        }
+        else
+        {
+            Log.Warn("[NoRules] Ожидание подтверждения лицензии CapyLib для активации режима NoRules...");
+        }
+
+        base.OnEnabled();
+    }
+
+    private void OnLicenseConfirmed()
+    {
+        if (!_isStarted)
+        {
+            StartPlugin();
+        }
+    }
+
+    private void StartPlugin()
+    {
+        if (_isStarted) return;
+        _isStarted = true;
+
         AlphaController.Init();
         ConceptsController.Init();
         SpawnManager.Init();
 
-        RegisterFeatures();
+        // 1. Автоматическая рефлексивная инициализация всех фичей
+        FeatureRegistry.InitializeAll(Config);
+
+        // 2. Инициализация диспетчеров событий
+        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet, Scp120, Lobby);
+        _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList, Scp120, Lobby, LobbyMusic);
+
         RegisterEvents();
 
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .res</color>                   <color=#c2c2c2>-- Быстрое возрождение в первые 3 мин (наблюдатели)</color>");
@@ -86,92 +124,26 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* .drink (.dr)</color>       <color=#c2c2c2>-- Выбрать напиток SCP-294 (кофемашина в офисах)</color>");
         HelpMessageBuilder.RegisterCustomCommand("<color=#ffd285>* /level, /top</color>        <color=#c2c2c2>-- Уровень и топ игроков в нашем Discord</color>");
 
-        Log.Info($"[NoRules] Плагин успешно запущен (v{Version}) со всеми контроллерами, кастомным спавнером волн, концептами и модулями.");
-        base.OnEnabled();
+        Log.Info($"[NoRules] Режим успешно запущен v{Version} ({FeatureRegistry.Features.Count} фичей и концептов, 3D-Лобби, кастомный спавнер).");
     }
 
     public override void OnDisabled()
     {
+        LicenseManager.LicenseConfirmed -= OnLicenseConfirmed;
+        _isStarted = false;
+
         UnregisterEvents();
 
         SpawnManager.Unload();
         AlphaController.Unload();
         ConceptsController.Unload();
 
-        Scp120?.Dispose();
-        Scp294?.Disable();
-        FacilityAuth?.Disable();
-        ShowReports?.Disable();
-        PlayerXp?.Disable();
-        Scp1162?.Disable();
-        RemoteKeycard?.Disable();
-        Co2?.Disable();
-        Hackers?.Disable();
-        Scp008?.Disable();
-        Old173Spawn?.Disable();
-        DonateController?.Disable();
+        // Рефлексивная выгрузка всех фичей
+        FeatureRegistry.ShutdownAll();
 
         Instance = null!;
         Log.Info("[NoRules] Плагин выключен.");
         base.OnDisabled();
-    }
-
-    private void RegisterFeatures()
-    {
-        DotResKill = new DotResKillFeature(Config.DotResKill);
-        FriendlyFire = new FriendlyFireFeature(Config.FriendlyFire);
-        Hitmarkers = new HitmarkerFeature(Config.Hitmarkers);
-        InfinityStuff = new InfinityStuffFeature(Config.InfinityStuff);
-        IntercomList = new IntercomListFeature(Config.IntercomList);
-        PinkCandy = new PinkCandyFeature(Config.PinkCandy);
-        BetterCoins = new BetterCoinsFeature(Config.BetterCoins);
-        BetterEscape = new BetterEscapeFeature(Config.BetterEscape);
-
-        Vanish = new VanishFeature();
-        Vanish.Enable();
-
-        CapybaraPet = new CapybaraPetFeature(Config.CapybaraPet);
-        Scp120 = new Scp120Feature(Config.Scp120);
-
-        Scp294 = new Scp294Feature(Config.Scp294);
-        Scp294.Enable();
-
-        FacilityAuth = new FacilityAuthFeature(Config.FacilityAuth);
-        FacilityAuth.Enable();
-
-        ShowReports = new ShowReportsFeature(Config.ShowReports);
-        ShowReports.Enable();
-
-        PlayerXp = new PlayerXpFeature(Config.PlayerXp);
-        PlayerXp.Enable();
-
-        Scp1162 = new Scp1162Feature(Config.Scp1162);
-        Scp1162.Enable();
-
-        ChatSay = new ChatSayFeature(Config.ChatSay);
-        CallVote = new CallVoteFeature(Config.CallVote);
-        ScpSwap = new ScpSwapFeature(Config.ScpSwap);
-
-        RemoteKeycard = new RemoteKeycardFeature(Config.RemoteKeycard);
-        RemoteKeycard.Enable();
-
-        Co2 = new Co2Concept(Config.Co2);
-        Co2.Enable();
-
-        Hackers = new HackersConcept(Config.Hackers);
-        Hackers.Enable();
-
-        Scp008 = new Scp008Concept(Config.Scp008);
-        Scp008.Enable();
-
-        Old173Spawn = new Old173SpawnFeature(Config.Old173Spawn);
-        Old173Spawn.Enable();
-
-        DonateController = new DonateControllerFeature(Config.DonateController);
-        DonateController.Enable();
-
-        _playerEvents = new PlayerEvents(Hitmarkers, DotResKill, BetterCoins, BetterEscape, InfinityStuff, Vanish, CapybaraPet, Scp120);
-        _serverEvents = new ServerEvents(DotResKill, FriendlyFire, IntercomList, Scp120);
     }
 
     private void RegisterEvents()
@@ -182,6 +154,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.Hurting += _playerEvents.OnHurting;
         PlayerEventsHandler.Died += _playerEvents.OnDied;
         PlayerEventsHandler.Spawned += _playerEvents.OnSpawned;
+        PlayerEventsHandler.Verified += _playerEvents.OnVerified;
         PlayerEventsHandler.FlippingCoin += _playerEvents.OnFlippingCoin;
         PlayerEventsHandler.Escaping += _playerEvents.OnEscaping;
         PlayerEventsHandler.UsingRadioBattery += _playerEvents.OnUsingRadioBattery;
@@ -193,31 +166,49 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         PlayerEventsHandler.Left += _playerEvents.OnLeft;
 
         // Map events
-        Exiled.Events.Handlers.Map.PickupAdded += InfinityStuff.OnPickupAdded;
+        if (InfinityStuff != null)
+            Exiled.Events.Handlers.Map.PickupAdded += InfinityStuff.OnPickupAdded;
 
         // Server events
         ServerEventsHandler.RoundStarted += _serverEvents.OnRoundStarted;
-        ServerEventsHandler.RoundStarted += InfinityStuff.OnRoundStarted;
+        if (InfinityStuff != null)
+            ServerEventsHandler.RoundStarted += InfinityStuff.OnRoundStarted;
         ServerEventsHandler.RoundEnded += _serverEvents.OnRoundEnded;
         ServerEventsHandler.WaitingForPlayers += _serverEvents.OnWaitingForPlayers;
+        ServerEventsHandler.RestartingRound += _serverEvents.OnRestartingRound;
 
         // Addon events
-        ServerEventsHandler.RestartingRound += ChatSay.OnRestartingRound;
-        ServerEventsHandler.RoundStarted += ScpSwap.OnRoundStarted;
-        ServerEventsHandler.WaitingForPlayers += ScpSwap.OnWaitingForPlayers;
-        ServerEventsHandler.RestartingRound += ScpSwap.OnRestartingRound;
-        ServerEventsHandler.RestartingRound += CallVote.OnRestartingRound;
+        if (ChatSay != null)
+            ServerEventsHandler.RestartingRound += ChatSay.OnRestartingRound;
+        if (ScpSwap != null)
+        {
+            ServerEventsHandler.RoundStarted += ScpSwap.OnRoundStarted;
+            ServerEventsHandler.WaitingForPlayers += ScpSwap.OnWaitingForPlayers;
+            ServerEventsHandler.RestartingRound += ScpSwap.OnRestartingRound;
+        }
+        if (CallVote != null)
+            ServerEventsHandler.RestartingRound += CallVote.OnRestartingRound;
+        
         ServerEventsHandler.RestartingRound += PinkCandyStaticRestart;
         Exiled.Events.Handlers.Player.Left += PinkCandyStaticLeft;
 
         // Wave & respawn events
         ServerEventsHandler.RespawningTeam += WaveDispatcher;
-        ServerEventsHandler.RespawningTeam += Vanish.OnRespawningTeam;
-        ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
-        ServerEventsHandler.RestartingRound += CapybaraPet.OnRoundRestarted;
+        if (Vanish != null)
+        {
+            ServerEventsHandler.RespawningTeam += Vanish.OnRespawningTeam;
+            ServerEventsHandler.RestartingRound += Vanish.OnRoundRestarted;
+        }
+        if (CapybaraPet != null)
+        {
+            ServerEventsHandler.RestartingRound += CapybaraPet.OnRoundRestarted;
+        }
 
         // SCP events
-        Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
+        if (PinkCandy != null)
+        {
+            Scp330EventsHandler.InteractingScp330 += PinkCandy.OnInteractingScp330;
+        }
 
         _isEventsRegistered = true;
     }
@@ -232,6 +223,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             PlayerEventsHandler.Hurting -= _playerEvents.OnHurting;
             PlayerEventsHandler.Died -= _playerEvents.OnDied;
             PlayerEventsHandler.Spawned -= _playerEvents.OnSpawned;
+            PlayerEventsHandler.Verified -= _playerEvents.OnVerified;
             PlayerEventsHandler.FlippingCoin -= _playerEvents.OnFlippingCoin;
             PlayerEventsHandler.Escaping -= _playerEvents.OnEscaping;
             PlayerEventsHandler.UsingRadioBattery -= _playerEvents.OnUsingRadioBattery;
@@ -244,7 +236,8 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         }
 
         // Map events
-        Exiled.Events.Handlers.Map.PickupAdded -= InfinityStuff.OnPickupAdded;
+        if (InfinityStuff != null)
+            Exiled.Events.Handlers.Map.PickupAdded -= InfinityStuff.OnPickupAdded;
 
         // Server events
         if (_serverEvents != null)
@@ -252,6 +245,7 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             ServerEventsHandler.RoundStarted -= _serverEvents.OnRoundStarted;
             ServerEventsHandler.RoundEnded -= _serverEvents.OnRoundEnded;
             ServerEventsHandler.WaitingForPlayers -= _serverEvents.OnWaitingForPlayers;
+            ServerEventsHandler.RestartingRound -= _serverEvents.OnRestartingRound;
         }
 
         if (InfinityStuff != null)
@@ -259,12 +253,20 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
             ServerEventsHandler.RoundStarted -= InfinityStuff.OnRoundStarted;
         }
 
+        Lobby?.DespawnLobby();
+
         // Addon events
-        ServerEventsHandler.RestartingRound -= ChatSay.OnRestartingRound;
-        ServerEventsHandler.RoundStarted -= ScpSwap.OnRoundStarted;
-        ServerEventsHandler.WaitingForPlayers -= ScpSwap.OnWaitingForPlayers;
-        ServerEventsHandler.RestartingRound -= ScpSwap.OnRestartingRound;
-        ServerEventsHandler.RestartingRound -= CallVote.OnRestartingRound;
+        if (ChatSay != null)
+            ServerEventsHandler.RestartingRound -= ChatSay.OnRestartingRound;
+        if (ScpSwap != null)
+        {
+            ServerEventsHandler.RoundStarted -= ScpSwap.OnRoundStarted;
+            ServerEventsHandler.WaitingForPlayers -= ScpSwap.OnWaitingForPlayers;
+            ServerEventsHandler.RestartingRound -= ScpSwap.OnRestartingRound;
+        }
+        if (CallVote != null)
+            ServerEventsHandler.RestartingRound -= CallVote.OnRestartingRound;
+
         ServerEventsHandler.RestartingRound -= PinkCandyStaticRestart;
         Exiled.Events.Handlers.Player.Left -= PinkCandyStaticLeft;
 
@@ -275,13 +277,11 @@ public sealed class NoRulesPlugin : Plugin<NoRulesConfig>
         {
             ServerEventsHandler.RespawningTeam -= Vanish.OnRespawningTeam;
             ServerEventsHandler.RestartingRound -= Vanish.OnRoundRestarted;
-            Vanish.Disable();
         }
 
         if (CapybaraPet != null)
         {
             ServerEventsHandler.RestartingRound -= CapybaraPet.OnRoundRestarted;
-            CapybaraPet.OnRoundRestarted();
         }
 
         // SCP events

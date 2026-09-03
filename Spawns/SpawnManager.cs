@@ -134,12 +134,19 @@ public static class SpawnManager
             // Отсчет пока до спавна больше 15 секунд
             while (TimeRemaining > 15f && Round.IsStarted)
             {
+                // При OMEGA боеголовке спавны блокируются необратимо до конца раунда
                 if (NoRulesPlugin.Instance?.Hackers?.IsOmegaActive == true ||
-                    NoRulesPlugin.Instance?.Hackers?.IsOmegaDetonated == true ||
-                    ConceptsController.IsActivated || Warhead.IsDetonated)
+                    NoRulesPlugin.Instance?.Hackers?.IsOmegaDetonated == true)
                 {
                     TimeRemaining = 0;
                     yield break;
+                }
+
+                // При временных концептах (CO2) или активной боеголовке прерываем только текущий отсчет волны
+                if (ConceptsController.IsActivated || Warhead.IsDetonated)
+                {
+                    TimeRemaining = 0;
+                    break;
                 }
 
                 yield return Timing.WaitForSeconds(1f);

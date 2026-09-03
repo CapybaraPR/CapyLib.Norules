@@ -74,7 +74,7 @@ public sealed class DonateControllerFeature
             _updateCoroutine = Timing.RunCoroutine(AutoUpdateLoop());
         }
 
-        Log.Info("[DonateController] Модуль синхронизации доната и инвентаря сайта успешно включен.");
+        Log.Debug("[DonateController] Модуль синхронизации доната и инвентаря сайта успешно включен.");
     }
 
     public void Disable()

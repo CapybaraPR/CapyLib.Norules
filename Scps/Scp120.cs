@@ -208,16 +208,24 @@ public sealed class Scp120Feature : IDisposable
             // 2. Проверка трансформации брошенных в воду предметов (только когда предмет упал в воду)
             if (!_isItemTransforming && DateTime.UtcNow >= _nextItemAllowedTransformTime)
             {
-                foreach (Pickup pickup in Pickup.List.ToList())
+                float detectRadius = _config.ItemDetectRadius;
+                float radiusSq = detectRadius * detectRadius;
+
+                foreach (Pickup pickup in Pickup.List)
                 {
                     if (pickup == null || pickup.GameObject == null || _activePickupSerials.Contains(pickup.Serial)) continue;
 
-                    Vector2 pickupPos2D = new Vector2(pickup.Position.x, pickup.Position.z);
-                    float dist2D = Vector2.Distance(pickupPos2D, poolPos2D);
-                    float yDiff = pickup.Position.y - poolPos.y;
+                    Vector3 pos = pickup.Position;
+                    float yDiff = pos.y - poolPos.y;
+                    if (yDiff < -0.4f || yDiff > 0.65f) continue;
 
-                    // Срабатывает только когда предмет действительно попал в воду бассейна
-                    if (dist2D <= _config.ItemDetectRadius && yDiff >= -0.4f && yDiff <= 0.65f)
+                    float dx = pos.x - poolPos.x;
+                    if (Mathf.Abs(dx) > detectRadius) continue;
+
+                    float dz = pos.z - poolPos.z;
+                    if (Mathf.Abs(dz) > detectRadius) continue;
+
+                    if (dx * dx + dz * dz <= radiusSq)
                     {
                         Timing.RunCoroutine(ProcessItemTransformation(pickup), "scp120_item");
                         break;

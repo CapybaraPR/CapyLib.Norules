@@ -88,6 +88,10 @@
             <HintPath>..\CapyLib\_deps\AudioPlayerApi.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>..\CapyLib\_deps\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <Reference Include="System.Net.Http" />
     </ItemGroup>
 

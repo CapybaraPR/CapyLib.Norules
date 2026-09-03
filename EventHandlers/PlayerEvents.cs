@@ -1,4 +1,4 @@
-﻿using Capy.NoRules.Addons;
+using Capy.NoRules.Addons;
 using Capy.NoRules.Modules;
 using Capy.NoRules.Concepts;
 using Capy.NoRules.Scps;
@@ -16,6 +16,7 @@ public class PlayerEvents
     private readonly VanishFeature _vanish;
     private readonly CapybaraPetFeature _capybaraPet;
     private readonly Scp120Feature _scp120;
+    private readonly LobbyFeature _lobby;
 
     public PlayerEvents(
         HitmarkerFeature hitmarkers,
@@ -25,7 +26,8 @@ public class PlayerEvents
         InfinityStuffFeature infinityStuff,
         VanishFeature vanish,
         CapybaraPetFeature capybaraPet,
-        Scp120Feature scp120)
+        Scp120Feature scp120,
+        LobbyFeature lobby)
     {
         _hitmarkers = hitmarkers;
         _dotResKill = dotResKill;
@@ -35,9 +37,15 @@ public class PlayerEvents
         _vanish = vanish;
         _capybaraPet = capybaraPet;
         _scp120 = scp120;
+        _lobby = lobby;
     }
 
-    public void OnHurting(HurtingEventArgs ev) => _hitmarkers.OnPlayerHurting(ev);
+    public void OnHurting(HurtingEventArgs ev)
+    {
+        _lobby.OnPlayerHurting(ev);
+        if (!ev.IsAllowed) return;
+        _hitmarkers.OnPlayerHurting(ev);
+    }
     public void OnDied(DiedEventArgs ev)
     {
         _hitmarkers.OnPlayerDied(ev);
@@ -47,9 +55,15 @@ public class PlayerEvents
 
     public void OnSpawned(SpawnedEventArgs ev)
     {
+        _lobby.OnPlayerSpawned(ev);
         _betterCoins.OnPlayerSpawned(ev);
         _infinityStuff.OnSpawned(ev);
         _capybaraPet.OnPlayerSpawned(ev);
+    }
+
+    public void OnVerified(VerifiedEventArgs ev)
+    {
+        _lobby.OnPlayerVerified(ev);
     }
 
     public void OnFlippingCoin(FlippingCoinEventArgs ev)
