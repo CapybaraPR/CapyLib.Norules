@@ -18,6 +18,7 @@ public class PlayerEvents
     private readonly Scp120Feature _scp120;
     private readonly LobbyFeature _lobby;
     private readonly DisarmedProtectionFeature _disarmedProtection;
+    private readonly RandomScaleFeature _randomScale;
 
     public PlayerEvents(
         HitmarkerFeature hitmarkers,
@@ -29,7 +30,8 @@ public class PlayerEvents
         CapybaraPetFeature capybaraPet,
         Scp120Feature scp120,
         LobbyFeature lobby,
-        DisarmedProtectionFeature disarmedProtection)
+        DisarmedProtectionFeature disarmedProtection,
+        RandomScaleFeature randomScale)
     {
         _hitmarkers = hitmarkers;
         _dotResKill = dotResKill;
@@ -41,6 +43,7 @@ public class PlayerEvents
         _scp120 = scp120;
         _lobby = lobby;
         _disarmedProtection = disarmedProtection;
+        _randomScale = randomScale;
     }
 
     public void OnHurting(HurtingEventArgs ev)
@@ -66,6 +69,7 @@ public class PlayerEvents
         _betterCoins.OnPlayerSpawned(ev);
         _infinityStuff.OnSpawned(ev);
         _capybaraPet.OnPlayerSpawned(ev);
+        _randomScale.OnPlayerSpawned(ev);
     }
 
     public void OnVerified(VerifiedEventArgs ev)

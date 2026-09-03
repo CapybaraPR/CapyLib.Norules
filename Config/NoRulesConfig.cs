@@ -93,6 +93,9 @@ public sealed class NoRulesConfig : IConfig
 
     [Description("26. Защита связанных и обезоруженных пленных от токсичного расстрела (DisarmedProtection).")]
     public DisarmedProtectionConfig DisarmedProtection { get; set; } = new();
+
+    [Description("27. Случайное масштабирование роста игроков (RandomScale).")]
+    public RandomScaleConfig RandomScale { get; set; } = new();
 }
 
 public sealed class LobbyConfig
